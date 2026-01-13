@@ -4,1102 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flying Mouse Lab</title>
-    <style>
-        :root {
-            --accent-blue: #0077FF;
-            --accent-purple: #5961F9;
-            --text-dark: #2d3436;
-            --border-light: rgba(0, 0, 0, 0.08);
-            --glass-shine: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, 0.8) 50%, transparent 70%);
-        }
-
-        body, html {
-            margin: 0; padding: 0; width: 100%;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background: #fdfdfd;
-            scroll-behavior: smooth;
-            overflow-x: hidden;
-        }
-
-        .section-layer {
-			position: relative;
-			width: 100%; 
-			/* Changed from 100vh to allow the section to grow with padding */
-			min-height: 100vh; 
-			display: flex; 
-			align-items: center;
-			overflow: hidden;
-			padding-top: 100px; /* Adds massive breathing room at top */
-		}
-		
-		/* --- 1. NAV BAR SECTION --- */
-
-		#bespoke-nav {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        z-index: 1000;
-        padding: 20px 5%;
-        /* Smooth transition for the transform */
-        transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
-    }
-
-    /* Logic for hiding */
-    .nav-hidden {
-        transform: translateY(-100%);
-        opacity: 0;
-    }
-
-    /* Container Styling (Glassmorphism) */
-    .nav-container {
-        max-width: 1500px;
-		height: 60px;
-        margin: 0 auto;
-        background: rgba(255, 255, 255, 0.6);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.8);
-        border-radius: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 15px 30px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
-    }
-
-    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: #111; }
-    .logo-box { width: 32px; height: 32px; border: 1.5px solid #111; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 14px; }
-    .logo-text { font-weight: 800; letter-spacing: 2px; font-size: 14px; }
-
-    .nav-links { display: flex; gap: 40px; }
-    .nav-item { text-decoration: none; color: #555; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; position: relative; }
-    .nav-item:hover { color: #111; }
-
-    .btn-frame { text-decoration: none; background: #111; color: #fff; padding: 10px 20px; border-radius: 10px; font-size: 11px; font-weight: 700; transition: 0.3s; }
-    .btn-frame:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-    /* Mobile handling */
-    @media (max-width: 768px) {
-        .nav-links { display: none; } /* Usually we'd add a hamburger here */
-        .nav-container { padding: 10px 20px; }
-    }
-
-        /* --- 1. HERO SECTION --- */
-        #hero {
-            background: linear-gradient(135deg, #B0E0E6 0%, #A5F3FC 20%, #89CFF0 40%, #E0F7FA 60%, #FFDAB9 75%, #A5F3FC 100%);
-            background-size: 400% 400%;
-            animation: bgShift 10s infinite alternate ease-in-out;
-            perspective: 2000px;
-        }
-
-        .btn {
-            padding: 16px 32px; border-radius: 50px; text-decoration: none;
-            font-weight: 700; transition: 0.3s; border: 2px solid white; display: inline-block;
-        }
-        .btn-primary { background: white; color: #0077FF; margin-right: 15px;}
-        .btn-secondary { background: rgba(255,255,255,0.2); color: #2d3436; backdrop-filter: blur(10px); }
-        .btn:hover { transform: scale(1.05); }
-
-        @keyframes bgShift {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 100% 50%; }
-        }
-
-        .hero-content { position: relative; z-index: 10; padding-left: 10%; pointer-events: none; }
-        .text-box { max-width: 600px; pointer-events: auto; color: #2d3436; }
-        h1 { font-size: 4.5rem; margin: 0; font-weight: 800; letter-spacing: -2px; }
-        p { font-size: 1.3rem; margin: 15px 0 35px 0; opacity: 0.8; }
-
-        /* --- THE SHINE ENGINE (Shared Logic) --- */
-        .glass-cube, .glass-card {
-            position: relative;
-            overflow: hidden; /* Clips the shine streak */
-        }
-
-        .glass-cube::after, .glass-card::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: var(--glass-shine);
-            background-size: 250% 250%;
-            animation: surfaceShine 10s infinite linear;
-            pointer-events: none;
-            z-index: 2;
-        }
-
-        @keyframes surfaceShine {
-            0% { background-position: -250% 0; }
-            100% { background-position: 250% 0; }
-        }
-
-        /* Background Cubes Positioning */
-        .glass-engine .glass-cube, .testi-right .glass-cube {
-            position: absolute; transform-style: preserve-3d; border-radius: 40px;
-            background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
-            border: 2px solid rgba(255, 255, 255, 0.5);
-            box-shadow: inset 0 25px 40px rgba(255, 255, 255, 0.7), 0 50px 100px rgba(0, 0, 0, 0.1);
-            animation: crystalTumble 24s infinite alternate ease-in-out;
-        }
-
-/* --- UPDATED RANDOMIZED FLOATING ENGINE --- */
-/* --- THE GLOBAL CUBE ENGINE --- */
-.glass-cube {
-    position: absolute;
-    transform-style: preserve-3d;
-    border-radius: 60px;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(40px);
-    border: 2px solid rgba(255, 255, 255, 0.5);
-    box-shadow: 
-        inset 0 25px 40px rgba(255, 255, 255, 0.7),
-        0 50px 100px rgba(0, 0, 0, 0.1);
-    
-    /* We move the animation property to the individual classes below */
-}
-
-/* --- RANDOMIZED INDIVIDUAL LOGIC --- */
-
-@keyframes crystalTumble {
-    0% { 
-        transform: translate(var(--startTX), var(--startTY)) 
-                   rotateX(var(--startX)) rotateY(var(--startY)) rotateZ(var(--startZ)) 
-                   translateZ(-200px); 
-    }
-    100% { 
-        transform: translate(var(--endTX), var(--endTY)) 
-                   rotateX(var(--endX)) rotateY(var(--endY)) rotateZ(var(--endZ)) 
-                   translateZ(500px); 
-    }
-}
-
-	/* 2. Individual Cube Logic - No Opacity, High Speed */
-	.c1 { 
-    width: 160px; height: 160px; top: 10%; left: 10%;
-    --startTX: 0px; --startTY: 0px; --endTX: 40px; --endTY: 60px; 
-    --startX: 0deg; --startY: 0deg; --startZ: 39deg; --endX: 360deg; --endY: 180deg; --endZ: 90deg; 
-    animation: crystalTumble 18s infinite alternate ease-in-out; animation-delay: -2s;
-	}
-
-	.c2 { 
-    width: 180px; height: 180px; bottom: 15%; right: 10%;
-    --startTX: 0px; --startTY: 0px; --endTX: -50px; --endTY: -40px; 
-    --startX: 45deg; --startY: 90deg; --startZ: -20deg; --endX: -180deg; --endY: -45deg; --endZ: -120deg; 
-	animation: crystalTumble 22s infinite alternate ease-in-out; animation-delay: -5s;
-	}
-
-	.c3 { 
-    width: 220px; height: 220px; top: 35%; left: 35%;
-    --startTX: 0px; --startTY: 0px; --endTX: 30px; --endTY: -30px; 
-    --startX: -10deg; --startY: -10deg; --startZ: 0deg; --endX: 200deg; --endY: 360deg; --endZ: 45deg; 
-    animation: crystalTumble 28s infinite alternate ease-in-out; animation-delay: -10s;
-}
-
-.c4 { 
-    width: 240px; height: 240px; top: 5%; right: 20%;
-    --startTX: 0px; --startTY: 0px; --endTX: -60px; --endTY: 40px; 
-    --startX: 120deg; --startY: -30deg; --startZ: 60deg; --endX: 0deg; --endY: 200deg; --endZ: -60deg; 
-    animation: crystalTumble 20s infinite alternate ease-in-out; animation-delay: -15s;
-}
-
-.c5 { 
-    width: 280px; height: 280px; bottom: 25%; left: 15%;
-    --startTX: 0px; --startTY: 0px; --endTX: 50px; --endTY: 20px; 
-    --startX: -45deg; --startY: -45deg; --startZ: 10deg; --endX: 180deg; --endY: 120deg; --endZ: 300deg; 
-    animation: crystalTumble 16s infinite alternate ease-in-out; animation-delay: -8s;
-}
-
-.c6 { 
-    width: 300px; height: 300px; top: 40%; right: 5%; 
-    --startTX: 0px; --startTY: 0px; --endTX: -30px; --endTY: 50px; 
-    --startX: 0deg; --startY: 180deg; --startZ: -30deg; --endX: -360deg; --endY: 0deg; --endZ: 120deg; 
-    animation: crystalTumble 30s infinite alternate ease-in-out; animation-delay: -12s;
-}
-
-.c7 { 
-    width: 320px; height: 340px; bottom: 5%; left: 45%;
-    --startTX: 0px; --startTY: 0px; --endTX: 20px; --endTY: -60px; 
-    --startX: 90deg; --startY: 0deg; --startZ: 0deg; --endX: -90deg; --endY: -270deg; --endZ: -90deg; 
-    animation: crystalTumble 25s infinite alternate ease-in-out; animation-delay: -20s;
-}
-
-/* Updated Keyframes for subtle "in-place" tumbling */
-@keyframes crystalTumble {
-    0% { 
-        transform: translate(var(--startTX), var(--startTY)) 
-                   rotateX(var(--startX)) rotateY(var(--startY)) rotateZ(var(--startZ)) 
-                   translateZ(0px); 
-    }
-    100% { 
-        transform: translate(var(--endTX), var(--endTY)) 
-                   rotateX(var(--endX)) rotateY(var(--endY)) rotateZ(var(--endZ)) 
-                   translateZ(150px); 
-    }
-}
-
-
-        /* --- 2. SERVICES SECTION --- */
-/* --- 2. SERVICES SECTION (COMPLETE ISOLATED STYLES) --- */
-
-#services-accordion { 
-    min-height: 100vh; 
-    padding: 120px 5%; 
-    background: #ffffff; 
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    overflow: hidden;
-}
-
-#services-accordion .accordion-container { 
-    display: flex; 
-    width: 100%; 
-    height: 700px; 
-    gap: 15px; 
-    z-index: 1;
-}
-
-/* --- THE BLADE BASE --- */
-#services-accordion .blade {
-    position: relative; 
-    flex: 1; 
-    border-radius: 35px; 
-    overflow: hidden;
-    background: #fff; 
-    cursor: pointer;
-    transition: flex 0.8s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease;
-    border: 1px solid rgba(0,0,0,0.06);
-    box-shadow: 0 15px 45px rgba(0,0,0,0.04);
-}
-
-/* THE STICKY ACTIVE STATE */
-#services-accordion .blade.active {
-    flex: 5;
-    box-shadow: 0 40px 100px rgba(0,0,0,0.1);
-}
-
-/* --- THE DARK SCRIM (Bottom Darkening) --- */
-#services-accordion .blade::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    /* Darkening the bottom 60% for max readability */
-    background: linear-gradient(
-        to bottom, 
-        transparent 40%, 
-        rgba(0, 0, 0, 0.8) 100%
-    );
-    z-index: 2; /* Sits above image, below text */
-    opacity: 0;
-    transition: opacity 0.8s ease;
-    pointer-events: none;
-}
-
-#services-accordion .blade.active::before {
-    opacity: 1;
-}
-
-/* --- THE IMAGE LAYER (ARCTIC FROST) --- */
-#services-accordion .blade-glass-frost { 
-    position: absolute; 
-    inset: 0; 
-    background-image: var(--bg);
-    background-size: cover;
-    background-position: center;
-    /* Inactive: Frosted, Grayscale, Bright */
-    filter: grayscale(100%) blur(15px) brightness(1.2); 
-    opacity: 0.6; 
-    transform: scale(1.1); 
-    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-    z-index: 1;
-}
-
-#services-accordion .blade.active .blade-glass-frost { 
-    filter: grayscale(0%) blur(0px) brightness(1.05); 
-    opacity: 1;
-    transform: scale(1);
-}
-
-/* --- THE CONTENT BOX (TEXT WRAPPER) --- */
-#services-accordion .blade-content { 
-    position: absolute; 
-    bottom: 60px; 
-    left: 60px;
-    right: 60px;
-    z-index: 10; /* Highest layer to ensure text is visible */
-    pointer-events: none;
-    width: fit-content;
-    max-width: 85%;
-}
-
-/* --- TYPOGRAPHY & VISIBILITY --- */
-#services-accordion .blade-number,
-#services-accordion .blade-title,
-#services-accordion .blade-expanded-text,
-#services-accordion .service-list {
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(20px);
-    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* Show everything when active */
-#services-accordion .blade.active .blade-number,
-#services-accordion .blade.active .blade-title,
-#services-accordion .blade.active .service-list {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-#services-accordion .blade.active .blade-expanded-text {
-    opacity: 1;
-    visibility: visible;
-    max-height: 500px;
-    transform: translateY(0);
-    margin-top: 20px;
-    transition-delay: 0.2s; /* Delayed for smooth reveal */
-}
-
-#services-accordion .blade-number {
-    font-size: 0.9rem;
-    font-weight: 800;
-    letter-spacing: 0.2em;
-    color: rgba(255, 255, 255, 0.7);
-    margin-bottom: 10px;
-    display: block;
-}
-
-#services-accordion .blade-title { 
-    font-size: 4.5rem; 
-    font-weight: 900; 
-    color: #fff; 
-    margin: 0;
-    line-height: 1.1;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-}
-
-#services-accordion .blade-expanded-text { 
-    color: rgba(255,255,255,0.9);
-    font-size: 1.15rem;
-    line-height: 1.6;
-    max-width: 550px;
-    text-shadow: 0 1px 5px rgba(0,0,0,0.2);
-}
-
-/* --- PILLS (SERVICE LIST) --- */
-#services-accordion .service-list { 
-    display: flex; 
-    flex-wrap: wrap; 
-    gap: 12px; 
-    list-style: none; 
-    padding: 0; 
-    margin-top: 30px; 
-}
-
-#services-accordion .service-list li { 
-    background: rgba(255, 255, 255, 0.2); 
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    padding: 8px 20px; 
-    border-radius: 50px; 
-    font-size: 0.75rem; 
-    font-weight: 800; 
-    color: #fff; 
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    text-transform: uppercase;
-    white-space: nowrap;
-}
-
-/* --- MOBILE RESPONSIVENESS --- */
-@media (max-width: 900px) {
-    #services-accordion .accordion-container { flex-direction: column; height: auto; }
-    #services-accordion .blade { height: 120px; flex: none; }
-    #services-accordion .blade.active { height: 550px; }
-    #services-accordion .blade-title { font-size: 3rem; }
-    #services-accordion .blade-content { bottom: 30px; left: 30px; right: 30px; }
-}
-	
-	/* --- 3. CASE STUDY SECTION --- */
-
-	
-	    #perf-metrics-module {
-            background: linear-gradient(135deg, #B0E0E6 0%, #A5F3FC 20%, #89CFF0 40%, #E0F7FA 60%, #FFDAB9 75%, #A5F3FC 100%);
-            background-size: 400% 400%;
-            animation: bgShift 10s infinite alternate ease-in-out;
-            perspective: 2000px;
-        padding: 140px 0;
-        width: 100%;
-        font-family: sans-serif; /* Replace with your site font */
-    }
-	@keyframes bgShift {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 100% 50%; }
-        }
-
-    .perf-wrapper {
-        max-width: 1400px;
-        margin: 0 auto;
-        padding: 0 5%;
-    }
-
-    .perf-intro { margin-bottom: 70px; }
-    .perf-label-top { color: #5961F9; font-weight: 800; letter-spacing: 3px; font-size: 0.8rem; display: block; margin-bottom: 15px; }
-    .perf-main-heading { font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 900; color: #111; line-height: 1.1; letter-spacing: -2px; }
-
-    /* GRID CONFIG */
-    .perf-glass-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 20px;
-    }
-
-    /* CARD & SHINE INTEGRATION */
-    .performance-glass-card {
-        position: relative;
-        background: rgba(255, 255, 255, 0.45);
-        backdrop-filter: blur(25px);
-        -webkit-backdrop-filter: blur(25px);
-        border: 1px solid rgba(255, 255, 255, 0.9);
-        border-radius: 32px;
-        padding: 50px 35px;
-        overflow: hidden; /* Clips the shine */
-        transition: transform 0.7s cubic-bezier(0.2, 1, 0.3, 1), box-shadow 0.5s ease;
-    }
-
-    .performance-glass-card:hover {
-        box-shadow: 0 40px 80px rgba(0,0,0,0.06);
-        background: rgba(255, 255, 255, 0.6);
-		transform: translateY(-12px);    }
-
-    /* THE SHINE LAYER */
-    .performance-glass-card::after {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(
-            115deg, 
-            transparent 40%, 
-            rgba(255,255,255,0.7) 50%, 
-            transparent 60%
-        );
-        background-size: 250% 250%;
-        animation: surfaceShine 12s infinite linear;
-        pointer-events: none;
-        z-index: 2;
-    }
-
-    @keyframes surfaceShine {
-        0% { background-position: 250% 0; }
-        100% { background-position: -250% 0; }
-    }
-
-    /* CONTENT STYLING (Ensure visibility over shine) */
-    .card-inner-content { position: relative; z-index: 5; }
-    
-    .metric-category { font-size: 0.7rem; font-weight: 800; color: #bbb; letter-spacing: 2px; display: block; margin-bottom: 10px; }
-    .metric-value { font-size: 3.2rem; font-weight: 900; color: #111; margin-bottom: 20px; letter-spacing: -1px; }
-    .metric-description { font-size: 1rem; color: #666; line-height: 1.6; margin-bottom: 40px; min-height: 80px; }
-    .metric-footer { border-top: 1px solid rgba(0,0,0,0.06); padding-top: 20px; font-size: 0.7rem; font-weight: 700; color: #5961F9; }
-
-    /* RESPONSIVE BREAKPOINTS */
-    @media (max-width: 1200px) { .perf-glass-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 700px) { 
-        .perf-glass-grid { grid-template-columns: 1fr; }
-        .performance-glass-card { padding: 40px 30px; }
-    }
-        
-		
-		/* --- 4. PORTFOLIO SECTION --- */
-        #portfolio { perspective: 2000px; min-height: 120vh; padding: 100px 0; /* Give the extra room to feel grand */ }
-        
-		.carousel-stage { position: absolute; width: 100%; height: 100%; transform-style: preserve-3d; }
-        
-		.portfolio-card {
-            position: absolute; top: 50%; left: 50%; width: 330px; height: 450px;
-            margin-left: -165px; margin-top: -270px; border-radius: 30px;
-            background: #fff; overflow: hidden; transform-style: preserve-3d;
-            box-shadow: 0 15px 45px rgba(0,0,0,0.06); border: 1px solid var(--border-light);
-        }
-		
-		.portfolio-card::after{
-			content: '';
-            position: absolute;
-            inset: 0;
-            background: var(--glass-shine);
-            background-size: 200% 200%;
-            animation: surfaceShine 15s infinite linear;
-            pointer-events: none;
-            z-index: 2;
-        }
-        
-		.card-image { width: 100%; height: 100%; background-size: cover; background-position: center; background-repeat: no-repeat; filter: grayscale(100%); transition: 0.5s; display: block; background-color: pink;}
-        
-		.portfolio-card:hover { animation-play-state: paused; }
-		
-		.portfolio-card:hover .card-image { filter: grayscale(0%); }
-		
-		
-		
-		.portfolio-bg-text {
-        position: absolute; top: 25%; left: 50%; transform: translate(-50%, -50%);
-        font-size: 18vw; /* Massive size */
-        font-weight: 900;
-		
-        /*color: rgba(0, 0, 0, 0.03); /* Faint gray */
-		color: linear-gradient(135deg, #B0E0E6 0%, #A5F3FC 20%, #89CFF0 40%, #E0F7FA 60%, #FFDAB9 75%, #A5F3FC 100%);
-        letter-spacing: -0.05em;
-        margin: 0;
-        pointer-events: none;
-        z-index: -1;
-        white-space: nowrap;
-        user-select: none;
-		font-family: Montserrat, san serif;
-		/* 2. Apply the gradient as a background image */
-		background-image: linear-gradient(135deg, #B0E0E6 0%, #A5F3FC 20%, #89CFF0 40%, #E0F7FA 60%, #FFDAB9 75%, #A5F3FC 100%);
-		/* 3. Clip the background to the shape of the text */
-		background-clip: text;
-		-webkit-background-clip: text; /* Vendor prefix for broader compatibility */
-		/* 4. Make the actual text color transparent */
-		color: transparent;
-		-webkit-text-fill-color: transparent; /* Vendor prefix for broader compatibility */
-		/* Optional: Ensures the gradient width matches the text width */
-		display: inline-block; 
-		background-size: 400% 400%;
-        animation: bgShift 10s infinite alternate ease-in-out;
-		opacity: .3;
-		}
-		
-
-        /* --- 5. TESTIMONIAL SECTION --- */
-        #testimonials { display: flex; width: 100%; height: 100vh; overflow: hidden; }
-        .testi-left { width: 40%; height: 100%; display: flex; flex-direction: column; justify-content: center; padding: 0 8%; background: #fff; z-index: 100;}
-        .testi-left h2 { font-size: 4.5rem; font-weight: 800; line-height: 0.85; letter-spacing: -3px; margin: 0 0 20px 0; }
-        
-            .testi-right {
-            width: 100%;
-            height: 100%;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            background: linear-gradient(135deg, #B0E0E6 0%, #A5F3FC 20%, #89CFF0 40%, #E0F7FA 60%, #FFDAB9 75%, #A5F3FC 100%);
-            background-size: 400% 400%;
-            animation: bgShift 15s infinite alternate ease-in-out;
-            perspective: 2000px;
-        }
-
-
-        .testi-track { position: relative; z-index: 10; display: flex; gap: 60px; padding: 0 50px; animation: scrollLoop 45s linear infinite; will-change: transform; }
-        .testi-track:hover { animation-play-state: paused; }
-
-        .glass-card {
-			width: 600px;
-            height: 600px;
-            flex-shrink: 0;
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            padding: 70px;
-            border-radius: 45px;
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            box-shadow: 0 25px 60px rgba(0,0,0,0.06);
-            position: relative;
-            overflow: hidden;
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;        
-			}
-			
-			.quote-img {
-            position: absolute;
-            top: 25px;
-            left: 30px;
-            width: 180px;
-            height: auto;
-            opacity: 0.12;
-            pointer-events: none;
-        }
-
-        .result-badge { 
-			background: var(--accent-blue); 
-			color: #fff; font-weight: 800; 
-			font-size: 0.75rem; 
-			padding: 7px 16px; border-radius: 8px; margin-bottom: 25px; display: inline-block; width: fit-content; text-transform: uppercase; }
-        
-		.quote { font-size: 1.8rem; font-weight: 700; line-height: 1.2; margin-bottom: 15px; color: var(--text-dark); }
-        
-		.client-box { display: flex; align-items: center; gap: 15px; margin-top: 20px; }
-        
-		.avatar { width: 50px; height: 50px; border-radius: 50%; background-size: cover; border: 2px solid #fff; }
-
-        @keyframes scrollLoop { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-		
-		
-		
-/* --- 6. ABOUT SECTION --- */		
-#arc-triptych-wrapper {
-    position: relative;
-    background: #fff;
-    display: flex;    
-    align-items: flex-start; 
-    justify-content: center;    
-    padding-top: 450px; 
-    padding-bottom: 200px;
-    perspective: 3000px;
-    overflow: hidden;
-    z-index: 5;
-    isolation: isolate;
-}
-
-.arc-bg-text {
-    position: absolute;
-    top: -80%; 
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 22vw; 
-    font-weight: 900;
-    font-family: Montserrat, sans-serif;
-    letter-spacing: -0.05em;
-    z-index: -1; 
-    opacity: 0.3;
-    pointer-events: none;
-    white-space: nowrap;
-    background-image: linear-gradient(135deg, #B0E0E6 0%, #A5F3FC 20%, #89CFF0 40%, #E0F7FA 60%, #FFDAB9 75%, #A5F3FC 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    -webkit-text-fill-color: transparent;
-    background-size: 400% 400%;
-    animation: bgShift 10s infinite alternate ease-in-out;
-}
-
-.arc-triptych-viewport {
-    position: relative;
-    z-index: 10;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center; 
-    transform-style: preserve-3d;
-}
-
-.arc-triptych-container {
-    display: flex;
-    gap: 60px;
-    align-items: center;
-    justify-content: center;
-    transform-style: preserve-3d;
-    opacity: 0;
-    transform: rotateX(-30deg) translateZ(-800px) translateY(-100px); 
-    transition: transform 5s cubic-bezier(0.16, 1, 0.3, 1), opacity 5s ease-out;
-}
-
-/* Active State Triggered by IntersectionObserver */
-#arc-triptych-wrapper.is-active .arc-triptych-container {
-    opacity: 1;
-    transform: rotateX(0deg) translateZ(0) translateY(0);
-}
-
-.arc-triptych-panel {
-    position: relative;
-    width: 370px;
-    height: 530px;
-    background: rgba(255, 255, 255, .5); 
-    border: 1px solid rgba(255,255,255,0.06);
-    box-shadow: 0 15px 45px rgba(0,0,0,0.04);
-    display: flex;
-    align-items: flex-end;
-    padding: 60px;
-    box-sizing: border-box;
-    transition: all 5s cubic-bezier(0.16, 1, 0.3, 1);
-    transform-style: preserve-3d;
-    border-radius: 30px;
-    flex-shrink: 0;
-    overflow: hidden;
-    cursor: pointer;
-    will-change: transform;
-}
-
-/* --- THE SCRIM ENGINE --- */
-.arc-triptych-panel::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    /* Darkening the bottom 70% for max readability on hover */
-    background: linear-gradient(
-        to bottom, 
-        transparent 20%, 
-        rgba(0, 0, 0, 0.2) 40%,
-        rgba(0, 0, 0, 0.6) 100%
-    );
-    z-index: 3; /* Sits above image (1) and shine (2) but below content (5) */
-    opacity: 0; 
-    transition: opacity 0.8s ease;
-    pointer-events: none;
-}
-
-.arc-triptych-panel:hover::before {
-    opacity: 1;
-}
-
-/* Docked State */
-#arc-triptych-wrapper.is-active .arc-panel-center,
-#arc-triptych-wrapper.is-active .arc-wing-left, 
-#arc-triptych-wrapper.is-active .arc-wing-right {
-    transform: translateX(0) rotateY(0deg) translateZ(0);
-}
-
-/* UNIFIED HOVER */
-#arc-triptych-wrapper .arc-triptych-panel:hover {
-    transform: scale(1.08) translateY(-20px) translateZ(150px) !important;
-    z-index: 50 !important;
-    box-shadow: 0 40px 100px rgba(0,0,0,0.18);
-    border: 1px solid rgba(89, 97, 249, 0.4);
-}
-
-/* IMAGE STYLES */
-.arc-panel-img {
-    position: absolute;
-    inset: 0;
-    background-size: cover;
-    background-position: center;
-    filter: grayscale(100%) brightness(1.1) contrast(0.9); 
-    opacity: 1;
-    transition: filter 1.2s ease, opacity 1.2s ease, transform 1.2s ease;
-    z-index: 1;
-}
-
-/* SHINE OVERLAY */
-.arc-panel-img::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: var(--glass-shine);
-    background-size: 250% 250%;
-    animation: surfaceShine 15s infinite linear;
-    pointer-events: none;
-    z-index: 2;
-    opacity: .5;
-}
-
-@keyframes surfaceShine {
-    0% { background-position: -250% 0; }
-    100% { background-position: 250% 0; }
-}
-
-/* Initial Wing Offsets */
-.arc-wing-left { 
-    transform: translateX(-150px) rotateY(-80deg) translateZ(600px); 
-    transform-origin: right center; 
-    transition: transform 3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.arc-panel-center { 
-    z-index: 10; 
-    transition: transform 3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.arc-wing-right { 
-    transform: translateX(150px) rotateY(80deg) translateZ(600px); 
-    transform-origin: left center; 
-    transition: transform 3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* Active Animation Details */
-#arc-triptych-wrapper.is-active .arc-panel-center { margin: 0 15px; }
-
-/* --- CONTENT & HOVER INTERACTION --- */
-.arc-panel-content { 
-    position: relative; 
-    z-index: 5; 
-    opacity: 0; 
-    transform: translateY(20px);
-    transition: opacity 2s 1.5s ease, transform 2s 1.5s ease, color 0.5s ease; 
-}
-
-#arc-triptych-wrapper.is-active .arc-panel-content { 
-    opacity: 1; 
-    transform: translateY(0) scale(1.1); 
-}
-
-.arc-panel-label { font-size: 0.6rem; font-weight: 800; letter-spacing: 2px; color: #111; display: block; margin-bottom: 8px; transition: color 0.5s ease; }
-.arc-panel-title { font-size: 1.5rem; font-weight: 900; margin: 0; color: #111; transition: color 0.5s ease; }
-.arc-panel-text { font-size: 0.85rem; color: #111; margin-top: 8px; line-height: 1.5; transition: color 0.5s ease; }
-
-/* Trigger Color Changes on Hover */
-.arc-triptych-panel:hover .arc-panel-img { 
-    filter: grayscale(0%) brightness(1.2); 
-    opacity: 1; 
-    transform: scale(1.1);
-}
-
-.arc-triptych-panel:hover .arc-panel-title { color: #ffffff; }
-.arc-triptych-panel:hover .arc-panel-text { color: rgba(255, 255, 255, 0.8); }
-.arc-triptych-panel:hover .arc-panel-label { color: rgba(255, 255, 255, 0.5); }
-
-.arc-panel-shine {
-    position: absolute; inset: 0; z-index: 4;
-    background: linear-gradient(135deg, rgba(255,255,255,0.8) 0%, transparent 50%);
-    pointer-events: none;
-}
-	
-	
-	/* --- 7. CONTACT SECTION --- */
-    #contact-section {
-        min-height: 100vh;
-        padding: 120px 5%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: 'Inter', sans-serif;
-        position: relative;
-        overflow: hidden;
-        background: linear-gradient(135deg, #B0E0E6 0%, #A5F3FC 20%, #89CFF0 40%, #E0F7FA 60%, #FFDAB9 75%, #A5F3FC 100%);
-        background-size: 400% 400%;
-        animation: bgShift 10s infinite alternate ease-in-out;
-        perspective: 2000px;
-    }
-
-    @keyframes bgShift {
-        0% { background-position: 0% 50%; }
-        100% { background-position: 100% 50%; }
-    }
-
-    /* --- THE GLOBAL CUBE ENGINE --- */
-    .glass-cube {
-        position: absolute;
-        transform-style: preserve-3d;
-        border-radius: 60px;
-        background: rgba(255, 255, 255, 0.15);
-        backdrop-filter: blur(40px);
-        -webkit-backdrop-filter: blur(40px);
-        border: 2px solid rgba(255, 255, 255, 0.5);
-        box-shadow: inset 0 25px 40px rgba(255, 255, 255, 0.7), 0 50px 100px rgba(0, 0, 0, 0.1);
-        z-index: 1;
-        pointer-events: none;
-    }
-
-    .glass-cube::after {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(135deg, transparent 30%, rgba(255,255,255,0.4) 50%, transparent 70%);
-        background-size: 250% 250%;
-        animation: surfaceShine 10s infinite linear;
-        border-radius: inherit;
-    }
-
-    @keyframes surfaceShine {
-        0% { background-position: -250% 0; }
-        100% { background-position: 250% 0; }
-    }
-
-    @keyframes crystalTumble {
-        0% { transform: translate(var(--startTX), var(--startTY)) rotateX(var(--startX)) rotateY(var(--startY)) rotateZ(var(--startZ)) translateZ(0px); }
-        100% { transform: translate(var(--endTX), var(--endTY)) rotateX(var(--endX)) rotateY(var(--endY)) rotateZ(var(--endZ)) translateZ(150px); }
-    }
-
-    /* --- CUBE POSITIONS & ANIMATIONS --- */
-    .c1 { width: 160px; height: 160px; top: 10%; left: 10%; --startTX: 0px; --startTY: 0px; --endTX: 40px; --endTY: 60px; --startX: 13deg; --startY: 26deg; --startZ: 39deg; --endX: 360deg; --endY: 180deg; --endZ: 90deg; animation: crystalTumble 18s infinite alternate ease-in-out; }
-    .c2 { width: 180px; height: 180px; bottom: 15%; right: 10%; --startTX: 0px; --startTY: 0px; --endTX: -50px; --endTY: -40px; --startX: 45deg; --startY: 90deg; --startZ: -20deg; --endX: -180deg; --endY: -45deg; --endZ: -120deg; animation: crystalTumble 22s infinite alternate ease-in-out; }
-    .c3 { width: 220px; height: 220px; top: 35%; left: 35%; --startTX: 0px; --startTY: 0px; --endTX: 30px; --endTY: -30px; --startX: -10deg; --startY: -10deg; --startZ: 0deg; --endX: 200deg; --endY: 360deg; --endZ: 45deg; animation: crystalTumble 28s infinite alternate ease-in-out; }
-    .c4 { width: 240px; height: 240px; top: 5%; right: 20%; --startTX: 0px; --startTY: 0px; --endTX: -60px; --endTY: 40px; --startX: 120deg; --startY: -30deg; --startZ: 60deg; --endX: 0deg; --endY: 200deg; --endZ: -60deg; animation: crystalTumble 20s infinite alternate ease-in-out; }
-    .c5 { width: 280px; height: 280px; bottom: 25%; left: 15%; --startTX: 0px; --startTY: 0px; --endTX: 50px; --endTY: 20px; --startX: -45deg; --startY: -45deg; --startZ: 10deg; --endX: 180deg; --endY: 120deg; --endZ: 300deg; animation: crystalTumble 16s infinite alternate ease-in-out; }
-    .c6 { width: 300px; height: 300px; top: 40%; right: 5%; --startTX: 0px; --startTY: 0px; --endTX: -30px; --endTY: 50px; --startX: 23deg; --startY: 180deg; --startZ: -30deg; --endX: -360deg; --endY: 0deg; --endZ: 120deg; animation: crystalTumble 30s infinite alternate ease-in-out; }
-    .c7 { width: 320px; height: 340px; bottom: 5%; left: 45%; --startTX: 0px; --startTY: 0px; --endTX: 20px; --endTY: -60px; --startX: 90deg; --startY: 0deg; --startZ: 0deg; --endX: -90deg; --endY: -270deg; --endZ: -90deg; animation: crystalTumble 25s infinite alternate ease-in-out; }
-
-    /* --- CONTENT LAYOUT --- */
-    .contact-container {
-        position: relative;
-        z-index: 10;
-        max-width: 1200px;
-        width: 100%;
-        display: grid;
-        grid-template-columns: 1fr 1.2fr;
-        gap: 80px;
-        align-items: start;
-    }
-
-    .contact-title { font-size: 4rem; font-weight: 900; line-height: 1.1; color: #111; margin-bottom: 30px; }
-    .contact-title span { color: #FF9D47; }
-    .contact-description { font-size: 1.1rem; color: #444; line-height: 1.6; margin-bottom: 40px; }
-
-    /* --- GLASS FORM --- */
-    .contact-form-wrapper {
-        background: rgba(255, 255, 255, 0.6);
-        backdrop-filter: blur(30px);
-        -webkit-backdrop-filter: blur(30px);
-        border: 1px solid rgba(255, 255, 255, 0.6);
-        padding: 50px;
-        border-radius: 40px;
-        box-shadow: 0 40px 80px rgba(0, 0, 0, 0.05);
-    }
-
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
-    .input-group { margin-bottom: 25px; display: flex; flex-direction: column; }
-    .input-group label { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; margin-bottom: 8px; color: #111; }
-
-    input, select, textarea {
-        padding: 15px 20px;
-        border-radius: 15px;
-        border: 1px solid rgba(0,0,0,0.08);
-        background: rgba(255,255,255,0.5);
-        font-size: 1rem;
-        transition: 0.3s;
-    }
-
-    input:focus { background: #fff; border-color: #111; outline: none; }
-
-    .checkbox-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .check-item {
-        display: flex; align-items: center; gap: 10px; font-size: 0.85rem;
-        background: rgba(255,255,255,0.4); padding: 12px; border-radius: 12px;
-        border: 1px solid rgba(0,0,0,0.04); cursor: pointer; transition: 0.3s;
-    }
-    .check-item:hover { background: #fff; }
-
-    .submit-btn {
-        width: 100%; padding: 22px; border-radius: 18px; border: none;
-        background: #111; color: #fff; font-weight: 800; font-size: 1rem;
-        cursor: pointer; transition: 0.3s;
-    }
-    .submit-btn:hover { background: #000; transform: scale(1.02); }
-
-    @media (max-width: 1000px) {
-        .contact-container { grid-template-columns: 1fr; }
-        .glass-cube { display: none; }
-    }
-		
-		
-		
-		/* --- 8. FOOTER SECTION --- */
-		 #bespoke-footer {
-        background: #ffffff;
-        padding: 120px 5% 60px 5%;
-        border-top: 1px solid #f0f0f0;
-    }
-
-    .footer-inner {
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-
-    /* THE HERO STATEMENT */
-    .footer-hero {
-        padding-bottom: 100px;
-        border-bottom: 1px solid #f0f0f0;
-        margin-bottom: 60px;
-    }
-
-    .footer-title {
-        font-size: clamp(3rem, 8vw, 6rem);
-        font-weight: 800;
-        color: #111;
-        line-height: 1;
-        margin-bottom: 30px;
-        letter-spacing: -0.04em;
-    }
-
-    .footer-title .italic {
-        font-weight: 300;
-        font-style: italic;
-        color: #888;
-    }
-
-    .footer-email {
-        font-size: 1.5rem;
-        color: #111;
-        text-decoration: none;
-        font-weight: 500;
-        position: relative;
-        padding-bottom: 5px;
-    }
-
-    .footer-email::after {
-        content: '';
-        position: absolute;
-        bottom: 0; left: 0;
-        width: 100%; height: 1px;
-        background: #111;
-        transform: scaleX(1);
-        transform-origin: left;
-        transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-    }
-
-    .footer-email:hover::after {
-        transform: scaleX(0.3);
-        transform-origin: right;
-    }
-
-    /* FOOTER BOTTOM GRID */
-    .footer-bottom {
-        display: grid;
-        grid-template-columns: 2fr 1fr 1fr;
-        gap: 40px;
-        align-items: start;
-    }
-
-    .footer-brand {
-        display: flex;
-        align-items: center;
-        gap: 20px;
-    }
-
-    /* Small 'Frame' Logo */
-    .brand-box {
-        width: 45px;
-        height: 45px;
-        border: 1px solid #111;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: 900;
-        font-size: 1.2rem;
-    }
-
-    .footer-brand p {
-        font-size: 12px;
-        color: #888;
-        line-height: 1.5;
-        margin: 0;
-    }
-
-    /* LINKS STYLE */
-    .footer-links {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-    }
-
-    .link-label {
-        font-size: 10px;
-        font-weight: 800;
-        color: #bbb;
-        letter-spacing: 2px;
-        margin-bottom: 10px;
-    }
-
-    .footer-links a {
-        text-decoration: none;
-        color: #555;
-        font-size: 14px;
-        transition: color 0.3s;
-    }
-
-    .footer-links a:hover {
-        color: #111;
-    }
-
-    @media (max-width: 768px) {
-        .footer-bottom {
-            grid-template-columns: 1fr;
-            gap: 60px;
-        }
-        .footer-title { font-size: 3rem; }
-    }
-	
-    </style>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <script defer src="assets/js/main.js"></script>    
 </head>
+
 <body>
 
 <nav id="bespoke-nav">
@@ -1118,32 +26,33 @@
         </div>
 
         <div class="nav-cta">
-            <a href="contact-section" class="btn-frame">START PROJECT</a>
+            <a href="#contact-section" class="btn-frame">START PROJECT</a>
         </div>
     </div>
 </nav>
-    <section class="section-layer" id="hero">
-        <div class="hero-content">
-           <div class="text-box">
-                <h1>BOLD ARCTIC</h1>
-                <p>Digital architecture with a crystalline finish.</p>
-                <div class="button-group">
-                    <a href="#" class="btn btn-primary">Primary Action</a>
-                    <a href="#" class="btn btn-secondary">Secondary Link</a>
-                </div>
+
+<section class="section-layer" id="hero">
+    <div class="hero-content">
+        <div class="text-box">
+            <h1>BOLD ARCTIC</h1>
+            <p>Digital architecture with a crystalline finish.</p>
+            <div class="button-group">
+                <a href="#" class="btn btn-primary">Primary Action</a>
+                <a href="#" class="btn btn-secondary">Secondary Link</a>
             </div>
         </div>
-        <div class="glass-engine">
-            <div class="glass-cube c1"></div><div class="glass-cube c2"></div><div class="glass-cube c3"></div>
-            <div class="glass-cube c4"></div><div class="glass-cube c5"></div><div class="glass-cube c6"></div><div class="glass-cube c7"></div>
-        </div>
-    </section>
-
-    <section id="services-accordion">
-    <div class="accordion-header">
-        <span class="perf-label-top">// CAPABILITIES</span>
-        <h2 class="perf-main-heading">Bespoke Digital <br>Architecture.</h2>
     </div>
+    <div class="glass-engine">
+        <div class="glass-cube c1"></div><div class="glass-cube c2"></div><div class="glass-cube c3"></div>
+        <div class="glass-cube c4"></div><div class="glass-cube c5"></div><div class="glass-cube c6"></div><div class="glass-cube c7"></div>
+    </div>
+</section>
+
+<section id="services-accordion">
+<div class="accordion-header">
+    <span class="perf-label-top">// CAPABILITIES</span>
+    <h2 class="perf-main-heading">Bespoke Digital <br>Architecture.</h2>
+</div>
 
     <div class="accordion-container">
         <div class="blade active" style="--bg: url('design balloons.jpg')">
@@ -1190,16 +99,14 @@
     </div>
 </section>
 
-	<section id="perf-metrics-module">
+<section id="perf-metrics-module">
     <div class="perf-wrapper">
         
         <div class="perf-intro">
             <span class="perf-label-top">// ROI & DATA</span>
             <h2 class="perf-main-heading">Trackable Performance for <br>Smarter, Faster Growth.</h2>
         </div>
-
         <div class="perf-glass-grid">
-            
             <div class="performance-glass-card">
                 <div class="card-inner-content">
                     <span class="metric-category">CONVERSION</span>
@@ -1208,7 +115,6 @@
                     <div class="metric-footer">NORTHERN DIGITAL // 2024</div>
                 </div>
             </div>
-
             <div class="performance-glass-card">
                 <div class="card-inner-content">
                     <span class="metric-category">RETENTION</span>
@@ -1217,7 +123,6 @@
                     <div class="metric-footer">ARCTIC RETAIL // 2025</div>
                 </div>
             </div>
-
             <div class="performance-glass-card">
                 <div class="card-inner-content">
                     <span class="metric-category">SPEED</span>
@@ -1226,7 +131,6 @@
                     <div class="metric-footer">FORGE INDUSTRIES // 2024</div>
                 </div>
             </div>
-
             <div class="performance-glass-card">
                 <div class="card-inner-content">
                     <span class="metric-category">REVENUE</span>
@@ -1235,42 +139,58 @@
                     <div class="metric-footer">ELITE LOGISTICS // 2025</div>
                 </div>
             </div>
-
         </div>
     </div>
 </section>
 
-    <section class="section-layer" id="portfolio">
-	<h2 class="portfolio-bg-text">PROJECTS</h2>
-        <div class="carousel-stage" id="carousel"></div>
-    </section>
+<section id="portfolio" class="section-reveal">
+    <h2 class="portfolio-bg-text">PROJECTS</h2>
+    <div class="carousel-stage" id="carousel"></div>
+</section>
 
-    <section id="testimonials">
-        <div class="testi-left">
-            <h2>CLIENT<br>ECHO</h2>
-            <p>Direct results from high-performance digital partnerships.</p>
-        </div>
-
-        <div class="testi-right">
-            <div class="scene">
-                <div class="glass-cube c1"></div>
-                <div class="glass-cube c2"></div>
-                <div class="glass-cube c3"></div>
-                <div class="glass-cube c4"></div>
-                <div class="glass-cube c5"></div>
-                <div class="glass-cube c6"></div>
-                <div class="glass-cube c7"></div>
+<div id="arctic-lightbox">
+    <div class="lb-content">
+        <span class="lb-close" id="lb-close-btn">&times;</span>
+        <div class="lb-scroll-container" id="lb-scroll">
+            <div style="margin-bottom: 40px; padding-right: 50px;"> 
+                <h2 id="lb-title" style="font-size: 3.5rem; font-family: 'Montserrat'; margin: 10px 0; text-transform: uppercase;"></h2>
+				<p id="lb-category" style="font-family: 'Space Mono'; color: #5961F9; font-size: 0.8rem; letter-spacing: 2px;"></p>
+                <p id="lb-description" style="max-width: 700px; font-size: 1.1rem; line-height: 1.6; color: #555;"></p>
             </div>
-
-            <div class="testi-track" id="testiTrack"></div>
+            <div id="lb-visual-stack"></div>
         </div>
-    </section>
+        <div class="lb-nav">
+            <button id="lb-prev" class="nav-btn">&larr; PREVIOUS</button>
+            <!-- <div id="lb-counter">DATABASE_ENTRY: 0 / 0</div> -->
+            <button id="lb-next" class="nav-btn">NEXT &rarr;</button>
+        </div>
+    </div>
+</div>
+
+<section id="testimonials">
+    <div class="testi-left">
+        <h2>CLIENT<br>ECHO</h2>
+        <p>Direct results from high-performance digital partnerships.</p>
+    </div>
+
+    <div class="testi-right">
+        <div class="scene">
+            <div class="glass-cube c1"></div>
+            <div class="glass-cube c2"></div>
+            <div class="glass-cube c3"></div>
+            <div class="glass-cube c4"></div>
+            <div class="glass-cube c5"></div>
+            <div class="glass-cube c6"></div>
+            <div class="glass-cube c7"></div>
+        </div>
+        <div class="testi-track" id="testiTrack"></div>
+    </div>
+</section>
 	
-	<section id="arc-triptych-wrapper">
+<section id="arc-triptych-wrapper">
     <div class="arc-triptych-viewport">
         <div class="arc-triptych-container" id="arc-triptych-monolith">
-		<h2 class="arc-bg-text">ABOUT</h2>
-            
+		    <h2 class="arc-bg-text">ABOUT</h2>
             <div class="arc-triptych-panel arc-wing-left">
                 <div class="arc-panel-img" style="background-image:url('https://picsum.photos/seed/about-1/800/1200')"></div>
                 <div class="arc-panel-content">
@@ -1300,7 +220,6 @@
                 </div>
                 <div class="arc-panel-shine"></div>
             </div>
-
         </div>
     </div>
 </section>
@@ -1332,7 +251,6 @@
                 </div>
             </div>
         </div>
-
         <div class="contact-form-wrapper">
             <form id="inquiry-form">
                 <div class="form-row">
@@ -1360,14 +278,14 @@
                 <div class="input-group">
                     <label>What services are you interested in?*</label>
                     <div class="checkbox-grid">
-                        <label class="check-item"><input type="checkbox"> <span>Brand Design</span></label>
-                        <label class="check-item"><input type="checkbox"> <span>Funnels</span></label>
-                        <label class="check-item"><input type="checkbox"> <span>New Website</span></label>
-                        <label class="check-item"><input type="checkbox"> <span>Redesign</span></label>
-                        <label class="check-item"><input type="checkbox"> <span>SEO/Content</span></label>
-                        <label class="check-item"><input type="checkbox"> <span>Copywriting</span></label>
+                        <label class="check-item"><input type="checkbox"> <span>Web Design</span></label>
+                        <label class="check-item"><input type="checkbox"> <span>Branding</span></label>
+                        <label class="check-item"><input type="checkbox"> <span>Sales Funnel</span></label>
+                        <label class="check-item"><input type="checkbox"> <span>SEO Strategy</span></label>
+                        <label class="check-item"><input type="checkbox"> <span>Analytics</span></label>
                         <label class="check-item"><input type="checkbox"> <span>Automations</span></label>
-                        <label class="check-item"><input type="checkbox"> <span>Development</span></label>
+                        <label class="check-item"><input type="checkbox"> <span>Custom App</span></label>
+                        <label class="check-item"><input type="checkbox"> <span>Paid Ads</span></label>
                     </div>
                 </div>
 
@@ -1395,9 +313,8 @@
     </div>
 </section>
 	
-	<footer id="bespoke-footer">
-    <div class="footer-inner">
-        
+<footer id="bespoke-footer">
+    <div class="footer-inner">  
         <div class="footer-hero">
             <h2 class="footer-title">Let's build a <span class="italic">legacy.</span></h2>
             <a href="mailto:hello@youragency.com" class="footer-email">hello@bespoke.com</a>
@@ -1425,207 +342,5 @@
         </div>
     </div>
 </footer>
-
-    <script>
-	/* --- NAV BAR LOGIC --- */
-	let lastScrollY = window.scrollY;
-    const nav = document.getElementById('bespoke-nav');
-
-    window.addEventListener('scroll', () => {
-        // If current scroll is greater than 150px (to prevent jitter at the very top)
-        if (window.scrollY > 150) {
-            nav.classList.add('nav-hidden');
-        } else {
-            nav.classList.remove('nav-hidden');
-        }
-        
-        lastScrollY = window.scrollY;
-    });
-	
-        /* --- SERVICES LOGIC --- */
-(function() {
-    const container = document.querySelector('#services-accordion');
-    if (!container) return;
-
-    const blades = container.querySelectorAll('.blade');
-
-    blades.forEach(blade => {
-        blade.addEventListener('mouseenter', () => {
-            // Remove active from all siblings in THIS container
-            blades.forEach(b => b.classList.remove('active'));
-            // Add active to current
-            blade.classList.add('active');
-            
-            // Debugging: uncomment the line below if it still doesn't work 
-            // console.log('Blade active:', blade);
-        });
-    });
-})();
-
-// Portfolio Logic
-const carousel = document.getElementById('carousel');
-
-if(carousel) {
-    let portRot = 0;
-    let isPaused = false; 
-
-    // 1. Create an array of your specific file paths
-    const projectImages = [
-        'luxe-port-cover.gif',
-        'nhc-port-cover.gif',
-        'kvs-port-cover.gif',
-        'das-port-cover.gif',
-        'colliance-port-cover.gif',
-        'gg-port-cover.gif'
-    ];
-
-    // 2. Loop through your array instead of a fixed number
-    projectImages.forEach((imgSrc, i) => {
-        const card = document.createElement('div');
-        card.className = 'portfolio-card';
-        
-        // Adjusting the rotation based on the number of images (360 / length)
-        const angle = i * (360 / projectImages.length);
-        card.style.transform = `rotateY(${angle}deg) translateZ(500px)`;
-        
-        // 3. Point the background-image to your local files
-        card.innerHTML = `<div class="card-image" style="background-image:url('../downloads/port cover images/${imgSrc}')"></div>`;
-        
-        card.addEventListener('mouseenter', () => { isPaused = true; });
-        card.addEventListener('mouseleave', () => { isPaused = false; });
-
-        carousel.appendChild(card);
-    });
-
-    function animPort() { 
-        if (!isPaused) {
-            portRot -= 0.2; 
-            carousel.style.transform = `rotateY(${portRot}deg)`; 
-        }
-        requestAnimationFrame(animPort); 
-    }
-    
-    animPort();
-}
-
-// Testimonials Logic
-const track = document.getElementById('testiTrack');
-        const quoteImgUrl = "P (29).png"; 
-
-        const reviews = [
-            { badge: "8X Conversion", q: "Bold Arctic is a luxury asset.", qb: "The team transformed our digital DNA. Seriously, Cassandra, Kody and Dylan are the best.", n: "Julian V.", i: "https://i.pravatar.cc/100?u=1" },
-            { badge: "40% Rev Lift", q: "Exactly what we needed.", qb: "Strategic design that actually moves the bottom line.", n: "Mila K.", i: "https://i.pravatar.cc/100?u=2" },
-            { badge: "Brand Mastery", q: "Soul of luxury.", qb: "They don't just build sites; they build digital experiences.", n: "Alex R.", i: "https://i.pravatar.cc/100?u=3" }
-        ];
-
-        function createCard(item) {
-            return `
-                <div class="glass-card">
-                    <img src="${quoteImgUrl}" class="quote-img" alt="Quote">
-                    <div class="result-badge">${item.badge}</div>
-                    <div class="quote">"${item.q}"</div>
-                    <div class="quote-body">${item.qb}</div>
-                    <div class="client-box">
-                        <div class="avatar" style="background-image: url('${item.i}')"></div>
-                        <div>
-                            <strong>${item.n}</strong><br>
-                            <small style="color: #666; font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase;">Verified Partner</small>
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
-
-        const displayList = [...reviews, ...reviews, ...reviews];
-        track.innerHTML = displayList.map(createCard).join('');
-		
-
-// --- ADD COUNTER ANIMATION (OPTIONAL BUT COOL) ---
-// This makes the numbers like "+142%" count up when you scroll to them
-const observerOptions = { threshold: 0.5 };
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const metrics = entry.target.querySelectorAll('.metric-value');
-            metrics.forEach(m => {
-                const target = parseFloat(m.innerText.replace(/[^0-9.]/g, ''));
-                let current = 0;
-                const increment = target / 50;
-                const updateCount = () => {
-                    if (current < target) {
-                        current += increment;
-                        m.innerText = (m.innerText.includes('+') ? '+' : '') + 
-                                      (m.innerText.includes('$') ? '$' : '') + 
-                                      current.toFixed(target % 1 === 0 ? 0 : 1) + 
-                                      (m.innerText.includes('%') ? '%' : '') +
-                                      (m.innerText.includes('s') ? 's' : '');
-                        setTimeout(updateCount, 20);
-                    }
-                };
-                updateCount();
-            });
-            observer.unobserve(entry.target);
-        }
-    });
-}, observerOptions);
-
-const perfSection = document.querySelector('.perf-glass-grid');
-if(perfSection) observer.observe(perfSection);
-
-
-// ABOUT Logic
-/**
- * ARC TRIPTYCH ENGINE
- * Handles: 1. Scroll-trigger for 3D card flight
- * 2. Parallax depth for background text
- */
-(function() {
-    const initTriptych = () => {
-        const wrapper = document.getElementById('arc-triptych-wrapper');
-        const bgText = wrapper ? wrapper.querySelector('.arc-bg-text') : null;
-        
-        if (!wrapper) return;
-
-        // --- 1. THE TRIGGER (Card Flight) ---
-        // This fires the animation once when 40% of the section is visible
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    wrapper.classList.add('is-active');
-                } else {
-                    // Resets if you scroll away so it can "re-play"
-                    wrapper.classList.remove('is-active');
-                }
-            });
-        }, { 
-            threshold: 0.4 
-        });
-
-        observer.observe(wrapper);
-
-        // --- 2. THE PARALLAX (Background Text) ---
-        // This makes the "ABOUT" text move slower than the scroll for depth
-        window.addEventListener('scroll', () => {
-    const wrapper = document.getElementById('arc-triptych-wrapper');
-    const bgText = document.querySelector('.arc-bg-text');
-    if (!wrapper || !bgText) return;
-
-    const rect = wrapper.getBoundingClientRect();
-    if (rect.top < window.innerHeight && rect.bottom > 0) {
-        // Reduced the multiplier to 0.05 for a subtler, more controlled drift
-        const shiftValue = (window.innerHeight / 2 - rect.top) * 0.05;
-        bgText.style.transform = `translate(-50%, calc(-50% + ${shiftValue}px))`;
-    }
-}, { passive: true }); // 'passive' improves scroll performance
-    };
-
-    // Initialize once DOM is ready
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initTriptych);
-    } else {
-        initTriptych();
-    }
-})();
-    </script>
 </body>
 </html>
