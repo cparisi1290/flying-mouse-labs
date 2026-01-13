@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+	<style>
+	/* --- BLOG INDEX STYLES --- */
+#blog-archive {
+    padding: 150px 10% 100px;
+    background: linear-gradient(135deg, #B0E0E6 0%, #A5F3FC 20%, #89CFF0 40%, #E0F7FA 60%, #FFDAB9 75%, #A5F3FC 100%);
+            background-size: 400% 400%;
+            animation: bgShift 10s infinite alternate ease-in-out;
+            perspective: 2000px;
+}
+
+@keyframes bgShift {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+.blog-header {
+    margin-bottom: 80px;
+    border-left: 4px solid var(--accent-purple);
+    padding-left: 30px;
+}
+
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 2fr));
+    gap: 40px;
+}
+
+/* The Article Card */
+.blog-card {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    group: hover;
+}
+
+.blog-image-wrapper {
+    width: 100%;
+    height: 250px;
+    border-radius: 24px;
+    overflow: hidden;
+    position: relative;
+    background: #eee;
+    margin-bottom: 25px;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.blog-image {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.blog-card:hover .blog-image {
+    transform: scale(1.08);
+}
+
+/* Meta Data Accents */
+.blog-meta {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--accent-purple);
+    letter-spacing: 1.5px;
+    display: flex;
+    gap: 15px;
+    margin-bottom: 12px;
+}
+
+.blog-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    line-height: 1.3;
+    margin: 0 0 15px 0;
+    transition: color 0.3s;
+}
+
+.blog-card:hover .blog-title {
+    color: var(--accent-blue);
+}
+
+.blog-excerpt {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.read-more-arrow {
+    margin-top: 20px;
+    font-family: 'Space Mono';
+    font-size: 0.8rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+</style>
+</head>
+
+<body>
+<section id="blog-archive" class="section-reveal">
+    <div class="blog-header">
+        <span class="mono" style="opacity: 0.5;">[ ARCHIVE_01 ]</span>
+        <h1 style="font-family: 'Montserrat'; font-size: 4rem; margin: 10px 0;">INSIGHTS</h1>
+        <p style="max-width: 500px; color: #666;">Documenting the intersection of arctic design philosophy and high-scale performance.</p>
+    </div>
+
+    <div class="blog-grid">
+        <a href="blog-single.html" class="blog-card">
+            <div class="blog-image-wrapper">
+                <div class="blog-image" style="background-image: url('path-to-image.jpg');"></div>
+            </div>
+            <div class="blog-meta">
+                <span>// JAN 09 2026</span>
+                <span>• ARCHITECTURE</span>
+            </div>
+            <h3 class="blog-title">Building for the Cold: Why Performance Matters in 2026</h3>
+            <!-- <p class="blog-excerpt">Exploring the technical requirements for deploying digital engines that withstand high-traffic "arctic" conditions without scaling fatigue.</p> -->
+            <div class="read-more-arrow">ACCESS_FILE &rarr;</div>
+        </a>
+
+        <a href="blog-single.html" class="blog-card">
+            <div class="blog-image-wrapper">
+                <div class="blog-image" style="background-image: url('path-to-image-2.jpg');"></div>
+            </div>
+            <div class="blog-meta">
+                <span>// JAN 02 2026</span>
+                <span>• DESIGN</span>
+            </div>
+            <h3 class="blog-title">The Psychology of Minimalist User Interfaces</h3>
+            <!-- <p class="blog-excerpt">How reducing visual noise leads to higher conversion rates and better user retention in the premium sector.</p> -->
+            <div class="read-more-arrow">ACCESS_FILE &rarr;</div>
+        </a>
+		<a href="blog-single.html" class="blog-card">
+            <div class="blog-image-wrapper">
+                <div class="blog-image" style="background-image: url('path-to-image.jpg');"></div>
+            </div>
+            <div class="blog-meta">
+                <span>// JAN 09 2026</span>
+                <span>• ARCHITECTURE</span>
+            </div>
+            <h3 class="blog-title">Building for the Cold: Why Performance Matters in 2026</h3>
+            <!-- <p class="blog-excerpt">Exploring the technical requirements for deploying digital engines that withstand high-traffic "arctic" conditions without scaling fatigue.</p> -->
+            <div class="read-more-arrow">ACCESS_FILE &rarr;</div>
+        </a>
+
+        <a href="blog-single.html" class="blog-card">
+            <div class="blog-image-wrapper">
+                <div class="blog-image" style="background-image: url('path-to-image-2.jpg');"></div>
+            </div>
+            <div class="blog-meta">
+                <span>// JAN 02 2026</span>
+                <span>• DESIGN</span>
+            </div>
+            <h3 class="blog-title">The Psychology of Minimalist User Interfaces</h3>
+            <!-- <p class="blog-excerpt">How reducing visual noise leads to higher conversion rates and better user retention in the premium sector.</p> -->
+            <div class="read-more-arrow">ACCESS_FILE &rarr;</div>
+        </a>
+		<a href="blog-single.html" class="blog-card">
+            <div class="blog-image-wrapper">
+                <div class="blog-image" style="background-image: url('path-to-image.jpg');"></div>
+            </div>
+            <div class="blog-meta">
+                <span>// JAN 09 2026</span>
+                <span>• ARCHITECTURE</span>
+            </div>
+            <h3 class="blog-title">Building for the Cold: Why Performance Matters in 2026</h3>
+            <!-- <p class="blog-excerpt">Exploring the technical requirements for deploying digital engines that withstand high-traffic "arctic" conditions without scaling fatigue.</p> -->
+            <div class="read-more-arrow">ACCESS_FILE &rarr;</div>
+        </a>
+
+        <a href="blog-single.html" class="blog-card">
+            <div class="blog-image-wrapper">
+                <div class="blog-image" style="background-image: url('path-to-image-2.jpg');"></div>
+            </div>
+            <div class="blog-meta">
+                <span>// JAN 02 2026</span>
+                <span>• DESIGN</span>
+            </div>
+            <h3 class="blog-title">The Psychology of Minimalist User Interfaces</h3>
+            <!-- <p class="blog-excerpt">How reducing visual noise leads to higher conversion rates and better user retention in the premium sector.</p> -->
+            <div class="read-more-arrow">ACCESS_FILE &rarr;</div>
+        </a>
+    </div>
+</section>
+
+<script>
+
+
+    </script>
+</body>
+</html>

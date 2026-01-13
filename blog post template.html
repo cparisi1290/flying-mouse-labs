@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+	<style>
+	/* --- BLOG POST LAYOUT --- */
+.blog-post-wrapper {
+    max-width: 1400px;
+    margin: 150px auto;
+    padding: 0 5%;
+    display: grid;
+    grid-template-columns: 200px 1fr 300px; /* Left TOC | Content | Right Sidebar */
+    gap: 60px;
+}
+
+/* --- LEFT SIDEBAR (TOC) --- */
+.toc-sidebar {
+    position: sticky;
+    top: 120px;
+    height: fit-content;
+	padding: 25px;
+    background: rgba(248, 250, 252, 0.5); /* Subtle Arctic tint */
+    border: 1px solid #e2e8f0; /* Soft border */
+    border-radius: 20px;
+}
+
+/* Badge for Read Time */
+.read-time-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    background: #111;
+    color: #fff;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.toc-title {
+    font-family: 'Space Mono';
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--accent-purple);
+    margin-bottom: 20px;
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.toc-link {
+    display: block;
+    text-decoration: none;
+    color: #888;
+    font-size: 0.85rem;
+    margin-bottom: 15px;
+    transition: 0.3s;
+    line-height: 1.4;
+}
+
+.toc-link:hover, .toc-link.active {
+    color: #111;
+    padding-left: 10px;
+    border-left: 2px solid var(--accent-blue);
+}
+
+/* --- MAIN CONTENT --- */
+.blog-article h1 { font-family: 'Montserrat'; font-size: 3.5rem; line-height: 1.1; margin-bottom: 30px; }
+.blog-article p { font-size: 1.15rem; line-height: 1.8; color: #333; margin-bottom: 25px; }
+
+/* --- RIGHT SIDEBAR --- */
+.blog-sidebar {
+    position: sticky;
+    top: 120px;
+    height: fit-content;
+	padding: 25px;
+    background: rgba(248, 250, 252, 0.5); /* Subtle Arctic tint */
+    border: 1px solid #e2e8f0; /* Soft border */
+    border-radius: 20px;
+}
+
+.author-card {
+    background: #f8fafc;
+    padding: 30px;
+    border-radius: 20px;
+    margin-bottom: 40px;
+}
+
+.author-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #ddd;
+    margin-bottom: 15px;
+    object-fit: cover;
+}
+
+.sidebar-heading {
+    font-family: 'Space Mono';
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: block;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+/* Social Share Bar */
+.social-share {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.share-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+    text-decoration: none;
+    color: #111;
+    font-size: 0.8rem;
+}
+
+.share-btn:hover { background: #111; color: #fff; }
+</style>
+
+<main class="blog-post-wrapper">
+    
+    <aside class="toc-sidebar">
+        <span class="toc-title">// DATA_INDEX</span>
+        <nav>
+            <a href="#intro" class="toc-link active">01. Initializing Deployment</a>
+            <a href="#performance" class="toc-link">02. Arctic Load Specs</a>
+            <a href="#optimization" class="toc-link">03. Final Optimization</a>
+        </nav>
+    </aside>
+
+    <article class="blog-article">
+        <header>
+            <span class="mono" style="color: var(--accent-purple);">// PUBLISHED JAN 09 2026</span>
+            <h1>The Arctic Logic of High-Performance Systems</h1>
+        </header>
+
+        <section id="intro">
+		<div id="read-time" class="read-time-badge">EST_TIME: -- MIN</div>
+            <p>In the digital landscape of 2026, speed is no longer a luxury—it is the baseline. When we speak of "Bold Arctic" performance, we are referring to systems that remain fluid and responsive even under extreme data loads.</p>
+        </section>
+
+        <section id="performance">
+            <h2 style="font-family: Montserrat; margin: 40px 0 20px;">Arctic Load Specs</h2>
+            <p>Scaling a digital engine requires more than just raw power. It requires a cooled, calculated approach to asset management. Every byte must serve a purpose, every animation must be hardware-accelerated.
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras viverra velit eget dolor placerat blandit. In suscipit non felis eget aliquet. Nullam a malesuada sapien, eu volutpat eros. Aliquam erat volutpat. Nam malesuada auctor porta. Ut fringilla tellus ut diam imperdiet mattis. Duis blandit eu enim pretium mollis. Aenean feugiat velit quis nibh tristique, in aliquet ante feugiat. Aliquam ut orci molestie lorem tristique ultrices. Morbi ut neque gravida, pharetra justo id, cursus urna. Donec a volutpat quam. Donec sem dui, feugiat ac tristique quis, viverra vel diam. Nulla diam leo, dapibus vitae lorem a, rhoncus rutrum orci. Vivamus ac est auctor, consequat libero non, sollicitudin urna. Nullam urna nisl, luctus quis faucibus vel, sagittis nec turpis. Morbi id lacus at sem efficitur tincidunt.
+
+Fusce eget leo vitae enim placerat rutrum ut vitae nisl. Quisque ornare nunc ultrices libero fringilla scelerisque. Nunc dapibus sed erat sed viverra. Sed aliquet bibendum elit, ac sollicitudin augue vestibulum ut. Vivamus turpis elit, sagittis eget finibus ac, rhoncus eu turpis. Aenean maximus tristique suscipit. Donec luctus, orci nec viverra convallis, nisl tellus laoreet nibh, eget dictum libero quam in lorem.
+
+Fusce lacinia ligula vel vehicula pharetra. Pellentesque diam sapien, scelerisque interdum nunc condimentum, condimentum ultricies nibh. Fusce placerat, libero non ultrices dictum, massa sapien pretium nunc, vitae venenatis dui mi quis eros. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vestibulum venenatis erat at ante sollicitudin elementum. Nulla facilisi. Suspendisse potenti. Praesent at posuere ex. Vestibulum eros eros, efficitur sit amet lacus quis, volutpat commodo arcu. Sed convallis lectus ac aliquet faucibus. Curabitur a quam tincidunt, varius libero in, molestie nibh. Cras efficitur libero ante, sed sagittis purus vehicula eu. Nam ac tortor a sem commodo tincidunt eu ac tellus. Etiam at eros scelerisque, condimentum metus et, feugiat nibh.
+
+In hac habitasse platea dictumst. Pellentesque ac tempor nisi. Nunc euismod condimentum augue, posuere gravida dolor posuere sed. Aenean id massa rutrum, elementum diam a, malesuada nunc. Cras vel nulla pellentesque, condimentum nulla at, pellentesque lectus. Sed quis semper libero, vel egestas ipsum. Etiam rutrum lobortis felis, non dapibus mi eleifend et. Duis sollicitudin laoreet felis, et varius ligula vulputate at. Ut eu dui in metus semper feugiat. Curabitur id ultrices neque, id lobortis orci. Aenean sodales lobortis dignissim. Aliquam interdum hendrerit ultricies.
+
+Vestibulum mattis ut turpis et hendrerit. Vivamus quis tincidunt quam. Integer id volutpat risus. Praesent placerat, risus eu rutrum fringilla, mi nibh volutpat urna, elementum suscipit nibh sem in urna. Quisque vitae tellus nisl. Morbi vestibulum augue nec dictum dapibus. Fusce molestie, tellus a tempor condimentum, ligula ipsum tristique risus, sollicitudin tempor est lectus sit amet lectus. Aliquam feugiat magna maximus orci posuere dictum. Donec malesuada, orci sed eleifend maximus, orci urna aliquet metus, placerat sollicitudin ipsum nisi eu metus.</p>
+        </section>
+
+        <div class="social-share">
+            <span class="mono" style="font-size: 0.7rem; align-self: center;">SHARE_FILE:</span>
+            <a href="#" class="share-btn">X</a>
+            <a href="#" class="share-btn">IN</a>
+            <a href="#" class="share-btn">FB</a>
+        </div>
+    </article>
+
+    <aside class="blog-sidebar">
+        
+        <div class="author-card">
+            <img src="https://i.pravatar.cc/150?u=boldarctic" alt="Author" class="author-img">
+            <h4 style="margin: 0; font-family: Montserrat;">Erik Sterling</h4>
+            <p style="font-size: 0.85rem; color: #666; margin-top: 10px;">Lead Architect at Bold Arctic. Specializing in high-frequency scaling and glass-morphism design systems.</p>
+        </div>
+
+        <div class="suggested-posts">
+            <span class="sidebar-heading">RELATED_LOGS</span>
+            
+            <div style="margin-bottom: 25px;">
+                <a href="#" style="text-decoration: none; color: #111; font-weight: 700; font-size: 0.95rem;">The Future of Minimalist Interfaces</a>
+                <p style="font-size: 0.75rem; color: #888; margin-top: 5px;">5 MIN READ</p>
+            </div>
+
+            <div>
+                <a href="#" style="text-decoration: none; color: #111; font-weight: 700; font-size: 0.95rem;">Security Protocols for 2026</a>
+                <p style="font-size: 0.75rem; color: #888; margin-top: 5px;">8 MIN READ</p>
+            </div>
+        </div>
+    </aside>
+
+</main>
+<script>
+// TOC Active State Logic
+window.addEventListener('scroll', () => {
+    let current = "";
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.toc-link');
+
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        if (pageYOffset >= sectionTop - 150) {
+            current = section.getAttribute('id');
+        }
+    });
+
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href').includes(current)) {
+            link.classList.add('active');
+        }
+    });
+});
+</script>
+</body>
+</html>
