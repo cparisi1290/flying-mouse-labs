@@ -11,7 +11,7 @@ body, html {
     padding: 0; 
     width: 100%;
     font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    background: #fdfdfd;
+    background: #F7F7F7;
     scroll-behavior: smooth;
     overflow-x: hidden;
 }
@@ -152,8 +152,8 @@ body, html {
     font-weight: 700; 
     transition: 0.3s; 
     border: 2px solid white; 
+    box-sizing: border-box;
     display: inline-block;
-    /* Set a fixed width so they match */
     width: 200px;
     display: inline-flex;
     align-items: center;
@@ -484,11 +484,22 @@ p {
     opacity: 1;
 }
 
+.blade-design .blade-glass-frost {
+    background-image: url('../images/design-balloons.jpg');
+}
+
+.blade-build .blade-glass-frost {
+    background-image: url('../images/build-community.jpg');
+}
+
+.blade-scale .blade-glass-frost {
+    background-image: url('../images/scale-bubbles.jpg');
+}
+
 /* --- THE IMAGE LAYER (ARCTIC FROST) --- */
 #services-accordion .blade-glass-frost { 
     position: absolute; 
     inset: 0; 
-    background-image: var(--bg);
     background-size: cover;
     background-position: center;
     /* Inactive: Frosted, Grayscale, Bright */
@@ -857,7 +868,6 @@ z-index: 2;
     perspective: 2000px;
 }
 
-
 .testi-track { 
     position: relative; 
     z-index: 10; 
@@ -897,7 +907,7 @@ z-index: 2;
     left: 30px;
     width: 180px;
     height: auto;
-    opacity: 0.12;
+    opacity: 0.5;
     pointer-events: none;
 }
 
@@ -929,8 +939,8 @@ z-index: 2;
 }
 
 .avatar { 
-    width: 50px; 
-    height: 50px; 
+    width: 70px; 
+    height: 70px; 
     border-radius: 50%; 
     background-size: cover; 
     border: 2px solid #fff; 

@@ -129,7 +129,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // Ensure the cards are far enough out to rotate
         card.style.transform = `rotateY(${angle}deg) translateZ(550px)`;
         
-        const path = `../downloads/port cover images/${project.cover}`;
+        const pathBase = 'assets/images/';
+        const path = `${pathBase}${project.cover}`;
         card.innerHTML = `<div class="card-image" style="background-image:url('${path}')"></div>`;
 
         card.addEventListener('mouseenter', () => isPaused = true);
@@ -147,7 +148,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function updateLightbox() {
         const project = projectData[currentIndex];
-        const pathBase = '../downloads/port cover images/';
+        const pathBase = 'assets/images/';
         
         lbScroll.scrollTop = 0;
         document.getElementById('lb-title').innerText = project.title;
@@ -212,7 +213,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Testimonials Logic
     const track = document.getElementById('testiTrack');
-        const quoteImgUrl = "P (29).png"; 
+    const quoteImgUrl = "assets/images/glass-quotes.svg"; 
 
         const reviews = [
             { badge: "8X Conversion", q: "Bold Arctic is a luxury asset.", qb: "The team transformed our digital DNA. Seriously, Cassandra, Kody and Dylan are the best.", n: "Julian V.", i: "https://i.pravatar.cc/100?u=1" },
@@ -329,4 +330,3 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     })();
 });
-
