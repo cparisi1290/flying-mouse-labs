@@ -445,6 +445,7 @@ p {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.8rem;
     font-weight: 800;
+    padding-left: 5%;
     letter-spacing: 2px;
     text-transform: uppercase;
     display: block;
@@ -454,8 +455,9 @@ p {
 
 #services-accordion .accordion-container { 
     display: flex; 
-    width: 100%; 
+    width: 90%; 
     height: 700px; 
+    padding: 0 5%;
     gap: 15px; 
     z-index: 1;
 }
@@ -534,7 +536,7 @@ p {
 
 /* --- THE CONTENT BOX (TEXT WRAPPER) --- */
 #services-accordion .blade-content { 
-    position: absolute; 
+    position: absolute;
     bottom: 60px; 
     left: 60px;
     right: 60px;
@@ -665,7 +667,8 @@ padding: 0 5%;
 .perf-main-heading { 
     font-size: 4rem; 
     font-weight: 900; 
-    color: #111; 
+    padding-left: 5%;
+    color: var(--text-dark); 
     line-height: 1.1; 
 }
 
@@ -828,6 +831,9 @@ z-index: 2;
     opacity: .3; z-index: 1;
     white-space: nowrap; 
     pointer-events: none;
+    background-size: 400% 400%;
+    animation: bgShift 10s infinite alternate ease-in-out;
+    perspective: 2000px;
 }
 
 /* --- LIGHTBOX (PSEUDO-PAGE) --- */
@@ -1072,8 +1078,7 @@ z-index: 2;
     display: flex;    
     align-items: flex-start; 
     justify-content: center;    
-    padding-top: 450px; 
-    padding-bottom: 200px;
+    padding: 450px 5% 200px 5%; 
     perspective: 3000px;
     overflow: hidden;
     z-index: 5;
@@ -1288,9 +1293,11 @@ z-index: 2;
 .arc-triptych-panel:hover .arc-panel-title { 
     color: #ffffff; 
 }
+
 .arc-triptych-panel:hover .arc-panel-text { 
     color: rgba(255, 255, 255, 0.8); 
 }
+
 .arc-triptych-panel:hover .arc-panel-label { 
     color: rgba(255, 255, 255, 0.5); 
 }
@@ -1348,8 +1355,12 @@ z-index: 2;
 }
 
 @keyframes surfaceShine {
-    0% { background-position: -250% 0; }
-    100% { background-position: 250% 0; }
+    0% { 
+        background-position: -250% 0; 
+    }
+    100% { 
+        background-position: 250% 0; 
+    }
 }
 
 @keyframes crystalTumble {
