@@ -213,12 +213,65 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Testimonials Logic
     const track = document.getElementById('testiTrack');
-    const quoteImgUrl = "assets/images/glass-quotes.svg"; 
+    const quoteImgUrl = "assets/images/glass-quotes-dark.svg"; 
 
         const reviews = [
-            { badge: "8X Conversion", q: "Bold Arctic is a luxury asset.", qb: "The team transformed our digital DNA. Seriously, Cassandra, Kody and Dylan are the best.", n: "Julian V.", i: "https://i.pravatar.cc/100?u=1" },
-            { badge: "40% Rev Lift", q: "Exactly what we needed.", qb: "Strategic design that actually moves the bottom line.", n: "Mila K.", i: "https://i.pravatar.cc/100?u=2" },
-            { badge: "Brand Mastery", q: "Soul of luxury.", qb: "They don't just build sites; they build digital experiences.", n: "Alex R.", i: "https://i.pravatar.cc/100?u=3" }
+            { 
+                badge: "Incredible Design + Deep Expertise", 
+                q: "[Flying Mouse Lab] is our go-to web designer. She's always on top of any task we give her and does incredible design work. I'm always impressed with her subject matter knowledge and professionalism.", 
+                /* qb: "Cassandra is our go-to web designer. She's always on top of any task we give her and does incredible design work. I'm always impressed with her subject matter knowledge and professionalism.", */ 
+                n: "Sandy L.", 
+                b: "Colliance Online Business Management",
+                i: "./assets/images/colliance-profile.jpg" 
+            },
+            { 
+                badge: "+450% Engagement", 
+                q: "Within the first two months of launching, I saw a huge increase in activity. Website clicks doubled, and profile interactions were up over 450% compared to the same time last year.", 
+                /* qb: "The process is collaborative and thoughtful and Cass is professional and truly committed to helping your business succeed.. Before working with [Fly Mouse Lab], I had a website that was done for free, but it wasn’t finished, and it definitely didn’t reflect the quality of my business. I knew I needed something more professional, but I wasn’t sure who to trust with the redesign. I was concerned about finding someone who could understand my business and make the process feel manageable. <br> <br> Cass made it incredibly easy. From strategy to Google Business Profile to the design itself, she brought everything together beautifully. My new website is even better than I imagined it could be!",  */
+                n: "Damaris E.", 
+                b: "Damaris Accounting Services",
+                i: "./assets/images/das-profile.jpg" 
+            },
+            { 
+                badge: "SEO Audit + Backend Rescue", 
+                q: "This was my second time working with Cass, and both experiences were fantastic. Many of her thoughtful suggestions turned out to be game changers for my photography business.", 
+                /* qb: "I highly recommend reaching out to Cassandra before attempting any bold backend maneuvers on your website!. [Flying Mouse Lab] is my go-to for all website-related issues, queries, and strategies.This was my second time working with Cass, and both experiences were fantastic. She is attentive, professional, and very easy to talk to. I had a series of self-inflicted backend issues that I couldn’t resolve on my own, and Cassandra was a great listener who understood my goals thoroughly. She executed everything in a timely manner, kept me updated with progress reports, and made thoughtful suggestions along the way - many of which turned out to be game changers for my photography business. Her patience and lovely demeanor made the whole process a pleasure. Highly recommend!",  */
+                n: "Kathy C.", 
+                b: "KCruts Photography",
+                i: "./assets/images/kcruts-profile.jpg"
+            },
+            { 
+                badge: "Custom Pro Site + Personal Touch", 
+                q: "I lovvvvvve the website - it is beautiful!! I'm so happy with the website and your work!!! She took the 'hard' parts of website design away from me and made the intimidating and daunting task of building my company's website completely manageable.", 
+                /* qb: "[Flying Mouse Lab] helps take the stress of building your website away from you. She'll take the time necessary to make sure she fully understands your needs and the direction you'd like your site to take. She took the 'hard' parts of website design away from me and made the intimidating and daunting task of building my company's website completely manageable. I feel very satisfied with the entire process especially the final product.",  */
+                n: "Robin P.", 
+                b: "Dos Gatos Property Management",
+                i: "./assets/images/dgpm-profile.png"
+            },
+            { 
+                badge: "100% On-Brand", 
+                q: "[Flying Mouse Lab] created a website that is FABULOUS and really speaks to my personality and branding! [They are] very knowledgeable and will make sure [they] create a site that aligns with your expectations and vision.", 
+                /* qb: "I wanted a site that spoke to my brand and came across as professional and modern. I suppose my main hesitation was if the site would speak to my vision. I would say that Cassandra is very knowledgeable and will make sure she creates a site that aligns with your expectations and vision. [Flying Mouse Lab] created a website that is FABULOUS and really speaks to my personality and branding!",  */
+                n: "Kayla S.", 
+                b: "Kay's Virtual Solutions",
+                i: "./assets/images/kvs-profile.jpg"
+            },
+            { 
+                badge: "Brand Vision Mastery", 
+                q: "The entire process was smooth and collaborative, and [Flying Mouse Lab] made sure every idea was not just heard but brought to life better than I imagined.", 
+                /* qb: "The entire process was smooth and collaborative, and Cass made sure every idea was not just heard but brought to life better than I imagined. I genuinely enjoyed the process—she was patient, knowledgeable, and always on top of things. <br><br> What I love most about my new website is how perfectly it reflects my brand. It feels professional, modern, and uniquely tailored to my grooming business, which makes it stand out from competitors. She captured my style and values, and the functionality is so intuitive—my clients love it, too! <br><br>The thing I liked most about working with Cass was how easy she made everything. I could focus on my business without feeling stressed about the technical side of things, and her communication was excellent throughout the project.", */ 
+                n: "Cheyanne F.", 
+                b: "Luxe Pet Parlor",
+                i: "./assets/images/lpp-profile.jpg"
+            },
+            { 
+                badge: "Rare Find: Honest & Visionary Designer", 
+                q: "[Flying Mouse Lab] is phenomenal, extremely honest, and accurate. [They are] incredibly reliable, and have gone above and beyond the call of duty on numerous occasions. [They are] wonderful to work with, a true visionaries.", 
+                /* qb: "Cassandra is AMAZING. You made my dreams come true. You made the entire experience perfect. I felt like we had known each other for years. It is with immense pleasure to highly recommend Cassandra Parisi. Finding Cassandra was a most fortuitous occurrence. She is an exceptional web designer. I had a horrible experience with my previous web designer, lost time, and a lot of money. Cassandra is phenomenal, extremely honest, and accurate. She communicates quickly and will make your site better than you ever dreamed. During my interaction with my prior web designer, I developed a disdain for the myriad of excuses and lack of communication that was all too prevalent. These problems were NEVER encountered with Cassandra. She is virtually always available, is incredibly reliable, and has gone above and beyond the call of duty on numerous occasions. Cassandra even went as far as helping to EDUCATE me about what exactly she is doing to my site and why certain steps need to be taken, etc. She is not merely a web designer, but also a quasi-business consultant with in-depth understanding of topics including but not limited to search engine optimization, data encryption, design, and hosting. Cassandra worked with my ideas and made sure everything was perfect. Her expertise is beyond words and her willingness to help and suggest ideas is phenomenal, she cares about her clients and is a wonderful person to work with, a true visionary. One of her greatest assets is the ability to articulate ideas over emails. I can navigate my way around a computer with ease, but compared to her, I am a novice. Cassandra – you have been wonderful to work with. You have worked wonders with our new website. We have only compliments from our clients. I was a bit hesitant working with someone “out of state” and via “internet”- Your communication skills, quickness of reply and accuracy sure proved me wrong. You are very competent but above all it is your professionalism, responsiveness, and high degree of integrity that I found refreshing. You are a rare find and I highly recommend everyone that is need of a website inquiring about your services. I will use you again for my next site and recommend you to everyone I know who needs a top-notch web designer.",  */
+                n: "Suzanne H.", 
+                b: "Bookkeeping Concepts",
+                i: "./assets/images/bkkg-concepts-profile.png"
+            }
         ];
 
         function createCard(item) {
@@ -227,12 +280,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     <img src="${quoteImgUrl}" class="quote-img" alt="Quote">
                     <div class="result-badge">${item.badge}</div>
                     <div class="quote">"${item.q}"</div>
-                    <div class="quote-body">${item.qb}</div>
+                    <!--<div class="quote-body">${item.qb}</div>-->
                     <div class="client-box">
                         <div class="avatar" style="background-image: url('${item.i}')"></div>
                         <div>
                             <strong>${item.n}</strong><br>
-                            <small style="color: #666; font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase;">Verified Partner</small>
+                            <small style="color: #666; font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase;">${item.b}</small>
                         </div>
                     </div>
                 </div>
