@@ -379,7 +379,49 @@ document.addEventListener('DOMContentLoaded', function() {
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', initTriptych);
         } else {
-            initTriptych();
+            // Initialize about lightbox
+    initAboutLightbox();
+
+    // Footer Logic
+    // 1. Update Year Automatically
+    const currentYearElement = document.getElementById('current-year');
+    if (currentYearElement) {
+        currentYearElement.textContent = new Date().getFullYear();
+    }
+
+    // 2. Smooth Scroll for Footer Links
+    document.querySelectorAll('.footer-nav-col a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // 3. Newsletter Form Handler
+    const newsletterForm = document.querySelector('.newsletter-form-horizontal');
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[type="email"]').value;
+            const consent = this.querySelector('input[type="checkbox"]').checked;
+            
+            if (email && consent) {
+                // Here you would normally send to your backend
+                console.log('Newsletter signup:', { email, consent });
+                alert('Thank you for signing up for our newsletter!');
+                this.reset();
+            } else {
+                alert('Please provide your email and consent to receive communications.');
+            }
+        });
+    }
+
+    initTriptych();
         }
     })();
 });
