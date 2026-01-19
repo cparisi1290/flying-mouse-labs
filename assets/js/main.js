@@ -1,5 +1,5 @@
-// Main JavaScript file for Flying Mouse Lab
-console.log('Flying Mouse Lab - JS loaded successfully!');
+// Main JavaScript file for Flying Mouse Labs
+console.log('Flying Mouse Labs - JS loaded successfully!');
 
 // Example: Smooth scrolling for navigation links
 document.addEventListener('DOMContentLoaded', function() {
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // console.log('Blade active:', blade);
             });
         });
-    })();
+    }()); // Fix IIFE closure here
 
     // Portfolio Logic
     const carousel = document.getElementById('carousel');
@@ -210,15 +210,20 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         animPort();
     }
+    }());
 
     // Testimonials Logic
     const track = document.getElementById('testiTrack');
+    /* if (track) {
+        const displayList = [...reviews, ...reviews, ...reviews];
+        track.innerHTML = displayList.map(createCard).join('');
+    } */
     const quoteImgUrl = "assets/images/glass-quotes-dark.svg"; 
 
         const reviews = [
             { 
                 badge: "Incredible Design + Deep Expertise", 
-                q: "[Flying Mouse Lab] is our go-to web designer. She's always on top of any task we give her and does incredible design work. I'm always impressed with her subject matter knowledge and professionalism.", 
+                q: "[Flying Mouse Labs] is our go-to web designer. She's always on top of any task we give her and does incredible design work. I'm always impressed with her subject matter knowledge and professionalism.", 
                 /* qb: "Cassandra is our go-to web designer. She's always on top of any task we give her and does incredible design work. I'm always impressed with her subject matter knowledge and professionalism.", */ 
                 n: "Sandy L.", 
                 b: "Colliance Online Business Management",
@@ -243,14 +248,14 @@ document.addEventListener('DOMContentLoaded', function() {
             { 
                 badge: "Custom Pro Site + Personal Touch", 
                 q: "I lovvvvvve the website - it is beautiful!! I'm so happy with the website and your work!!! She took the 'hard' parts of website design away from me and made the intimidating and daunting task of building my company's website completely manageable.", 
-                /* qb: "[Flying Mouse Lab] helps take the stress of building your website away from you. She'll take the time necessary to make sure she fully understands your needs and the direction you'd like your site to take. She took the 'hard' parts of website design away from me and made the intimidating and daunting task of building my company's website completely manageable. I feel very satisfied with the entire process especially the final product.",  */
+                /* qb: "[Flying Mouse Labs] helps take the stress of building your website away from you. She'll take the time necessary to make sure she fully understands your needs and the direction you'd like your site to take. She took the 'hard' parts of website design away from me and made the intimidating and daunting task of building my company's website completely manageable. I feel very satisfied with the entire process especially the final product.",  */
                 n: "Robin P.", 
                 b: "Dos Gatos Property Management",
                 i: "./assets/images/dgpm-profile.png"
             },
             { 
                 badge: "100% On-Brand", 
-                q: "[Flying Mouse Lab] created a website that is FABULOUS and really speaks to my personality and branding! [They are] very knowledgeable and will make sure [they] create a site that aligns with your expectations and vision.", 
+                q: "[Flying Mouse Labs] created a website that is FABULOUS and really speaks to my personality and branding! [They are] very knowledgeable and will make sure [they] create a site that aligns with your expectations and vision.", 
                 /* qb: "I wanted a site that spoke to my brand and came across as professional and modern. I suppose my main hesitation was if the site would speak to my vision. I would say that Cassandra is very knowledgeable and will make sure she creates a site that aligns with your expectations and vision. [Flying Mouse Lab] created a website that is FABULOUS and really speaks to my personality and branding!",  */
                 n: "Kayla S.", 
                 b: "Kay's Virtual Solutions",
@@ -258,7 +263,7 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             { 
                 badge: "Brand Vision Mastery", 
-                q: "The entire process was smooth and collaborative, and [Flying Mouse Lab] made sure every idea was not just heard but brought to life better than I imagined.", 
+                q: "The entire process was smooth and collaborative, and [Flying Mouse Labs] made sure every idea was not just heard but brought to life better than I imagined.", 
                 /* qb: "The entire process was smooth and collaborative, and Cass made sure every idea was not just heard but brought to life better than I imagined. I genuinely enjoyed the process—she was patient, knowledgeable, and always on top of things. <br><br> What I love most about my new website is how perfectly it reflects my brand. It feels professional, modern, and uniquely tailored to my grooming business, which makes it stand out from competitors. She captured my style and values, and the functionality is so intuitive—my clients love it, too! <br><br>The thing I liked most about working with Cass was how easy she made everything. I could focus on my business without feeling stressed about the technical side of things, and her communication was excellent throughout the project.", */ 
                 n: "Cheyanne F.", 
                 b: "Luxe Pet Parlor",
@@ -266,7 +271,7 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             { 
                 badge: "Rare Find: Honest & Visionary Designer", 
-                q: "[Flying Mouse Lab] is phenomenal, extremely honest, and accurate. [They are] incredibly reliable, and have gone above and beyond the call of duty on numerous occasions. [They are] wonderful to work with, a true visionaries.", 
+                q: "[Flying Mouse Labs] is phenomenal, extremely honest, and accurate. [They are] incredibly reliable, and have gone above and beyond the call of duty on numerous occasions. [They are] wonderful to work with, a true visionaries.", 
                 /* qb: "Cassandra is AMAZING. You made my dreams come true. You made the entire experience perfect. I felt like we had known each other for years. It is with immense pleasure to highly recommend Cassandra Parisi. Finding Cassandra was a most fortuitous occurrence. She is an exceptional web designer. I had a horrible experience with my previous web designer, lost time, and a lot of money. Cassandra is phenomenal, extremely honest, and accurate. She communicates quickly and will make your site better than you ever dreamed. During my interaction with my prior web designer, I developed a disdain for the myriad of excuses and lack of communication that was all too prevalent. These problems were NEVER encountered with Cassandra. She is virtually always available, is incredibly reliable, and has gone above and beyond the call of duty on numerous occasions. Cassandra even went as far as helping to EDUCATE me about what exactly she is doing to my site and why certain steps need to be taken, etc. She is not merely a web designer, but also a quasi-business consultant with in-depth understanding of topics including but not limited to search engine optimization, data encryption, design, and hosting. Cassandra worked with my ideas and made sure everything was perfect. Her expertise is beyond words and her willingness to help and suggest ideas is phenomenal, she cares about her clients and is a wonderful person to work with, a true visionary. One of her greatest assets is the ability to articulate ideas over emails. I can navigate my way around a computer with ease, but compared to her, I am a novice. Cassandra – you have been wonderful to work with. You have worked wonders with our new website. We have only compliments from our clients. I was a bit hesitant working with someone “out of state” and via “internet”- Your communication skills, quickness of reply and accuracy sure proved me wrong. You are very competent but above all it is your professionalism, responsiveness, and high degree of integrity that I found refreshing. You are a rare find and I highly recommend everyone that is need of a website inquiring about your services. I will use you again for my next site and recommend you to everyone I know who needs a top-notch web designer.",  */
                 n: "Suzanne H.", 
                 b: "Bookkeeping Concepts",
@@ -291,7 +296,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             `;
         }
-
+    
         const displayList = [...reviews, ...reviews, ...reviews];
         track.innerHTML = displayList.map(createCard).join('');
 		
@@ -335,54 +340,226 @@ document.addEventListener('DOMContentLoaded', function() {
      * Handles: 1. Scroll-trigger for 3D card flight
      * 2. Parallax depth for background text
      */
-    (function() {
-        const initTriptych = () => {
-            const wrapper = document.getElementById('arc-triptych-wrapper');
-            const bgText = wrapper ? wrapper.querySelector('.arc-bg-text') : null;
-            
-            if (!wrapper) return;
-
-            // --- 1. THE TRIGGER (Card Flight) ---
-            // This fires the animation once when 40% of the section is visible
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        wrapper.classList.add('is-active');
-                    } else {
-                        // Resets if you scroll away so it can "re-play"
-                        wrapper.classList.remove('is-active');
-                    }
-                });
-            }, { 
-                threshold: 0.4 
-            });
-
-            observer.observe(wrapper);
-
-            // --- 2. THE PARALLAX (Background Text) ---
-            // This makes the "ABOUT" text move slower than the scroll for depth
-            window.addEventListener('scroll', () => {
+    function initTriptych() {
         const wrapper = document.getElementById('arc-triptych-wrapper');
-        const bgText = document.querySelector('.arc-bg-text');
-        if (!wrapper || !bgText) return;
+        const bgText = wrapper ? wrapper.querySelector('.arc-bg-text') : null;
+        
+        if (!wrapper) return;
 
-        const rect = wrapper.getBoundingClientRect();
-        if (rect.top < window.innerHeight && rect.bottom > 0) {
-            // Reduced the multiplier to 0.05 for a subtler, more controlled drift
-            const shiftValue = (window.innerHeight / 2 - rect.top) * 0.05;
-            bgText.style.transform = `translate(-50%, calc(-50% + ${shiftValue}px))`;
-        }
-    }, { passive: true }); // 'passive' improves scroll performance
-        };
+        // --- 1. THE TRIGGER (Card Flight) ---
+        // This fires the animation once when 40% of the section is visible
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    wrapper.classList.add('is-active');
+                } else {
+                    // Resets if you scroll away so it can "re-play"
+                    wrapper.classList.remove('is-active');
+                }
+            });
+        }, { 
+            threshold: 0.4 
+        });
 
-        // Initialize once DOM is ready
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initTriptych);
-        } else {
-            // Initialize about lightbox
+        observer.observe(wrapper);
+
+        // --- 2. THE PARALLAX (Background Text) ---
+        // This makes the "ABOUT" text move slower than the scroll for depth
+        window.addEventListener('scroll', () => {
+            const wrapper = document.getElementById('arc-triptych-wrapper');
+            const bgText = document.querySelector('.arc-bg-text');
+            if (!wrapper || !bgText) return;
+
+            const rect = wrapper.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                // Reduced the multiplier to 0.05 for a subtler, more controlled drift
+                const shiftValue = (window.innerHeight / 2 - rect.top) * 0.05;
+                bgText.style.transform = `translate(-50%, calc(-50% + ${shiftValue}px))`;
+            }
+        }, { passive: true }); // 'passive' improves scroll performance
+    }
+
+    (function() {
+        // Any other triptych-related code can go here
+    })(); 
+
+    // Initialize functions
+    initTriptych();
     initAboutLightbox();
+    initFooter();
 
-    // Footer Logic
+
+// --- ABOUT SECTION LIGHTBOX ---
+const aboutData = [
+    {
+        title: "VALUES",
+        subtitle: "// 01 ETHOS",
+        image: "./assets/images/compass.jpg",
+        content: `
+            <h3>Architectural Precision</h3>
+            <p>We believe that exceptional digital experiences are built on a foundation of precision and intentionality. Every line of code, every pixel placement, and every interaction is crafted with purpose and attention to detail.</p>
+            
+            <h3>Crystalline Transparency</h3>
+            <p>Our process is open and collaborative. We work with you as partners, ensuring that every decision is understood and every milestone is celebrated together. No black boxes, no hidden agendas—just clear, honest communication.</p>
+            
+            <h3>Integrity First</h3>
+            <p>We stand by our work and our word. When we commit to a timeline, we meet it. When we promise quality, we deliver it. Our reputation is built on trust, and we protect it fiercely.</p>
+            
+            <ul>
+                <li>100% transparent development process</li>
+                <li>Code that's clean, documented, and maintainable</li>
+                <li>Performance benchmarks that are met and exceeded</li>
+                <li>Security-first approach to every project</li>
+            </ul>
+        `,
+        stats: [
+            { number: "100%", label: "Client Satisfaction" },
+            { number: "0", label: "Compromises on Quality" },
+            { number: "24/7", label: "Support Availability" }
+        ]
+    },
+    {
+        title: "MISSION",
+        subtitle: "// 02 DRIVE",
+        image: "https://picsum.photos/seed/about-2/800/1200",
+        content: `
+            <h3>Building the Digital Future</h3>
+            <p>We're not just building websites—we're crafting digital ecosystems that grow with your business. Our mission is to create high-performance, scalable solutions that serve as the foundation for your digital transformation.</p>
+            
+            <h3>High-Performance Aesthetics</h3>
+            <p>Beauty and performance are not mutually exclusive. We specialize in creating experiences that are both visually stunning and technically optimized. Every millisecond counts, every pixel matters.</p>
+            
+            <h3>Partnership Over Projects</h3>
+            <p>We don't just deliver projects—we build partnerships. Our success is measured by your success, and we're committed to being there long after the launch to ensure continued growth and optimization.</p>
+            
+            <ul>
+                <li>Lightning-fast load times (under 2 seconds)</li>
+                <li>SEO-optimized from day one</li>
+                <li>Mobile-first responsive design</li>
+                <li>Scalable architecture for future growth</li>
+            </ul>
+        `,
+        stats: [
+            { number: "<2s", label: "Average Load Time" },
+            { number: "98", label: "Performance Score" },
+            { number: "100%", label: "Mobile Optimized" }
+        ]
+    },
+    {
+        title: "PHILOSOPHY",
+        subtitle: "// 03 CORE",
+        image: "./assets/images/kvs-after.png",
+        content: `
+            <h3>Beauty Through Logic</h3>
+            <p>Beauty is not an afterthought—it's the natural result of perfectly functioning logic and code. When the architecture is sound and the code is clean, the user experience naturally becomes beautiful.</p>
+            
+            <h3>Code as Craft</h3>
+            <p>We approach every project with the mindset of master craftspeople. Each function is carefully considered, each component is thoughtfully designed, and each interaction is deliberately crafted.</p>
+            
+            <h3>Continuous Evolution</h3>
+            <p>The digital landscape is always changing, and so are we. We stay on the cutting edge of technology and design trends, ensuring that your digital presence remains relevant and effective for years to come.</p>
+            
+            <ul>
+                <li>Clean, semantic HTML5 markup</li>
+                <li>Modern CSS with future-proof techniques</li>
+                <li>JavaScript that's fast and maintainable</li>
+                <li>Progressive enhancement for all users</li>
+            </ul>
+        `,
+        stats: [
+            { number: "A+", label: "Code Quality" },
+            { number: "0", label: "Technical Debt" },
+            { number: "∞", label: "Possibilities" }
+        ]
+    }
+];
+
+function initAboutLightbox() {
+    // About lightbox specific variables - completely encapsulated
+    let aboutCurrentIndex = 0;
+    let aboutIsPaused = false;
+    let aboutLightbox;
+    
+    // All helper functions inside the scope
+    function openAboutLightbox(index) {
+        aboutCurrentIndex = index;
+        updateAboutLightbox();
+        aboutLightbox.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent background scroll
+        aboutIsPaused = true;
+    }
+
+    function closeAboutLightbox() {
+        aboutLightbox.classList.remove('active');
+        document.body.style.overflow = ''; // Restore scroll
+        aboutIsPaused = false;
+    }
+
+    function updateAboutLightbox() {
+        const data = aboutData[aboutCurrentIndex];
+        
+        // Populate content
+        document.getElementById('about-lb-title').textContent = data.title;
+        document.getElementById('about-lb-subtitle').textContent = data.subtitle;
+        document.getElementById('about-lb-image').style.backgroundImage = `url('${data.image}')`;
+        document.getElementById('about-lb-content').innerHTML = data.content;
+        
+        // Populate stats
+        const statsContainer = document.getElementById('about-lb-stats');
+        statsContainer.innerHTML = data.stats.map(stat => `
+            <div class="stat">
+                <div class="stat-number">${stat.number}</div>
+                <div class="stat-label">${stat.label}</div>
+            </div>
+        `).join('');
+    }
+
+    // Initialize the about lightbox
+    aboutLightbox = document.getElementById('about-lightbox');
+    const closeBtn = document.getElementById('about-lb-close-btn');
+    const prevBtn = document.getElementById('about-lb-prev');
+    const nextBtn = document.getElementById('about-lb-next');
+    const panels = document.querySelectorAll('.arc-triptych-panel');
+    
+    // Add click handlers to panels
+    panels.forEach((panel, index) => {
+        panel.style.cursor = 'pointer';
+        panel.addEventListener('click', () => {
+            aboutCurrentIndex = index;
+            openAboutLightbox(aboutCurrentIndex);
+        });
+    });
+    
+    // Navigation handlers
+    prevBtn.addEventListener('click', () => {
+        aboutCurrentIndex = (aboutCurrentIndex - 1 + aboutData.length) % aboutData.length;
+        updateAboutLightbox();
+    });
+    
+    nextBtn.addEventListener('click', () => {
+        aboutCurrentIndex = (aboutCurrentIndex + 1) % aboutData.length;
+        updateAboutLightbox();
+    });
+    
+    // Close button handler
+    closeBtn.addEventListener('click', closeAboutLightbox);
+    
+    // Close on background click
+    aboutLightbox.addEventListener('click', (e) => {
+        if (e.target === aboutLightbox) {
+            closeAboutLightbox();
+        }
+    });
+    
+    // Close on escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && aboutLightbox.classList.contains('active')) {
+            closeAboutLightbox();
+        }
+    });
+}
+
+function initFooter() {
     // 1. Update Year Automatically
     const currentYearElement = document.getElementById('current-year');
     if (currentYearElement) {
@@ -420,8 +597,4 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-
-    initTriptych();
-        }
-    })();
-});
+}
