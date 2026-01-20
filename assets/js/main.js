@@ -72,52 +72,62 @@ document.addEventListener('DOMContentLoaded', function() {
     const projectData = [
         {
             cover: 'kvs-port-cover.gif',
-            title: "KAY'S VIRTUAL SOLUTIONS",
-            category: 'WEBSITE REDESIGN',
-            description: 'Transformed a legacy logistics platform into a high-performance digital engine.',
+            title: "Kay's Virtual Solutions",
+            category: 'Website Design',
+            description: `Kayla came to us knowing her old website just wasn’t cutting it. She wanted something that actually reflected her vibe of being polished, feminine and ready to attract her dream clients. Using her existing logo, colors, and fonts, we built a site that felt like her and resonated with the people she wanted to work with. 
+            
+            As her business evolved into business efficiency consulting, we updated her site with the same brand but with fresh brand photos and a custom AI-scripted chatbot.`,
+            quote: `"I always fall in love with Cassandra's designs. She consistently delivers on professionalism and impact. Seriously, I'm always impressed with Cassandra and her design abilities. She's my go to girl for web design."`,
             before: 'kvs-before.png',
             after: 'kvs-after.png'
         },
         {
             cover: 'luxe-port-cover.gif',
-            title: 'LUXE PET PARLOR',
-            category: 'BRANDING + WEB DESIGN',
-            description: 'A premium visual identity built for high-scale digital commerce.',
+            title: 'Luxe Pet Parlor',
+            category: 'Branding + Web Design',
+            description: `Cheyanne came to us needing a rebrand from loud and disheveled to calming and luxurious. Inspired by her Cajun roots and spa-like vision, we created a soothing visual identity using pastel greens, soft purples, and natural wood tones.`,
+            quote: '“The thing I liked most about working with Cass was how easy she made everything. I could focus on my business without feeling stressed about the technical side of things, and her communication was excellent throughout the project.”',
             before: '', 
             after: 'luxe-after.png'
         },
 		{
             cover: 'nhc-port-cover.gif',
-            title: 'NOVA HEALTH COLLECTIVE',
-            category: 'BRANDING + WEB DESIGN',
-            description: 'A premium visual identity built for high-scale digital commerce.',
+            title: 'Nova Health Collectic',
+            category: 'Branding + Web Design',
+            description: `Mason came to [us] ready to level up her brand and expand her offerings from midwifery to include psychedelic facilitation. She needed a brand that felt aligned with her vision—so we left behind a partner-chosen logo and created something entirely new. The result: a grounded, modern and strategic brand identity and a custom 5-page website with a client portal for resources and an events page to support her growing practice. Now, Mason’s online presence feels as expansive and intentional as her work.`,
+            quote: `I really like the [logo]!  I love it, this looks really wonderful and I don't have any revisions to the website to request.`,
             before: '', 
             after: 'nhc-after.png'
         },
 		{
             cover: 'colliance-port-cover.gif',
-            title: 'COLLIANCE',
-            category: 'WEBSITE REDESIGN',
-            description: 'A premium visual identity built for high-scale digital commerce.',
+            title: 'Colliance Online Business Management',
+            category: 'Website Redesign',
+            description: 'After their original designer ghosted them, Sandy needed someone to step in and bring her vision to life. Using the existing branding, we rebuilt her website to feel brighter, more inviting, and easy to navigate. I expanded the site to include individual service pages, team intros, and tiered offerings specific to different business stages. We also designed two strategic sales funnels for their project management and bookkeeping services. The result is a warm, well-structured site that truly reflects their professionalism and builds trust with potential clients.',
+            quote: '[Flying Mouse Labs] is always on top of any task we give [them] and does incredible design work.',
             before: 'colliance-before.png', 
             after: 'colliance-after.png'
         },
 		{
             cover: 'das-port-cover.gif',
-            title: 'DAMARIS ACCOUNTING SERVICES',
-            category: 'WEB DESIGN',
-            description: 'A premium visual identity built for high-scale digital commerce.',
+            title: 'Damaris Accounting Services',
+            category: 'Web Design',
+            description: 'Damaris, an accountant offering bookkeeping, tax prep, business formation, and accounting services, needed a site that matched the quality of her work. Her original site fell short, so we rebuilt it on Squarespace using her existing logo and elevated the branding to feel modern, professional, and luxurious. The new single-page site clearly presents her services, with on-page SEO and Google tools in place to support future growth. Damaris said I brought her vision to life and that she didn’t know her site could look this good.',
+            quote: `I had a website that was done for free, but it wasn’t finished, and it definitely didn’t reflect the quality of my business. I knew I needed something more professional, but I wasn’t sure who to trust with the redesign. I was concerned about finding someone who could understand my business and make the process feel manageable.
+
+            [Flying Mouse Labs] made it incredibly easy. From strategy to Google Business Profile to the design itself, she brought everything together beautifully. My new website is even better than I imagined it could be!`,
             before: '', 
             after: 'das-after.png'
         },
-		{
+/* 		{
             cover: 'gg-port-cover.gif',
-            title: 'GRATEFUL GRAZE',
-            category: 'BRANDING + WEB DESIGN',
+            title: 'Grateful Graze',
+            category: 'Branding + Web Design',
             description: 'A premium visual identity built for high-scale digital commerce.',
+            quote: '',
             before: '', 
             after: 'gg-after.png'
-        }
+        } */
         // Add more objects here for each project...
     ];
 
@@ -154,6 +164,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('lb-title').innerText = project.title;
         document.getElementById('lb-category').innerText = `// CATEGORY: ${project.category}`;
         document.getElementById('lb-description').innerText = project.description;
+        document.getElementById('lb-quote').innerText = project.quote;
         //document.getElementById('lb-index').innerText = `PROJECT: ${currentIndex + 1} / ${projectData.length}`;
 
         let visualHtml = '';
@@ -337,9 +348,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // ABOUT Logic
     /**
      * ARC TRIPTYCH ENGINE
-     * Handles: 1. Scroll-trigger for 3D card flight
-     * 2. Parallax depth for background text
-     */
+     * Handles: 1. Scroll-trigger for 3D card flight */
+
     function initTriptych() {
         const wrapper = document.getElementById('arc-triptych-wrapper');
         const bgText = wrapper ? wrapper.querySelector('.arc-bg-text') : null;
@@ -392,9 +402,9 @@ document.addEventListener('DOMContentLoaded', function() {
 // --- ABOUT SECTION LIGHTBOX ---
 const aboutData = [
     {
-        title: "VALUES",
-        subtitle: "// 01 ETHOS",
-        image: "./assets/images/compass.jpg",
+        title: "Values",
+        subtitle: "// 01 Ethos",
+        image: "https://picsum.photos/seed/about-1/800/1200",
         content: `
             <h3>Architectural Precision</h3>
             <p>We believe that exceptional digital experiences are built on a foundation of precision and intentionality. Every line of code, every pixel placement, and every interaction is crafted with purpose and attention to detail.</p>
@@ -419,9 +429,9 @@ const aboutData = [
         ]
     },
     {
-        title: "MISSION",
-        subtitle: "// 02 DRIVE",
-        image: "https://picsum.photos/seed/about-2/800/1200",
+        title: "Mission",
+        subtitle: "// 02 Drive",
+        image: "https://picsum.photos/seed/about-3/800/1200",
         content: `
             <h3>Building the Digital Future</h3>
             <p>We're not just building websites—we're crafting digital ecosystems that grow with your business. Our mission is to create high-performance, scalable solutions that serve as the foundation for your digital transformation.</p>
@@ -446,9 +456,9 @@ const aboutData = [
         ]
     },
     {
-        title: "PHILOSOPHY",
-        subtitle: "// 03 CORE",
-        image: "./assets/images/kvs-after.png",
+        title: "Philosophy",
+        subtitle: "// 03 Core",
+        image: "https://picsum.photos/seed/about-2/800/1200",
         content: `
             <h3>Beauty Through Logic</h3>
             <p>Beauty is not an afterthought—it's the natural result of perfectly functioning logic and code. When the architecture is sound and the code is clean, the user experience naturally becomes beautiful.</p>
