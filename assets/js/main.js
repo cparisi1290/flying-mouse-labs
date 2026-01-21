@@ -33,6 +33,12 @@ document.addEventListener('DOMContentLoaded', function() {
         
         lastScrollY = window.scrollY;
     });
+
+    /* --- MOBILE NAV BAR LOGIC --- */
+
+
+
+
 	
         /* --- SERVICES LOGIC --- */
     (function() {
@@ -257,7 +263,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 i: "./assets/images/kcruts-profile.jpg"
             },
             { 
-                badge: "Custom Pro Site + Personal Touch", 
+                badge: "Professional Site, Personal Touch", 
                 q: "I lovvvvvve the website - it is beautiful!! I'm so happy with the website and your work!!! She took the 'hard' parts of website design away from me and made the intimidating and daunting task of building my company's website completely manageable.", 
                 /* qb: "[Flying Mouse Labs] helps take the stress of building your website away from you. She'll take the time necessary to make sure she fully understands your needs and the direction you'd like your site to take. She took the 'hard' parts of website design away from me and made the intimidating and daunting task of building my company's website completely manageable. I feel very satisfied with the entire process especially the final product.",  */
                 n: "Robin P.", 
@@ -300,7 +306,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <div class="client-box">
                         <div class="avatar" style="background-image: url('${item.i}')"></div>
                         <div>
-                            <strong>${item.n}</strong><br>
+                            ${item.n}<br>
                             <small style="color: #666; font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase;">${item.b}</small>
                         </div>
                     </div>

@@ -1,3 +1,13 @@
+/* Font Face Declarations */
+@font-face {
+    font-family: 'iBrand';
+    src: url('../fonts/iBrand/Fonts/Ibrand.otf') format('opentype'),
+         url('../fonts/iBrand/Fonts/Brands.240503-2258.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 :root {
     --accent-blue: #1C9DD9;
     --accent-orange: #E4A03A;
@@ -6,18 +16,25 @@
     --border-light: rgba(0, 0, 0, 0.08);
     --glass-shine: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, 0.8) 50%, transparent 70%);
     --accent-font: 'JetBrains Mono', monospace;
-    --main-font: 'Poppins', sans-serif;
+    --main-font: 'iBrand', sans-serif;
+    --main-header-font: 'iBrand', sans-serif;
+    --side-gutter: 5%;
 }
 
 body, html {
     margin: 0; 
     padding: 0; 
     width: 100%;
-    font-family: 'Poppins', sans-serif;
+    font-family: var(--main-font);
     font-weight: 400;
     background: #F7F7F7;
     scroll-behavior: smooth;
     overflow-x: hidden;
+}
+
+h2, h3, h4, h5, h6 {
+    font-family: var(--main-header-font);
+    letter-spacing: 3px;
 }
 
 .section-layer {
@@ -42,6 +59,34 @@ body, html {
     transform: translateY(0);
 }
 
+/* --- RESPONSIVE CORE --- */
+
+@media (max-width: 768px) {
+    .section-layer {
+        /* Reduce top padding so the headline isn't pushed too far down */
+        padding-top: 80px; 
+        padding-bottom: 40px;
+        /* Use svh (small viewport height) for better mobile browser support */
+        min-height: 100svh; 
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    /* Adjust the reveal animation for mobile - shorter travel feels snappier */
+    .section-reveal {
+        transform: translateY(30px);
+    }
+}
+
+/* For very small screens (iPhone SE, etc) */
+@media (max-width: 480px) {
+    .section-layer {
+        padding-top: 60px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
 /* --- 1. NAV BAR SECTION --- */
 
 #bespoke-nav {
@@ -50,7 +95,7 @@ body, html {
     left: 0;
     width: 100%;
     z-index: 1000;
-    padding: 20px 5%;
+    padding: 20px 0;
     /* Smooth transition for the transform */
     transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
 }
@@ -63,7 +108,7 @@ body, html {
 
 /* Container Styling (Glassmorphism) */
 .nav-container {
-    max-width: 1500px;
+    max-width: 1600px;
     height: 60px;
     margin: 0 auto;
     background: rgba(255, 255, 255, 0.6);
@@ -76,6 +121,7 @@ body, html {
     justify-content: space-between;
     padding: 15px 30px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    width: 90%;
 }
 
 .nav-logo { 
@@ -85,31 +131,23 @@ body, html {
     text-decoration: none; 
     color: var(--text-dark); 
 }
-.logo-box { 
-    width: 32px; 
-    height: 32px; 
-    border: 1.5px 
-    solid var(--text-dark); 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    font-weight: 900; 
-    font-size: 14px; 
-}
-.logo-text { 
-    font-weight: 800; 
-    letter-spacing: 2px; 
-    font-size: 14px; 
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    justify-content: flex-end;
+    flex: 1;
 }
 
 .nav-links { 
     display: flex; 
-    gap: 40px; 
+    gap: 30px; 
 }
 .nav-item { 
     text-decoration: none; 
     color: var(--text-dark); 
-    font-family: 'JetBrains', monospace;
+    font-family: var(--accent-font);
     letter-spacing: 2px;
     font-size: 13px; 
     font-weight: 600; 
@@ -122,26 +160,21 @@ body, html {
 }
 
 .btn-frame { 
+    font-family: var(--accent-font);
     text-decoration: none; 
     background: var(--text-dark); 
     color: var(--text-light); 
     padding: 12px 24px; 
     border-radius: 50px; 
-    font-size: 11px; 
+    font-size: 12px; 
     font-weight: 700; 
     transition: 0.3s; 
     text-transform: uppercase;
 }
+
 .btn-frame:hover { 
-    transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-/* Mobile handling */
-@media (max-width: 768px) {
-    .nav-links { 
-        display: none; 
-    } /* Usually we'd add a hamburger here */
-    .nav-container { 
-        padding: 10px 20px; 
-    }
+    transform: translateY(-2px); 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
 }
 
 /* --- 1. HERO SECTION --- */
@@ -150,16 +183,13 @@ body, html {
     background-size: 400% 400%;
     animation: bgShift 10s infinite alternate ease-in-out;
     perspective: 2000px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 /* Button Alignment Fix */
 .button-group {
     display: flex;
     gap: 20px;
-    justify-content: center;
+    justify-content: flex-start;
     flex-wrap: wrap; /* Prevents overlap on small screens */
 }
 
@@ -167,17 +197,18 @@ body, html {
     padding: 16px 24px; 
     border-radius: 50px; 
     text-decoration: none;
-    font-family: 'JetBrains', monospace;
+    font-family: var(--accent-font);
     text-transform: uppercase; 
     letter-spacing: 2px;
     font-weight: 700; 
     transition: 0.3s;  
     box-sizing: border-box;
-    width: 250px;
+    width: 280px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
 }
+
 .btn-primary { 
     background: var(--text-dark); 
     color: var(--text-light); 
@@ -203,45 +234,69 @@ body, html {
 }
 
 .hero-content { 
-    position: relative; 
-    z-index: 10; 
-/*  padding-left: 35%; */
-    width: none;
-    display: flex;
-    justify-content: center;
+position: relative; 
+width: 100%;
+max-width: 1600px;
+margin: 0 auto;
+z-index: 10; 
+padding-left: var(--side-gutter); 
+/* padding-bottom: 2%;;
+ */pointer-events: none; 
+text-align: left;
 }
 
 .text-box { 
-    max-width: 1200px; 
+    max-width: 1000px; 
     pointer-events: auto; 
-    text-align: center;
     color: var(--text-dark); 
-    padding: 0 20px;
+}
+
+.text-box h1 span {
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    text-transform: uppercase;
+    color: var(--accent-orange);
+    letter-spacing: 5px;
+    text-shadow: 
+        -1px -1px 0 #a0640b,  
+        -2px -1px 0 #a0640b,
+        -1px  1px 0 #a0640b,
+        -2px  1px 0 #a0640b;
+}
+
+.text-box p {
+    padding-bottom: 3%;
+    font-size: clamp(.75rem, 6vw, 1.5rem);
+    line-height: 1.5;
+}
+
+.text-box p span {
+    font-style: italic;
 }
 
 h1 { 
-    font-size: clamp(3rem, 6vw, 4rem);
+    font-size: clamp(3rem, 6vw, 5rem);
     margin: 0; 
     font-weight: 900; 
-    letter-spacing: -2px; 
+    letter-spacing: 3px; 
     text-transform: uppercase;
-    line-height: 1.1;
+    line-height: 1.2;
 }
 
 p { 
     font-size: clamp(.75rem, 6vw, 1.5rem);
-    margin: 25px auto 45px auto; 
     opacity: 0.8; 
-    max-width: 700px;
+    font-weight: 100;
+    line-height: 1.5;
+    letter-spacing: .5px;
 }
 
 /* --- THE SHINE ENGINE (Shared Logic) --- */
-.glass-cube, .glass-card {
+.glass-cube {
     position: relative;
     overflow: hidden; /* Clips the shine streak */
 }
 
-.glass-cube::after, .glass-card::after {
+.glass-cube::after {
     content: '';
     position: absolute;
     inset: 0;
@@ -621,10 +676,10 @@ p {
 }
 
 #services-accordion .blade-expanded-text { 
-    color: rgba(255,255,255,0.9);
+    color: var(--text-light);
     font-size: 1.15rem;
     line-height: 1.6;
-    max-width: 550px;
+    max-width: 780px;
     text-shadow: 0 1px 5px rgba(0,0,0,0.2);
 }
 
@@ -697,6 +752,8 @@ padding: 0 5%;
     color: var(--text-dark); 
     line-height: 1.1; 
     text-transform: uppercase;
+    letter-spacing: 2px;
+    font-family:var(--main-header-font);
 }
 
 /* GRID CONFIG */
@@ -725,7 +782,7 @@ background: rgba(255, 255, 255, 0.6);
 transform: translateY(-12px);    }
 
 /* THE SHINE LAYER */
-.performance-glass-card::after {
+/* .performance-glass-card::after {
 content: '';
 position: absolute;
 inset: 0;
@@ -739,7 +796,8 @@ background-size: 250% 250%;
 animation: surfaceShine 12s infinite linear;
 pointer-events: none;
 z-index: 2;
-}
+opacity: .6;
+} */
 
 @keyframes surfaceShine {
 0% { background-position: 250% 0; }
@@ -755,7 +813,7 @@ z-index: 2;
 .metric-category { 
     font-size: 0.7rem; 
     font-weight: 800; 
-    color: var(--accent-orange); 
+    color: #525151; 
     letter-spacing: 2px; 
     display: block; 
     margin-bottom: 10px; 
@@ -771,19 +829,20 @@ z-index: 2;
 }
 
 .metric-description { 
-    font-size: 1rem; 
-    color: #666; 
-    line-height: 1.6; 
+    font-size: 1.2rem; 
+    color: #525151; 
+    line-height: 1.2; 
     margin-bottom: 40px; 
-    min-height: 80px; 
+    min-height: 80px;
+    font-weight: 500; 
 }
 .metric-footer { 
     border-top: 1px solid rgba(0,0,0,0.06); 
-    font-family: 'JetBrains', monospace;
+    font-family: var(--accent-font);
     padding-top: 20px; 
     font-size: 0.7rem; 
-    font-weight: 700; 
-    color: var(--accent-blue); 
+    font-weight: 800; 
+    color: #797878; 
 }
 
 /* RESPONSIVE BREAKPOINTS */
@@ -1097,24 +1156,28 @@ padding: 60px;
 }
 
 .result-badge { 
-    background: var(--accent-blue); 
-    color: var(--text-light); 
-    font-weight: 800; 
+    background-color: #1377a5; 
+    color: var(--text-light);
+    font-weight: 600; 
     font-size: 0.8rem; 
     padding: 7px 16px; 
     border-radius: 8px; 
     margin-bottom: 25px; 
-    display: inline-block; 
-    width: fit-content; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
     text-transform: uppercase; 
+    text-align: center;
+    letter-spacing: 1px;
 }
 
 .quote { 
     font-size: 1.7rem; 
-    font-weight: 700; 
+    font-weight: 400; 
     line-height: 1.2; 
     margin-bottom: 15px; 
     color: var(--text-dark); 
+    letter-spacing: 1px;
 }
 
 .client-box { 
@@ -1137,7 +1200,7 @@ padding: 60px;
         transform: translateX(0); 
     } 100% { 
         transform: translateX(-50%); 
-    } 
+    }
 }
 
 
@@ -1286,18 +1349,6 @@ padding: 60px;
     background-image: url('https://picsum.photos/seed/about-2/800/1200');
 }
 
-/* SHINE OVERLAY */
-.arc-panel-img::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: var(--glass-shine);
-    background-size: 250% 250%;
-    animation: surfaceShine 15s infinite linear;
-    pointer-events: none;
-    z-index: 2;
-    opacity: .5;
-}
 
 @keyframes surfaceShine {
     0% { 
