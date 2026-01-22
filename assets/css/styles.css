@@ -2419,30 +2419,116 @@ padding: 20px;
         width: 95%;
         height: 95vh;
     }
-    
+ 
     .about-lb-scroll-container {
         padding: 40px 25px 20px;
     }
-    
+ 
     .about-lb-header h2 {
         font-size: 2rem;
     }
-    
+ 
     .about-lb-stats {
         grid-template-columns: 1fr;
         gap: 15px;
     }
-    
+ 
     .about-lb-nav {
         padding: 15px 25px;
     }
-    
+ 
     .about-lb-nav .nav-btn {
         padding: 10px 20px;
         font-size: 0.7rem;
     }
 }
+ 
+/* --- MOBILE ABOUT TRIPTYCH SECTION --- */
+@media (max-width: 768px) {
+    #arc-triptych-wrapper {
+        padding: 200px 5% 100px 5%;
+        perspective: 1500px;
+    }
+ 
+    .arc-bg-text {
+        font-size: 18vw;
+        top: -18%;
+        animation: none;
+    }
+ 
+    .arc-triptych-container {
+        flex-direction: column;
+        gap: 30px;
+        transform: rotateX(0deg) translateZ(0) translateY(0);
+        opacity: 1;
+    }
 
+    .arc-triptych-panel {
+        width: 90%;
+        height: 300px;
+        margin: 0 auto;
+        transform: none;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        pointer-events: none;
+    }
+
+    .arc-triptych-panel::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        /* Dark overlay for mobile */
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 3;
+        opacity: 1;
+        transition: opacity 0.8s ease;
+        pointer-events: none;
+    }
+
+    .arc-panel-label { 
+        color: #ffffff; 
+    }
+    .arc-panel-title { 
+        color: #ffffff; 
+    }
+    .arc-panel-text { 
+        color: #ffffff; 
+    }
+ 
+    .arc-wing-left,
+    .arc-panel-center,
+    .arc-wing-right {
+        transform: none;
+        transform-origin: center center;
+    }
+    
+ 
+    .arc-panel-content {
+        opacity: 1;
+        transform: none;
+        padding: 30px;
+        width: 100%;
+        max-width: 280px;
+        text-align: left;
+    }
+ 
+    .arc-panel-title {
+        font-size: 2rem;
+    }
+ 
+    .arc-panel-text {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-top: 5px;
+    }
+ 
+    .arc-panel-img {
+        opacity: 0.8;
+        filter: grayscale(0%) brightness(1);
+    }
+}
 
 /* --- 7. CONTACT SECTION --- */
 #contact-section {
