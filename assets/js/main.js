@@ -24,22 +24,65 @@ document.addEventListener('DOMContentLoaded', function() {
     const nav = document.getElementById('bespoke-nav');
 
     window.addEventListener('scroll', () => {
-        // If current scroll is greater than 150px (to prevent jitter at the very top)
-        if (window.scrollY > 150) {
+        const currentScrollY = window.scrollY;
+        
+        // If scrolling down and past 150px, hide nav
+        if (currentScrollY > lastScrollY && currentScrollY > 150) {
             nav.classList.add('nav-hidden');
-        } else {
+        } 
+        // If scrolling up, show nav
+        else if (currentScrollY < lastScrollY) {
             nav.classList.remove('nav-hidden');
         }
         
-        lastScrollY = window.scrollY;
+        // Always show nav if at the very top
+        if (currentScrollY <= 150) {
+            nav.classList.remove('nav-hidden');
+        }
+        
+        lastScrollY = currentScrollY;
     });
 
     /* --- MOBILE NAV BAR LOGIC --- */
+    const hamburger = document.getElementById('hamburger-menu');
+    const navOverlay = document.getElementById('nav-overlay');
+    const navOverlayClose = document.getElementById('nav-overlay-close');
+    const navLinks = document.querySelectorAll('.nav-overlay-links .nav-item, .nav-overlay-cta .btn-frame');
 
+    if (hamburger && navOverlay && navOverlayClose) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navOverlay.classList.toggle('active');
+            document.body.classList.toggle('nav-overlay-open');
+        });
 
+        // Close overlay when clicking X button
+        navOverlayClose.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navOverlay.classList.remove('active');
+            document.body.classList.remove('nav-overlay-open');
+        });
 
+        // Close overlay when clicking on links
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navOverlay.classList.remove('active');
+                document.body.classList.remove('nav-overlay-open');
+            });
+        });
 
-	
+        // Close overlay when clicking outside
+        navOverlay.addEventListener('click', (e) => {
+            if (e.target === navOverlay) {
+                hamburger.classList.remove('active');
+                navOverlay.classList.remove('active');
+                document.body.classList.remove('nav-overlay-open');
+            }
+        });
+    }
+
+    
         /* --- SERVICES LOGIC --- */
     (function() {
         const container = document.querySelector('#services-accordion');
