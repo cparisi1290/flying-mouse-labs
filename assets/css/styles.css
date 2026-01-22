@@ -2451,20 +2451,22 @@ padding: 20px;
     }
  
     .arc-bg-text {
-        font-size: 18vw;
-        top: -18%;
+        font-size: 24vw;
+        top: -14%;
         animation: none;
+        padding-left:20px;
     }
  
     .arc-triptych-container {
+        padding-top: 100px;
         flex-direction: column;
-        gap: 30px;
+        gap: 10px;
         transform: rotateX(0deg) translateZ(0) translateY(0);
         opacity: 1;
     }
 
     .arc-triptych-panel {
-        width: 90%;
+        width: 100%;
         height: 300px;
         margin: 0 auto;
         transform: none;
