@@ -150,8 +150,7 @@ h1, h2, h3, h4, h5, h6 {
     justify-content: center;
     border-radius: 12px; /* Matches the rounded vibe of the nav bar */
     overflow: hidden; /* Clips the image to the border radius */
-    background: #fff; /* Provides a clean base if image has transparency */
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    background: transparent; /* Provides a clean base if image has transparency */
 }
 
 .logo-img {
@@ -245,8 +244,8 @@ h1, h2, h3, h4, h5, h6 {
         justify-content: center;
         border-radius: 12px; /* Matches the rounded vibe of the nav bar */
         overflow: hidden; /* Clips the image to the border radius */
-        background: #fff; /* Provides a clean base if image has transparency */
-        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        background: transparent; /* Provides a clean base if image has transparency */
+        box-shadow: none;
     }
 
     .logo-img {
