@@ -113,10 +113,16 @@ document.addEventListener('DOMContentLoaded', function() {
     const lbCounter = document.getElementById('lb-counter');
     const lbClose = document.getElementById('lb-close-btn');
 
+    // Mobile detection
+    const isMobile = window.innerWidth <= 768;
+
     if(carousel) {
         let portRot = 0;
         let isPaused = false;
         let currentIndex = 0;
+        let touchStartX = 0;
+        let touchEndX = 0;
+        let isDragging = false;
 
     const projectData = [
         {
@@ -143,8 +149,8 @@ document.addEventListener('DOMContentLoaded', function() {
             cover: 'nhc-port-cover.gif',
             title: 'Nova Health Collectic',
             category: 'Branding + Web Design',
-            description: `Mason came to [us] ready to level up her brand and expand her offerings from midwifery to include psychedelic facilitation. She needed a brand that felt aligned with her vision—so we left behind a partner-chosen logo and created something entirely new. The result: a grounded, modern and strategic brand identity and a custom 5-page website with a client portal for resources and an events page to support her growing practice. Now, Mason’s online presence feels as expansive and intentional as her work.`,
-            quote: `I really like the [logo]!  I love it, this looks really wonderful and I don't have any revisions to the website to request.`,
+            description: `Mason came to [us] ready to level up her brand and expand her offerings from midwifery to include psychedelic facilitation. She needed a brand that felt aligned with her vision so we left behind a partner-chosen logo and created something entirely new. The result: a grounded, modern and strategic brand identity and a custom 5-page website with a client portal for resources and an events page to support her growing practice. Now, Mason’s online presence feels as expansive and intentional as her work.`,
+            quote: `I really like [the logo]!  I love it, this looks really wonderful and I don't have any revisions to the website to request.`,
             before: '', 
             after: 'nhc-after.png'
         },
@@ -168,32 +174,56 @@ document.addEventListener('DOMContentLoaded', function() {
             before: '', 
             after: 'das-after.png'
         },
-/* 		{
+		{
             cover: 'gg-port-cover.gif',
             title: 'Grateful Graze',
             category: 'Branding + Web Design',
             description: 'A premium visual identity built for high-scale digital commerce.',
-            quote: '',
+            quote: `We have worked together remotely and to say it’s been a breeze during the whole website design would be an understatement! Cassandra is so great to work with, she created exactly what I had envisioned and I couldn’t be happier with how the new website turned out. 
+
+            If you need any design or website development done for your business please reach out to Cassandra, you won’t be disappointed!`,
             before: '', 
             after: 'gg-after.png'
-        } */
+        }
         // Add more objects here for each project...
     ];
 
     projectData.forEach((project, i) => {
         const card = document.createElement('div');
         card.className = 'portfolio-card';
-        const angle = i * (360 / projectData.length);
         
-        // Ensure the cards are far enough out to rotate
-        card.style.transform = `rotateY(${angle}deg) translateZ(550px)`;
+        if (isMobile) {
+            // Mobile: Create horizontal slider cards with spacing
+            card.style.transform = `translateX(${i * 120}%)`; // Add 20% spacing between cards
+            card.style.position = 'absolute';
+            card.style.width = '80%'; // Make cards narrower to show spacing
+            card.style.height = '100%';
+            card.style.left = '10%'; // Start with 10% offset to show first card properly
+            card.style.top = '0';
+        } else {
+            // Desktop: Create 3D rotating carousel
+            const angle = i * (360 / projectData.length);
+            card.style.transform = `rotateY(${angle}deg) translateZ(550px)`;
+        }
         
         const pathBase = 'assets/images/';
         const path = `${pathBase}${project.cover}`;
         card.innerHTML = `<div class="card-image" style="background-image:url('${path}')"></div>`;
 
-        card.addEventListener('mouseenter', () => isPaused = true);
-        card.addEventListener('mouseleave', () => { if(!lightbox.classList.contains('active')) isPaused = false; });
+        if (isMobile) {
+            // Mobile: Add touch events
+            card.addEventListener('touchstart', handleTouchStart, { passive: true });
+            card.addEventListener('touchmove', handleTouchMove, { passive: true });
+            card.addEventListener('touchend', handleTouchEnd, { passive: true });
+        } else {
+            // Desktop: Keep existing mouse events
+            card.addEventListener('mouseenter', () => {
+                isPaused = true;
+            });
+            card.addEventListener('mouseleave', () => { 
+                if(!lightbox.classList.contains('active')) isPaused = false; 
+            });
+        }
 
         card.addEventListener('click', () => {
             currentIndex = i;
@@ -204,6 +234,89 @@ document.addEventListener('DOMContentLoaded', function() {
 
         carousel.appendChild(card);
     });
+
+    // For infinite scroll, duplicate the projects on mobile
+    if (isMobile) {
+        projectData.forEach((project, i) => {
+            const duplicateCard = document.createElement('div');
+            duplicateCard.className = 'portfolio-card';
+            duplicateCard.style.transform = `translateX(${(i + projectData.length) * 120}%)`; // Position after original cards
+            duplicateCard.style.position = 'absolute';
+            duplicateCard.style.width = '80%';
+            duplicateCard.style.height = '100%';
+            duplicateCard.style.left = '10%';
+            duplicateCard.style.top = '0';
+            
+            const pathBase = 'assets/images/';
+            const path = `${pathBase}${project.cover}`;
+            duplicateCard.innerHTML = `<div class="card-image" style="background-image:url('${path}')"></div>`;
+
+            duplicateCard.addEventListener('touchstart', handleTouchStart, { passive: true });
+            duplicateCard.addEventListener('touchmove', handleTouchMove, { passive: true });
+            duplicateCard.addEventListener('touchend', handleTouchEnd, { passive: true });
+
+            duplicateCard.addEventListener('click', () => {
+                currentIndex = i; // Use original index for lightbox
+                updateLightbox();
+                lightbox.classList.add('active');
+                isPaused = true;
+            });
+
+            carousel.appendChild(duplicateCard);
+        });
+    }
+
+    // Mobile touch handlers
+    function handleTouchStart(e) {
+        touchStartX = e.touches[0].clientX;
+        isDragging = true;
+        carousel.style.transition = 'none';
+    }
+
+    function handleTouchMove(e) {
+        if (!isDragging) return;
+        e.preventDefault();
+        touchEndX = e.touches[0].clientX;
+        const diff = touchEndX - touchStartX;
+        const maxTranslate = -(projectData.length - 1) * 120; // Adjust for spacing
+        const minTranslate = 10; // Start position
+        const currentTranslate = currentIndex * -120;
+        const newTranslate = Math.max(maxTranslate, Math.min(minTranslate, currentTranslate + (diff / window.innerWidth) * 120));
+        carousel.style.transform = `translateX(${newTranslate}%)`;
+    }
+
+    function handleTouchEnd(e) {
+        if (!isDragging) return;
+        isDragging = false;
+        carousel.style.transition = 'transform 0.3s ease';
+        
+        const diff = e.changedTouches[0].clientX - touchStartX;
+        const threshold = window.innerWidth / 6; // Reduced threshold for better UX
+        
+        if (Math.abs(diff) > threshold) {
+            if (diff > 0 && currentIndex > 0) {
+                // Swipe right - go to previous
+                currentIndex--;
+            } else if (diff < 0 && currentIndex < projectData.length - 1) {
+                // Swipe left - go to next
+                currentIndex++;
+            } else if (diff < 0 && currentIndex === projectData.length - 1) {
+                // Swipe left from last card - go to first (infinite scroll)
+                currentIndex = 0;
+            } else if (diff > 0 && currentIndex === 0) {
+                // Swipe right from first card - go to last (infinite scroll)
+                currentIndex = projectData.length - 1;
+            }
+            updateMobileSlider();
+        } else {
+            // Not enough swipe - snap back to current
+            updateMobileSlider();
+        }
+    }
+
+    function updateMobileSlider() {
+        carousel.style.transform = `translateX(${currentIndex * -120}%)`; // Adjust for spacing
+    }
 
     function updateLightbox() {
         const project = projectData[currentIndex];
@@ -237,14 +350,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // NEXT BUTTON
     lbNext.addEventListener('click', () => {
-        currentIndex = (currentIndex + 1) % projectData.length;
-        updateLightbox();
+        if (isMobile) {
+            currentIndex = (currentIndex + 1) % projectData.length;
+            updateMobileSlider();
+            updateLightbox(); // Also update lightbox content on mobile
+        } else {
+            currentIndex = (currentIndex + 1) % projectData.length;
+            updateLightbox();
+        }
     });
 
     // PREVIOUS BUTTON
     lbPrev.addEventListener('click', () => {
-        currentIndex = (currentIndex - 1 + projectData.length) % projectData.length;
-        updateLightbox();
+        if (isMobile) {
+            currentIndex = (currentIndex - 1 + projectData.length) % projectData.length;
+            updateMobileSlider();
+            updateLightbox(); // Also update lightbox content on mobile
+        } else {
+            currentIndex = (currentIndex - 1 + projectData.length) % projectData.length;
+            updateLightbox();
+        }
     });
 
     // CLOSE LIGHTBOX
@@ -261,14 +386,18 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-        function animPort() { 
-            if (!isPaused) {
-                portRot -= 0.15;
-                carousel.style.transform = `rotateY(${portRot}deg)`; 
-            }
+    function animPort() { 
+        if (!isPaused && !isMobile) {
+            portRot -= 0.15;
+            carousel.style.transform = `rotateY(${portRot}deg)`; 
             requestAnimationFrame(animPort); 
         }
+    }
+    
+    // Only start desktop animation if not mobile
+    if (!isMobile) {
         animPort();
+    }
     }
     }());
 
@@ -290,16 +419,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 i: "./assets/images/colliance-profile.jpg" 
             },
             { 
-                badge: "+450% Engagement", 
-                q: "Within the first two months of launching, I saw a huge increase in activity. Website clicks doubled, and profile interactions were up over 450% compared to the same time last year.", 
-                /* qb: "The process is collaborative and thoughtful and Cass is professional and truly committed to helping your business succeed.. Before working with [Fly Mouse Lab], I had a website that was done for free, but it wasn’t finished, and it definitely didn’t reflect the quality of my business. I knew I needed something more professional, but I wasn’t sure who to trust with the redesign. I was concerned about finding someone who could understand my business and make the process feel manageable. <br> <br> Cass made it incredibly easy. From strategy to Google Business Profile to the design itself, she brought everything together beautifully. My new website is even better than I imagined it could be!",  */
-                n: "Damaris E.", 
-                b: "Damaris Accounting Services",
-                i: "./assets/images/das-profile.jpg" 
-            },
-            { 
                 badge: "SEO Audit + Backend Rescue", 
-                q: "This was my second time working with Cass, and both experiences were fantastic. Many of her thoughtful suggestions turned out to be game changers for my photography business.", 
+                q: "This was my second time working with [Flying Mouse Labs], and both experiences were fantastic. Many of her thoughtful suggestions turned out to be game changers for my photography business.", 
                 /* qb: "I highly recommend reaching out to Cassandra before attempting any bold backend maneuvers on your website!. [Flying Mouse Lab] is my go-to for all website-related issues, queries, and strategies.This was my second time working with Cass, and both experiences were fantastic. She is attentive, professional, and very easy to talk to. I had a series of self-inflicted backend issues that I couldn’t resolve on my own, and Cassandra was a great listener who understood my goals thoroughly. She executed everything in a timely manner, kept me updated with progress reports, and made thoughtful suggestions along the way - many of which turned out to be game changers for my photography business. Her patience and lovely demeanor made the whole process a pleasure. Highly recommend!",  */
                 n: "Kathy C.", 
                 b: "KCruts Photography",
@@ -322,6 +443,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 i: "./assets/images/kvs-profile.jpg"
             },
             { 
+                badge: "+450% Engagement", 
+                q: "Within the first two months of launching, I saw a huge increase in activity. Website clicks doubled, and profile interactions were up over 450% compared to the same time last year.", 
+                /* qb: "The process is collaborative and thoughtful and Cass is professional and truly committed to helping your business succeed.. Before working with [Fly Mouse Lab], I had a website that was done for free, but it wasn’t finished, and it definitely didn’t reflect the quality of my business. I knew I needed something more professional, but I wasn’t sure who to trust with the redesign. I was concerned about finding someone who could understand my business and make the process feel manageable. <br> <br> Cass made it incredibly easy. From strategy to Google Business Profile to the design itself, she brought everything together beautifully. My new website is even better than I imagined it could be!",  */
+                n: "Damaris E.", 
+                b: "Damaris Accounting Services",
+                i: "./assets/images/das-profile.jpg" 
+            },
+            { 
                 badge: "Brand Vision Mastery", 
                 q: "The entire process was smooth and collaborative, and [Flying Mouse Labs] made sure every idea was not just heard but brought to life better than I imagined.", 
                 /* qb: "The entire process was smooth and collaborative, and Cass made sure every idea was not just heard but brought to life better than I imagined. I genuinely enjoyed the process—she was patient, knowledgeable, and always on top of things. <br><br> What I love most about my new website is how perfectly it reflects my brand. It feels professional, modern, and uniquely tailored to my grooming business, which makes it stand out from competitors. She captured my style and values, and the functionality is so intuitive—my clients love it, too! <br><br>The thing I liked most about working with Cass was how easy she made everything. I could focus on my business without feeling stressed about the technical side of things, and her communication was excellent throughout the project.", */ 
@@ -331,11 +460,18 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             { 
                 badge: "Rare Find: Honest & Visionary Designer", 
-                q: "[Flying Mouse Labs] is phenomenal, extremely honest, and accurate. [They are] incredibly reliable, and have gone above and beyond the call of duty on numerous occasions. [They are] wonderful to work with, a true visionaries.", 
+                q: "[Flying Mouse Labs] is phenomenal, extremely honest, and accurate. [They are] incredibly reliable, and have gone above and beyond the call of duty on numerous occasions. [They are] wonderful to work with, true visionaries.", 
                 /* qb: "Cassandra is AMAZING. You made my dreams come true. You made the entire experience perfect. I felt like we had known each other for years. It is with immense pleasure to highly recommend Cassandra Parisi. Finding Cassandra was a most fortuitous occurrence. She is an exceptional web designer. I had a horrible experience with my previous web designer, lost time, and a lot of money. Cassandra is phenomenal, extremely honest, and accurate. She communicates quickly and will make your site better than you ever dreamed. During my interaction with my prior web designer, I developed a disdain for the myriad of excuses and lack of communication that was all too prevalent. These problems were NEVER encountered with Cassandra. She is virtually always available, is incredibly reliable, and has gone above and beyond the call of duty on numerous occasions. Cassandra even went as far as helping to EDUCATE me about what exactly she is doing to my site and why certain steps need to be taken, etc. She is not merely a web designer, but also a quasi-business consultant with in-depth understanding of topics including but not limited to search engine optimization, data encryption, design, and hosting. Cassandra worked with my ideas and made sure everything was perfect. Her expertise is beyond words and her willingness to help and suggest ideas is phenomenal, she cares about her clients and is a wonderful person to work with, a true visionary. One of her greatest assets is the ability to articulate ideas over emails. I can navigate my way around a computer with ease, but compared to her, I am a novice. Cassandra – you have been wonderful to work with. You have worked wonders with our new website. We have only compliments from our clients. I was a bit hesitant working with someone “out of state” and via “internet”- Your communication skills, quickness of reply and accuracy sure proved me wrong. You are very competent but above all it is your professionalism, responsiveness, and high degree of integrity that I found refreshing. You are a rare find and I highly recommend everyone that is need of a website inquiring about your services. I will use you again for my next site and recommend you to everyone I know who needs a top-notch web designer.",  */
                 n: "Suzanne H.", 
                 b: "Bookkeeping Concepts",
                 i: "./assets/images/bkkg-concepts-profile.png"
+            },
+            { 
+                badge: "Virtual Yet Professional", 
+                q: "We have worked together remotely and to say it’s been a breeze during the whole website design would be an understatement! [Flying Mouse Labs] listened to exactly what my scattered website design vision was and delivered it beautifully!", 
+                n: "Ericka M.", 
+                b: "Grateful Graze",
+                i: "./assets/images/gg-profile.jpg"
             }
         ];
 
