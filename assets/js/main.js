@@ -193,12 +193,12 @@ document.addEventListener('DOMContentLoaded', function() {
         card.className = 'portfolio-card';
         
         if (isMobile) {
-            // Mobile: Create horizontal slider cards with spacing
-            card.style.transform = `translateX(${i * 120}%)`; // Add 20% spacing between cards
+            // Mobile: Create horizontal slider cards with smaller gap
+            card.style.transform = `translateX(${i * 105}%)`; // Reduced spacing from 120% to 105%
             card.style.position = 'absolute';
-            card.style.width = '80%'; // Make cards narrower to show spacing
+            card.style.width = '85%'; // Increased from 80% to reduce gap
             card.style.height = '100%';
-            card.style.left = '10%'; // Start with 10% offset to show first card properly
+            card.style.left = '7.5%'; // Adjusted start offset for centering
             card.style.top = '0';
         } else {
             // Desktop: Create 3D rotating carousel
@@ -243,11 +243,11 @@ document.addEventListener('DOMContentLoaded', function() {
         projectData.forEach((project, i) => {
             const duplicateCard = document.createElement('div');
             duplicateCard.className = 'portfolio-card';
-            duplicateCard.style.transform = `translateX(${(i + projectData.length) * 120}%)`; // Position after original cards
+            duplicateCard.style.transform = `translateX(${(i + projectData.length) * 105}%)`; // Match new spacing
             duplicateCard.style.position = 'absolute';
-            duplicateCard.style.width = '80%';
+            duplicateCard.style.width = '85%'; // Match original cards
             duplicateCard.style.height = '100%';
-            duplicateCard.style.left = '10%';
+            duplicateCard.style.left = '7.5%'; // Match original cards
             duplicateCard.style.top = '0';
             
             const pathBase = 'assets/images/';
@@ -259,7 +259,8 @@ document.addEventListener('DOMContentLoaded', function() {
             duplicateCard.addEventListener('touchend', handleTouchEnd, { passive: true });
 
             duplicateCard.addEventListener('click', () => {
-                currentIndex = i; // Use original index for lightbox
+                const originalIndex = i; // Use original project index for lightbox
+                currentIndex = originalIndex;
                 updateLightbox();
                 lightbox.classList.add('active');
                 isPaused = true;
@@ -281,9 +282,9 @@ document.addEventListener('DOMContentLoaded', function() {
         e.preventDefault();
         touchEndX = e.touches[0].clientX;
         const diff = touchEndX - touchStartX;
-        const maxTranslate = -(projectData.length - 1) * 120; // Adjust for spacing
-        const minTranslate = 10; // Start position
-        const currentTranslate = currentIndex * -120;
+        const maxTranslate = -(projectData.length - 1) * 105; // Updated for new spacing
+        const minTranslate = 7.5; // Updated start position
+        const currentTranslate = currentIndex * -105; // Updated for new spacing
         const newTranslate = Math.max(maxTranslate, Math.min(minTranslate, currentTranslate + (diff / window.innerWidth) * 120));
         carousel.style.transform = `translateX(${newTranslate}%)`;
     }
@@ -300,15 +301,15 @@ document.addEventListener('DOMContentLoaded', function() {
             if (diff > 0 && currentIndex > 0) {
                 // Swipe right - go to previous
                 currentIndex--;
-            } else if (diff < 0 && currentIndex < projectData.length - 1) {
-                // Swipe left - go to next
+            } else if (diff < 0 && currentIndex < projectData.length * 2 - 1) {
+                // Swipe left - go to next (include duplicated cards)
                 currentIndex++;
-            } else if (diff < 0 && currentIndex === projectData.length - 1) {
-                // Swipe left from last card - go to first (infinite scroll)
+            } else if (diff < 0 && currentIndex >= projectData.length * 2 - 1) {
+                // Swipe left from last duplicated card - go to first
                 currentIndex = 0;
             } else if (diff > 0 && currentIndex === 0) {
-                // Swipe right from first card - go to last (infinite scroll)
-                currentIndex = projectData.length - 1;
+                // Swipe right from first card - go to last duplicated
+                currentIndex = projectData.length * 2 - 1;
             }
             updateMobileSlider();
         } else {
@@ -318,11 +319,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function updateMobileSlider() {
-        carousel.style.transform = `translateX(${currentIndex * -120}%)`; // Adjust for spacing
+        carousel.style.transform = `translateX(${currentIndex * -105}%)`; // Updated for new spacing
     }
 
     function updateLightbox() {
-        const project = projectData[currentIndex];
+        // Use modulo to get correct project index for infinite scroll
+        const projectIndex = currentIndex % projectData.length;
+        const project = projectData[projectIndex];
         const pathBase = 'assets/images/';
         
         lbScroll.scrollTop = 0;
@@ -354,7 +357,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // NEXT BUTTON
     lbNext.addEventListener('click', () => {
         if (isMobile) {
-            currentIndex = (currentIndex + 1) % projectData.length;
+            currentIndex = (currentIndex + 1) % (projectData.length * 2);
             updateMobileSlider();
             updateLightbox(); // Also update lightbox content on mobile
         } else {
@@ -366,7 +369,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // PREVIOUS BUTTON
     lbPrev.addEventListener('click', () => {
         if (isMobile) {
-            currentIndex = (currentIndex - 1 + projectData.length) % projectData.length;
+            currentIndex = (currentIndex - 1 + projectData.length * 2) % (projectData.length * 2);
             updateMobileSlider();
             updateLightbox(); // Also update lightbox content on mobile
         } else {

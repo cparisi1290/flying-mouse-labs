@@ -1597,7 +1597,7 @@ min-height: calc(20vh + 20px); /* Reduced from 80vh for more compact section */
 }
 
 .carousel-stage {
-height: 400px; /* Reduced from 400px for better mobile fit */
+height: 500px; /* Increased from 400px for taller cards */
 overflow: hidden;
 width: 100%;
 position: relative;
