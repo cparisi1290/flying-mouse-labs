@@ -449,7 +449,7 @@ h2, h3, h4, h5, h6 {
             font-size: 2rem;
             padding: 15px 30px;
     }
-  
+
 }
 
 /* --- 1. HERO SECTION --- */
@@ -674,7 +674,7 @@ p {
     }
 
     .c3 { 
-    width: 220px; 
+    width: 220px;
     height: 220px; 
     top: 35%; 
     left: 35%;
@@ -780,6 +780,98 @@ p {
                 rotateX(var(--endX)) rotateY(var(--endY)) rotateZ(var(--endZ)) 
                 translateZ(150px); 
     }
+}
+
+    /* --- MOBILE HERO SECTION --- */
+@media (max-width: 768px) {
+    #hero {
+        min-height: 80vh;
+        padding-top: 100px; /* Account for fixed nav bar */
+    }
+
+    .hero-content {
+        padding-left: var(--side-gutter);
+        padding-right: var(--side-gutter);
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: calc(100vh - 120px);
+    }
+
+    .text-box {
+        max-width: 100%;
+        text-align: left;
+        padding-right: 60px;
+    }
+
+    .text-box h1 {
+        font-size: clamp(2.5rem, 8vw, 4rem);
+        line-height: 1.;
+        margin-bottom: 1.5rem;
+    }
+
+    .text-box h1 span {
+        font-size: clamp(3rem, 7vw, 4rem);
+        letter-spacing: 3px;
+    }
+
+    .text-box p {
+        font-size: clamp(1rem, 4vw, 1.25rem);
+        margin-bottom: 2rem;
+        padding: 0;
+        text-align: left;
+    }
+
+    .text-box p br {
+        display: none;
+    }
+
+    .button-group {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        justify-content: center;
+    }
+
+    .btn {
+        width: 100%;
+        max-width: none;
+        padding: 18px 24px;
+        font-size: 0.9rem;
+    }
+
+    /* Reduce glass cubes on mobile for performance */
+/*     .glass-engine {
+        display: block; /* Show on mobile */
+        /* position: absolute !important;
+        top: 0;
+        left: 0;
+        width: 100% !important;
+        height: 100% !important;
+        z-index: 1 !important;
+        pointer-events: none;
+    } */ 
+
+    /* Mobile glass cube adjustments */
+/*     .glass-cube {
+        position: absolute !important;
+        width: 60px !important;
+        height: 60px !important;
+        background: rgba(255, 255, 255, 0.3) !important;
+        border: 1px solid rgba(255, 255, 255, 0.5) !important;
+        border-radius: 15px !important;
+        z-index: 1 !important;
+        animation: none !important;
+    }
+
+    .c1 { top: 15% !important; left: 10% !important; }
+    .c2 { top: 25% !important; right: 15% !important; }
+    .c3 { top: 45% !important; left: 20% !important; }
+    .c4 { top: 65% !important; right: 20% !important; }
+    .c5 { top: 75% !important; left: 15% !important; }
+    .c6 { top: 35% !important; right: 25% !important; }
+    .c7 { top: 55% !important; left: 35% !important; } */
 }
 
         /* --- 2. SERVICES SECTION --- */
