@@ -143,8 +143,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .logo-box {
-    width: 60px; /* Slightly larger for impact */
-    height: 60px;
+    width: 250px; /* Slightly larger for impact */
+    height: 250px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -156,7 +156,7 @@ h1, h2, h3, h4, h5, h6 {
 .logo-img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Ensures the image fills the box without distorting */
+    object-fit: contain; /* Changed from cover to contain to fit the entire logo */
     display: block;
 }
 
@@ -237,8 +237,8 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .logo-box {
-        width: 100px; /* Slightly larger for impact */
-        height: 100px;
+        width: 250px; /* Slightly larger for impact */
+        height: 250px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -251,7 +251,7 @@ h1, h2, h3, h4, h5, h6 {
     .logo-img {
         width: 100%;
         height: 100%;
-        object-fit: cover; /* Ensures the image fills the box without distorting */
+        object-fit: contain; /* Changed from cover to contain to fit the entire logo */
         display: block;
     }
 
@@ -3082,16 +3082,6 @@ font-size: 0.85rem;
         gap: 40px; 
     }
     .footer-bottom { 
-        flex-direction: column; 
-        align-items: flex-start;
-        /* grid-template-columns: 1fr;
-        gap: 60px;  */
+        flex-direction: column;
+        gap: 20px;
     }
-    .footer-title { 
-        font-size: 3rem; 
-    }
-    .footer-legal { 
-        flex-direction: column; 
-        gap: 10px; 
-    }
-}
