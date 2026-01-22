@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', function() {
         },
 		{
             cover: 'nhc-port-cover.gif',
-            title: 'Nova Health Collectic',
+            title: 'Nova Health Collective',
             category: 'Branding + Web Design',
             description: `Mason came to [us] ready to level up her brand and expand her offerings from midwifery to include psychedelic facilitation. She needed a brand that felt aligned with her vision so we left behind a partner-chosen logo and created something entirely new. The result: a grounded, modern and strategic brand identity and a custom 5-page website with a client portal for resources and an events page to support her growing practice. Now, Mason’s online presence feels as expansive and intentional as her work.`,
             quote: `I really like [the logo]!  I love it, this looks really wonderful and I don't have any revisions to the website to request.`,
@@ -221,7 +221,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 isPaused = true;
             });
             card.addEventListener('mouseleave', () => { 
-                if(!lightbox.classList.contains('active')) isPaused = false; 
+                if(!lightbox.classList.contains('active')) {
+                    isPaused = false; 
+                    animPort(); // Restart animation when mouse leaves
+                }
             });
         }
 
@@ -407,6 +410,143 @@ document.addEventListener('DOMContentLoaded', function() {
         const displayList = [...reviews, ...reviews, ...reviews];
         track.innerHTML = displayList.map(createCard).join('');
     } */
+
+    // Mobile Testimonials Swipe Functionality
+    let testimonialsData = [];
+    let currentIndex = 0;
+    let startX = 0;
+    let isDragging = false;
+
+    // Initialize testimonials data
+    function initTestimonialsData() {
+        testimonialsData = [
+            {
+                badge: "Incredible Design + Deep Expertise",
+                q: "[Flying Mouse Labs] is our go-to web designer. She's always on top of any task we give her and does incredible design work. I'm always impressed with her subject matter knowledge and professionalism.",
+                n: "Sandy L.",
+                b: "Colliance Online Business Management",
+                i: "./assets/images/colliance-profile.jpg"
+            },
+            {
+                badge: "SEO Audit + Backend Rescue",
+                q: "This was my second time working with [Flying Mouse Labs], and both experiences were fantastic. Many of her thoughtful suggestions turned out to be game changers for my photography business.",
+                n: "Kathy C.",
+                b: "KCruts Photography",
+                i: "./assets/images/kcruts-profile.jpg"
+            },
+            {
+                badge: "100% On-Brand",
+                q: "[Flying Mouse Labs] created a website that is FABULOUS and really speaks to my personality and branding! [They are] very knowledgeable and will make sure she creates a site that aligns with your expectations and vision.",
+                n: "Robin P.",
+                b: "Dos Gatos Property Management",
+                i: "./assets/images/dgpm-profile.png"
+            },
+            {
+                badge: "Professional Site, Personal Touch",
+                q: "I lovvvvvve the website - it is beautiful!! I'm so happy with the website and your work!!! She took on 'hard' parts of website design away from me and made it intimidating and daunting task of building my company's website completely manageable. I feel very satisfied with the entire process especially the final product.",
+                n: "Kayla S.",
+                b: "Kay's Virtual Solutions",
+                i: "./assets/images/kvs-profile.jpg"
+            },
+            {
+                badge: "+450% Engagement",
+                q: "Within the first two months of launching, I saw a huge increase in activity. Website clicks doubled, and profile interactions were up over 450% compared to the same time last year.",
+                n: "Damaris E.",
+                b: "Damaris Accounting Services",
+                i: "./assets/images/das-profile.jpg"
+            },
+            {
+                badge: "Honest & Visionary Designer",
+                q: "[Flying Mouse Labs] is phenomenal, extremely honest, and accurate. [They are] incredibly reliable, and have gone above and beyond the call of duty on numerous occasions. [They are] wonderful to work with, true visionaries.",
+                n: "Kathy C.",
+                b: "KCruts Photography",
+                i: "./assets/images/kcruts-profile.jpg"
+            },
+            {
+                badge: "Brand Vision Mastery",
+                q: "Beauty and performance are not mutually exclusive. We specialize in creating experiences that are both visually stunning and technically optimized. Every millisecond counts, every pixel matters.",
+                n: "Partnership Over Projects",
+                q: "We don't just deliver projects—we build partnerships. Our success is measured by your success, and we're committed to being there long after the launch to ensure continued growth and optimization.",
+                n: "Suzanne H.",
+                b: "Bookkeeping Concepts",
+                i: "./assets/images/bkkg-concepts-profile.png"
+            }
+        ];
+    }
+
+    function createCard(item) {
+        return `
+            <div class="glass-card">
+                <img src="${quoteImgUrl}" class="quote-img" alt="Quote">
+                <div class="result-badge">${item.badge}</div>
+                <div class="quote">"${item.q}"</div>
+                <div class="client-box">
+                    <div class="avatar" style="background-image: url('${item.i}')"></div>
+                    <div>
+                        ${item.n}<br>
+                        <small style="color: #666; font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase;">${item.b}</small>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    // Mobile touch event handlers
+    function handleTouchStart(e) {
+        startX = e.touches[0].clientX;
+        isDragging = true;
+    }
+
+    function handleTouchMove(e) {
+        if (!isDragging) return;
+        
+        const currentX = e.touches[0].clientX;
+        const diff = currentX - startX;
+        
+        // Prevent default touch behavior
+        e.preventDefault();
+        
+        // Swipe threshold - increased for better detection
+        if (Math.abs(diff) > 80) {
+            if (diff > 0) {
+                // Swipe right - go to next
+                currentIndex = (currentIndex + 1) % testimonialsData.length;
+            } else {
+                // Swipe left - go to previous
+                currentIndex = (currentIndex - 1 + testimonialsData.length) % testimonialsData.length;
+            }
+            updateTestimonialsSlider();
+        }
+    }
+
+    function handleTouchEnd(e) {
+        isDragging = false;
+    }
+
+    function updateTestimonialsSlider() {
+        const cards = track.querySelectorAll('.glass-card');
+        
+        // Set z-index for proper stacking
+        cards.forEach((card, index) => {
+            const position = (index - currentIndex + testimonialsData.length) % testimonialsData.length;
+            card.style.transform = `translateX(${position * 100}%)`;
+            card.style.opacity = index === currentIndex ? '1' : '0.3';
+            card.style.zIndex = index === currentIndex ? '10' : '5'; // Active card on top
+        });
+    }
+
+    // Initialize testimonials on page load
+    document.addEventListener('DOMContentLoaded', () => {
+        initTestimonialsData();
+        
+        // Add touch event listeners for mobile
+        const testimonialsSection = document.querySelector('#testimonials');
+        if (testimonialsSection) {
+            testimonialsSection.addEventListener('touchstart', handleTouchStart, { passive: true });
+            testimonialsSection.addEventListener('touchmove', handleTouchMove, { passive: true });
+            testimonialsSection.addEventListener('touchend', handleTouchEnd, { passive: true });
+        }
+    });
     const quoteImgUrl = "assets/images/glass-quotes-dark.svg"; 
 
         const reviews = [
@@ -459,7 +599,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 i: "./assets/images/lpp-profile.jpg"
             },
             { 
-                badge: "Rare Find: Honest & Visionary Designer", 
+                badge: "Honest & Visionary Designer", 
                 q: "[Flying Mouse Labs] is phenomenal, extremely honest, and accurate. [They are] incredibly reliable, and have gone above and beyond the call of duty on numerous occasions. [They are] wonderful to work with, true visionaries.", 
                 /* qb: "Cassandra is AMAZING. You made my dreams come true. You made the entire experience perfect. I felt like we had known each other for years. It is with immense pleasure to highly recommend Cassandra Parisi. Finding Cassandra was a most fortuitous occurrence. She is an exceptional web designer. I had a horrible experience with my previous web designer, lost time, and a lot of money. Cassandra is phenomenal, extremely honest, and accurate. She communicates quickly and will make your site better than you ever dreamed. During my interaction with my prior web designer, I developed a disdain for the myriad of excuses and lack of communication that was all too prevalent. These problems were NEVER encountered with Cassandra. She is virtually always available, is incredibly reliable, and has gone above and beyond the call of duty on numerous occasions. Cassandra even went as far as helping to EDUCATE me about what exactly she is doing to my site and why certain steps need to be taken, etc. She is not merely a web designer, but also a quasi-business consultant with in-depth understanding of topics including but not limited to search engine optimization, data encryption, design, and hosting. Cassandra worked with my ideas and made sure everything was perfect. Her expertise is beyond words and her willingness to help and suggest ideas is phenomenal, she cares about her clients and is a wonderful person to work with, a true visionary. One of her greatest assets is the ability to articulate ideas over emails. I can navigate my way around a computer with ease, but compared to her, I am a novice. Cassandra – you have been wonderful to work with. You have worked wonders with our new website. We have only compliments from our clients. I was a bit hesitant working with someone “out of state” and via “internet”- Your communication skills, quickness of reply and accuracy sure proved me wrong. You are very competent but above all it is your professionalism, responsiveness, and high degree of integrity that I found refreshing. You are a rare find and I highly recommend everyone that is need of a website inquiring about your services. I will use you again for my next site and recommend you to everyone I know who needs a top-notch web designer.",  */
                 n: "Suzanne H.", 
