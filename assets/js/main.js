@@ -404,6 +404,117 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!isMobile) {
         animPort();
     }
+
+    // 4. Mobile Contact Lightbox Functionality
+    const mobileContactBtn = document.getElementById('mobile-contact-btn');
+    const contactLightbox = document.getElementById('contact-lightbox');
+    const contactLightboxClose = document.getElementById('contact-lightbox-close');
+    const lightboxInquiryForm = document.getElementById('lightbox-inquiry-form');
+
+    // Debug logging
+    console.log('Mobile Contact Debug:');
+    console.log('isMobile:', isMobile);
+    console.log('mobileContactBtn:', mobileContactBtn);
+    console.log('contactLightbox:', contactLightbox);
+    console.log('contactLightboxClose:', contactLightboxClose);
+    console.log('lightboxInquiryForm:', lightboxInquiryForm);
+
+    // Mobile: Show contact button and setup lightbox
+    if (isMobile && mobileContactBtn && contactLightbox) {
+        console.log('Setting up mobile contact lightbox...');
+        
+        // Show mobile contact button
+        mobileContactBtn.style.display = 'inline-block';
+        console.log('Mobile contact button shown');
+
+        // Open lightbox when button is clicked
+        mobileContactBtn.addEventListener('click', () => {
+            console.log('Mobile contact button clicked!');
+            contactLightbox.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            console.log('Lightbox opened');
+        });
+
+        // Close lightbox when close button is clicked
+        contactLightboxClose.addEventListener('click', () => {
+            console.log('Close button clicked');
+            contactLightbox.classList.remove('active');
+            document.body.style.overflow = ''; // Restore scrolling
+        });
+
+        // Close lightbox when clicking outside the content
+        contactLightbox.addEventListener('click', (e) => {
+            if (e.target === contactLightbox) {
+                console.log('Outside click - closing lightbox');
+                contactLightbox.classList.remove('active');
+                document.body.style.overflow = ''; // Restore scrolling
+            }
+        });
+
+        // Handle form submission in lightbox
+        if (lightboxInquiryForm) {
+            lightboxInquiryForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                // Simple form validation
+                const formData = new FormData(lightboxInquiryForm);
+                const requiredFields = lightboxInquiryForm.querySelectorAll('[required]');
+                let isValid = true;
+
+                requiredFields.forEach(field => {
+                    if (!field.value.trim()) {
+                        isValid = false;
+                        field.style.borderColor = 'red';
+                    } else {
+                        field.style.borderColor = '#ddd';
+                    }
+                });
+
+                if (isValid) {
+                    // Show success message
+                    const submitBtn = lightboxInquiryForm.querySelector('.submit-btn');
+                    const originalText = submitBtn.innerHTML;
+                    submitBtn.innerHTML = '<span>✓ Message Sent!</span>';
+                    submitBtn.style.background = '#4CAF50';
+                    
+                    // Reset form after delay
+                    setTimeout(() => {
+                        lightboxInquiryForm.reset();
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.style.background = '';
+                        contactLightbox.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }, 2000);
+                } else {
+                    // Show error message
+                    const submitBtn = lightboxInquiryForm.querySelector('.submit-btn');
+                    const originalText = submitBtn.innerHTML;
+                    submitBtn.innerHTML = '<span>Please fill required fields</span>';
+                    submitBtn.style.background = '#f44336';
+                    
+                    setTimeout(() => {
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.style.background = '';
+                    }, 2000);
+                }
+            });
+        }
+
+        // Close lightbox on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && contactLightbox.classList.contains('active')) {
+                console.log('Escape key pressed - closing lightbox');
+                contactLightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    } else {
+        console.log('Mobile contact lightbox setup skipped');
+        console.log('Reasons:');
+        console.log('- isMobile:', isMobile);
+        console.log('- mobileContactBtn exists:', !!mobileContactBtn);
+        console.log('- contactLightbox exists:', !!contactLightbox);
+    }
     }
     }());
 
@@ -936,3 +1047,9 @@ function initFooter() {
         });
     }
 }
+
+// Initialize functions
+initTriptych();
+initAboutLightbox();
+initFooter();
+
