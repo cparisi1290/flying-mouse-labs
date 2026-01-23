@@ -3337,7 +3337,7 @@ font-size: 0.85rem;
     .footer-middle-row {
         display: flex;
         justify-content: space-between;
-        align-items: flex-start;
+        align-items: center;
         gap: 80px;
         padding-bottom: 80px;
     }
@@ -3345,6 +3345,7 @@ font-size: 0.85rem;
     .footer-newsletter-section {
         flex: 1.5;
         max-width: 500px;
+        margin-left: 0;
     }
 
     .footer-nav-section {
@@ -3352,18 +3353,20 @@ font-size: 0.85rem;
         display: flex;
         justify-content: flex-end;
         gap: 60px;
+        padding-top: 30px;
     }
 
     .footer-nav-col {
         display: flex;
         flex-direction: column;
         gap: 14px;
+        margin-top: 20px;
     }
 
     .footer-bottom {
         display: flex;
         justify-content: space-between;
-        align-items: flex-start;
+        align-items: center;
         padding-top: 40px;
         border-top: 1px solid #e4e4e4;
     }
@@ -3435,13 +3438,31 @@ font-size: 0.85rem;
         padding-bottom: 40px;
     }
 
+    .footer-nav-section {
+        display: flex;
+        flex-direction: row;
+        gap: 40px;
+        justify-content: center;
+        flex-wrap: wrap;
+        order: 1;
+    }
+
+    .footer-nav-col {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        flex: 1;
+        min-width: 150px;
+        padding: 0 0 40px 20px;
+    }
+
     .footer-newsletter-section {
         max-width: 100%;
         text-align: center;
         padding: 40px 0 60px 0;
         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         border-top: 1px solid rgba(0, 0, 0, 0.1);
-
+        order: 2;
     }
 
     .newsletter-text h3 {
@@ -3490,31 +3511,10 @@ font-size: 0.85rem;
         margin-top: 2px;
     }
 
-    .footer-nav-section {
-        display: flex;
-        flex-direction: row;
-        gap: 40px;
-        justify-content: center;
-        flex-wrap: wrap;
-    }
-
-    .footer-nav-col {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-        flex: 1;
-        min-width: 150px;
-        padding: 0 0 40px 20px;
-    }
-
-/*     .link-label {
-        font-size: 0.8rem;
-        font-weight: 700;
-        color: #999;
-        margin-bottom: 10px;
+/*         margin-bottom: 10px;
         text-transform: uppercase;
         letter-spacing: 1px;
-    } */
+    } */ */
 
     .footer-nav-col a {
         text-decoration: none;
