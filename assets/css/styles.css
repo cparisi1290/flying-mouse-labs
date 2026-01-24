@@ -2851,6 +2851,17 @@ input, select, textarea {
     transition: all 0.3s ease;
 }
 
+select {
+    padding-right: 40px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23041A24' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 16px;
+}
+
 input::placeholder, textarea::placeholder {
     font-family: var(--accent-font);
     font-size: 0.9rem;
@@ -2859,9 +2870,21 @@ input::placeholder, textarea::placeholder {
 }
 
 input:focus { 
-    background: #fff; /* keep this white */
-    border-color: var(--text-dark); 
+    background: #fff;
+    border-color: rgb(173, 173, 173); 
     outline: none; 
+}
+
+select:focus {
+    background: #fff;
+    border-color: rgb(173, 173, 173);
+    outline: none;
+}
+
+textarea:focus {
+    background: #fff;
+    border-color: rgb(173, 173, 173);
+    outline: none;
 }
 
 .checkbox-grid { 
@@ -2889,6 +2912,14 @@ font-size: 0.85rem;
 
 .check-item:hover { 
     background: #fff; /* keep this white */
+}
+
+.check-item input[type="checkbox"] {
+    accent-color: var(--accent-blue);
+}
+
+.check-item input[type="checkbox"]:checked {
+    background-color: var(--accent-blue);
 }
 
 .submit-btn {
