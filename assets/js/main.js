@@ -100,6 +100,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Debugging: uncomment the line below if it still doesn't work 
                 // console.log('Blade active:', blade);
             });
+            
+            // Add touch events for mobile support
+            blade.addEventListener('touchstart', (e) => {
+                e.preventDefault(); // Prevent default touch behavior
+                // Remove active from all siblings in THIS container
+                blades.forEach(b => b.classList.remove('active'));
+                // Add active to current
+                blade.classList.add('active');
+                
+                // Debugging: uncomment the line below if it still doesn't work 
+                // console.log('Blade active (touch):', blade);
+            });
         });
     }()); // Fix IIFE closure here
 
