@@ -587,17 +587,54 @@ document.addEventListener('DOMContentLoaded', function() {
                 n: "Kathy C.",
                 b: "KCruts Photography",
                 i: "./assets/images/kcruts-profile.jpg"
-            },
-            {
-                badge: "Brand Vision Mastery",
-                q: "Beauty and performance are not mutually exclusive. We specialize in creating experiences that are both visually stunning and technically optimized. Every millisecond counts, every pixel matters.",
-                n: "Partnership Over Projects",
-                q: "We don't just deliver projects—we build partnerships. Our success is measured by your success, and we're committed to being there long after the launch to ensure continued growth and optimization.",
-                n: "Suzanne H.",
-                b: "Bookkeeping Concepts",
-                i: "./assets/images/bkkg-concepts-profile.png"
             }
         ];
+
+        // Create testimonials cards like portfolio
+        const track = document.getElementById('testiTrack');
+        if (track) {
+            testimonialsData.forEach((review, i) => {
+                const card = document.createElement('div');
+                card.className = 'glass-card';
+                card.dataset.index = i;
+                
+                if (isMobile) {
+                    // Mobile: Create horizontal slider cards
+                    card.style.transform = `translateX(${i * 105}%)`;
+                    card.style.position = 'absolute';
+                    card.style.width = '85%';
+                    card.style.height = '100%';
+                    card.style.left = '7.5%';
+                    card.style.top = '0';
+                }
+                
+                card.innerHTML = `
+                    <div class="glass-card-content">
+                        <div class="quote-icon">
+                            <img src="${quoteImgUrl}" alt="Quote">
+                        </div>
+                        <div class="testimonial-badge">${review.badge}</div>
+                        <div class="testimonial-text">"${review.q}"</div>
+                        <div class="testimonial-author">
+                            <img src="${review.i}" alt="${review.n}" class="author-avatar">
+                            <div class="author-info">
+                                <div class="author-name">${review.n}</div>
+                                <div class="author-title">${review.b}</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                if (isMobile) {
+                    // Mobile: Add touch events
+                    card.addEventListener('touchstart', handleTouchStart, { passive: true });
+                    card.addEventListener('touchmove', handleTouchMove, { passive: true });
+                    card.addEventListener('touchend', handleTouchEnd, { passive: true });
+                }
+                
+                track.appendChild(card);
+            });
+        }
     }
 
     function createCard(item) {
@@ -617,7 +654,7 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
     }
 
-    // Mobile touch event handlers
+    // Mobile touch event handlers (like portfolio)
     function handleTouchStart(e) {
         startX = e.touches[0].clientX;
         isDragging = true;
@@ -632,16 +669,17 @@ document.addEventListener('DOMContentLoaded', function() {
         // Prevent default touch behavior
         e.preventDefault();
         
-        // Swipe threshold - increased for better detection
-        if (Math.abs(diff) > 80) {
+        // Swipe threshold - same as portfolio
+        if (Math.abs(diff) > 50) {
             if (diff > 0) {
-                // Swipe right - go to next
-                currentIndex = (currentIndex + 1) % testimonialsData.length;
-            } else {
-                // Swipe left - go to previous
+                // Swipe right - go to previous
                 currentIndex = (currentIndex - 1 + testimonialsData.length) % testimonialsData.length;
+            } else {
+                // Swipe left - go to next
+                currentIndex = (currentIndex + 1) % testimonialsData.length;
             }
             updateTestimonialsSlider();
+            isDragging = false; // Prevent multiple swipes
         }
     }
 
@@ -650,14 +688,18 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function updateTestimonialsSlider() {
-        const cards = track.querySelectorAll('.glass-card');
+        const cards = document.querySelectorAll('.glass-card');
         
-        // Set z-index for proper stacking
         cards.forEach((card, index) => {
             const position = (index - currentIndex + testimonialsData.length) % testimonialsData.length;
-            card.style.transform = `translateX(${position * 100}%)`;
-            card.style.opacity = index === currentIndex ? '1' : '0.3';
-            card.style.zIndex = index === currentIndex ? '10' : '5'; // Active card on top
+            
+            if (isMobile) {
+                // Mobile: Use same transform logic as portfolio
+                card.style.transform = `translateX(${position * 105}%)`;
+                card.style.transition = 'transform 0.3s ease';
+                card.style.opacity = position === 0 ? '1' : '0.5';
+                card.style.zIndex = position === 0 ? '10' : '1';
+            }
         });
     }
 
