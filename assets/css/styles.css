@@ -450,19 +450,19 @@ h1, h2, h3, h4, h5, h6 {
 
     .nav-overlay-links .nav-item {
         color: var(--text-dark);
-            font-size: 2rem;
-            padding: 0px 0;
-            text-align: center;
-            /* border-bottom: 1px solid rgba(0,0,0,0.1); */
+        font-size: 1.5rem;
+        padding: 0px 0;
+        text-align: center;
+        /* border-bottom: 1px solid rgba(0,0,0,0.1); */
     }
 
     .nav-overlay-cta {
-            margin-top: 50px;
+        margin-top: 50px;
     }
 
     .nav-overlay-cta .btn-frame {
-            font-size: 2rem;
-            padding: 15px 30px;
+        font-size: 1.5rem;
+        padding: 15px 30px;
     }
 
 }
