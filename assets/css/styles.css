@@ -809,13 +809,18 @@ text-align: left;
         margin-bottom: 1.5rem;
     } */
 
+        .text-box h1  {
+        font-size: clamp(2.8rem, 8vw, 4rem);
+        letter-spacing: 3px;
+    }
+
     .text-box h1 span {
         font-size: clamp(2.5rem, 8vw, 4rem);
         letter-spacing: 3px;
     }
 
     .text-box p {
-        font-size: clamp(.3rem, 8vw, 1.25rem);
+        font-size: clamp(.2rem, 8vw, 1.25rem);
         margin-bottom: 2rem;
         padding: 0;
         text-align: left;
@@ -836,7 +841,7 @@ text-align: left;
         width: 100%;
         max-width: none;
         padding: 18px 24px;
-        font-size: 1rem;
+        font-size: 1.1rem;
     }
 }
 
@@ -871,6 +876,7 @@ text-align: left;
     color: var(--accent-blue);
     font-style: italic;
     letter-spacing: 3px;
+    text-transform: uppercase;
     text-shadow: 
         -1px -1px 0 #1377a5,  
         -2px -1px 0 #1377a5,
@@ -1074,7 +1080,7 @@ text-align: left;
     }
 
     .accordion-header .perf-main-heading {
-        font-size: clamp(2.5rem, 6vw, 3rem);
+        font-size: clamp(2.8rem, 6vw, 3rem);
         line-height: 1.1;
         padding: 0;
     }
@@ -1308,6 +1314,8 @@ opacity: .6;
     .perf-intro h2 span {
         margin-bottom: 40px;
         letter-spacing: 3px;
+        font-size: clamp(2.5rem, 6vw, 2.5rem);
+        text-transform: uppercase;
     }
 
     .perf-main-heading {
@@ -1826,8 +1834,8 @@ opacity: 0.5;
         flex-direction: column;
         height: auto;
         min-height: 60vh;
-        padding: 100px 0 0 0;
-        margin-bottom: 0;
+        padding-top: 0px;
+        margin-bottom: 0px;
     }
  
     .testi-left {
@@ -1838,23 +1846,27 @@ opacity: 0.5;
     }
  
     .testi-left h2 {
-        font-size: 3.5rem;
-        margin-bottom: 30px;
+        font-size: 2.8rem;
+        margin-bottom: -420px;
         margin-top: -80px;
+        line-height: 1;
     }
  
     .testi-left h2 span {
         margin-bottom: 30px;
+        text-transform: uppercase;
+        font-size: 2.8rem;
     }
  
     .testi-right {
         width: 100%;
-        height: 500px;
+        height: 800px;
         position: relative;
         overflow: hidden;
         background: linear-gradient(135deg, #B0E0E6 0%, #A5F3FC 20%, #89CFF0 40%, #E0F7FA 60%, #FFDAB9 75%, #A5F3FC 100%);
         background-size: 400% 400%;
         animation: bgShift 15s infinite alternate ease-in-out;
+        padding-bottom: -50px;
     }
  
     .testi-track {
@@ -1862,7 +1874,7 @@ opacity: 0.5;
         z-index: 10;
         display: flex;
         gap: 30px;
-        padding: 0 20px;
+        padding: 100px 20px 0 20px;
         overflow-x: auto;
         overflow-y: hidden;
         scroll-behavior: smooth;
@@ -2885,18 +2897,24 @@ font-size: 0.85rem;
     }
 
     .contact-title {
-        font-size: 3.5rem;
-        line-height: 1.1;
+        font-size: 2rem;
+        line-height: 1.5;
         margin-bottom: 20px;
         text-align: center;
     }
 
+    .contact-title br {
+        display: none;
+    }
+
     .contact-title span {
         color: var(--accent-blue);
+        font-size: 2.5rem;
+        text-transform: uppercase;
     }
 
     .contact-description {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
         margin-bottom: 30px;
         max-width: 90%;
         margin-left: auto;
@@ -2907,13 +2925,15 @@ font-size: 0.85rem;
     /* Mobile Contact Button */
     .mobile-contact-btn {
         display: block;
+        width: 100%;
         padding: 15px 30px;
+        max-width: none;
         background: var(--text-dark);
         color: var(--text-light);
         border: 2px solid var(--text-dark);
         border-radius: 50px;
         font-family: var(--accent-font);
-        font-size: 0.9rem;
+        font-size: 1.1rem;
         font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 1px;
@@ -2921,8 +2941,6 @@ font-size: 0.85rem;
         transition: all 0.3s ease;
         text-decoration: none;
         margin-top: 20px;
-        margin-left: auto;
-        margin-right: auto;
     }
 
     .mobile-contact-btn:hover {
