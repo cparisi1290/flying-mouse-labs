@@ -869,7 +869,7 @@ text-align: left;
 
 .accordion-header .perf-main-heading {
     padding: 0 5%;
-    font-size: 3rem;
+    font-size: 6rem;
 }
 
 .accordion-header h2 span {
@@ -1178,13 +1178,15 @@ padding: 0 5%;
 }
 
 .perf-intro h2 {
-    font-size: clamp(2rem 8vw 3rem);
+    font-size: 6rem;
     text-align: center;
 }
 
 .perf-intro h2 span { 
     margin-bottom: 70px; 
+    font-size: 6rem;
     color: var(--accent-blue);
+    text-transform: uppercase;
     text-shadow: 
         -1px -1px 0 #1377a5,  
         -2px -1px 0 #1377a5,
@@ -1198,7 +1200,6 @@ padding: 0 5%;
     padding-left: 5%;
     color: var(--text-dark); 
     line-height: 1.1; 
-    /* text-transform: uppercase; */
     letter-spacing: 2px;
     font-family:var(--main-header-font);
 }
@@ -1368,7 +1369,7 @@ opacity: .6;
 #portfolio { 
     perspective: 2000px; 
     min-height: 100vh; /* Ensures the section exists */
-    padding: 120px 0; 
+    padding: 20px 0 250px 0; 
     position: relative;
     display: flex;
     align-items: center;
@@ -1391,7 +1392,7 @@ opacity: .6;
     width: 330px; 
     height: 450px;
     margin-left: -165px; 
-    margin-top: -225px; 
+    margin-top: -125px; 
     border-radius: 30px;
     background: var(--text-light); 
     overflow: hidden; 
@@ -1693,7 +1694,7 @@ opacity: 0.5;
 }
 
 .testi-left { 
-    width: 40%; 
+    width: 30%; 
     height: 100%; 
     display: flex; 
     flex-direction: column; 
@@ -1703,7 +1704,7 @@ opacity: 0.5;
 }
 
 .testi-left h2 { 
-    font-size: 10rem; 
+    font-size: 8rem; 
     font-weight: 800; 
     line-height: 0.85; 
     letter-spacing: 2px; 
@@ -2738,22 +2739,25 @@ opacity: 0.5;
 }
 
 .contact-title { 
-    font-size: 4rem; 
+    font-size: 5rem; 
     font-weight: 900; 
     line-height: 1.1; 
     color: var(--text-dark);
     margin-bottom: 30px; 
 }
+
 .contact-title span { 
     color: var(--accent-blue); 
+    text-transform: uppercase;
     text-shadow: 
         -1px -1px 0 #1377a5,  
         -2px -1px 0 #1377a5,
         -1px  1px 0 #1377a5,
         -2px  1px 0 #1377a5;
 }
+
 .contact-description { 
-    font-size: 1.1rem; 
+    font-size: 1.2rem; 
     color: var(--text-dark); 
     line-height: 1.6; 
     margin-bottom: 40px; 
@@ -2910,7 +2914,6 @@ font-size: 0.85rem;
     .contact-title span {
         color: var(--accent-blue);
         font-size: 2.5rem;
-        text-transform: uppercase;
     }
 
     .contact-description {
