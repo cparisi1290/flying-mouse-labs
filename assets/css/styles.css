@@ -1610,8 +1610,8 @@ opacity: 0.5;
     }
 
     .carousel-stage {
-    height: 500px; /* Increased from 400px for taller cards */
-    overflow: hidden;
+    height: 600px; /* Increased from 400px for taller cards */
+    overflow: visible; /* Allow taller cards to show border-radius */
     width: 100%;
     position: relative;
     }
@@ -1621,7 +1621,7 @@ opacity: 0.5;
     top: 0;
     left: 0;
     width: 80%; /* Narrower to show spacing */
-    height: 100%;
+    height: 120%;
     border-radius: 20px;
     transition: transform 0.3s ease;
     transform: translateX(10%); /* Start with offset to show first card */
@@ -1629,7 +1629,7 @@ opacity: 0.5;
 
     .portfolio-card .card-image {
     width: 100%;
-    height: 100%;
+    height: 120%;
     border-radius: 20px;
     background-size: cover;
     background-position: center;
@@ -1673,34 +1673,6 @@ opacity: 0.5;
 
     #lb-quote {
         margin-left: 10px;
-    }
-
-    /* --- MOBILE PORTFOLIO SLIDER --- */
-    .carousel-stage {
-        overflow: hidden;
-        width: 100%;
-        height: 400px;
-        position: relative;
-        overflow: visible; /* Fix overflow issue */
-    }
-
-    .portfolio-card {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 80%; /* Narrower to show spacing */
-        height: 100%;
-        border-radius: 20px;
-        transition: transform 0.3s ease;
-        transform: translateX(10%); /* Start with offset to show first card */
-    }
-
-    .portfolio-card .card-image {
-        width: 100%;
-        height: 100%;
-        border-radius: 20px;
-        background-size: cover;
-        background-position: center;
     }
 }
 
