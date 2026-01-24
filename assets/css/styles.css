@@ -1293,7 +1293,7 @@ opacity: .6;
 /* --- MOBILE CASE STUDY SECTION --- */
 @media screen and (min-width: 350px) and (max-width: 844px) {
     #perf-metrics-module {
-        padding: 100px 0 60px 0;
+        padding: 100px 0 120px 0;
     }
 
     .perf-wrapper {
@@ -1853,7 +1853,7 @@ opacity: 0.5;
     #testimonials {
         flex-direction: column;
         height: auto;
-        min-height: 80vh;
+        min-height: 60vh;
         padding: 100px 0 0 0;
         margin-bottom: 0;
     }
@@ -1997,7 +1997,7 @@ opacity: 0.5;
 
 .arc-bg-text {
     position: absolute;
-    top: -85%; 
+    top: -70%; 
     left: 50%;
     transform: translate(-50%, -50%);
     text-transform: uppercase;
@@ -2049,7 +2049,7 @@ opacity: 0.5;
     position: relative;
     width: 370px;
     height: 530px;
-    background: rgba(255, 255, 255, .5); 
+    background: rgba(255, 255, 255, 1); 
     border: 1px solid rgba(255,255,255,0.06);
     box-shadow: 0 15px 45px rgba(0,0,0,0.04);
     display: flex;
@@ -2474,13 +2474,13 @@ opacity: 0.5;
 @media screen and (min-width: 350px) and (max-width: 844px) {
 
     #arc-triptych-wrapper {
-        padding: 200px 5% 100px 5%;
+        padding: 200px 2% 100px 2%;
         perspective: 1500px;
     }
  
     .arc-bg-text {
         font-size: 24vw;
-        top: -14%;
+        top: -10%;
         animation: none;
         padding-left:20px;
     }
@@ -2538,20 +2538,22 @@ opacity: 0.5;
     .arc-panel-content {
         opacity: 1;
         transform: none;
-        padding: 30px;
-        width: 100%;
+        padding-left: -20px;
+        padding-right: 40px;
         max-width: 280px;
         text-align: left;
     }
  
     .arc-panel-title {
         font-size: 2rem;
+                width: 130%;
     }
  
     .arc-panel-text {
         font-size: 1.1rem;
-        font-weight: 600;
-        margin-top: 5px;
+        width: 120%;
+        font-weight: 400;
+        margin-top: 10px;
         opacity: 1;
     }
  
