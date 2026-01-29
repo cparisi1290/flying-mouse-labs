@@ -1203,6 +1203,7 @@ padding: 0 5%;
 .perf-intro h2 {
     font-size: 6rem;
     text-align: center;
+    text-transform: capitalize;
 }
 
 .perf-intro h2 span { 
