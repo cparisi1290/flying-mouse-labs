@@ -45,6 +45,43 @@ document.addEventListener("DOMContentLoaded", () => {
     initBadgeAnimation();
 });
 
+// CASE STUDY COUNTER FUNCTIONALITY
+function initCaseStudyCounters() {
+    const observerOptions = {
+        threshold: 0.3
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                // Access Alpine data for this specific element
+                const alpineComponent = Alpine.$data(entry.target);
+
+                if (alpineComponent && !alpineComponent.started) {
+                    console.log("Starting counter for:", entry.target.id);
+                    alpineComponent.startCounting();
+                    alpineComponent.started = true;
+
+                    // Stop watching this card once it starts
+                    observer.unobserve(entry.target);
+                }
+            }
+        });
+    }, observerOptions);
+
+    // Watch every element with x-data that contains 'count'
+    document.querySelectorAll('[x-data*="count"]').forEach(el => {
+        observer.observe(el);
+    });
+}
+
+// Ensure Alpine is ready before running the observer
+document.addEventListener('alpine:init', () => {
+    setTimeout(() => {
+        initCaseStudyCounters();
+    }, 100);
+});
+
 // TESTIMONIAL SLIDER FUNCTIONALITY
 function testimonialSlider() {
     return {

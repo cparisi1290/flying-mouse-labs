@@ -116,19 +116,25 @@
                 <section
                     class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start bg-cs3 p-6 md:p-16 rounded-[2.5rem] md:rounded-[3rem] shadow-lg border-b-8 border-s4 overflow-hidden">
 
-                    <div x-data="{ count: 0 }" x-init="setTimeout(() => {
-                        let target = 2500;
-                        let current = 0;
-                        let interval = setInterval(() => { 
-                            if(current < target) { 
-                                current += 50; 
-                                count = current; 
-                            } else { 
-                                count = target; 
-                                clearInterval(interval); 
-                            } 
-                        }, 20);
-                    }, 500)"
+                    <div id="tm-counter" x-data="{ 
+                                                count: 0, 
+                                                target: 2500, 
+                                                increment: 50, 
+                                                interval: 20, 
+                                                started: false,
+                                                startCounting() {
+                                                    let current = 0;
+                                                    let timer = setInterval(() => { 
+                                                        if(current < this.target) { 
+                                                            current += this.increment; 
+                                                            this.count = current; 
+                                                        } else { 
+                                                            this.count = this.target; 
+                                                            clearInterval(timer); 
+                                                        } 
+                                                    }, this.interval);
+                                                }
+                                            }"
                         class="lg:col-span-5 bg-white p-10 md:p-12 rounded-[2rem] shadow-xl text-center lg:order-2 self-center border-b-8 border-copper relative">
 
                         <div class="absolute top-4 right-6 opacity-10 font-serif text-6xl"></div>
@@ -235,33 +241,39 @@
                 <section
                     class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start bg-cs4 p-6 md:p-16 rounded-[2.5rem] md:rounded-[3rem] lg:shadow-xl border-b-8 border-s2 overflow-hidden">
 
-                    <div x-data="{ count: 0 }" x-init="setTimeout(() => {
-                            let target = 700;
-                            let current = 0;
-                            let interval = setInterval(() => { 
-                                if(current < target) { 
-                                    current += 10; 
-                                    count = current; 
-                                } else { 
-                                    count = target; 
-                                    clearInterval(interval); 
-                                } 
-                            }, 20);
-                        }, 500)"
-                        class="lg:col-span-5 bg-white p-10 md:p-12 rounded-[2rem] shadow-xl text-center lg:order-1 self-center border-b-8 border-copper relative">
+                    <div id="va-counter" x-data="{ 
+                                                count: 0, 
+                                                target: 700, 
+                                                increment: 10, 
+                                                interval: 20, 
+                                                started: false,
+                                                startCounting() {
+                                                    let current = 0;
+                                                    let timer = setInterval(() => { 
+                                                        if(current < this.target) { 
+                                                            current += this.increment; 
+                                                            this.count = current; 
+                                                        } else { 
+                                                            this.count = this.target; 
+                                                            clearInterval(timer); 
+                                                        } 
+                                                    }, this.interval);
+                                                }
+                                            }"
+                        class="lg:col-span-5 bg-white p-10 md:p-12 rounded-[2rem] shadow-xl text-center lg:order-2 self-center border-b-8 border-copper relative">
 
                         <div class="absolute top-4 right-6 opacity-10 font-serif text-6xl"></div>
 
                         <p class="text-[13px] font-bold text-dark-text uppercase mb-3 tracking-widest opacity-70">
-                            Operational Leverage
+                            Efficiency Unleashed
                         </p>
 
                         <h2 class="block text-6xl md:text-8xl font-serif text-copper mb-4">
-                            <span x-text="count">0</span>%
+                            <span x-text="count.toLocaleString()">0</span>+
                         </h2>
 
                         <span class="text-sm md:text-lg font-medium text-dark-text/60 leading-tight block">
-                            Increase in administrative efficiency after virtual assistance integration
+                            Hours reclaimed annually through strategic delegation
                         </span>
                     </div>
 
@@ -351,6 +363,42 @@
                 <section
                     class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start bg-cs6 p-6 md:p-16 rounded-[2.5rem] md:rounded-[3rem] lg:shadow-xl border-b-8 border-s1 overflow-hidden">
 
+                    <div id="pv-counter" x-data="{ 
+                                                count: 0, 
+                                                target: 400, 
+                                                increment: 8, 
+                                                interval: 20, 
+                                                started: false,
+                                                startCounting() {
+                                                    let current = 0;
+                                                    let timer = setInterval(() => { 
+                                                        if(current < this.target) { 
+                                                            current += this.increment; 
+                                                            this.count = current; 
+                                                        } else { 
+                                                            this.count = this.target; 
+                                                            clearInterval(timer); 
+                                                        } 
+                                                    }, this.interval);
+                                                }
+                                            }"
+                        class="lg:col-span-5 bg-white p-10 md:p-12 rounded-[2rem] shadow-xl text-center lg:order-2 self-center border-b-8 border-copper relative">
+
+                        <div class="absolute top-4 right-6 opacity-10 font-serif text-6xl"></div>
+
+                        <p class="text-[13px] font-bold text-dark-text uppercase mb-3 tracking-widest opacity-70">
+                            Promotion Velocity
+                        </p>
+
+                        <h2 class="block text-6xl md:text-8xl font-serif text-copper mb-4">
+                            +<span x-text="count">0</span>%
+                        </h2>
+
+                        <span class="text-sm md:text-lg font-medium text-dark-text/60 leading-tight block">
+                            Increase in internal growth and mid-career advancement
+                        </span>
+                    </div>
+
                     <div class="lg:col-span-7 space-y-8 lg:order-1">
                         <div class="space-y-2">
                             <h2 class="font-serif text-3xl md:text-5xl text-dark-text leading-tight">Recruitment <br
@@ -435,20 +483,31 @@
                             </div>
                         </div>
                     </div>
+                </section>
 
-                    <div x-data="{ count: 0 }" x-init="setTimeout(() => {
-                            let target = 400;
-                            let current = 0;
-                            let interval = setInterval(() => { 
-                                if(current < target) { 
-                                    current += 8; 
-                                    count = current; 
-                                } else { 
-                                    count = target; 
-                                    clearInterval(interval); 
-                                } 
-                            }, 20);
-                        }, 500)"
+                <!-- Workshop & Training Section -->
+                <section
+                    class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start bg-cs2 p-6 md:p-16 rounded-[2.5rem] md:rounded-[3rem] lg:shadow-xl border-b-8 border-s6 overflow-hidden">
+
+                    <div id="pv-counter" x-data="{ 
+                                                                    count: 0, 
+                                                                    target: 400, 
+                                                                    increment: 8, 
+                                                                    interval: 20, 
+                                                                    started: false,
+                                                                    startCounting() {
+                                                                        let current = 0;
+                                                                        let timer = setInterval(() => { 
+                                                                            if(current < this.target) { 
+                                                                                current += this.increment; 
+                                                                                this.count = current; 
+                                                                            } else { 
+                                                                                this.count = this.target; 
+                                                                                clearInterval(timer); 
+                                                                            } 
+                                                                        }, this.interval);
+                                                                    }
+                                                                }"
                         class="lg:col-span-5 bg-white p-10 md:p-12 rounded-[2rem] shadow-xl text-center lg:order-2 self-center border-b-8 border-copper relative">
 
                         <div class="absolute top-4 right-6 opacity-10 font-serif text-6xl"></div>
@@ -463,41 +522,6 @@
 
                         <span class="text-sm md:text-lg font-medium text-dark-text/60 leading-tight block">
                             Increase in internal growth and mid-career advancement
-                        </span>
-                    </div>
-                </section>
-
-                <!-- Workshop & Training Section -->
-                <section
-                    class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start bg-cs2 p-6 md:p-16 rounded-[2.5rem] md:rounded-[3rem] lg:shadow-xl border-b-8 border-s6 overflow-hidden">
-
-                    <div x-data="{ count: 0 }" x-init="setTimeout(() => {
-                            let target = 80;
-                            let current = 0;
-                            let interval = setInterval(() => { 
-                                if(current < target) { 
-                                    current += 1; 
-                                    count = current; 
-                                } else { 
-                                    count = target; 
-                                    clearInterval(interval); 
-                                } 
-                            }, 25);
-                        }, 500)"
-                        class="lg:col-span-5 bg-white p-10 md:p-12 rounded-[2rem] shadow-xl text-center lg:order-1 self-center border-b-8 border-copper relative">
-
-                        <div class="absolute top-4 right-6 opacity-10 font-serif text-6xl"></div>
-
-                        <p class="text-[13px] font-bold text-dark-text uppercase mb-3 tracking-widest opacity-70">
-                            Collective Momentum
-                        </p>
-
-                        <h2 class="block text-6xl md:text-8xl font-serif text-copper mb-4">
-                            <span x-text="count">0</span>%
-                        </h2>
-
-                        <span class="text-sm md:text-lg font-medium text-dark-text/60 leading-tight block">
-                            Jump in employee participation and active goal contribution
                         </span>
                     </div>
 
