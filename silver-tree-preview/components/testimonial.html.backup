@@ -1,0 +1,122 @@
+<section class="bg-light-text py-20 px-6 overflow-hidden" x-data="{ 
+        currentIndex: 0,
+        isTransitioning: false,
+        touchStartX: 0, 
+        touchEndX: 0,
+        testimonials: [
+            {
+                quote: " I recently connected with Ruth, and even though we've only known each other a short time, it's
+    easy to see why she receives such outstanding recommendations. I took time to read through several of them, and it's
+    clear they weren't given lightly. The consistency and sincerity in what others say about her speak volumes. From
+    what I've seen so far, Ruth truly reflects the professionalism and dedication people describe. I'm looking forward
+    to getting to know her better and seeing more of the impact she makes in our business community.", name: "SP" ,
+    title: "Kaizen Forward Solutions, Inc." , image: "./assets/images/kaizen-forward-solutions.jpg" }, {
+    quote: "Her dedication to supporting the business community shines through in everything she does, from her comprehensive service offerings to her regular 'Limelight' series where she highlights other exceptional business owners. If you're looking for someone who is truly great at what they do, extremely helpful, and genuinely invested in your success, I highly recommend connecting with Ruth. She's the real deal!"
+    , name: "HP" , title: "HMF Balling, Inc." , image: "./assets/images/hmf-balling.png" }, {
+    quote: "Ruth's energy and kindness really shine through in everything she does. Her recognition as Local Business of the Year and one of the Top 20 Businesses is so well-deserved! I truly admire how Ruth uplifts others, shares valuable insights, and brings such a positive spirit to the Alignable community. She's the kind of person who makes this platform better for everyone."
+    , name: "FM" , title: "TekCheck Computer Services" , image: "./assets/images/tekcheck-computer-services.png" }, {
+    quote: "Ruth and her team of business partners ARE Truly here to help and can provide such a wide variety of supportive and expansive needs for businesses and communities we all live in. Such a great individual and 5 STARS recommended!"
+    , name: "DD" , title: "Primerica Financial Services" , image: "./assets/images/primerica-financial-services.png" },
+    { quote: "Ruth can help you get your business organized and growing. A godsend for the Solopreneur!" , name: "YB" ,
+    title: "Revitalized Communities Funding" , image: "./assets/images/revitalized-communities-funding.png" }, {
+    quote: "Ruth and her team of business partners ARE Truly here to help and can provide such a wide variety of supportive and expansive needs for businesses and communities we all live in. Such a great individual and 5 STARS recommended!"
+    , name: "BS" , title: "Colorado Luxury Life" , image: "./assets/images/colorado-luxury-life.png" } ],
+    nextTestimonial() { if (this.isTransitioning) return; this.isTransitioning=true; setTimeout(()=> {
+    this.currentIndex = (this.currentIndex + 1) % this.testimonials.length;
+    this.isTransitioning = false;
+    }, 300);
+    },
+    previousTestimonial() {
+    if (this.isTransitioning) return;
+    this.isTransitioning = true;
+    setTimeout(() => {
+    this.currentIndex = (this.currentIndex - 1 + this.testimonials.length) % this.testimonials.length;
+    this.isTransitioning = false;
+    }, 300);
+    },
+    handleSwipe() {
+    if (this.touchStartX - this.touchEndX > 50) this.nextTestimonial();
+    if (this.touchEndX - this.touchStartX > 50) this.previousTestimonial();
+    }
+    }" @touchstart="touchStartX = $event.changedTouches[0].screenX"
+    @touchend="touchEndX = $event.changedTouches[0].screenX; handleSwipe()">
+    <div class="max-w-3xl mx-auto text-center">
+
+        <h2 class="text-4xl md:text-5xl font-serif font-bold text-dark-text mb-6">
+            What Our Clients Say
+        </h2>
+
+        <p class="text-gray-600 mb-16 max-w-lg mx-auto leading-relaxed">
+            Don't just take our word for it. Hear from businesses we've helped transform and grow.
+        </p>
+
+        <div class="relative max-w-2xl mx-auto px-4 select-none">
+            <span
+                class="absolute -top-10 -left-4 md:left-0 text-[170px] leading-none text-[#d4a373]/20 font-serif select-none z-0">
+                “
+            </span>
+
+            <div class="relative z-10 block md:grid md:grid-cols-1">
+                <template x-for="(testimonial, index) in testimonials" :key="index">
+                    <div x-show="currentIndex === index || window.innerWidth >= 768"
+                        class="flex flex-col justify-between transition-all duration-500 ease-in-out md:col-start-1 md:row-start-1"
+                        :class="currentIndex === index ? 'opacity-100 translate-y-0 z-20' : 'opacity-0 translate-y-4 z-0 pointer-events-none'"
+                        x-cloak>
+
+                        <div class="pt-4 min-h-[120px] md:min-h-0 flex items-center justify-center">
+                            <p class="text-lg md:text-xl italic text-gray-800 leading-relaxed text-left md:text-center"
+                                x-text="testimonial.quote">
+                            </p>
+                        </div>
+
+                        <div class="flex flex-row items-center justify-center space-x-4 mt-12 pb-2">
+                            <div class="relative shrink-0">
+                                <img :src="testimonial.image" :alt="testimonial.name"
+                                    class="w-16 h-16 rounded-full border-2 border-[#d4a373]/30 object-cover" />
+                            </div>
+                            <div class="text-left">
+                                <h4 class="font-bold text-[#d4a373] text-lg leading-tight" x-text="testimonial.name">
+                                </h4>
+                                <p class="text-xs uppercase tracking-widest text-gray-400 font-semibold"
+                                    x-text="testimonial.title"></p>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+
+        <div class="flex items-center justify-center space-x-8 mt-12">
+            <button @click="previousTestimonial()"
+                class="text-[#d4a373] hover:scale-110 active:scale-95 transition-transform p-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+            </button>
+
+            <div class="flex space-x-3">
+                <template x-for="(testimonial, index) in testimonials" :key="index">
+                    <button @click="currentIndex = index" class="w-2.5 h-2.5 rounded-full transition-all duration-300"
+                        :class="currentIndex === index ? 'bg-[#d4a373] scale-125' : 'bg-[#d4a373]/30 hover:bg-[#d4a373]/50'">
+                    </button>
+                </template>
+            </div>
+
+            <button @click="nextTestimonial()"
+                class="text-[#d4a373] hover:scale-110 active:scale-95 transition-transform p-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </button>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Prevents flashes of un-styled Alpine content */
+    [x-cloak] {
+        display: none !important;
+    }
+</style>

@@ -1,0 +1,72 @@
+<section class="bg-light-text pt-40 pb-20 px-6 overflow-hidden" x-data="testimonialSlider()" x-init="currentIndex = 0">
+    <div class="max-w-5xl mx-auto text-center">
+        <h2 class="text-4xl md:text-5xl font-serif font-bold text-dark-text mb-6">
+            Real stories from business owners like you...
+        </h2>
+
+        <p class="text-gray-600 mb-16 w-full mx-auto leading-relaxed text-xl max-w-5xl">
+            Don't just take our word for it. Hear how we've helped our clients transform and grow.
+        </p>
+
+        <div class="relative max-w-5xl mx-auto px-4 select-none">
+            <span
+                class="absolute -top-10 -left-4 md:left-0 text-[170px] leading-none text-[#d4a373]/20 font-serif select-none z-0">
+                “
+            </span>
+
+            <div class="relative z-10 block md:grid md:grid-cols-1">
+                <template x-for="(testimonial, index) in testimonials" :key="index">
+                    <div x-show="currentIndex === index || window.innerWidth >= 768"
+                        class="flex flex-col justify-between transition-all duration-500 ease-in-out md:col-start-1 md:row-start-1"
+                        :class="currentIndex === index ? 'opacity-100 translate-y-0 z-20' : 'opacity-0 translate-y-4 z-0 pointer-events-none'"
+                        x-cloak>
+                        <div class="min-h-[140px] md:min-h-0 flex items-center justify-center">
+                            <p class="text-lg md:text-xl italic text-gray-800 leading-relaxed text-left md:text-center"
+                                x-text="testimonial.quote">
+                            </p>
+                        </div>
+
+                        <div class="flex flex-row items-center justify-center space-x-4 mt-12 pb-2">
+                            <div class="relative shrink-0">
+                                <img :src="testimonial.image" :alt="testimonial.name"
+                                    class="w-16 h-16 rounded-full border-2 border-[#d4a373]/30 object-cover" />
+                            </div>
+                            <div class="text-left">
+                                <h4 class="font-bold text-[#d4a373] text-lg leading-tight" x-text="testimonial.name">
+                                </h4>
+                                <p class="text-xs uppercase tracking-widest text-gray-400 font-semibold"
+                                    x-text="testimonial.title"></p>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+
+        <div class="flex items-center justify-center space-x-8 mt-12">
+            <button @click="previousTestimonial()"
+                class="text-[#d4a373] hover:scale-110 active:scale-95 transition-transform p-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+            </button>
+
+            <div class="flex space-x-3">
+                <template x-for="(testimonial, index) in testimonials" :key="index">
+                    <button @click="currentIndex = index" class="w-2.5 h-2.5 rounded-full transition-all duration-300"
+                        :class="currentIndex === index ? 'bg-[#d4a373] scale-125' : 'bg-[#d4a373]/30 hover:bg-[#d4a373]/50'">
+                    </button>
+                </template>
+            </div>
+
+            <button @click="nextTestimonial()"
+                class="text-[#d4a373] hover:scale-110 active:scale-95 transition-transform p-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </button>
+        </div>
+    </div>
+</section>
