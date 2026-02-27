@@ -1,0 +1,485 @@
+/* iBrand Font */
+@font-face {
+    font-family: 'iBrand';
+    src: url('../fonts/iBrand/Fonts/Ibrand.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@keyframes bgShift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes crystalTumble {
+    0% {
+        transform: translate(var(--startTX), var(--startTY)) rotateX(var(--startX)) rotateY(var(--startY)) rotateZ(var(--startZ)) translateZ(-200px);
+    }
+
+    100% {
+        transform: translate(var(--endTX), var(--endTY)) rotateX(var(--endX)) rotateY(var(--endY)) rotateZ(var(--endZ)) translateZ(200px);
+    }
+}
+
+.glass-cube {
+    position: relative;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(40px);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    box-shadow:
+        inset 0 25px 40px rgba(255, 255, 255, 0.7),
+        0 50px 100px rgba(0, 0, 0, 0.1);
+
+    /* We move the animation property to the individual classes below */
+}
+
+.glass-cube::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, 0.8) 50%, transparent 70%);
+    background-size: 250% 250%;
+    animation: surfaceShine 10s infinite linear;
+    pointer-events: none;
+    z-index: 2;
+}
+
+@keyframes surfaceShine {
+    0% {
+        background-position: -250% 0;
+    }
+
+    100% {
+        background-position: 250% 0;
+    }
+}
+
+/* Individual Cube Logic */
+.c1 {
+    width: 80px;
+    height: 80px;
+    top: 10%;
+    left: 10%;
+    --startTX: 0px;
+    --startTY: 0px;
+    --endTX: 40px;
+    --endTY: 60px;
+    --startX: 0deg;
+    --startY: 0deg;
+    --startZ: 39deg;
+    --endX: 360deg;
+    --endY: 180deg;
+    --endZ: 90deg;
+    animation: crystalTumble 18s infinite alternate ease-in-out;
+    animation-delay: -2s;
+}
+
+.c2 {
+    width: 90px;
+    height: 90px;
+    bottom: 15%;
+    right: 10%;
+    --startTX: 0px;
+    --startTY: 0px;
+    --endTX: -50px;
+    --endTY: -40px;
+    --startX: 45deg;
+    --startY: 90deg;
+    --startZ: -20deg;
+    --endX: -180deg;
+    --endY: -45deg;
+    --endZ: -120deg;
+    animation: crystalTumble 22s infinite alternate ease-in-out;
+    animation-delay: -5s;
+}
+
+.c3 {
+    width: 110px;
+    height: 110px;
+    top: 35%;
+    left: 35%;
+    --startTX: 0px;
+    --startTY: 0px;
+    --endTX: 30px;
+    --endTY: -30px;
+    --startX: -10deg;
+    --startY: -10deg;
+    --startZ: 0deg;
+    --endX: 200deg;
+    --endY: 360deg;
+    --endZ: 45deg;
+    animation: crystalTumble 28s infinite alternate ease-in-out;
+    animation-delay: -10s;
+}
+
+.c4 {
+    width: 100px;
+    height: 100px;
+    top: 5%;
+    right: 20%;
+    --startTX: 0px;
+    --startTY: 0px;
+    --endTX: 50px;
+    --endTY: 20px;
+    --startX: 120deg;
+    --startY: -30deg;
+    --startZ: 60deg;
+    --endX: 0deg;
+    --endY: 200deg;
+    --endZ: -60deg;
+    animation: crystalTumble 20s infinite alternate ease-in-out;
+    animation-delay: -15s;
+}
+
+.c5 {
+    width: 120px;
+    height: 120px;
+    bottom: 25%;
+    left: 15%;
+    --startTX: 0px;
+    --startTY: 0px;
+    --endTX: 20px;
+    --endTY: 50px;
+    --startX: -45deg;
+    --startY: -45deg;
+    --startZ: 10deg;
+    --endX: 180deg;
+    --endY: 120deg;
+    --endZ: 300deg;
+    animation: crystalTumble 30s infinite alternate ease-in-out;
+    animation-delay: -20s;
+}
+
+.c6 {
+    width: 130px;
+    height: 130px;
+    top: 40%;
+    right: 5%;
+    --startTX: 0px;
+    --startTY: 0px;
+    --endTX: 30px;
+    --endTY: 60px;
+    --startX: 90deg;
+    --startY: 0deg;
+    --startZ: -30deg;
+    --endX: -90deg;
+    --endY: -270deg;
+    --endZ: -90deg;
+    animation: crystalTumble 25s infinite alternate ease-in-out;
+    animation-delay: -25s;
+}
+
+.c7 {
+    width: 140px;
+    height: 140px;
+    bottom: 5%;
+    left: 45%;
+    --startTX: 0px;
+    --startTY: 0px;
+    --endTX: 20px;
+    --endTY: 60px;
+    --startX: 0deg;
+    --startY: 180deg;
+    --startZ: -30deg;
+    --endX: -360deg;
+    --endY: 0deg;
+    --endZ: -120deg;
+    animation: crystalTumble 30s infinite alternate ease-in-out;
+    animation-delay: -30s;
+}
+
+/* Mobile-optimized cube classes */
+.c1-mobile {
+    width: 60px;
+    height: 60px;
+    top: 15%;
+    left: 15%;
+    --startTX: 0px;
+    --startTY: 0px;
+    --endTX: 30px;
+    --endTY: 40px;
+    --startX: 0deg;
+    --startY: 0deg;
+    --startZ: 39deg;
+    --endX: 360deg;
+    --endY: 180deg;
+    --endZ: 90deg;
+    animation: crystalTumble 18s infinite alternate ease-in-out;
+    animation-delay: -2s;
+}
+
+.c2-mobile {
+    width: 70px;
+    height: 70px;
+    bottom: 20%;
+    right: 15%;
+    --startTX: 0px;
+    --startTY: 0px;
+    --endTX: -40px;
+    --endTY: -30px;
+    --startX: 45deg;
+    --startY: 90deg;
+    --startZ: -20deg;
+    --endX: -180deg;
+    --endY: -45deg;
+    --endZ: -120deg;
+    animation: crystalTumble 22s infinite alternate ease-in-out;
+    animation-delay: -5s;
+}
+
+.c3-mobile {
+    width: 90px;
+    height: 90px;
+    top: 40%;
+    left: 40%;
+    --startTX: 0px;
+    --startTY: 0px;
+    --endTX: 20px;
+    --endTY: -20px;
+    --startX: -10deg;
+    --startY: -10deg;
+    --startZ: 0deg;
+    --endX: 200deg;
+    --endY: 360deg;
+    --endZ: 45deg;
+    animation: crystalTumble 28s infinite alternate ease-in-out;
+    animation-delay: -10s;
+}
+
+.c4-mobile {
+    width: 80px;
+    height: 80px;
+    top: 10%;
+    right: 25%;
+    --startTX: 0px;
+    --startTY: 0px;
+    --endTX: 40px;
+    --endTY: 10px;
+    --startX: 120deg;
+    --startY: -30deg;
+    --startZ: 60deg;
+    --endX: 0deg;
+    --endY: 200deg;
+    --endZ: -60deg;
+    animation: crystalTumble 20s infinite alternate ease-in-out;
+    animation-delay: -15s;
+}
+
+.c5-mobile {
+    width: 100px;
+    height: 100px;
+    bottom: 30%;
+    left: 20%;
+    --startTX: 0px;
+    --startTY: 0px;
+    --endTX: 10px;
+    --endTY: 40px;
+    --startX: -45deg;
+    --startY: -45deg;
+    --startZ: 10deg;
+    --endX: 180deg;
+    --endY: 120deg;
+    --endZ: 300deg;
+    animation: crystalTumble 30s infinite alternate ease-in-out;
+    animation-delay: -20s;
+}
+
+.c6-mobile {
+    width: 110px;
+    height: 110px;
+    top: 45%;
+    right: 10%;
+    --startTX: 0px;
+    --startTY: 0px;
+    --endTX: 20px;
+    --endTY: 50px;
+    --startX: 90deg;
+    --startY: 0deg;
+    --startZ: -30deg;
+    --endX: -90deg;
+    --endY: -270deg;
+    --endZ: -90deg;
+    animation: crystalTumble 25s infinite alternate ease-in-out;
+    animation-delay: -25s;
+}
+
+.c7-mobile {
+    width: 120px;
+    height: 120px;
+    bottom: 10%;
+    left: 50%;
+    --startTX: 0px;
+    --startTY: 0px;
+    --endTX: 10px;
+    --endTY: 50px;
+    --startX: 0deg;
+    --startY: 180deg;
+    --startZ: -30deg;
+    --endX: -360deg;
+    --endY: 0deg;
+    --endZ: -120deg;
+    animation: crystalTumble 30s infinite alternate ease-in-out;
+    animation-delay: -30s;
+}
+
+[x-cloak] {
+    display: none !important;
+}
+
+
+/* PROJECTS SECTION */
+.projects-bg-text {
+    font-size: 18vw;
+    line-height: 1;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, #B0E0E6 0%, #89CFF0 50%, #FFDAB9 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 200%;
+    animation: bgShift 8s infinite alternate ease-in-out;
+}
+
+.perspective-2500 {
+    perspective: 2500px;
+}
+
+.preserve-3d {
+    transform-style: preserve-3d;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+/* The Continuous Animation */
+.carousel-stage {
+    animation: carousel-rotate 40s linear infinite;
+}
+
+/* Pauses rotation on hover */
+.carousel-stage:hover {
+    animation-play-state: paused;
+}
+
+@keyframes carousel-rotate {
+    from {
+        transform: rotateY(360deg);
+    }
+
+    to {
+        transform: rotateY(0deg);
+    }
+}
+
+/* Card Positioning using CSS Variables */
+.carousel-card {
+    /* Position each card in the ring */
+    transform: rotateY(calc(var(--index) * (360deg / var(--total)))) translateZ(550px);
+}
+
+/* Optional: Makes the far-side cards look further away */
+.carousel-card {
+    backface-visibility: visible;
+}
+
+/* END PROJECTS SECTION */
+
+/* TESTIMONIALS SECTION */
+@keyframes bgShift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee-scroll 100s linear infinite;
+}
+
+/* This ensures only the hovered card triggers the pause for the whole track */
+.marquee-track:has(.group:hover) {
+    animation-play-state: paused;
+}
+
+@keyframes marquee-scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* END TESTIMONIALS SECTION */
+
+/* ABOUT SECTION */
+.arc-bg-text {
+    font-size: 24vw;
+    line-height: 1;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, #B0E0E6 0%, #89CFF0 50%, #FFDAB9 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 200%;
+    animation: bgShift 8s infinite alternate ease-in-out;
+}
+
+.arc-wing-left {
+    transform: translateY(-400px) translateX(-150px) rotateY(-45deg) scale(0.3) translateZ(500px);
+    opacity: 0;
+}
+
+.arc-center {
+    transform: translateY(-400px) scale(0.3) translateZ(500px);
+    opacity: 0;
+}
+
+.arc-wing-right {
+    transform: translateY(-400px) translateX(150px) rotateY(45deg) scale(0.3) translateZ(500px);
+    opacity: 0;
+}
+
+.is-docked.arc-wing-left,
+.is-docked.arc-wing-right,
+.is-docked.arc-center {
+    transform: translateY(0) translateX(0) rotateY(0deg) scale(1) translateZ(0);
+    opacity: 1;
+}
+
+@keyframes bgShift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+/* END ABOUT SECTION */

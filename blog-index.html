@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flying Mouse Labs</title>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="./assets/css/output.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Scripts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://unpkg.com/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="./assets/js/component-loader.js"></script>
+    <script src="./assets/js/blog-data.js"></script>
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'cyan-400': '#1C9DD9',
+                        'brand-orange': '#E4A03A',
+                        'slate-950': '#041A24',
+                        'white': '#FCFCFC'
+                    },
+                    backgroundImage: {
+                        // The exact gradient with the cyan shift and orange highlight
+                        'arctic-lab': "linear-gradient(135deg, rgba(207, 250, 254, 0.8) 0%, rgba(134, 239, 252, 0.8) 20%, rgba(110, 206, 241, 0.8) 40%, rgba(207, 250, 254, 0.8) 60%, rgba(228, 160, 58, 0.4) 75%, rgba(103, 232, 249, 0.8) 100%)",
+                    },
+                    animation: {
+                        'bgShift': 'bgShift 10s infinite alternate ease-in-out',
+                    },
+                    fontFamily: {
+                        heading: ['Montserrat', 'sans-serif'],
+                        body: ['Poppins', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom Styles -->
+    <style>
+    </style>
+</head>
+
+<body class="bg-white font-heading antialiased">
+
+    <section id="blog-archive" x-data="getBlogData()"
+        class="relative overflow-hidden py-24 px-8 md:px-24 lg:px-48 min-h-screen" style="background: linear-gradient(135deg, 
+    rgba(165, 243, 252, 0.8) 0%,   /* Cyan Start */
+    rgba(134, 239, 252, 0.8) 20%,  /* Electric Teal */
+    rgba(110, 206, 241, 0.8) 40%,  /* Your Brand Blue (#6ECEF1) */
+    rgba(207, 250, 254, 0.8) 60%,  /* Frost */
+    rgba(228, 160, 58, 0.4) 75%,   /* <--- YOUR BRAND ORANGE (#E4A03A) */
+    rgba(103, 232, 249, 0.8) 100%  /* Cyan Finish */
+); background-size: 400% 400%; animation: bgShift 10s infinite alternate ease-in-out; perspective: 2000px;">
+
+        <div class="max-w-7xl mx-auto mb-16 md:mb-24 border-l-4 border-brand-blue pl-6 md:pl-10">
+            <span class="font-mono text-xs md:text-sm tracking-[0.3em] text-brand-dark/50 uppercase">
+                [ ARCHIVE_01 ]
+            </span>
+            <h1
+                class="font-black text-5xl md:text-7xl lg:text-8xl text-brand-dark mt-2 mb-4 uppercase tracking-tighter leading-none">
+                Insights
+            </h1>
+            <p class="max-w-md text-brand-dark/70 text-sm md:text-lg leading-relaxed">
+                Documenting the intersection of arctic design philosophy and high-scale performance.
+            </p>
+        </div>
+
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-12 gap-x-10 md:gap-x-12">
+
+            <template x-for="post in posts" :key="post.title">
+                <a href="blog-single.html"
+                    class="relative flex flex-col p-6 md:p-8 bg-white/50 backdrop-blur-md border border-white/40 rounded-[48px] shadow-xl transition-all duration-500 hover:shadow-xl no-underline">
+
+                    <div
+                        class="relative w-full aspect-video md:aspect-[4/3] rounded-[32px] overflow-hidden mb-8 border border-white/20 shadow-inner">
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 ease-out"
+                            :style="`background-image: url('${post.img}')`"></div>
+                        <div
+                            class="absolute inset-0 bg-brand-dark/5 opacity-0 hover:opacity-100 transition-opacity duration-500">
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-4 mb-4">
+                        <span class="font-mono text-[10px] md:text-xs font-bold tracking-[0.2em] text-brand-blue"
+                            x-text="'// ' + post.date"></span>
+                        <span class="text-[10px] md:text-xs font-black text-brand-dark/40 uppercase tracking-widest"
+                            x-text="'• ' + post.cat"></span>
+                    </div>
+
+                    <h3 class="font-black text-xl md:text-2xl text-brand-dark leading-[1.2] mb-8 transition-colors duration-300 hover:text-brand-blue"
+                        x-text="post.title"></h3>
+
+                    <div class="mt-auto">
+                        <span
+                            class="inline-flex items-center justify-center w-full py-3 bg-brand-dark text-white rounded-full font-bold tracking-widest uppercase text-[10px] md:text-xs transition-all duration-300 hover:bg-brand-blue hover:shadow-[0_0_20px_rgba(28,157,217,0.4)] active:scale-95 gap-3">
+                            Access_File
+                            <span class="text-lg transition-transform duration-300 hover:translate-x-2">&rarr;</span>
+                        </span>
+                    </div>
+                </a>
+            </template>
+
+        </div>
+    </section>
+
+</body>
+
+</html>

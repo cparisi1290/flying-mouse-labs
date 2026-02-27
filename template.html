@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flying Mouse Labs</title>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="./assets/css/output.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Scripts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://unpkg.com/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="./assets/js/component-loader.js"></script>
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'sky-500': '#1C9DD9',
+                        'amber-500': '#E4A03A',
+                        'slate-950': '#041A24',
+                        'white': '#FCFCFC'
+                    },
+                    backgroundImage: {
+                        // The exact gradient with the cyan shift and orange highlight
+                        'arctic-lab': "linear-gradient(135deg, rgba(207, 250, 254, 0.8) 0%, rgba(134, 239, 252, 0.8) 20%, rgba(110, 206, 241, 0.8) 40%, rgba(207, 250, 254, 0.8) 60%, rgba(228, 160, 58, 0.4) 75%, rgba(103, 232, 249, 0.8) 100%)",
+                    },
+                    animation: {
+                        'bgShift': 'bgShift 10s infinite alternate ease-in-out',
+                    },
+                    fontFamily: {
+                        heading: ['Montserrat', 'sans-serif'],
+                        body: ['Poppins', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom Styles -->
+    <style>
+    </style>
+</head>
+
+<body class="bg-white">
+    <!-- NAVIGATION -->
+    <include src="components/navbar.html"></include>
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- CONTACT SECTION -->
+    <div id="contact-container"></div>
+
+    <!-- FOOTER SECTION -->
+    <div id="footer-container"></div>
+
+
+    <script src="./assets/js/main.js"></script>
+    <script src="./assets/js/components.js"></script>
+    <script src="./assets/js/testimonials-data.js"></script>
+    <script src="./assets/js/projects-data.js"></script>
+    <script src="./assets/js/blog-data.js"></script>
+
+
+</body>
+
+</html>

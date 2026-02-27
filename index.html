@@ -1,516 +1,739 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flying Mouse Labs</title>
-    <link rel="stylesheet" href="assets/css/styles.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="./assets/css/output.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800,1&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100..800,1&display=swap" rel="stylesheet">
-    <script defer src="assets/js/main.js"></script>    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Scripts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://unpkg.com/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="./assets/js/component-loader.js"></script>
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'sky-500': '#1C9DD9',
+                        'amber-500': '#E4A03A',
+                        'slate-950': '#041A24',
+                        'white': '#FCFCFC'
+                    },
+                    backgroundImage: {
+                        // The exact gradient with the cyan shift and orange highlight
+                        'arctic-lab': "linear-gradient(135deg, rgba(207, 250, 254, 0.8) 0%, rgba(134, 239, 252, 0.8) 20%, rgba(110, 206, 241, 0.8) 40%, rgba(207, 250, 254, 0.8) 60%, rgba(228, 160, 58, 0.4) 75%, rgba(103, 232, 249, 0.8) 100%)",
+                    },
+                    animation: {
+                        'bgShift': 'bgShift 10s infinite alternate ease-in-out',
+                    },
+                    fontFamily: {
+                        heading: ['Montserrat', 'sans-serif'],
+                        body: ['Poppins', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom Styles -->
+    <style>
+    </style>
 </head>
 
-<body>
+<body class="bg-white">
+    <!-- NAVIGATION -->
+    <include src="components/navbar.html"></include>
 
-<nav id="bespoke-nav">
-    <div class="nav-container">
-        <a href="#hero" class="nav-logo">
-            <div class="logo-box">
-                <img src="./assets/images/fml-logo-v1.svg" alt="Flying Mouse Labs Logo" class="logo-img">
-            </div>
-        </a>
+    <!-- HERO SECTION -->
+    <section id="home"
+        class="flex flex-col min-h-screen w-full relative overflow-hidden bg-arctic-lab bg-[length:400%_400%] animate-bgShift [perspective:2000px]">
 
-        <div class="nav-right">
-            <div class="nav-links">
-                <a href="#services-accordion" class="nav-item">Services</a>
-                <a href="#perf-metrics-module" class="nav-item">Case Studies</a>
-                <a href="#portfolio" class="nav-item">Project</a>
-                <a href="#testimonials" class="nav-item">Testimonials</a>
-                <a href="#arc-triptych-wrapper" class="nav-item">About</a>
-            </div>
-            <div class="nav-cta">
-                <a href="#contact-section" class="btn-frame">Start Project</a>
-            </div>
-        </div>
+        <div class="flex-grow flex flex-col items-center justify-center px-6 text-center relative z-20">
+            <!-- Mobile Cubes -->
+            <div class="glass-cube c1-mobile absolute lg:hidden"></div>
+            <div class="glass-cube c2-mobile absolute lg:hidden"></div>
+            <div class="glass-cube c3-mobile absolute lg:hidden"></div>
+            <div class="glass-cube c4-mobile absolute lg:hidden"></div>
+            <div class="glass-cube c5-mobile absolute lg:hidden"></div>
+            <div class="glass-cube c6-mobile absolute lg:hidden"></div>
+            <div class="glass-cube c7-mobile absolute lg:hidden"></div>
 
-        <!-- Mobile Hamburger Menu -->
-        <div class="hamburger" id="hamburger-menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
+            <!-- Desktop Cubes -->
+            <div class="glass-cube c1 absolute lg:block hidden"></div>
+            <div class="glass-cube c2 absolute lg:block hidden"></div>
+            <div class="glass-cube c3 absolute lg:block hidden"></div>
+            <div class="glass-cube c4 absolute lg:block hidden"></div>
+            <div class="glass-cube c5 absolute lg:block hidden"></div>
+            <div class="glass-cube c6 absolute lg:block hidden"></div>
+            <div class="glass-cube c7 absolute lg:block hidden"></div>
 
-        <!-- Mobile Navigation Overlay -->
-        <div class="nav-overlay" id="nav-overlay">
-            <div class="nav-overlay-logo">
-                <div class="logo-box">
-                </div>
-            </div>
-            <div class="nav-overlay-close" id="nav-overlay-close">
-                <span class="x-line"></span>
-                <span class="x-line"></span>
-            </div>
-            <div class="nav-overlay-content">
-                <div class="nav-overlay-links">
-                    <a href="#services-accordion" class="nav-item">Services</a>
-                    <a href="#perf-metrics-module" class="nav-item">Case Studies</a>
-                    <a href="#portfolio" class="nav-item">Project</a>
-                    <a href="#testimonials" class="nav-item">Testimonials</a>
-                    <a href="#arc-triptych-wrapper" class="nav-item">About</a>
-                </div>
-                <div class="nav-overlay-cta">
-                    <a href="#contact-section" class="btn-frame">Start Project</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</nav>
+            <div class="max-w-3xl lg:max-w-4xl w-full flex flex-col items-center space-y-8">
+                <h1
+                    class="text-4xl md:text-7xl lg:text-8xl font-black text-slate-950 leading-tight uppercase relative z-30 mt-36">
+                    Make Your<br class="lg:hidden">
+                    First Impression<br class="lg:hidden">
+                    <span class="text-amber-500">Unforgettable</span>
+                </h1>
 
-<section class="section-layer" id="hero">
-    <div class="hero-content">
-        <div class="text-box">
-            <h1>Make Your <br> First Impression <span>Unforgettable</span></h1>
-            <p>Creating custom designs that captivate, convert, and <span>linger</span>. <br>Because blending in has never been your style.</p>
-            <div class="button-group">
-                <a href="#portfolio" class="btn btn-primary">Explore the Lab</a>
-                <a href="#contact-section" class="btn btn-secondary">Launch the Growth</a>
-            </div>
-        </div>
-    </div>
-    <div class="glass-engine">
-        <div class="glass-cube c1"></div><div class="glass-cube c2"></div><div class="glass-cube c3"></div>
-        <div class="glass-cube c4"></div><div class="glass-cube c5"></div><div class="glass-cube c6"></div><div class="glass-cube c7"></div>
-    </div>
-</section>
+                <p
+                    class="text-lg md:text-2xl lg:text-3xl text-slate-950 max-w-3xl font-medium text-center relative z-30">
+                    Creating custom designs that captivate, convert, and <span class="italic font-bold">linger</span>.
+                    Because blending in has never been your style.
+                </p>
 
-<section id="services-accordion">
-<div class="accordion-header">
-    <!-- <span class="perf-label-top">// Services</span> -->
-    <h2 class="perf-main-heading">Services to help you <span>soar</span></h2>
-</div>
+                <div
+                    class="flex flex-col md:flex-row md:justify-center gap-4 w-full md:max-w-2xl max-w-xs pt-4 relative z-30">
+                    <a href="#contact"
+                        class="w-full md:w-72 py-4 bg-slate-950 text-white rounded-full font-bold tracking-widest uppercase transition-transform hover:scale-105 active:scale-95 shadow-lg text-center no-underline">
+                        Launch Your Growth
+                    </a>
 
-    <div class="accordion-container">
-        <div class="blade active blade-design">
-            <div class="blade-glass-frost"></div>
-            <div class="blade-content">
-                <span class="blade-number">01</span>
-                <h3 class="blade-title">Design</h3>
-                <div class="blade-expanded-text">
-                    <p>Custom, intuitive designs that capture your brand's unique strength and individuality. Every detail draws visitors in and keeps them engaged.</p>
-                    <ul class="service-list">
-                        <li>Branding</li>
-                        <li>Messaging</li>
-                        <li>Graphics</li>
-                        <li>Copywriting</li>
-                    </ul>
+                    <a href="#projects"
+                        class="w-full md:w-64 py-4 rounded-full border-2 border-slate-950 text-slate-950 font-bold tracking-widest uppercase transition-all hover:scale-105 active:scale-95 shadow-lg text-center no-underline"
+                        style="background: rgba(255,255,255,0.4); backdrop-filter: blur(10px);">
+                        Explore Lab
+                    </a>
                 </div>
             </div>
         </div>
+    </section>
 
-        <div class="blade blade-build">
-            <div class="blade-glass-frost"></div>
-            <div class="blade-content">
-                <span class="blade-number">02</span>
-                <h3 class="blade-title">Build</h3>
-                <div class="blade-expanded-text">
-                    <p>We engineer fast, reliable, and secure websites built to convert and optimized to perform across every device.</p>
-                    <ul class="service-list">
-                        <li>Web Design</li>
-                        <li>Web Development</li>
-                        <li>App Development</li>
-                    </ul>
-                </div>
-            </div>
+    <!-- SERVICES SECTION -->
+    <section id="services" x-data="{ activeService: 1 }" class="py-20 lg:py-36 px-6 md:px-12 bg-white">
+
+        <div class="text-center mb-12 lg:mb-20">
+
+            <h2 class="text-5xl md:text-6xl lg:text-7xl font-black text-slate-950 leading-tight uppercase ">
+                Services to help<br class="lg:hidden">
+                you <span class="text-sky-500 italic">SOAR</span>
+            </h2>
         </div>
 
-        <div class="blade blade-scale">
-            <div class="blade-glass-frost"></div>
-            <div class="blade-content">
-                <span class="blade-number">03</span>
-                <h3 class="blade-title">Scale</h3>
-                <div class="blade-expanded-text">
-                    <p>Strategy and support to bring you more leads and stronger conversions, so your brand can keep pace with your ambition.</p>
-                    <ul class="service-list">
-                        <!-- <li>SEO Strategy</li> -->
-                        <li>Data Cleaning</li>
-                        <li>Data Automations</li>
-                        <li>LLM Chatbot API</li>
-                        <li>Data Science</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+        <div
+            class="max-w-4xl lg:max-w-7xl mx-auto space-y-6 lg:space-y-0 lg:flex lg:flex-row lg:items-stretch lg:gap-4 lg:h-[600px]">
 
-<section id="perf-metrics-module">
-    <div class="perf-wrapper">
-        
-        <div class="perf-intro">
-            <!-- <span class="perf-label-top">// ROI & Data</span> -->
-            <h2 class="perf-main-heading">Proven Results. <br><span> Measureable Impact.</span></h2>
-        </div>
-        <div class="perf-glass-grid">
-            <div class="performance-glass-card">
-                <div class="card-inner-content">
-                    <span class="metric-category">Conversion</span>
-                    <div class="metric-value">+350%</div>
-                    <p class="metric-description">Higher conversion rates from professional UX/UI design.</p>
-                    <div class="metric-footer">Forrester Research</div>
-                </div>
-            </div>
-            <div class="performance-glass-card">
-                <div class="card-inner-content">
-                    <span class="metric-category">ROI</span>
-                    <div class="metric-value">$100</div>
-                    <p class="metric-description">Return for every $1 invested in UX/design.</p>
-                    <div class="metric-footer">Forrester Research</div>
-                </div>
-            </div>
-            <div class="performance-glass-card">
-                <div class="card-inner-content">
-                    <span class="metric-category">Engagement</span>
-                    <div class="metric-value">83%</div>
-                    <p class="metric-description">Increase in conversions/engagement from smarter UX investment.</p>
-                    <div class="metric-footer">Interaction Design Foundation / Forrester-linked studies</div>
-                </div>
-            </div>
-            <div class="performance-glass-card">
-                <div class="card-inner-content">
-                    <span class="metric-category">Revenue Growth</span>
-                    <div class="metric-value">+120%</div>
-                    <p class="metric-description">YoY revenue increase from professional website redesigns.</p>
-                    <div class="metric-footer">Industry redesign case studies & UX reports</div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+            <template x-for="(service, index) in [
 
-<section id="portfolio" class="section-reveal">
-    <h2 class="portfolio-bg-text">Projects</h2>
-    <div class="carousel-stage" id="carousel"></div>
-</section>
+                        {id: 1, title: 'Design', tags: ['Branding', 'Messaging', 'Graphics', 'Copywriting'], img: 'design-balloons.jpg', desc: 'Custom, intuitive designs that capture your brand\'s unique strength and individuality. Every detail draws visitors in and keeps them engaged.'},
 
-<div id="arctic-lightbox">
-    <div class="lb-content">
-        <span class="lb-close" id="lb-close-btn">&times;</span>
-        <div class="lb-scroll-container" id="lb-scroll">
-            <div> 
-                <h2 id="lb-title"></h2>
-				<p id="lb-category"></p>
-                <p id="lb-description"></p>
-                <p id="lb-quote"></p>
-            </div>
-            <div id="lb-visual-stack"></div>
-        </div>
-        <div class="lb-nav">
-            <button id="lb-prev" class="nav-btn">&larr; Previous</button>
-            <!-- <div id="lb-counter">DATABASE_ENTRY: 0 / 0</div> -->
-            <button id="lb-next" class="nav-btn">Next &rarr;</button>
-        </div>
-    </div>
-</div>
+                        {id: 2, title: 'Build', tags: ['Development', 'UI/UX', 'Strategy'], img: 'build-community.jpg', desc: 'We engineer fast, reliable, and secure websites built to convert and optimized to perform across every device.'},
 
-<section id="testimonials">
-    <div class="testi-left">
-        <!-- <span class="perf-label-top">// Testimonials</span> -->
-        <h2 class="perf-main-heading">Real Stories.<br><span>Real Results.</span></h2>
-        <!-- <p>What our clients are saying</p> -->
-    </div>
+                        {id: 3, title: 'Scale', tags: ['Data Automations', 'LLM Chatbot', 'Data Science'], img: 'scale-bubbles.jpg', desc: 'We build intelligent systems that automate workflows, enhance decision-making, and unlock new levels of efficiency.'}
 
-    <div class="testi-right">
-        <div class="scene">
-            <div class="glass-cube c1"></div>
-            <div class="glass-cube c2"></div>
-            <div class="glass-cube c3"></div>
-            <div class="glass-cube c4"></div>
-            <div class="glass-cube c5"></div>
-            <div class="glass-cube c6"></div>
-            <div class="glass-cube c7"></div>
-        </div>
-        <div class="testi-track" id="testiTrack"></div>
-    </div>
-</section>
-	
-<section id="arc-triptych-wrapper">
-    <div class="arc-triptych-viewport">
-        <div class="arc-triptych-container" id="arc-triptych-monolith">
-		    <h2 class="arc-bg-text">About</h2>
-            <div class="arc-triptych-panel arc-wing-left">
-                <div class="arc-panel-img"></div>
-                <div class="arc-panel-content">
-                    <!-- <span class="arc-panel-label">// 01 Ethos</span> -->
-                    <h3 class="arc-panel-title">Values</h3>
-                    <p class="arc-panel-text">Integrity, transparency, and the relentess pursuit of excellence. We shoot straight. We go hard.</p>
-                </div>
-            </div>
+                    ]" :key="index">
 
-            <div class="arc-triptych-panel arc-panel-center">
-                <div class="arc-panel-img"></div>
-                <div class="arc-panel-content">
-                    <!-- <span class="arc-panel-label">// 02 Drive</span> -->
-                    <h3 class="arc-panel-title">Mission</h3>
-                    <p class="arc-panel-text">To refine and elevate brands and businesses for greater impact. More success. Less effort.</p>
-                </div>
-            </div>
+                <div @click="activeService = service.id"
+                    @mouseenter="window.innerWidth >= 1024 ? activeService = service.id : null"
+                    class="group relative overflow-hidden rounded-[40px] transition-all duration-700 cursor-pointer shadow-xl"
+                    :class="activeService === service.id ? 'h-[500px] md:h-[600px] lg:flex-[3]' : 'h-[100px] lg:h-full lg:flex-1'">
 
-            <div class="arc-triptych-panel arc-wing-right">
-                <div class="arc-panel-img"></div>
-                <div class="arc-panel-content">
-                    <!-- <span class="arc-panel-label">// 03 Core</span> -->
-                    <h3 class="arc-panel-title">Philosophy</h3>
-                    <p class="arc-panel-text">Entrepreneurship means freedom and empowerment. Strong brands. Stronger stories.</p>
-        </div>
-    </div>
-</section>
+                    <img :src="'assets/images/' + service.img"
+                        class="absolute inset-0 w-full h-full object-cover transition-all duration-700" :class="activeService !== service.id 
+                                 ? 'grayscale brightness-100 opacity-80 blur-sm scale-110' 
+                                 : 'grayscale-0 brightness-100 opacity-100 blur-0 scale-100 group-hover:scale-105'">
 
-<!-- About Section Lightbox -->
-<!-- <div id="about-lightbox">
-    <div class="about-lb-content">
-        <span class="about-lb-close" id="about-lb-close-btn">&times;</span>
-        <div class="about-lb-scroll-container" id="about-lb-scroll">
-            <div class="about-lb-header">
-                <h2 id="about-lb-title"></h2>
-                <p id="about-lb-subtitle"></p>
-            </div>
-            <div class="about-lb-body">
-                <div class="about-lb-image" id="about-lb-image"></div>
-                <div class="about-lb-content-text" id="about-lb-content"></div>
-            </div>
-            <div class="about-lb-footer">
-                <div class="about-lb-stats" id="about-lb-stats"></div>
-            </div>
-        </div>
-        <div class="about-lb-nav">
-            <button id="about-lb-prev" class="nav-btn">&larr; Previous</button>
-            <button id="about-lb-next" class="nav-btn">Next &rarr;</button>
-        </div>
-    </div>
-</div> -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent transition-opacity duration-500"
+                        :class="activeService === service.id ? 'opacity-100' : 'opacity-0'">
 
-<section id="contact-section">
-    <div class="glass-cube c1"></div>
-    <div class="glass-cube c2"></div>
-    <div class="glass-cube c3"></div>
-    <div class="glass-cube c4"></div>
-    <div class="glass-cube c5"></div>
-    <div class="glass-cube c6"></div>
-    <div class="glass-cube c7"></div>
-
-    <div class="contact-container">
-        <div class="contact-intro">
-            <!-- <span class="perf-label-top">// Ready to Scale?</span> -->
-            <h2 class="contact-title">Let's build <br>something <span>extraordinary.</span></h2>
-            <p class="contact-description">
-                Fill out the inquiry form, and we'll get back to you within 24 hours.
-            </p>
-            <!-- Mobile Contact Button -->
-            <button id="mobile-contact-btn" class="mobile-contact-btn">Start Your Project</button>
-        </div>
-        <div class="contact-form-wrapper">
-            <form id="inquiry-form">
-                <div class="form-row">
-                    <div class="input-group">
-                        <label>First Name*</label>
-                        <input type="text" placeholder="Nicola" required>
                     </div>
-                    <div class="input-group">
-                        <label>Last Name*</label>
-                        <input type="text" placeholder="Tesla" required>
+
+                    <div x-show="activeService === service.id"
+                        x-transition:enter="transition opacity ease-out duration-500 delay-200"
+                        x-transition:enter-start="opacity-0 translate-y-4"
+                        x-transition:enter-end="opacity-100 translate-y-0"
+                        class="absolute inset-0 p-8 md:p-12 flex flex-col justify-end">
+
+                        <span class="text-white/70 text-lg md:text-xl font-bold mb-2" x-text="'0' + service.id"></span>
+
+                        <h3 class="text-white text-5xl md:text-7xl font-black uppercase mb-4 tracking-tighter"
+                            x-text="service.title"></h3>
+
+                        <div x-show="activeService === service.id" x-collapse>
+
+                            <p class="text-white/90 text-lg md:text-xl mb-8 leading-relaxed max-w-2xl"
+                                x-text="service.desc"></p>
+
+                            <div class="flex flex-wrap gap-2 md:gap-3">
+
+                                <template x-for="tag in service.tags" :key="tag">
+
+                                    <span
+                                        class="px-4 py-2 border border-white/30 rounded-full text-white text-[10px] md:text-xs uppercase font-black tracking-widest bg-white/10 backdrop-blur-md"
+                                        x-text="tag"></span>
+
+                                </template>
+                            </div>
+                        </div>
                     </div>
                 </div>
+            </template>
+        </div>
+    </section>
 
-                <div class="form-row">
-                    <div class="input-group">
-                        <label>Email Address*</label>
-                        <input type="email" placeholder="nicola@tesla.com" required>
+    <!-- CASE STUDIES SECTION-->
+    <section id="case-studies" x-data="{ 
+                    shown: false,
+                    metrics: [
+
+                        { label: 'Conversion', value: 350, prefix: '+', suffix: '%', desc: 'Higher conversion rates from professional UX/UI design.', source: 'Forrester Research' },
+
+                        { label: 'ROI', value: 100, prefix: '$', suffix: '', desc: 'Return for every $1 invested in UX/design.', source: 'Forrester Research' },
+
+                        { label: 'Engagement', value: 85, prefix: '', suffix: '%', desc: 'Increase in engagement through visual storytelling.', source: 'Interaction Design Foundation / Forrester-linked studies' },
+
+                        { label: 'Revenue Growth', value: 120, prefix: '+', suffix: '%', desc: 'YoY revenue increase from professional website redesigns.', source: 'Industry redesign case studies & UX reports' }
+                    ],
+
+                    init() {
+                        const observer = new IntersectionObserver((entries) => {
+                            if (entries[0].isIntersecting) {
+                                this.shown = true;
+                                observer.unobserve(this.$el); 
+                            }
+                        }, { threshold: 0.3 });
+                        observer.observe(this.$el);
+                    }
+
+                }"
+        class="py-20 px-6 md:px-12 bg-arctic-lab animate-bgShift bg-[length:400%_400%] min-h-screen flex flex-col justify-center [perspective:2000px]">
+
+        <div class="text-center mb-12">
+            <h2 class="text-4xl md:text-6xl font-black text-slate-950 leading-tight uppercase tracking-tighter">
+                Proven Results.<br>
+                <span class="text-sky-600 uppercase">Measureable Impact.</span>
+            </h2>
+        </div>
+
+        <div
+            class="max-w-md md:max-w-4xl lg:max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full px-2">
+            <template x-for="item in metrics" :key="item.label">
+                <div
+                    class="bg-white/60 backdrop-blur-md rounded-[32px] p-6 md:p-10 border border-white/40 shadow-sm flex flex-col justify-between h-auto min-h-[220px] md:min-h-[280px] lg:min-h-[320px] transition-all duration-500 hover:scale-[1.02] hover:bg-white/80">
+                    <div>
+                        <p class="text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase text-slate-950 opacity-60 mb-6"
+                            x-text="item.label"></p>
+                        <h3
+                            class="text-5xl md:text-6xl font-black text-slate-950 tracking-tighter flex items-baseline mb-4">
+                            <span class="mr-[-2px]" x-text="item.prefix"></span>
+                            <span x-data="counterLogic(item.value)"
+                                x-init="$watch('shown', value => { if(value) start(); })" x-text="display"></span>
+                            <span class="ml-[-2px]" x-text="item.suffix"></span>
+                        </h3>
+                        <p class="text-lg md:text-xl font-semibold text-slate-950/80 leading-tight md:leading-snug md:max-w-full"
+                            x-text="item.desc"></p>
                     </div>
-                    <div class="input-group">
-                        <label>Website (or N/A)*</label>
-                        <input type="text" placeholder="www.nicolatesla.com" required>
+
+                    <div class="mt-6 pt-4 border-t border-slate-950/5 font-mono tracking-wider">
+                        <p class="text-[9px] font-bold text-slate-950/40 uppercase leading-none" x-text="item.source">
+                        </p>
                     </div>
                 </div>
+            </template>
+        </div>
+    </section>
 
-                <div class="input-group">
-                    <label>What services are you interested in?*</label>
-                    <div class="checkbox-grid checkbox-group">
-                        <label class="check-item"><input type="checkbox"> <span>Custom Web Design</span></label>
-                        <label class="check-item"><input type="checkbox"> <span>Branding</span></label>
-                        <label class="check-item"><input type="checkbox"> <span>Sales Funnel</span></label>
-                        <label class="check-item"><input type="checkbox"> <span>Data Science</span></label>
-                        <label class="check-item"><input type="checkbox"> <span>Data Automations</span></label>
-                        <label class="check-item"><input type="checkbox"> <span>Data Cleaning</span></label>
-                        <label class="check-item"><input type="checkbox"> <span>LLM Chatbot API</span></label>
-                        <!-- <label class="check-item"><input type="checkbox"> <span>SEO Strategy</span></label> -->
-                        <!-- <label class="check-item"><input type="checkbox"> <span>Custom Web Dev</span></label> -->
-                        <!-- <label class="check-item"><input type="checkbox"> <span>Paid Ads</span></label> -->
-                        <!-- <label class="check-item"><input type="checkbox"> <span>Social Media</span></label> -->
-                        <!-- <label class="check-item"><input type="checkbox"> <span>Sales Strategy</span></label> -->
+    <script>
+        function counterLogic(target) {
+            return {
+                display: 0,
+                start() {
+                    let startTime = null;
+                    const duration = 1500;
+                    const step = (timestamp) => {
+                        if (!startTime) startTime = timestamp;
+                        const progress = Math.min((timestamp - startTime) / duration, 1);
+                        const current = progress * target;
+                        this.display = target % 1 === 0
+                            ? Math.floor(current)
+                            : current.toFixed(1);
+                        if (progress < 1) requestAnimationFrame(step);
+                    };
+                    requestAnimationFrame(step);
+                }
+            }
+        }
+    </script>
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects" x-data="projectsData" class="py-32 md:min-h-screen bg-white overflow-hidden relative">
+
+        <!-- PROJECTS MOBILE + TABLET -->
+        <div class="lg:hidden px-6 md:px-12 mb-12 lg:mb-20">
+            <h2 class="text-4xl md:text-6xl font-black text-slate-950 tracking-tighter uppercase leading-none">
+                Projects.
+            </h2>
+            <div class="h-1 w-12 bg-sky-500 mt-4"></div>
+        </div>
+
+        <div class="lg:hidden flex overflow-x-auto snap-x snap-mandatory no-scrollbar gap-4 px-6 md:px-12 pb-32">
+            <template x-for="(project, index) in projects" :key="'mobile-'+index">
+                <div @click="openProject(index)"
+                    class="snap-center shrink-0 w-[85vw] md:w-[45vw] max-w-[400px] aspect-[3/4] rounded-[40px] overflow-hidden cursor-pointer shadow-2xl bg-gray-100">
+                    <img :src="project.cover" class="w-full h-full object-cover">
+                </div>
+            </template>
+        </div>
+
+        <!-- PROJECTS DESKTOP -->
+        <div
+            class="lg:block hidden projects-bg-text absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-1 opacity-30 pointer-events-none select-none uppercase">
+            Projects
+        </div>
+
+        <div class="hidden lg:flex flex-col items-center justify-center min-h-[700px] relative mt-[12vw]">
+
+            <div class="w-full perspective-2500 flex items-center justify-center">
+                <div class="carousel-stage relative w-[300px] h-[450px] preserve-3d">
+
+                    <template x-for="(project, index) in projects" :key="'desktop-'+index">
+                        <div @click="openProject(index)"
+                            class="carousel-card absolute inset-0 rounded-[40px] overflow-hidden cursor-pointer shadow-xl transition-all duration-500 border border-white/10 group"
+                            :style="`--index: ${index}; --total: ${projects.length};`">
+                            <img :src="project.cover"
+                                class="w-full h-full object-cover transition-all duration-700 grayscale group-hover:grayscale-0 group-hover:scale-110">
+
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8">
+                                <h4 class="text-white text-xl font-black uppercase tracking-tighter"
+                                    x-text="project.title">
+                                </h4>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </div>
+
+        <template x-teleport="body">
+            <div x-show="activeProject" x-cloak
+                class="fixed inset-0 z-[200] flex items-center justify-center bg-slate-950/30 backdrop-blur-md p-4 md:p-8">
+
+                <div @click="closeProject()" class="absolute inset-0"></div>
+
+                <div x-show="activeProject" x-transition:enter="transition ease-out duration-500"
+                    x-transition:enter-start="opacity-0 translate-y-20 scale-95"
+                    x-transition:enter-end="opacity-100 translate-y-0 scale-100"
+                    class="bg-white w-full max-w-2xl h-[90vh] rounded-[40px] shadow-2xl relative z-10 flex flex-col overflow-hidden">
+
+                    <div class="px-8 pt-10 pb-6 text-center relative border-b border-gray-50">
+                        <button @click="closeProject()"
+                            class="absolute top-6 right-8 text-gray-400 hover:text-slate-950 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+
+                        <h3 class="text-3xl md:text-4xl font-black text-slate-950 leading-tight uppercase tracking-tighter mb-2"
+                            x-text="activeProject?.title"></h3>
+                        <p class="text-sky-500 text-[10px] font-black uppercase tracking-[0.2em]">
+                            // Category: <span x-text="activeProject?.category" class="text-gray-400"></span>
+                        </p>
+                    </div>
+
+                    <div class="flex-grow overflow-y-auto px-8 md:px-12 py-8 space-y-10 no-scrollbar">
+                        <p class="text-gray-600 text-base font-medium leading-relaxed"
+                            x-text="activeProject?.description"></p>
+
+                        <div class="border-l-4 border-amber-500 pl-6 py-2 italic text-gray-500 text-lg">
+                            <p x-text="activeProject?.quote"></p>
+                        </div>
+
+                        <div :class="activeProject?.before ? 'grid grid-cols-2 gap-4' : 'w-full'">
+                            <template x-if="activeProject?.before">
+                                <div class="space-y-3">
+                                    <div class="rounded-3xl overflow-hidden shadow-sm border border-gray-100">
+                                        <img :src="activeProject?.before" class="w-full h-auto object-cover"
+                                            alt="Original Site">
+                                    </div>
+                                </div>
+                            </template>
+
+                            <div class="space-y-3">
+                                <div class="rounded-3xl overflow-hidden shadow-xl ring-1 ring-gray-100">
+                                    <img :src="activeProject?.after" class="w-full h-auto object-cover" alt="Redesign">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="h-10"></div>
+                    </div>
+
+                    <div
+                        class="px-8 py-6 bg-white/80 backdrop-blur-md border-t border-gray-100 flex justify-between gap-4 sticky bottom-0 z-50 pointer-events-auto">
+                        <button @click.stop="prev()"
+                            class="flex-1 max-w-[160px] py-4 bg-slate-950 text-white rounded-full text-[11px] font-black uppercase tracking-widest active:scale-95 shadow-lg flex items-center justify-center gap-2">
+                            <span class="text-xs">←</span> PREVIOUS
+                        </button>
+                        <button @click.stop="next()"
+                            class="flex-1 max-w-[160px] py-4 bg-slate-950 text-white rounded-full text-[11px] font-black uppercase tracking-widest active:scale-95 shadow-lg flex items-center justify-center gap-2">
+                            NEXT <span class="text-xs">→</span>
+                        </button>
                     </div>
                 </div>
+            </div>
+        </template>
+    </section>
 
-                <div class="input-group">
-                    <label>Tell us about your business</label>
-                    <textarea placeholder="Vision, goals, ambitions..." rows="4"></textarea>
-                </div>
+    <!-- TESTIMONIAL SECTION -->
+    <section id="testimonials" x-data="testimonialsData"
+        class="h-screen max-h-screen overflow-hidden relative flex flex-col justify-center lg:block bg-arctic-lab bg-[length:400%_400%] animate-bgShift [perspective:2000px]">
 
-                <div class="input-group">
-                    <label>How did you hear about us?*</label>
-                    <select required>
-                        <option value="" disabled selected>Select an option</option>
-                        <option>Instagram</option>
-                        <option>LinkedIn</option>
-                        <option>Referral</option>
-                        <option>Google</option>
-                    </select>
-                </div>
+        <!-- For Desktop Mobile + Tabet cubes -->
+        <div class="glass-cube c1-mobile absolute"></div>
+        <div class="glass-cube c2-mobile absolute"></div>
+        <div class="glass-cube c3-mobile absolute"></div>
+        <div class="glass-cube c4-mobile absolute"></div>
+        <div class="glass-cube c5-mobile absolute"></div>
+        <div class="glass-cube c6-mobile absolute"></div>
+        <div class="glass-cube c7-mobile absolute"></div>
 
-                <button type="submit" class="submit-btn">
-                    <span>Send Inquiry</span>
+        <!-- MOBILE + TABLET TESTIMONIALS-->
+        <div class="lg:hidden relative z-10 flex flex-col justify-center h-full py-6">
+            <div class="text-center mb-10 px-6 relative">
+                <h2
+                    class="text-5xl md:text-6xl font-black text-slate-950 leading-[0.9] uppercase tracking-tighter relative z-20">
+                    Real Stories.<br>
+                    <span class="text-sky-600">REAL RESULTS.</span>
+                </h2>
+            </div>
+
+            <div x-ref="slider" class="flex overflow-x-auto snap-x snap-mandatory no-scrollbar gap-6 px-8 pb-8">
+                <template x-for="(item, index) in testimonials" :key="'mob-'+index">
+                    <div
+                        class="snap-center shrink-0 w-[85vw] max-w-[380px] bg-white/60 backdrop-blur-xl rounded-[40px] p-8 border border-white/40 shadow-xl flex flex-col justify-between min-h-[400px]">
+                        <div class="relative z-10">
+                            <div class="inline-block bg-slate-950 rounded-full px-4 py-1.5 mb-6">
+                                <p class="text-[10px] font-black uppercase tracking-widest text-white leading-none"
+                                    x-text="item.badge"></p>
+                            </div>
+                            <p class="text-lg font-bold text-slate-950 leading-snug" x-text="'“' + item.quote + '”'">
+                            </p>
+                        </div>
+                        <div class="mt-8 flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-white shrink-0">
+                                <img :src="item.image" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <p class="text-sm font-black text-slate-950 uppercase tracking-tighter"
+                                    x-text="item.name">
+                                </p>
+                                <p class="text-[9px] font-bold text-slate-950/50 uppercase" x-text="item.business">
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+
+            <div class="flex items-center justify-center gap-8 mt-4">
+                <button @click="scroll('prev')"
+                    class="w-14 h-14 rounded-full bg-white/40 backdrop-blur-lg border border-white/60 flex items-center justify-center shadow-lg active:scale-90 transition-all">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7" />
+                    </svg>
                 </button>
-            </form>
-        </div>
-    </div>
-</section>
-
-<!-- Contact Form Lightbox -->
-<div id="contact-lightbox" class="contact-lightbox">
-    <div class="contact-lightbox-content">
-        <button id="contact-lightbox-close" class="contact-lightbox-close">&times;</button>
-        <div class="contact-lightbox-scroll">
-            <div class="contact-lightbox-header">
-                <h2>Let's Build Something <span>Extraordinary.</span></h2>
-                <p>Fill out the form below and we'll get back to you within 24 hours.</p>
-            </div>
-            <form id="lightbox-inquiry-form">
-                <div class="form-row">
-                    <div class="input-group">
-                        <label>First Name*</label>
-                        <input type="text" placeholder="Nicola" required>
-                    </div>
-                    <div class="input-group">
-                        <label>Last Name*</label>
-                        <input type="text" placeholder="Tesla" required>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="input-group">
-                        <label>Email Address*</label>
-                        <input type="email" placeholder="nicola@tesla.com" required>
-                    </div>
-                    <div class="input-group">
-                        <label>Website (or N/A)*</label>
-                        <input type="text" placeholder="www.nicolatesla.com" required>
-                    </div>
-                </div>
-
-                <div class="input-group">
-                    <label>What services are you interested in?*</label>
-                    <div class="checkbox-grid checkbox-group">
-                        <label class="check-item"><input type="checkbox"> <span>Custom Web Design</span></label>
-                        <label class="check-item"><input type="checkbox"> <span>Branding</span></label>
-                        <label class="check-item"><input type="checkbox"> <span>Sales Funnel</span></label>
-                        <label class="check-item"><input type="checkbox"> <span>Data Science</span></label>
-                        <label class="check-item"><input type="checkbox"> <span>Data Automations</span></label>
-                        <label class="check-item"><input type="checkbox"> <span>Data Cleaning</span></label>
-                        <label class="check-item"><input type="checkbox"> <span>LLM Chatbot API</span></label>
-                        <!-- <label class="check-item"><input type="checkbox"> <span>SEO Strategy</span></label> -->
-                        <!-- <label class="check-item"><input type="checkbox"> <span>Custom Web Dev</span></label> -->
-                        <!-- <label class="check-item"><input type="checkbox"> <span>Paid Ads</span></label> -->
-                        <!-- <label class="check-item"><input type="checkbox"> <span>Social Media</span></label> -->
-                        <!-- <label class="check-item"><input type="checkbox"> <span>Sales Strategy</span></label> -->
-                    </div>
-                </div>
-
-                <div class="input-group">
-                    <label>Tell us about your business</label>
-                    <textarea placeholder="Vision, goals, ambitions..." rows="4"></textarea>
-                </div>
-
-                <div class="input-group">
-                    <label>How did you hear about us?*</label>
-                    <select required>
-                        <option value="" disabled selected>Select an option</option>
-                        <option>Instagram</option>
-                        <option>LinkedIn</option>
-                        <option>Referral</option>
-                        <option>Google</option>
-                    </select>
-                </div>
-
-                <button type="submit" class="submit-btn">
-                    <span>Send Inquiry</span>
+                <button @click="scroll('next')"
+                    class="w-14 h-14 rounded-full bg-white/40 backdrop-blur-lg border border-white/60 flex items-center justify-center shadow-lg active:scale-90 transition-all">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+                    </svg>
                 </button>
-            </form>
-        </div>
-    </div>
-</div>
-	
-<footer id="bespoke-footer">
-    <div class="footer-inner">  
-        
-        <div class="footer-middle-row">
-            <div class="footer-newsletter-section">
-                <div class="newsletter-text">
-                    <h3>Join the Crew</h3>
-                    <p>New products, exclusive deals and more.</p>
-                </div>
-                <form class="newsletter-form-horizontal">
-                    <input type="email" placeholder="Email Address" required>
-                    <button type="submit">Sign Up</button>
-                </form>
-                <label class="consent-checkbox">
-                    <input type="checkbox" required>
-                    <span>I agree to receive communications from Flying Mouse Labs.</span>
-                </label>
-            </div>
-
-            <div class="footer-nav-section">
-                <div class="footer-nav-col">
-                    <span class="link-label"></span>
-                    <a href="#services">Services</a>
-                    <a href="#perf-metrics-module">Case Studies</a>
-                    <a href="#projects">Projects</a>
-                </div>
-                <div class="footer-nav-col">
-                    <span class="link-label"></span>
-                    <a href="#testimonials">Testimonials</a>
-                    <a href="#arc-triptych-wrapper">About</a>
-                    <a href="#contact-section">Contact</a>
-                </div>
             </div>
         </div>
 
-        <div class="footer-hero">
-            <img src="./assets/images/fml-logo-v1.svg" alt="Logo" class="brand-logo">
-        </div>
+        <!-- DESKTOP TESTIMONIALS -->
+        <div class="hidden lg:grid grid-cols-12 items-stretch w-full h-full relative z-10">
 
-        <div class="footer-bottom">
-            <div class="footer-brand">
-                
-                
-                <div class="brand-text-stack">
-                    <p>&copy; <span id="current-year">2023-2026</span> Flying Mouse Labs. All Rights Reserved.</p>
-                    <div class="footer-legal">
-                        <a href="/privacy" class="legal-link">Privacy Policy</a>
-                        <a href="/terms" class="legal-link">Terms + Conditions</a>
+            <div
+                class="col-span-4 xl:col-span-5 pl-24 pr-12 z-50 relative flex flex-col justify-center bg-white h-full border-r border-gray-100">
+                <h2 class="text-7xl font-black text-slate-950 leading-[0.85] uppercase tracking-tighter">
+                    Real Stories.<br>
+                    <span class="text-sky-600">Real Results.</span>
+                </h2>
+                <div class="h-2 w-24 bg-sky-500 mt-8 rounded-full"></div>
+                <p class="mt-8 text-[10px] font-bold text-gray-400 uppercase tracking-[0.3em]"></p>
+            </div>
+
+            <div class="col-span-8 xl:col-span-7 relative overflow-hidden h-full flex items-center">
+                <div class="flex gap-8 marquee-track">
+                    <template x-for="i in [1, 2]" :key="i">
+                        <div class="flex gap-8 pr-8">
+                            <template x-for="(item, index) in testimonials" :key="'desk-'+index">
+                                <div
+                                    class="group w-[450px] shrink-0 bg-white/60 backdrop-blur-xl rounded-[50px] p-12 border border-white/50 shadow-2xl flex flex-col justify-between min-h-[480px] transition-all duration-500 hover:scale-[1.02] hover:relative overflow-hidden">
+
+                                    <div class="absolute top-20 left-2 w-28 opacity-10 pointer-events-none">
+                                        <img src="assets/images/glass-quotes-dark.svg" class="w-full h-auto">
+                                    </div>
+
+                                    <div class="relative z-10">
+                                        <div class="inline-block bg-slate-950 rounded-full px-6 py-2 mb-8">
+                                            <p class="text-[11px] font-black uppercase tracking-widest text-white"
+                                                x-text="item.badge"></p>
+                                        </div>
+                                        <p class="text-2xl font-semibold text-slate-950 leading-tight tracking-tight"
+                                            x-text="item.quote"></p>
+                                    </div>
+
+                                    <div class="mt-12 flex items-center gap-5 relative z-10">
+                                        <div
+                                            class="w-16 h-16 rounded-full overflow-hidden border-4 border-white shadow-md shrink-0">
+                                            <img :src="item.image" class="w-full h-full object-cover">
+                                        </div>
+                                        <div>
+                                            <p class="text-lg font-black text-slate-950 uppercase tracking-tighter leading-none"
+                                                x-text="item.name"></p>
+                                            <p class="text-[11px] font-semibold text-sky-700 uppercase tracking-widest mt-1"
+                                                x-text="item.business"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" x-data="{
+        isActive: false,
+        showLightbox: false,
+        currentIndex: 0,
+        aboutData: [
+            {
+                title: 'Values',
+                subtitle: '// 01 Ethos',
+                image: 'https://picsum.photos/seed/about-1/800/1200',
+                content: '<h3>Architectural Precision</h3><p>We believe that exceptional digital experiences are built on a foundation of precision and intentionality. Every line of code and pixel placement is crafted with purpose.</p>',
+                stats: [
+                    { number: '100%', label: 'Client Satisfaction' },
+                    { number: '0', label: 'Compromises' },
+                    { number: '24/7', label: 'Support' }
+                ]
+            },
+            {
+                title: 'Mission',
+                subtitle: '// 02 Drive',
+                image: 'https://picsum.photos/seed/about-3/800/1200',
+                content: '<h3>Building the Digital Future</h3><p>We craft digital ecosystems that grow with your business. Our mission is to create high-performance, scalable solutions.</p>',
+                stats: [
+                    { number: '<2s', label: 'Load Time' },
+                    { number: '98', label: 'Perf Score' },
+                    { number: '100%', label: 'Mobile Optimized' }
+                ]
+            },
+            {
+                title: 'Philosophy',
+                subtitle: '// 03 Core',
+                image: 'https://picsum.photos/seed/about-2/800/1200',
+                content: '<h3>Beauty Through Logic</h3><p>Beauty is the natural result of perfectly functioning logic. When the architecture is sound, the user experience becomes beautiful.</p>',
+                stats: [
+                    { number: 'A+', label: 'Code Quality' },
+                    { number: '0', label: 'Tech Debt' },
+                    { number: '∞', label: 'Possibilities' }
+                ]
+            }
+        ],
+        init() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => { this.isActive = entry.isIntersecting; });
+            }, { threshold: 0.1 }); 
+            observer.observe(this.$el);
+        },
+        openLightbox(index) {
+            this.currentIndex = index;
+            this.showLightbox = true;
+            // UNCOMMENT THIS WHEN READY FOR LIGHTBOX
+            //document.body.style.overflow = 'hidden'; 
+        },
+        closeLightbox() {
+            this.showLightbox = false;
+            // UNCOMMENT THIS WHEN READY FOR LIGHTBOX
+            //document.body.style.overflow = '';
+        }
+    }" class="relative overflow-hidden bg-white z-0 py-24 lg:pt-12 lg:pb-48">
+
+        <!-- MOBILE + TABLET ABOUT SECTION -->
+        <div class="lg:hidden h-auto md:h-screen min-h-[700px] flex flex-col justify-center px-6 md:px-12">
+            <div class="max-w-6xl mx-auto w-full flex flex-col h-full justify-between">
+                <div class="mb-8 md:mb-12 shrink-0">
+                    <h2 class="text-5xl md:text-6xl font-black text-slate-950 tracking-tighter uppercase leading-none">
+                        About.</h2>
+                    <div class="h-1.5 w-16 bg-sky-500 mt-4"></div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6 flex-grow">
+                    <div @click="openLightbox(0)"
+                        class="group relative overflow-hidden rounded-[30px] h-48 md:h-auto shadow-xl transition-all duration-500 cursor-pointer">
+                        <img src="https://picsum.photos/seed/about-1/800/1200"
+                            class="absolute inset-0 w-full h-full object-cover">
+                        <div
+                            class="absolute inset-0 bg-transparent bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent">
+                        </div>
+                        <div class="absolute inset-0 p-6 md:p-8 flex flex-col justify-end">
+                            <h3 class="text-white text-2xl md:text-3xl font-black uppercase mb-2">Values</h3>
+                            <p class="text-white/90 text-sm md:text-base font-medium leading-tight max-w-xs">
+                                Integrity,
+                                transparency, and the relentess pursuit of excellence. We shoot straight. We go
+                                hard.
+                            </p>
+                        </div>
+                    </div>
+                    <div @click="openLightbox(1)"
+                        class="group relative overflow-hidden rounded-[30px] h-48 md:h-auto shadow-xl transition-all duration-500 cursor-pointer">
+                        <img src="https://picsum.photos/seed/about-3/800/1200"
+                            class="absolute inset-0 w-full h-full object-cover">
+                        <div
+                            class="absolute inset-0 bg-transparent bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent">
+                        </div>
+                        <div class="absolute inset-0 p-6 md:p-8 flex flex-col justify-end">
+                            <h3 class="text-white text-2xl md:text-3xl font-black uppercase mb-2">Mission</h3>
+                            <p class="text-white/90 text-sm md:text-base font-medium leading-tight max-w-xs">To
+                                refine
+                                and elevate brands and businesses for greater impact. More success. Less effort.</p>
+                        </div>
+                    </div>
+                    <div @click="openLightbox(2)"
+                        class="md:col-span-2 group relative overflow-hidden rounded-[30px] h-48 md:h-auto shadow-xl transition-all duration-500 cursor-pointer">
+                        <img src="https://picsum.photos/seed/about-2/800/1200"
+                            class="absolute inset-0 w-full h-full object-cover">
+                        <div
+                            class="absolute inset-0 bg-transparent bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent">
+                        </div>
+                        <div class="absolute inset-0 p-6 md:p-10 flex flex-col justify-end">
+                            <h3 class="text-white text-2xl md:text-4xl font-black uppercase mb-2">Philosophy</h3>
+                            <p class="text-white/90 text-sm md:text-xl font-medium leading-tight max-w-2xl">Design
+                                is a
+                                strategic tool. Our work lives at the intersection of psychology, art, and
+                                engineering.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <!-- <div class="footer-social-row">
-                <a href="#" class="social-icon-btn" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.266.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
-                <a href="#" class="social-icon-btn" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
-                <a href="#" class="social-icon-btn" aria-label="Twitter X">
-                    <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                </a>
-            </div> -->
         </div>
-    </div>
-</footer>
+
+        <!-- DESKTOP - ABOUT SECTION -->
+        <div class="hidden lg:flex flex-col items-center relative min-h-screen perspective-[3000px]">
+            <div
+                class="arc-bg-text absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 opacity-30 pointer-events-none select-none">
+                ABOUT
+            </div>
+
+            <div class="arc-triptych-container flex gap-10 items-center justify-center transition-all duration-1000 ease-out w-full mt-[20vw]"
+                :class="isActive ? 'opacity-100' : 'opacity-0'">
+
+                <template x-for="(card, index) in aboutData" :key="index">
+                    <div @click="openLightbox(index)"
+                        class="arc-panel group relative w-[380px] h-[550px] rounded-[40px] bg-white shadow-2xl overflow-hidden cursor-pointer transition-all duration-[1300ms] ease-out hover:scale-105 hover:-translate-y-8 hover:z-50"
+                        :class="{
+                            'arc-wing-left': index === 0,
+                            'arc-center': index === 1,
+                            'arc-wing-right': index === 2,
+                            'is-docked': isActive
+                        }">
+                        <div class="absolute inset-0 bg-cover bg-center grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-110"
+                            :style="`background-image: url('${card.image}')`"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-slate-950/10 to-transparent">
+                        </div>
+                        <div class="relative z-10 h-full flex flex-col justify-end p-10 transition-all duration-700 delay-500"
+                            :class="isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
+                            <h3 class="text-4xl font-black text-white uppercase mb-4" x-text="card.title"></h3>
+                            <p class="text-sm text-white/80 leading-relaxed"
+                                x-text="card.title === 'Values' ? 'Integrity, transparency, and the relentess pursuit of excellence. We shoot straight. We go hard.' : card.title === 'Mission' ? 'To refine and elevate brands and businesses for greater impact. More success. Less effort.' : 'Design is a strategic tool. Our work lives at the intersection of psychology, art, and engineering.'">
+                            </p>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+
+        <!-- <div x-show="showLightbox" x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
+            class="fixed inset-0 z-[9999] flex items-center justify-center bg-black/95 p-6" style="display: none;">
+
+            <div class="relative w-full max-w-6xl h-[90vh] bg-white rounded-[40px] overflow-hidden flex flex-col"
+                @click.away="closeLightbox()">
+
+                <button @click="closeLightbox()"
+                    class="absolute top-6 right-8 text-4xl text-gray-800 hover:scale-110 z-20">&times;</button>
+
+                <div class="flex-1 overflow-y-auto p-12 md:p-16">
+                    <div class="grid lg:grid-cols-2 gap-16">
+                        <div class="h-[400px] lg:h-[600px] rounded-[30px] bg-cover bg-center shadow-2xl"
+                            :style="`background-image: url('${aboutData[currentIndex].image}')`"></div>
+
+                        <div class="flex flex-col justify-center">
+                            <p class="text-sky-600 font-black tracking-widest uppercase text-sm mb-2"
+                                x-text="aboutData[currentIndex].subtitle"></p>
+                            <h2 class="text-5xl font-black uppercase text-slate-950 mt-0 mb-8"
+                                x-text="aboutData[currentIndex].title"></h2>
+                            <div class="text-gray-600 leading-relaxed space-y-6 text-lg"
+                                x-html="aboutData[currentIndex].content"></div>
+
+                            <div class="grid grid-cols-3 gap-4 mt-12 border-t pt-12">
+                                <template x-for="stat in aboutData[currentIndex].stats">
+                                    <div class="text-center bg-gray-50 p-6 rounded-2xl">
+                                        <div class="text-3xl font-black text-sky-600 mb-1" x-text="stat.number"></div>
+                                        <div class="text-[10px] font-bold text-gray-400 uppercase tracking-widest"
+                                            x-text="stat.label"></div>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border-t p-6 flex justify-between items-center bg-gray-50">
+                    <button @click="currentIndex = (currentIndex - 1 + aboutData.length) % aboutData.length"
+                        class="px-8 py-3 bg-slate-950 text-white text-xs font-black uppercase tracking-widest rounded-full hover:bg-sky-600 transition-colors">
+                        &larr; Previous
+                    </button>
+                    <button @click="currentIndex = (currentIndex + 1) % aboutData.length"
+                        class="px-8 py-3 bg-slate-950 text-white text-xs font-black uppercase tracking-widest rounded-full hover:bg-sky-600 transition-colors">
+                        Next &rarr;
+                    </button>
+                </div>
+            </div>
+        </div> -->
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <div id="contact-container"></div>
+
+    <!-- FOOTER SECTION -->
+    <div id="footer-container"></div>
+
+
+    <script src="./assets/js/main.js"></script>
+    <script src="./assets/js/components.js"></script>
+    <script src="./assets/js/testimonials-data.js"></script>
+    <script src="./assets/js/projects-data.js"></script>
+    <script src="./assets/js/blog-data.js"></script>
+
 </body>
+
 </html>
