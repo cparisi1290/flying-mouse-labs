@@ -7,6 +7,7 @@
             showError: false,
             loading: false,
             validate() {
+                // 1. Domain Check
                 const personalDomains = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'aol.com'];
                 const parts = this.email.split('@');
                 const domain = parts.length > 1 ? parts[1].toLowerCase() : null;
@@ -15,16 +16,21 @@
                     this.showError = true;
                     setTimeout(() => { this.showError = false }, 4000);
                 } else {
+
+                    // 2. Start Loading
                     this.showError = false;
                     this.loading = true;
+
+                    // 3. Simulate Submission & Trigger Calendar
                     setTimeout(() => {
                         this.loading = false;
                         this.subscribed = true;
+                        
                         if(this.open) {
                             setTimeout(() => {
                                 this.open = false;
                                 document.body.style.overflow = 'auto';
-                            }, 1500);
+                            }, 2500);
                         }
                     }, 2000);
                 }
