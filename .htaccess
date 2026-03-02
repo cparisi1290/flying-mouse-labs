@@ -33,6 +33,9 @@ AddDefaultCharset UTF-8
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^(.*)$ index.php [QSA,L]
 
+# Custom 404 handling
+ErrorDocument 404 /404.html
+
 </IfModule>
 
 # Begin - Prevent Browsing and Set Default Resources

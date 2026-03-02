@@ -4,12 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flying Mouse Labs</title>
+    <title>Web Design & Data Analytics Agency for Small to Medium Businesses | Flying Mouse Labs</title>
+    <meta name="description"
+        content="Flying Mouse Labs helps small to medium businesses grow with custom web design, data dashboards, and AI solutions. Affordable packages. Results-driven. Let's build something.">
 
     <!-- Styles -->
     <link rel="stylesheet" href="./assets/css/output.css">
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Usercentrics -->
+    <link rel='preconnect' href='//privacy-proxy.usercentrics.eu'>
+    <link rel='preload' href='//privacy-proxy.usercentrics.eu/latest/uc-block.bundle.js' as='script'>
+    <script type='application/javascript'
+        src='https://privacy-proxy.usercentrics.eu/latest/uc-block.bundle.js'></script>
+    <script id='usercentrics-cmp' src='https://app.usercentrics.eu/browser-ui/latest/loader.js'
+        data-settings-id='gxqIcXkDfUHbKG' async></script>
+    <script>uc.setCustomTranslations('https://termageddon.ams3.cdn.digitaloceanspaces.com/translations/');</script>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -66,7 +77,8 @@
     <section id="home"
         class="flex flex-col min-h-screen w-full relative overflow-hidden bg-arctic-lab bg-[length:400%_400%] animate-bgShift [perspective:2000px]">
 
-        <div class="flex-grow flex flex-col items-center justify-center px-6 text-center relative z-20">
+        <div
+            class="flex-grow flex flex-col items-center lg:items-start justify-center px-6 md:px-12 lg:px-64 text-left relative z-20">
             <!-- Mobile Cubes -->
             <div class="glass-cube c1-mobile absolute lg:hidden"></div>
             <div class="glass-cube c2-mobile absolute lg:hidden"></div>
@@ -85,22 +97,22 @@
             <div class="glass-cube c6 absolute lg:block hidden"></div>
             <div class="glass-cube c7 absolute lg:block hidden"></div>
 
-            <div class="max-w-3xl lg:max-w-4xl w-full flex flex-col items-center space-y-8">
+            <div class="max-w-3xl lg:max-w-4xl w-full flex flex-col items-center lg:items-start space-y-8">
                 <h1
-                    class="text-4xl md:text-7xl lg:text-8xl font-black text-slate-950 leading-tight uppercase relative z-30 mt-36">
+                    class="text-balance text-4xl md:text-7xl lg:text-8xl font-black text-slate-950 leading-tight uppercase relative z-30 mt-36 text-center lg:text-left">
                     Make Your<br class="lg:hidden">
                     First Impression<br class="lg:hidden">
                     <span class="text-amber-500">Unforgettable</span>
                 </h1>
 
                 <p
-                    class="text-lg md:text-2xl lg:text-3xl text-slate-950 max-w-3xl font-medium text-center relative z-30">
+                    class="text-lg md:text-2xl lg:text-3xl text-slate-950 max-w-3xl font-medium text-center lg:text-left relative z-30">
                     Creating custom designs that captivate, convert, and <span class="italic font-bold">linger</span>.
                     Because blending in has never been your style.
                 </p>
 
                 <div
-                    class="flex flex-col md:flex-row md:justify-center gap-4 w-full md:max-w-2xl max-w-xs pt-4 relative z-30">
+                    class="flex flex-col md:flex-row md:justify-center lg:justify-start gap-4 w-full md:max-w-2xl max-w-xs pt-4 relative z-30">
                     <a href="#contact"
                         class="w-full md:w-72 py-4 bg-slate-950 text-white rounded-full font-bold tracking-widest uppercase transition-transform hover:scale-105 active:scale-95 shadow-lg text-center no-underline">
                         Launch Your Growth
@@ -121,9 +133,10 @@
 
         <div class="text-center mb-12 lg:mb-20">
 
-            <h2 class="text-5xl md:text-6xl lg:text-7xl font-black text-slate-950 leading-tight uppercase ">
-                Services to help<br class="lg:hidden">
-                you <span class="text-sky-500 italic">SOAR</span>
+            <h2
+                class="text-balance text-5xl md:text-6xl lg:text-7xl font-black text-slate-950 leading-tight uppercase ">
+                Services to <br class="md:hidden lg:hidden">help <br class="hidden md:block lg:hidden">you <br
+                    class="md:hidden lg:hidden"> <span class="text-sky-500 italic uppercase">soar</span>
             </h2>
         </div>
 
@@ -134,23 +147,23 @@
 
                         {id: 1, title: 'Design', tags: ['Branding', 'Messaging', 'Graphics', 'Copywriting'], img: 'design-balloons.jpg', desc: 'Custom, intuitive designs that capture your brand\'s unique strength and individuality. Every detail draws visitors in and keeps them engaged.'},
 
-                        {id: 2, title: 'Build', tags: ['Development', 'UI/UX', 'Strategy'], img: 'build-community.jpg', desc: 'We engineer fast, reliable, and secure websites built to convert and optimized to perform across every device.'},
+                        {id: 2, title: 'Build', tags: ['Web Development', 'UI/UX', 'Strategy', 'Mobile App Development'], img: 'build-community.jpg', desc: 'We engineer fast, reliable, and secure websites built to convert and optimized to perform across every device.'},
 
-                        {id: 3, title: 'Scale', tags: ['Data Automations', 'LLM Chatbot', 'Data Science'], img: 'scale-bubbles.jpg', desc: 'We build intelligent systems that automate workflows, enhance decision-making, and unlock new levels of efficiency.'}
+                        {id: 3, title: 'Scale', tags: ['Data Automations', 'Data Analytics', 'Data Science', 'LLM Chatbot'], img: 'scale-bubbles.jpg', desc: 'We build intelligent systems that automate workflows, enhance decision-making, and unlock new levels of efficiency.'}
 
                     ]" :key="index">
 
                 <div @click="activeService = service.id"
                     @mouseenter="window.innerWidth >= 1024 ? activeService = service.id : null"
-                    class="group relative overflow-hidden rounded-[40px] transition-all duration-700 cursor-pointer shadow-xl"
-                    :class="activeService === service.id ? 'h-[500px] md:h-[600px] lg:flex-[3]' : 'h-[100px] lg:h-full lg:flex-1'">
+                    class="group relative overflow-hidden rounded-3xl transition-all duration-700 cursor-pointer shadow-xl"
+                    :class="activeService === service.id ? 'h-[400px] md:h-[500px] lg:h-[600px] lg:flex-[3]' : 'h-[100px] lg:h-full lg:flex-1'">
 
                     <img :src="'assets/images/' + service.img"
                         class="absolute inset-0 w-full h-full object-cover transition-all duration-700" :class="activeService !== service.id 
                                  ? 'grayscale brightness-100 opacity-80 blur-sm scale-110' 
                                  : 'grayscale-0 brightness-100 opacity-100 blur-0 scale-100 group-hover:scale-105'">
 
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent transition-opacity duration-500"
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/80 via-black/60 via-black/40 md:from-black/90 md:via-black/50 md:via-black/30 md:to-transparent transition-opacity duration-500"
                         :class="activeService === service.id ? 'opacity-100' : 'opacity-0'">
 
                     </div>
@@ -163,7 +176,7 @@
 
                         <span class="text-white/70 text-lg md:text-xl font-bold mb-2" x-text="'0' + service.id"></span>
 
-                        <h3 class="text-white text-5xl md:text-7xl font-black uppercase mb-4 tracking-tighter"
+                        <h3 class="text-balance text-white text-5xl md:text-7xl font-black uppercase mb-4 tracking-tighter"
                             x-text="service.title"></h3>
 
                         <div x-show="activeService === service.id" x-collapse>
@@ -216,7 +229,8 @@
         class="py-20 px-6 md:px-12 bg-arctic-lab animate-bgShift bg-[length:400%_400%] min-h-screen flex flex-col justify-center [perspective:2000px]">
 
         <div class="text-center mb-12">
-            <h2 class="text-4xl md:text-6xl font-black text-slate-950 leading-tight uppercase tracking-tighter">
+            <h2
+                class="text-balance text-4xl md:text-6xl font-black text-slate-950 leading-tight uppercase tracking-tighter">
                 Proven Results.<br>
                 <span class="text-sky-600 uppercase">Measureable Impact.</span>
             </h2>
@@ -231,7 +245,7 @@
                         <p class="text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase text-slate-950 opacity-60 mb-6"
                             x-text="item.label"></p>
                         <h3
-                            class="text-5xl md:text-6xl font-black text-slate-950 tracking-tighter flex items-baseline mb-4">
+                            class="text-balance text-5xl md:text-6xl font-black text-slate-950 tracking-tighter flex items-baseline mb-4">
                             <span class="mr-[-2px]" x-text="item.prefix"></span>
                             <span x-data="counterLogic(item.value)"
                                 x-init="$watch('shown', value => { if(value) start(); })" x-text="display"></span>
@@ -277,10 +291,11 @@
 
         <!-- PROJECTS MOBILE + TABLET -->
         <div class="lg:hidden px-6 md:px-12 mb-12 lg:mb-20">
-            <h2 class="text-4xl md:text-6xl font-black text-slate-950 tracking-tighter uppercase leading-none">
+            <h2
+                class="text-balance text-5xl md:text-6xl font-black text-slate-950 tracking-tighter uppercase leading-none">
                 Projects.
             </h2>
-            <div class="h-1 w-12 bg-sky-500 mt-4"></div>
+            <div class="h-1 w-12 bg-sky-500 mt-4 rounded-full"></div>
         </div>
 
         <div class="lg:hidden flex overflow-x-auto snap-x snap-mandatory no-scrollbar gap-4 px-6 md:px-12 pb-32">
@@ -312,7 +327,7 @@
 
                             <div
                                 class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8">
-                                <h4 class="text-white text-xl font-black uppercase tracking-tighter"
+                                <h4 class="text-balance text-white text-xl font-black uppercase tracking-tighter"
                                     x-text="project.title">
                                 </h4>
                             </div>
@@ -343,7 +358,7 @@
                             </svg>
                         </button>
 
-                        <h3 class="text-3xl md:text-4xl font-black text-slate-950 leading-tight uppercase tracking-tighter mb-2"
+                        <h3 class="text-balancetext-3xl md:text-4xl font-black text-slate-950 leading-tight uppercase tracking-tighter mb-2"
                             x-text="activeProject?.title"></h3>
                         <p class="text-sky-500 text-[10px] font-black uppercase tracking-[0.2em]">
                             // Category: <span x-text="activeProject?.category" class="text-gray-400"></span>
@@ -411,7 +426,7 @@
         <div class="lg:hidden relative z-10 flex flex-col justify-center h-full py-6">
             <div class="text-center mb-10 px-6 relative">
                 <h2
-                    class="text-5xl md:text-6xl font-black text-slate-950 leading-[0.9] uppercase tracking-tighter relative z-20">
+                    class="text-balance text-5xl md:text-6xl font-black text-slate-950 leading-[0.9] uppercase tracking-tighter relative z-20">
                     Real Stories.<br>
                     <span class="text-sky-600">REAL RESULTS.</span>
                 </h2>
@@ -468,7 +483,7 @@
 
             <div
                 class="col-span-4 xl:col-span-5 pl-24 pr-12 z-50 relative flex flex-col justify-center bg-white h-full border-r border-gray-100">
-                <h2 class="text-7xl font-black text-slate-950 leading-[0.85] uppercase tracking-tighter">
+                <h2 class="text-balance text-7xl font-black text-slate-950 leading-[0.85] uppercase tracking-tighter">
                     Real Stories.<br>
                     <span class="text-sky-600">Real Results.</span>
                 </h2>
@@ -581,9 +596,10 @@
         <div class="lg:hidden h-auto md:h-screen min-h-[700px] flex flex-col justify-center px-6 md:px-12">
             <div class="max-w-6xl mx-auto w-full flex flex-col h-full justify-between">
                 <div class="mb-8 md:mb-12 shrink-0">
-                    <h2 class="text-5xl md:text-6xl font-black text-slate-950 tracking-tighter uppercase leading-none">
+                    <h2
+                        class="text-balance text-5xl md:text-6xl font-black text-slate-950 tracking-tighter uppercase leading-none">
                         About.</h2>
-                    <div class="h-1.5 w-16 bg-sky-500 mt-4"></div>
+                    <div class="h-1.5 w-16 bg-sky-500 mt-4 rounded-full"></div>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6 flex-grow">
                     <div @click="openLightbox(0)"
@@ -594,7 +610,8 @@
                             class="absolute inset-0 bg-transparent bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent">
                         </div>
                         <div class="absolute inset-0 p-6 md:p-8 flex flex-col justify-end">
-                            <h3 class="text-white text-2xl md:text-3xl font-black uppercase mb-2">Values</h3>
+                            <h3 class="text-balance text-white text-2xl md:text-3xl font-black uppercase mb-2">Values
+                            </h3>
                             <p class="text-white/90 text-sm md:text-base font-medium leading-tight max-w-xs">
                                 Integrity,
                                 transparency, and the relentess pursuit of excellence. We shoot straight. We go
@@ -610,7 +627,8 @@
                             class="absolute inset-0 bg-transparent bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent">
                         </div>
                         <div class="absolute inset-0 p-6 md:p-8 flex flex-col justify-end">
-                            <h3 class="text-white text-2xl md:text-3xl font-black uppercase mb-2">Mission</h3>
+                            <h3 class="text-balance text-white text-2xl md:text-3xl font-black uppercase mb-2">Mission
+                            </h3>
                             <p class="text-white/90 text-sm md:text-base font-medium leading-tight max-w-xs">To
                                 refine
                                 and elevate brands and businesses for greater impact. More success. Less effort.</p>
@@ -624,7 +642,8 @@
                             class="absolute inset-0 bg-transparent bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent">
                         </div>
                         <div class="absolute inset-0 p-6 md:p-10 flex flex-col justify-end">
-                            <h3 class="text-white text-2xl md:text-4xl font-black uppercase mb-2">Philosophy</h3>
+                            <h3 class="text-balance text-white text-2xl md:text-4xl font-black uppercase mb-2">
+                                Philosophy</h3>
                             <p class="text-white/90 text-sm md:text-xl font-medium leading-tight max-w-2xl">Design
                                 is a
                                 strategic tool. Our work lives at the intersection of psychology, art, and
@@ -661,7 +680,8 @@
                         </div>
                         <div class="relative z-10 h-full flex flex-col justify-end p-10 transition-all duration-700 delay-500"
                             :class="isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
-                            <h3 class="text-4xl font-black text-white uppercase mb-4" x-text="card.title"></h3>
+                            <h3 class="text-balance text-4xl font-black text-white uppercase mb-4" x-text="card.title">
+                            </h3>
                             <p class="text-sm text-white/80 leading-relaxed"
                                 x-text="card.title === 'Values' ? 'Integrity, transparency, and the relentess pursuit of excellence. We shoot straight. We go hard.' : card.title === 'Mission' ? 'To refine and elevate brands and businesses for greater impact. More success. Less effort.' : 'Design is a strategic tool. Our work lives at the intersection of psychology, art, and engineering.'">
                             </p>
@@ -689,7 +709,7 @@
                         <div class="flex flex-col justify-center">
                             <p class="text-sky-600 font-black tracking-widest uppercase text-sm mb-2"
                                 x-text="aboutData[currentIndex].subtitle"></p>
-                            <h2 class="text-5xl font-black uppercase text-slate-950 mt-0 mb-8"
+                            <h2 class="text-balance text-5xl font-black uppercase text-slate-950 mt-0 mb-8"
                                 x-text="aboutData[currentIndex].title"></h2>
                             <div class="text-gray-600 leading-relaxed space-y-6 text-lg"
                                 x-html="aboutData[currentIndex].content"></div>

@@ -81,7 +81,7 @@
         </div>
     </div>
     <button type="submit" :disabled="loading || subscribed" :class="{
-            'bg-[#041A24] hover:scale-105': !loading && !subscribed,
+            'bg-slate-950 hover:bg-sky-500 hover:scale-105': !loading && !subscribed,
             'bg-sky-700 cursor-wait': loading,
             'bg-emerald-500': subscribed
         }"
@@ -96,6 +96,7 @@
             </path>
         </svg>
 
-        <span x-text="loading ? 'Processing...' : (subscribed ? 'Ready, set, take Off!' : 'Chat with the Crew')"></span>
+        <span class="bg-slate-950 lg:hover:bg-sky-500 lg:hover:scale-105"
+            x-text="loading ? 'Processing...' : (subscribed ? 'Ready, set, take Off!' : 'Chat with the Crew')"></span>
     </button>
 </form>
