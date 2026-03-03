@@ -12,14 +12,6 @@
         <priority>1.0</priority>
     </url>
     
-    <!-- Competitor Analysis -->
-    <url>
-        <loc>https://flying-mouse-labs.com/competitor-analysis.html</loc>
-        <lastmod>2026-03-03</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
     <!-- Privacy Policy -->
     <url>
         <loc>https://flying-mouse-labs.com/privacy-policy.html</loc>
