@@ -1,0 +1,109 @@
+<form action="#" class="space-y-6" @submit.prevent="validate()">
+    <div class="grid grid-cols-2 gap-4 md:gap-6">
+        <div class="flex flex-col text-left">
+            <input type="text" x-model="firstName" name="first_name" placeholder="First Name*" autocomplete="given-name"
+                required
+                class="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm font-mono focus:ring-2 focus:ring-sky-200 outline-none">
+        </div>
+
+        <div class="flex flex-col text-left">
+            <input type="text" x-model="lastName" name="last_name" placeholder="Last Name*" autocomplete="family-name"
+                required
+                class="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm font-mono focus:ring-2 focus:ring-sky-200 outline-none">
+        </div>
+
+        <div class="flex flex-col text-left">
+            <input type="email" x-model="email" name="email" placeholder="Email*" autocomplete="email" required
+                class="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm font-mono focus:ring-2 focus:ring-sky-200 outline-none"
+                :class="showError ? 'border-red-500 ring-4 ring-red-50' : 'focus:ring-2 focus:ring-sky-200 outline-none'">
+
+            <div x-show="showError" x-transition x-cloak
+                class="mt-3 p-4 bg-red-50 border border-red-100 rounded-xl text-left">
+
+                <p class="text-[10px] font-black text-red-600 uppercase tracking-widest leading-tight">
+                    ⚠️ Business Email Required</p>
+                <p class="text-[9px] font-medium text-red-500 mt-1">Please use your
+                    company
+                    domain.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="flex flex-col text-left">
+            <input type="text" x-model="website" name="website" placeholder="Website"
+                class="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm font-mono focus:ring-2 focus:ring-sky-200 outline-none">
+        </div>
+    </div>
+
+    <div class="text-left">
+        <label class="text-[10px] font-bold uppercase tracking-widest text-[#041A24] mb-4 block ml-1">What
+            services
+            are you interested in?*</label>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+            <template
+                x-for="service in ['Web Design', 'Branding', 'Sales Funnel', 'E-commerce', 'Automations', 'LLM Chatbot', 'Data Science', 'Data Analysis', 'Other']">
+                <label
+                    class="flex items-center gap-2 bg-white/50 px-4 py-3 border border-dark-gray rounded-lg cursor-pointer hover:bg-white/80 transition-all font-mono tracking-widest">
+                    <input type="checkbox" x-model="services" :value="service" class="rounded text-sky-500">
+                    <span class="text-[10px] font-bold uppercase tracking-widest" x-text="service"></span>
+                </label>
+            </template>
+        </div>
+    </div>
+
+    <div class="flex flex-col text-left">
+        <label class="text-[10px] font-bold uppercase tracking-widest text-[#041A24] mb-2 ml-1">Tell
+            us about your
+            project</label>
+        <textarea rows="5" x-model="project" name="project_details" placeholder="Vision, goals, ambitions..."
+            class="w-full bg-white border border-gray-200 rounded-xl px-5 py-3 text-sm font-mono focus:ring-2 focus:ring-sky-200 outline-none"></textarea>
+    </div>
+
+    <div class="flex flex-col text-left">
+        <label class="text-[10px] font-bold uppercase tracking-widest text-[#041A24] mb-2 ml-1">How
+            did you hear
+            about us?*</label>
+        <div class="relative">
+
+            <select x-model="source" name="referral_source"
+                class="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm font-mono focus:ring-2 focus:ring-sky-200 outline-none appearance-none cursor-pointer">
+                <option>Select an option</option>
+                <option>Referral</option>
+                <option>Organic Search</option>
+                <option>AI Search</option>
+                <option>Social Media</option>
+            </select>
+
+            <div class="absolute inset-y-0 right-4 flex items-center pointer-events-none text-gray-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+            </div>
+        </div>
+    </div>
+    <!-- Hidden field to catch spam -->
+    <div class="hidden" aria-hidden="true">
+        <input type="text" x-model="honeypot" name="b_extra_security" tabindex="-1" autocomplete="off">
+    </div>
+
+    <button type="submit" :disabled="loading || subscribed" :class="{
+            'bg-slate-950 hover:bg-sky-500 hover:scale-105': !loading && !subscribed,
+            'bg-sky-700 cursor-wait': loading,
+            'bg-emerald-500': subscribed
+        }"
+        class="w-full text-white py-5 rounded-full text-xs font-black uppercase tracking-[0.3em] transition-all flex items-center justify-center gap-3 shadow-lg active:scale-95">
+
+        <svg x-show="loading" x-cloak class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg"
+            fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
+            </circle>
+            <path class="opacity-75" fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+            </path>
+        </svg>
+
+        <span class="lg:hover:bg-sky-500 lg:hover:scale-105"
+            x-text="loading ? 'Processing...' : (subscribed ? 'Ready, set, take Off!' : 'Chat with the Crew')"></span>
+    </button>
+</form>
