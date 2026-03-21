@@ -9,8 +9,8 @@
     <link rel="canonical" href="https://flyingmouselabs.com/404">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="/src/css/style.css">
-    <link rel="stylesheet" href="/src/css/output.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/output.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <!-- Usercentrics -->
@@ -45,7 +45,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script defer src="https://unpkg.com/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <script src="/src/js/component-loader.js"></script>
+    <script src="/js/component-loader.js"></script>
     <!-- Hotjar Heatmaps -->
     <script src="https://t.contentsquare.net/uxa/c46f7b4a000f2.js"></script>
     <!-- Microsoft Clarity -->
@@ -98,7 +98,7 @@
     <!-- End Google Tag Manager (noscript) -->
 
     <!-- NAVIGATION -->
-    <include src="components/navbar.html"></include>
+    <include src="/components/navbar.html"></include>
 
     <!-- HERO SECTION -->
     <!-- <section class="py-20 lg:py-32 px-6 md:px-12 bg-arctic-lab bg-[length:400%_400%] animate-bgShift"> -->
@@ -228,11 +228,9 @@
 
 
     <!-- FOOTER SECTION -->
-    <div id="footer-container"></div>
+    <include src="/components/footer.html"></include>
 
-
-    <script src="./src/js/main.js"></script>
-    <script src="./src/js/components.js"></script>
+    <script src="/js/main.js"></script>
 
 </body>
 

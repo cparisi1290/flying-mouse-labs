@@ -1,564 +1,745 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="/js/component-loader.js"></script>
+        <meta name="robots" content="noindex, nofollow" />
+        <title>Competitor Analysis — Flying Mouse Labs (Internal)</title>
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="robots" content="noindex, nofollow" />
-    <title>Competitor Analysis — Flying Mouse Labs (Internal)</title>
+        <!-- Tailwind -->
+        <script src="https://cdn.tailwindcss.com"></script>
+        <!-- Alpine.js -->
+        <script
+            defer
+            src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+        ></script>
 
-    <!-- Tailwind -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Alpine.js -->
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+        <!-- Styles -->
+        <link rel="stylesheet" href="/css/style.css" />
+        <link rel="stylesheet" href="/css/output.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        />
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="/src/css/style.css">
-    <link rel="stylesheet" href="/src/css/output.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap"
+            rel="stylesheet"
+        />
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap"
-        rel="stylesheet" />
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        display: ['Syne', 'sans-serif'],
-                        body: ['DM Sans', 'sans-serif'],
-                    },
-                    colors: {
-                        ink: '#0D0D12',
-                        slate: '#1C1C28',
-                        mist: '#F4F3F0',
-                        chalk: '#FAFAF8',
-                        violet: { 400: '#A78BFA', 500: '#8B5CF6', 600: '#7C3AED', 100: '#EDE9FE', 200: '#DDD6FE' },
-                        cobalt: { 400: '#60A5FA', 500: '#3B82F6', 600: '#2563EB', 100: '#DBEAFE' },
-                        jade: { 400: '#34D399', 500: '#10B981', 600: '#059669', 100: '#D1FAE5' },
-                        amber: { 400: '#FBBF24', 500: '#F59E0B', 100: '#FEF3C7' },
-                        rose: { 400: '#FB7185', 500: '#F43F5E', 100: '#FFE4E6' },
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        fontFamily: {
+                            display: ["Syne", "sans-serif"],
+                            body: ["DM Sans", "sans-serif"],
+                        },
+                        colors: {
+                            ink: "#0D0D12",
+                            slate: "#1C1C28",
+                            mist: "#F4F3F0",
+                            chalk: "#FAFAF8",
+                            violet: {
+                                400: "#A78BFA",
+                                500: "#8B5CF6",
+                                600: "#7C3AED",
+                                100: "#EDE9FE",
+                                200: "#DDD6FE",
+                            },
+                            cobalt: {
+                                400: "#60A5FA",
+                                500: "#3B82F6",
+                                600: "#2563EB",
+                                100: "#DBEAFE",
+                            },
+                            jade: {
+                                400: "#34D399",
+                                500: "#10B981",
+                                600: "#059669",
+                                100: "#D1FAE5",
+                            },
+                            amber: {
+                                400: "#FBBF24",
+                                500: "#F59E0B",
+                                100: "#FEF3C7",
+                            },
+                            rose: {
+                                400: "#FB7185",
+                                500: "#F43F5E",
+                                100: "#FFE4E6",
+                            },
+                        },
                     },
                 },
-            },
-        }
-    </script>
+            };
+        </script>
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'DM Sans', sans-serif;
-            background: #F4F3F0;
-        }
-
-        h1,
-        h2,
-        h3,
-        .font-display {
-            font-family: 'Syne', sans-serif;
-        }
-
-        .card-enter {
-            animation: cardIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-
-        @keyframes cardIn {
-            from {
-                opacity: 0;
-                transform: translateY(12px);
+        <style>
+            * {
+                box-sizing: border-box;
             }
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
+            body {
+                font-family: "DM Sans", sans-serif;
+                background: #f4f3f0;
             }
-        }
 
-        .tab-pill {
-            position: relative;
-            transition: color 0.2s;
-        }
+            h1,
+            h2,
+            h3,
+            .font-display {
+                font-family: "Syne", sans-serif;
+            }
 
-        .tab-pill.active {
-            color: #0D0D12;
-        }
+            .card-enter {
+                animation: cardIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            }
 
-        .tab-pill.active::after {
-            content: '';
-            position: absolute;
-            bottom: -1px;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: #0D0D12;
-            border-radius: 2px;
-        }
+            @keyframes cardIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(12px);
+                }
 
-        .service-tag {
-            display: inline-flex;
-            align-items: center;
-            padding: 2px 10px;
-            border-radius: 999px;
-            font-size: 11px;
-            font-weight: 500;
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            color: rgba(255, 255, 255, 0.9);
-            background: rgba(255, 255, 255, 0.12);
-            backdrop-filter: blur(4px);
-        }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
 
-        .moat-item {
-            background: rgba(255, 255, 255, 0.07);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 12px 16px;
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            transition: background 0.2s;
-        }
+            .tab-pill {
+                position: relative;
+                transition: color 0.2s;
+            }
 
-        .moat-item:hover {
-            background: rgba(255, 255, 255, 0.12);
-        }
+            .tab-pill.active {
+                color: #0d0d12;
+            }
 
-        .tier-your {
-            background: linear-gradient(135deg, #7C3AED, #A78BFA);
-        }
+            .tab-pill.active::after {
+                content: "";
+                position: absolute;
+                bottom: -1px;
+                left: 0;
+                right: 0;
+                height: 2px;
+                background: #0d0d12;
+                border-radius: 2px;
+            }
 
-        .tier-step {
-            background: linear-gradient(135deg, #1D4ED8, #60A5FA);
-        }
+            .service-tag {
+                display: inline-flex;
+                align-items: center;
+                padding: 2px 10px;
+                border-radius: 999px;
+                font-size: 11px;
+                font-weight: 500;
+                border: 1px solid rgba(255, 255, 255, 0.25);
+                color: rgba(255, 255, 255, 0.9);
+                background: rgba(255, 255, 255, 0.12);
+                backdrop-filter: blur(4px);
+            }
 
-        .tier-stretch {
-            background: linear-gradient(135deg, #047857, #34D399);
-        }
+            .moat-item {
+                background: rgba(255, 255, 255, 0.07);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 12px;
+                padding: 12px 16px;
+                display: flex;
+                align-items: flex-start;
+                gap: 12px;
+                transition: background 0.2s;
+            }
 
-        .noise {
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-            background-repeat: repeat;
-            background-size: 128px;
-        }
+            .moat-item:hover {
+                background: rgba(255, 255, 255, 0.12);
+            }
 
-        ::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
+            .tier-your {
+                background: linear-gradient(135deg, #7c3aed, #a78bfa);
+            }
 
-        ::-webkit-scrollbar-track {
-            background: transparent;
-        }
+            .tier-step {
+                background: linear-gradient(135deg, #1d4ed8, #60a5fa);
+            }
 
-        ::-webkit-scrollbar-thumb {
-            background: #ccc;
-            border-radius: 99px;
-        }
-    </style>
-</head>
+            .tier-stretch {
+                background: linear-gradient(135deg, #047857, #34d399);
+            }
 
-<body class="min-h-screen noise" x-data="competitorApp()">
+            .noise {
+                background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+                background-repeat: repeat;
+                background-size: 128px;
+            }
 
-    <div class="max-w-5xl mx-auto px-4 py-10">
+            ::-webkit-scrollbar {
+                width: 6px;
+                height: 6px;
+            }
 
-        <!-- Header -->
-        <div class="mb-8">
-            <div
-                class="inline-flex items-center gap-2 bg-ink text-mist text-xs font-display font-semibold px-3 py-1.5 rounded-full mb-4 tracking-wider uppercase">
-                <span>🐭</span> Internal · Not Indexed
+            ::-webkit-scrollbar-track {
+                background: transparent;
+            }
+
+            ::-webkit-scrollbar-thumb {
+                background: #ccc;
+                border-radius: 99px;
+            }
+        </style>
+    </head>
+
+    <body class="min-h-screen noise" x-data="competitorApp()">
+        <div class="max-w-5xl mx-auto px-4 py-10">
+            <!-- Header -->
+            <div class="mb-8">
+                <div
+                    class="inline-flex items-center gap-2 bg-ink text-mist text-xs font-display font-semibold px-3 py-1.5 rounded-full mb-4 tracking-wider uppercase"
+                >
+                    <span>🐭</span> Internal · Not Indexed
+                </div>
+                <h1
+                    class="font-display text-4xl font-800 text-ink leading-tight mb-2"
+                >
+                    Competitor Analysis
+                </h1>
+                <p class="text-gray-500 text-base font-body max-w-xl">
+                    Flying Mouse Labs · Web Design + Data Science + AI/LLM ·
+                    Phase 1 Pre-Launch ·
+                    <span class="font-semibold text-ink"
+                        >5 competitors across 3 tiers</span
+                    >
+                </p>
+
+                <!-- Tier legend -->
+                <div class="flex flex-wrap gap-3 mt-5">
+                    <template x-for="t in tiers" :key="t.key">
+                        <div
+                            class="flex items-center gap-2 bg-white rounded-full px-3 py-1.5 shadow-sm border border-gray-100"
+                        >
+                            <span
+                                class="w-2.5 h-2.5 rounded-full"
+                                :class="t.dot"
+                            ></span>
+                            <span
+                                class="text-xs font-display font-semibold text-ink"
+                                x-text="t.label"
+                            ></span>
+                            <span
+                                class="text-xs text-gray-400"
+                                x-text="t.sub"
+                            ></span>
+                        </div>
+                    </template>
+                </div>
             </div>
-            <h1 class="font-display text-4xl font-800 text-ink leading-tight mb-2">
-                Competitor Analysis
-            </h1>
-            <p class="text-gray-500 text-base font-body max-w-xl">
-                Flying Mouse Labs · Web Design + Data Science + AI/LLM · Phase 1 Pre-Launch ·
-                <span class="font-semibold text-ink">5 competitors across 3 tiers</span>
-            </p>
 
-            <!-- Tier legend -->
-            <div class="flex flex-wrap gap-3 mt-5">
-                <template x-for="t in tiers" :key="t.key">
-                    <div
-                        class="flex items-center gap-2 bg-white rounded-full px-3 py-1.5 shadow-sm border border-gray-100">
-                        <span class="w-2.5 h-2.5 rounded-full" :class="t.dot"></span>
-                        <span class="text-xs font-display font-semibold text-ink" x-text="t.label"></span>
-                        <span class="text-xs text-gray-400" x-text="t.sub"></span>
-                    </div>
-                </template>
-            </div>
-        </div>
-
-        <!-- Competitor Selector -->
-        <div class="grid grid-cols-5 gap-2 mb-6">
-            <template x-for="(c, i) in competitors" :key="i">
-                <button @click="select(i)" :class="active === i
+            <!-- Competitor Selector -->
+            <div class="grid grid-cols-5 gap-2 mb-6">
+                <template x-for="(c, i) in competitors" :key="i">
+                    <button
+                        @click="select(i)"
+                        :class="active === i
                 ? 'ring-2 ring-ink ring-offset-2 bg-white shadow-lg scale-[1.02]'
                 : 'bg-white hover:shadow-md border border-gray-100'"
-                    class="rounded-2xl p-3 text-left transition-all duration-200 transform">
-                    <div class="text-lg mb-1" x-text="c.emoji"></div>
-                    <div class="text-xs font-display font-bold px-1.5 py-0.5 rounded-full inline-block mb-2 leading-tight"
-                        :class="c.tierBadge" x-text="c.tierShort"></div>
-                    <div class="text-xs font-display font-bold text-ink leading-tight" x-text="c.name"></div>
-                    <div class="text-xs text-gray-400 mt-0.5" x-text="c.pricing"></div>
-                </button>
-            </template>
-        </div>
-
-        <!-- Detail Card -->
-        <div class="bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100 mb-6 card-enter"
-            :key="active">
-
-            <!-- Card Header -->
-            <div class="p-6 relative overflow-hidden" :class="current.tierGradient">
-                <div class="absolute inset-0 noise opacity-50"></div>
-                <div class="relative z-10">
-                    <div class="flex items-start justify-between gap-4 mb-4">
-                        <div>
-                            <div class="text-white/60 text-xs font-display uppercase tracking-widest mb-1"
-                                x-text="current.tier"></div>
-                            <h2 class="font-display text-2xl font-bold text-white leading-tight"
-                                x-text="current.emoji + ' ' + current.name"></h2>
-                            <a :href="current.site" target="_blank" rel="noopener noreferrer"
-                                class="text-white/70 text-sm hover:text-white transition-colors underline underline-offset-2 font-body"
-                                x-text="current.url"></a>
-                        </div>
-                        <div class="text-right shrink-0">
-                            <div class="text-white font-display font-bold text-sm" x-text="current.pricing"></div>
-                            <div class="text-white/60 text-xs mt-0.5" x-text="current.size"></div>
-                            <div class="text-white/60 text-xs" x-text="current.location"></div>
-                            <div class="text-white/80 text-xs mt-1 font-semibold" x-text="current.clutch"></div>
-                        </div>
-                    </div>
-                    <div class="flex flex-wrap gap-1.5">
-                        <template x-for="s in current.services" :key="s">
-                            <span class="service-tag" x-text="s"></span>
-                        </template>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Positioning bar -->
-            <div class="px-6 py-4 bg-gray-50 border-b border-gray-100">
-                <div class="text-xs font-display font-bold text-gray-400 uppercase tracking-widest mb-1">Their
-                    Positioning</div>
-                <p class="text-sm text-gray-700 font-body leading-relaxed" x-text="current.positioning"></p>
-            </div>
-
-            <!-- Tabs -->
-            <div class="flex border-b border-gray-100 px-6">
-                <template x-for="t in tabs" :key="t.key">
-                    <button @click="tab = t.key" :class="tab === t.key ? 'active' : 'text-gray-400 hover:text-gray-600'"
-                        class="tab-pill font-display text-xs font-bold py-3.5 mr-6 tracking-wide transition-colors"
-                        x-text="t.label"></button>
+                        class="rounded-2xl p-3 text-left transition-all duration-200 transform"
+                    >
+                        <div class="text-lg mb-1" x-text="c.emoji"></div>
+                        <div
+                            class="text-xs font-display font-bold px-1.5 py-0.5 rounded-full inline-block mb-2 leading-tight"
+                            :class="c.tierBadge"
+                            x-text="c.tierShort"
+                        ></div>
+                        <div
+                            class="text-xs font-display font-bold text-ink leading-tight"
+                            x-text="c.name"
+                        ></div>
+                        <div
+                            class="text-xs text-gray-400 mt-0.5"
+                            x-text="c.pricing"
+                        ></div>
+                    </button>
                 </template>
             </div>
 
-            <!-- Tab Content -->
-            <div class="p-6 min-h-48">
-
-                <!-- Gaps -->
-                <div x-show="tab === 'gaps'" class="space-y-2.5">
-                    <template x-for="(g, i) in current.gaps" :key="i">
-                        <div class="flex items-start gap-3 p-3 rounded-xl bg-rose-50 border border-rose-100">
-                            <span class="text-rose-500 font-bold mt-0.5 shrink-0 text-sm">✗</span>
-                            <span class="text-sm text-gray-700 font-body leading-relaxed" x-text="g"></span>
+            <!-- Detail Card -->
+            <div
+                class="bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100 mb-6 card-enter"
+                :key="active"
+            >
+                <!-- Card Header -->
+                <div
+                    class="p-6 relative overflow-hidden"
+                    :class="current.tierGradient"
+                >
+                    <div class="absolute inset-0 noise opacity-50"></div>
+                    <div class="relative z-10">
+                        <div
+                            class="flex items-start justify-between gap-4 mb-4"
+                        >
+                            <div>
+                                <div
+                                    class="text-white/60 text-xs font-display uppercase tracking-widest mb-1"
+                                    x-text="current.tier"
+                                ></div>
+                                <h2
+                                    class="font-display text-2xl font-bold text-white leading-tight"
+                                    x-text="current.emoji + ' ' + current.name"
+                                ></h2>
+                                <a
+                                    :href="current.site"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="text-white/70 text-sm hover:text-white transition-colors underline underline-offset-2 font-body"
+                                    x-text="current.url"
+                                ></a>
+                            </div>
+                            <div class="text-right shrink-0">
+                                <div
+                                    class="text-white font-display font-bold text-sm"
+                                    x-text="current.pricing"
+                                ></div>
+                                <div
+                                    class="text-white/60 text-xs mt-0.5"
+                                    x-text="current.size"
+                                ></div>
+                                <div
+                                    class="text-white/60 text-xs"
+                                    x-text="current.location"
+                                ></div>
+                                <div
+                                    class="text-white/80 text-xs mt-1 font-semibold"
+                                    x-text="current.clutch"
+                                ></div>
+                            </div>
                         </div>
+                        <div class="flex flex-wrap gap-1.5">
+                            <template x-for="s in current.services" :key="s">
+                                <span class="service-tag" x-text="s"></span>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Positioning bar -->
+                <div class="px-6 py-4 bg-gray-50 border-b border-gray-100">
+                    <div
+                        class="text-xs font-display font-bold text-gray-400 uppercase tracking-widest mb-1"
+                    >
+                        Their Positioning
+                    </div>
+                    <p
+                        class="text-sm text-gray-700 font-body leading-relaxed"
+                        x-text="current.positioning"
+                    ></p>
+                </div>
+
+                <!-- Tabs -->
+                <div class="flex border-b border-gray-100 px-6">
+                    <template x-for="t in tabs" :key="t.key">
+                        <button
+                            @click="tab = t.key"
+                            :class="tab === t.key ? 'active' : 'text-gray-400 hover:text-gray-600'"
+                            class="tab-pill font-display text-xs font-bold py-3.5 mr-6 tracking-wide transition-colors"
+                            x-text="t.label"
+                        ></button>
                     </template>
                 </div>
 
-                <!-- What they do well -->
-                <div x-show="tab === 'good'" class="space-y-2.5">
-                    <template x-for="(g, i) in current.whatTheyDoWell" :key="i">
-                        <div class="flex items-start gap-3 p-3 rounded-xl bg-green-50 border border-green-100">
-                            <span class="text-green-500 font-bold mt-0.5 shrink-0 text-sm">✓</span>
-                            <span class="text-sm text-gray-700 font-body leading-relaxed" x-text="g"></span>
-                        </div>
-                    </template>
-                </div>
-
-                <!-- Steal / Avoid -->
-                <div x-show="tab === 'steal'" class="space-y-4">
-                    <div class="p-4 rounded-2xl bg-amber-50 border border-amber-200">
-                        <div class="flex items-center gap-2 mb-2">
-                            <span class="text-base">💡</span>
-                            <span class="text-xs font-display font-bold text-amber-700 uppercase tracking-widest">Steal
-                                This</span>
-                        </div>
-                        <p class="text-sm text-amber-900 font-body leading-relaxed" x-text="current.steal"></p>
-                    </div>
-                    <div class="p-4 rounded-2xl bg-rose-50 border border-rose-200">
-                        <div class="flex items-center gap-2 mb-2">
-                            <span class="text-base">🚫</span>
-                            <span class="text-xs font-display font-bold text-rose-700 uppercase tracking-widest">Avoid
-                                This</span>
-                        </div>
-                        <p class="text-sm text-rose-900 font-body leading-relaxed" x-text="current.avoid"></p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- Navigation dots -->
-        <div class="flex justify-center gap-2 mb-8">
-            <template x-for="(c, i) in competitors" :key="i">
-                <button @click="select(i)" :class="active === i ? 'w-6 bg-ink' : 'w-2 bg-gray-300 hover:bg-gray-400'"
-                    class="h-2 rounded-full transition-all duration-300"></button>
-            </template>
-        </div>
-
-        <!-- FML Moat -->
-        <div class="rounded-3xl overflow-hidden" style="background: #0D0D12;">
-            <div class="p-6 relative">
-                <div class="absolute inset-0 noise"></div>
-                <div class="relative z-10">
-                    <div class="flex items-center gap-3 mb-5">
-                        <span class="text-2xl">🐭</span>
-                        <div>
-                            <h3 class="font-display font-bold text-white text-lg leading-tight">Your Unfair
-                                Advantages
-                            </h3>
-                            <p class="text-white/50 text-xs font-body">What none of these 5 competitors offer — use
-                                this
-                                as your homepage value prop</p>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-1 gap-2.5 md:grid-cols-2 lg:grid-cols-3">
-                        <template x-for="(item, i) in moat" :key="i">
-                            <div class="moat-item">
-                                <span style="color: #34D399;" class="font-bold mt-0.5 shrink-0">✓</span>
-                                <span class="text-white/90 text-sm font-body leading-relaxed" x-text="item"></span>
+                <!-- Tab Content -->
+                <div class="p-6 min-h-48">
+                    <!-- Gaps -->
+                    <div x-show="tab === 'gaps'" class="space-y-2.5">
+                        <template x-for="(g, i) in current.gaps" :key="i">
+                            <div
+                                class="flex items-start gap-3 p-3 rounded-xl bg-rose-50 border border-rose-100"
+                            >
+                                <span
+                                    class="text-rose-500 font-bold mt-0.5 shrink-0 text-sm"
+                                    >✗</span
+                                >
+                                <span
+                                    class="text-sm text-gray-700 font-body leading-relaxed"
+                                    x-text="g"
+                                ></span>
                             </div>
                         </template>
                     </div>
-                    <p class="text-white/30 text-xs font-body mt-5 text-center">
-                        Internal reference only · <span
-                            x-text="new Date().toLocaleDateString('en-US',{month:'long',year:'numeric'})"></span>
-                    </p>
+
+                    <!-- What they do well -->
+                    <div x-show="tab === 'good'" class="space-y-2.5">
+                        <template
+                            x-for="(g, i) in current.whatTheyDoWell"
+                            :key="i"
+                        >
+                            <div
+                                class="flex items-start gap-3 p-3 rounded-xl bg-green-50 border border-green-100"
+                            >
+                                <span
+                                    class="text-green-500 font-bold mt-0.5 shrink-0 text-sm"
+                                    >✓</span
+                                >
+                                <span
+                                    class="text-sm text-gray-700 font-body leading-relaxed"
+                                    x-text="g"
+                                ></span>
+                            </div>
+                        </template>
+                    </div>
+
+                    <!-- Steal / Avoid -->
+                    <div x-show="tab === 'steal'" class="space-y-4">
+                        <div
+                            class="p-4 rounded-2xl bg-amber-50 border border-amber-200"
+                        >
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="text-base">💡</span>
+                                <span
+                                    class="text-xs font-display font-bold text-amber-700 uppercase tracking-widest"
+                                    >Steal This</span
+                                >
+                            </div>
+                            <p
+                                class="text-sm text-amber-900 font-body leading-relaxed"
+                                x-text="current.steal"
+                            ></p>
+                        </div>
+                        <div
+                            class="p-4 rounded-2xl bg-rose-50 border border-rose-200"
+                        >
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="text-base">🚫</span>
+                                <span
+                                    class="text-xs font-display font-bold text-rose-700 uppercase tracking-widest"
+                                    >Avoid This</span
+                                >
+                            </div>
+                            <p
+                                class="text-sm text-rose-900 font-body leading-relaxed"
+                                x-text="current.avoid"
+                            ></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation dots -->
+            <div class="flex justify-center gap-2 mb-8">
+                <template x-for="(c, i) in competitors" :key="i">
+                    <button
+                        @click="select(i)"
+                        :class="active === i ? 'w-6 bg-ink' : 'w-2 bg-gray-300 hover:bg-gray-400'"
+                        class="h-2 rounded-full transition-all duration-300"
+                    ></button>
+                </template>
+            </div>
+
+            <!-- FML Moat -->
+            <div
+                class="rounded-3xl overflow-hidden"
+                style="background: #0d0d12"
+            >
+                <div class="p-6 relative">
+                    <div class="absolute inset-0 noise"></div>
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-3 mb-5">
+                            <span class="text-2xl">🐭</span>
+                            <div>
+                                <h3
+                                    class="font-display font-bold text-white text-lg leading-tight"
+                                >
+                                    Your Unfair Advantages
+                                </h3>
+                                <p class="text-white/50 text-xs font-body">
+                                    What none of these 5 competitors offer — use
+                                    this as your homepage value prop
+                                </p>
+                            </div>
+                        </div>
+                        <div
+                            class="grid grid-cols-1 gap-2.5 md:grid-cols-2 lg:grid-cols-3"
+                        >
+                            <template x-for="(item, i) in moat" :key="i">
+                                <div class="moat-item">
+                                    <span
+                                        style="color: #34d399"
+                                        class="font-bold mt-0.5 shrink-0"
+                                        >✓</span
+                                    >
+                                    <span
+                                        class="text-white/90 text-sm font-body leading-relaxed"
+                                        x-text="item"
+                                    ></span>
+                                </div>
+                            </template>
+                        </div>
+                        <p
+                            class="text-white/30 text-xs font-body mt-5 text-center"
+                        >
+                            Internal reference only ·
+                            <span
+                                x-text="new Date().toLocaleDateString('en-US',{month:'long',year:'numeric'})"
+                            ></span>
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
 
-    </div>
+        <script>
+            function competitorApp() {
+                return {
+                    active: 0,
+                    tab: "gaps",
 
-    <script>
-        function competitorApp() {
-            return {
-                active: 0,
-                tab: 'gaps',
+                    tiers: [
+                        {
+                            key: "your",
+                            label: "Your Tier",
+                            sub: "Direct competitors now",
+                            dot: "bg-violet-500",
+                        },
+                        {
+                            key: "step",
+                            label: "One Step Ahead",
+                            sub: "Where you're heading",
+                            dot: "bg-blue-500",
+                        },
+                        {
+                            key: "stretch",
+                            label: "Stretch / Aspirational",
+                            sub: "18–24 months out",
+                            dot: "bg-green-500",
+                        },
+                    ],
 
-                tiers: [
-                    { key: 'your', label: 'Your Tier', sub: 'Direct competitors now', dot: 'bg-violet-500' },
-                    { key: 'step', label: 'One Step Ahead', sub: "Where you're heading", dot: 'bg-blue-500' },
-                    { key: 'stretch', label: 'Stretch / Aspirational', sub: '18–24 months out', dot: 'bg-green-500' },
-                ],
+                    tabs: [
+                        { key: "gaps", label: "🎯 Their Gaps" },
+                        { key: "good", label: "✅ What They Do Well" },
+                        { key: "steal", label: "💡 Steal / Avoid" },
+                    ],
 
-                tabs: [
-                    { key: 'gaps', label: '🎯 Their Gaps' },
-                    { key: 'good', label: '✅ What They Do Well' },
-                    { key: 'steal', label: '💡 Steal / Avoid' },
-                ],
+                    moat: [
+                        "Combined web + data science + AI/LLM under one roof — no one else at this price point does all three",
+                        "Fixed-price transparent packages — no custom quote friction slowing down SMB sales",
+                        "Open-source tech stack (n8n, Metabase, Cal.com) — lower delivery cost = better margins",
+                        "LLM chatbot & AI automation as a core service — not an afterthought or upsell",
+                        "Lean founder team — faster decisions, direct client access, no agency overhead markup",
+                    ],
 
-                moat: [
-                    'Combined web + data science + AI/LLM under one roof — no one else at this price point does all three',
-                    'Fixed-price transparent packages — no custom quote friction slowing down SMB sales',
-                    'Open-source tech stack (n8n, Metabase, Cal.com) — lower delivery cost = better margins',
-                    'LLM chatbot & AI automation as a core service — not an afterthought or upsell',
-                    'Lean founder team — faster decisions, direct client access, no agency overhead markup',
-                ],
+                    competitors: [
+                        {
+                            tier: "Your Tier",
+                            tierShort: "📍 Your Tier",
+                            tierGradient: "tier-your",
+                            tierBadge: "bg-violet-100 text-violet-700",
+                            name: "Small Biz Web Design Studio",
+                            emoji: "🟣",
+                            url: "smallbizwebdesignstudio.com",
+                            site: "https://www.smallbizwebdesignstudio.com",
+                            clutch: "4.9★ (12 reviews)",
+                            size: "Boutique / Solo-ish",
+                            location: "Nationwide Remote",
+                            pricing: "~$2k–$8k",
+                            services: [
+                                "Web Design",
+                                "Web Dev",
+                                "SEO",
+                                "Mobile Responsive",
+                            ],
+                            positioning:
+                                "No-frills, affordable SMB web design. Very transactional. Zero data science, analytics, or AI whatsoever.",
+                            gaps: [
+                                "No data science, analytics dashboards, or AI — FML's single biggest differentiator vs this tier",
+                                "Very template-heavy — no design uniqueness or custom work",
+                                "No case studies with quantified results — just screenshots",
+                                "No retainer or recurring revenue model visible anywhere",
+                            ],
+                            whatTheyDoWell: [
+                                "Crystal clear SMB positioning — no confusion about who they serve",
+                                "Fast turnaround and responsive communication (5-star reviews confirm this)",
+                                "Simple, jargon-free service descriptions that convert well",
+                                "Strong early Clutch review cadence — 12 detailed reviews fast is a playbook to copy",
+                            ],
+                            steal: "Their review-gathering cadence. They get detailed, specific Clutch reviews fast and early. Build a post-project review ask into your offboarding process from day one.",
+                            avoid: "Their race-to-the-bottom pricing. They compete purely on cost. You compete on results, data, and outcomes. Never price like them.",
+                        },
+                        {
+                            tier: "Your Tier",
+                            tierShort: "📍 Your Tier",
+                            tierGradient: "tier-your",
+                            tierBadge: "bg-violet-100 text-violet-700",
+                            name: "Rough Works",
+                            emoji: "🟣",
+                            url: "roughworks.co",
+                            site: "https://roughworks.co",
+                            clutch: "Early stage / growing",
+                            size: "Small team",
+                            location: "Nationwide Remote",
+                            pricing: "~$3k–$10k",
+                            services: [
+                                "Web Design",
+                                "Automation",
+                                "Workflow Systems",
+                                "SMB Focus",
+                            ],
+                            positioning:
+                                "Web design + automation for SMBs. Closest competitor profile to FML right now. No data science or AI yet.",
+                            gaps: [
+                                "No data science, analytics dashboards, or LLM/AI chatbot capability at all",
+                                "Limited case studies — small portfolio makes it hard to close bigger clients",
+                                "No SEO or analytics retainer visible — missing the recurring revenue play",
+                                "No pricing transparency — custom quotes slow down the SMB sales cycle",
+                            ],
+                            whatTheyDoWell: [
+                                "Automation + web design bundling is smart — SMB owners love the operational angle",
+                                "Clean modern site with a strong visual identity and clear point of view",
+                                "Explains what they do without jargon — SMB owners get it immediately",
+                                "Workflow automation as an upsell beyond web design is a smart revenue layer",
+                            ],
+                            steal: "Their automation + web design bundling narrative. Framing the website as a business system rather than a brochure is powerful with SMB owners. Adapt this for FML's positioning.",
+                            avoid: "Copying their service scope — they don't do data or AI. That's your moat against them. Push data + AI hard in every pitch against Rough Works.",
+                        },
+                        {
+                            tier: "One Step Ahead",
+                            tierShort: "📈 One Step Ahead",
+                            tierGradient: "tier-step",
+                            tierBadge: "bg-blue-100 text-blue-700",
+                            name: "Oyova",
+                            emoji: "🔵",
+                            url: "oyova.com",
+                            site: "https://www.oyova.com",
+                            clutch: "4.9★ (120+ reviews)",
+                            size: "~15–30 people",
+                            location: "Jacksonville + St. Pete FL",
+                            pricing: "~$10k–$75k",
+                            services: [
+                                "Web Dev",
+                                "Web Design",
+                                "SEO",
+                                "PPC",
+                                "App Dev",
+                                "White-Label",
+                            ],
+                            positioning:
+                                "Results-driven digital agency for SMBs and mid-market. Strong white-label practice. 120+ Clutch reviews is a dominant trust signal in this space.",
+                            gaps: [
+                                "No data science, dashboards, or AI/LLM services — FML's clearest tech advantage over them",
+                                "Too expensive for early-stage SMBs — pricing pushes out the clients FML is targeting",
+                                "All custom quotes — no fixed-price packages, which slows down smaller deals",
+                                "Heavy process overhead — not nimble for small, fast SMB projects under $10k",
+                            ],
+                            whatTheyDoWell: [
+                                "Exceptional client retention — reviews mention multi-year relationships as the norm",
+                                "White-label development program is a major recurring revenue stream — FML's Phase 5 play",
+                                "Named account managers per client drive loyalty and reduce churn significantly",
+                                "120+ verified Clutch reviews is a dominant trust signal — this took years to build, start now",
+                            ],
+                            steal: "Their white-label agency partnership model. Other agencies paying FML to deliver web and data work under their brand is a Phase 5 revenue channel worth $50k+/yr at scale with minimal extra sales effort.",
+                            avoid: "Their custom-quote-only model for now. At their volume it works. For FML's stage, fixed packages close faster and protect margins better. Move to custom quoting once you're at 20+ clients/mo.",
+                        },
+                        {
+                            tier: "One Step Ahead",
+                            tierShort: "📈 One Step Ahead",
+                            tierGradient: "tier-step",
+                            tierBadge: "bg-blue-100 text-blue-700",
+                            name: "Rothbright",
+                            emoji: "🔵",
+                            url: "rothbright.com",
+                            site: "https://rothbright.com",
+                            clutch: "Strong Semrush presence",
+                            size: "~20–50 people",
+                            location: "Nationwide Remote",
+                            pricing: "~$8k–$50k",
+                            services: [
+                                "Web Design",
+                                "Web Dev",
+                                "SEO",
+                                "Paid Media",
+                                "Data Analytics",
+                                "CRO",
+                                "Hosting",
+                            ],
+                            positioning:
+                                "Full digital stack agency. Closest to FML's full-service vision — web + analytics + marketing under one roof. Rare for this tier.",
+                            gaps: [
+                                "No AI or LLM chatbot services — FML's clearest tech differentiator still fully applies",
+                                "Broad positioning — not specifically SMB focused, which dilutes their message",
+                                "No transparent pricing — custom quotes create friction for inbound SMB leads",
+                                "Website is functional but not visually inspiring — FML can out-design them on day one",
+                            ],
+                            whatTheyDoWell: [
+                                "Data analytics is explicitly a listed service — rare at this price tier and a strong signal",
+                                "CRO (conversion rate optimization) as a paid service is smart and high-margin",
+                                "100+ client base shows strong delivery and retention track record",
+                                "Full stack positioning enables larger average contract values per client",
+                            ],
+                            steal: "Their CRO service offering. Adding conversion rate optimization as a paid upsell after every web build is a natural value-add that increases average deal size by $1,500–$3,000 with minimal extra delivery work.",
+                            avoid: "Their broad positioning. They try to serve everyone from SMBs to enterprise. FML's tight SMB focus is sharper, more defensible, and easier to market against their vague targeting.",
+                        },
+                        {
+                            tier: "Stretch / Aspirational",
+                            tierShort: "🚀 Stretch",
+                            tierGradient: "tier-stretch",
+                            tierBadge: "bg-green-100 text-green-700",
+                            name: "Blennd",
+                            emoji: "🟢",
+                            url: "blennd.com",
+                            site: "https://blennd.com",
+                            clutch: "Award-winning / 4.9★",
+                            size: "~30–60 people",
+                            location: "Denver CO / Nationwide",
+                            pricing: "~$25k–$150k+",
+                            services: [
+                                "Web Design",
+                                "UX/UI",
+                                "Web Dev",
+                                "SEO",
+                                "CRO",
+                                "Paid Media",
+                                "Branding",
+                                "Analytics",
+                                "A/B Testing",
+                            ],
+                            positioning:
+                                "Premium data-driven design agency. Every website is a conversion funnel, not a brochure. Analytics + heatmaps + A/B testing baked into every project from day one.",
+                            gaps: [
+                                "Too expensive for most SMBs — $25k+ minimum shuts out FML's entire target market",
+                                "No AI or LLM chatbot services anywhere — FML's biggest tech differentiator fully applies",
+                                "Denver-centric brand identity even though they work nationwide — limits perception",
+                                "Long enterprise sales cycle — not built for fast SMB transactions under 30 days",
+                            ],
+                            whatTheyDoWell: [
+                                "Treats every website as a conversion funnel — this framing is the premium narrative FML should grow into",
+                                "Data and analytics integrated into the design process, not bolted on as an afterthought",
+                                "Case studies with actual numbers (377 leads in 90 days) — quantified results drive conversion",
+                                "Award-winning visual design sets them apart on perceived value and justifies premium pricing",
+                            ],
+                            steal: "Their 'website as a funnel' positioning language. This single framing shift — from 'we build websites' to 'we build conversion systems' — dramatically increases perceived value and justifies higher prices. Adapt this narrative for FML's Phase 3+ positioning.",
+                            avoid: "Their price point for now. Study their methodology, case study format, and portfolio structure. Replicate the quality, depth, and result-oriented language at SMB-accessible prices. This is your Year 2 brand direction.",
+                        },
+                    ],
 
-                competitors: [
-                    {
-                        tier: 'Your Tier',
-                        tierShort: '📍 Your Tier',
-                        tierGradient: 'tier-your',
-                        tierBadge: 'bg-violet-100 text-violet-700',
-                        name: 'Small Biz Web Design Studio',
-                        emoji: '🟣',
-                        url: 'smallbizwebdesignstudio.com',
-                        site: 'https://www.smallbizwebdesignstudio.com',
-                        clutch: '4.9★ (12 reviews)',
-                        size: 'Boutique / Solo-ish',
-                        location: 'Nationwide Remote',
-                        pricing: '~$2k–$8k',
-                        services: ['Web Design', 'Web Dev', 'SEO', 'Mobile Responsive'],
-                        positioning: 'No-frills, affordable SMB web design. Very transactional. Zero data science, analytics, or AI whatsoever.',
-                        gaps: [
-                            "No data science, analytics dashboards, or AI — FML's single biggest differentiator vs this tier",
-                            'Very template-heavy — no design uniqueness or custom work',
-                            'No case studies with quantified results — just screenshots',
-                            'No retainer or recurring revenue model visible anywhere',
-                        ],
-                        whatTheyDoWell: [
-                            'Crystal clear SMB positioning — no confusion about who they serve',
-                            'Fast turnaround and responsive communication (5-star reviews confirm this)',
-                            'Simple, jargon-free service descriptions that convert well',
-                            'Strong early Clutch review cadence — 12 detailed reviews fast is a playbook to copy',
-                        ],
-                        steal: "Their review-gathering cadence. They get detailed, specific Clutch reviews fast and early. Build a post-project review ask into your offboarding process from day one.",
-                        avoid: "Their race-to-the-bottom pricing. They compete purely on cost. You compete on results, data, and outcomes. Never price like them.",
+                    get current() {
+                        return this.competitors[this.active];
                     },
-                    {
-                        tier: 'Your Tier',
-                        tierShort: '📍 Your Tier',
-                        tierGradient: 'tier-your',
-                        tierBadge: 'bg-violet-100 text-violet-700',
-                        name: 'Rough Works',
-                        emoji: '🟣',
-                        url: 'roughworks.co',
-                        site: 'https://roughworks.co',
-                        clutch: 'Early stage / growing',
-                        size: 'Small team',
-                        location: 'Nationwide Remote',
-                        pricing: '~$3k–$10k',
-                        services: ['Web Design', 'Automation', 'Workflow Systems', 'SMB Focus'],
-                        positioning: "Web design + automation for SMBs. Closest competitor profile to FML right now. No data science or AI yet.",
-                        gaps: [
-                            'No data science, analytics dashboards, or LLM/AI chatbot capability at all',
-                            'Limited case studies — small portfolio makes it hard to close bigger clients',
-                            'No SEO or analytics retainer visible — missing the recurring revenue play',
-                            'No pricing transparency — custom quotes slow down the SMB sales cycle',
-                        ],
-                        whatTheyDoWell: [
-                            'Automation + web design bundling is smart — SMB owners love the operational angle',
-                            'Clean modern site with a strong visual identity and clear point of view',
-                            'Explains what they do without jargon — SMB owners get it immediately',
-                            'Workflow automation as an upsell beyond web design is a smart revenue layer',
-                        ],
-                        steal: "Their automation + web design bundling narrative. Framing the website as a business system rather than a brochure is powerful with SMB owners. Adapt this for FML's positioning.",
-                        avoid: "Copying their service scope — they don't do data or AI. That's your moat against them. Push data + AI hard in every pitch against Rough Works.",
-                    },
-                    {
-                        tier: 'One Step Ahead',
-                        tierShort: '📈 One Step Ahead',
-                        tierGradient: 'tier-step',
-                        tierBadge: 'bg-blue-100 text-blue-700',
-                        name: 'Oyova',
-                        emoji: '🔵',
-                        url: 'oyova.com',
-                        site: 'https://www.oyova.com',
-                        clutch: '4.9★ (120+ reviews)',
-                        size: '~15–30 people',
-                        location: 'Jacksonville + St. Pete FL',
-                        pricing: '~$10k–$75k',
-                        services: ['Web Dev', 'Web Design', 'SEO', 'PPC', 'App Dev', 'White-Label'],
-                        positioning: "Results-driven digital agency for SMBs and mid-market. Strong white-label practice. 120+ Clutch reviews is a dominant trust signal in this space.",
-                        gaps: [
-                            "No data science, dashboards, or AI/LLM services — FML's clearest tech advantage over them",
-                            'Too expensive for early-stage SMBs — pricing pushes out the clients FML is targeting',
-                            'All custom quotes — no fixed-price packages, which slows down smaller deals',
-                            'Heavy process overhead — not nimble for small, fast SMB projects under $10k',
-                        ],
-                        whatTheyDoWell: [
-                            'Exceptional client retention — reviews mention multi-year relationships as the norm',
-                            'White-label development program is a major recurring revenue stream — FML\'s Phase 5 play',
-                            'Named account managers per client drive loyalty and reduce churn significantly',
-                            '120+ verified Clutch reviews is a dominant trust signal — this took years to build, start now',
-                        ],
-                        steal: "Their white-label agency partnership model. Other agencies paying FML to deliver web and data work under their brand is a Phase 5 revenue channel worth $50k+/yr at scale with minimal extra sales effort.",
-                        avoid: "Their custom-quote-only model for now. At their volume it works. For FML's stage, fixed packages close faster and protect margins better. Move to custom quoting once you're at 20+ clients/mo.",
-                    },
-                    {
-                        tier: 'One Step Ahead',
-                        tierShort: '📈 One Step Ahead',
-                        tierGradient: 'tier-step',
-                        tierBadge: 'bg-blue-100 text-blue-700',
-                        name: 'Rothbright',
-                        emoji: '🔵',
-                        url: 'rothbright.com',
-                        site: 'https://rothbright.com',
-                        clutch: 'Strong Semrush presence',
-                        size: '~20–50 people',
-                        location: 'Nationwide Remote',
-                        pricing: '~$8k–$50k',
-                        services: ['Web Design', 'Web Dev', 'SEO', 'Paid Media', 'Data Analytics', 'CRO', 'Hosting'],
-                        positioning: "Full digital stack agency. Closest to FML's full-service vision — web + analytics + marketing under one roof. Rare for this tier.",
-                        gaps: [
-                            "No AI or LLM chatbot services — FML's clearest tech differentiator still fully applies",
-                            'Broad positioning — not specifically SMB focused, which dilutes their message',
-                            'No transparent pricing — custom quotes create friction for inbound SMB leads',
-                            'Website is functional but not visually inspiring — FML can out-design them on day one',
-                        ],
-                        whatTheyDoWell: [
-                            'Data analytics is explicitly a listed service — rare at this price tier and a strong signal',
-                            'CRO (conversion rate optimization) as a paid service is smart and high-margin',
-                            '100+ client base shows strong delivery and retention track record',
-                            'Full stack positioning enables larger average contract values per client',
-                        ],
-                        steal: "Their CRO service offering. Adding conversion rate optimization as a paid upsell after every web build is a natural value-add that increases average deal size by $1,500–$3,000 with minimal extra delivery work.",
-                        avoid: "Their broad positioning. They try to serve everyone from SMBs to enterprise. FML's tight SMB focus is sharper, more defensible, and easier to market against their vague targeting.",
-                    },
-                    {
-                        tier: 'Stretch / Aspirational',
-                        tierShort: '🚀 Stretch',
-                        tierGradient: 'tier-stretch',
-                        tierBadge: 'bg-green-100 text-green-700',
-                        name: 'Blennd',
-                        emoji: '🟢',
-                        url: 'blennd.com',
-                        site: 'https://blennd.com',
-                        clutch: 'Award-winning / 4.9★',
-                        size: '~30–60 people',
-                        location: 'Denver CO / Nationwide',
-                        pricing: '~$25k–$150k+',
-                        services: ['Web Design', 'UX/UI', 'Web Dev', 'SEO', 'CRO', 'Paid Media', 'Branding', 'Analytics', 'A/B Testing'],
-                        positioning: "Premium data-driven design agency. Every website is a conversion funnel, not a brochure. Analytics + heatmaps + A/B testing baked into every project from day one.",
-                        gaps: [
-                            'Too expensive for most SMBs — $25k+ minimum shuts out FML\'s entire target market',
-                            'No AI or LLM chatbot services anywhere — FML\'s biggest tech differentiator fully applies',
-                            'Denver-centric brand identity even though they work nationwide — limits perception',
-                            'Long enterprise sales cycle — not built for fast SMB transactions under 30 days',
-                        ],
-                        whatTheyDoWell: [
-                            "Treats every website as a conversion funnel — this framing is the premium narrative FML should grow into",
-                            'Data and analytics integrated into the design process, not bolted on as an afterthought',
-                            'Case studies with actual numbers (377 leads in 90 days) — quantified results drive conversion',
-                            'Award-winning visual design sets them apart on perceived value and justifies premium pricing',
-                        ],
-                        steal: "Their 'website as a funnel' positioning language. This single framing shift — from 'we build websites' to 'we build conversion systems' — dramatically increases perceived value and justifies higher prices. Adapt this narrative for FML's Phase 3+ positioning.",
-                        avoid: "Their price point for now. Study their methodology, case study format, and portfolio structure. Replicate the quality, depth, and result-oriented language at SMB-accessible prices. This is your Year 2 brand direction.",
-                    },
-                ],
 
-                get current() {
-                    return this.competitors[this.active];
-                },
-
-                select(i) {
-                    this.active = i;
-                    this.tab = 'gaps';
-                },
+                    select(i) {
+                        this.active = i;
+                        this.tab = "gaps";
+                    },
+                };
             }
-        }
-    </script>
+        </script>
 
+        <!-- FOOTER SECTION -->
+        <include src="/components/footer.html"></include>
 
-
-
-
-
-
-
-
-
-
-
-    <!-- CONTACT SECTION -->
-    <!-- <div id="contact-container"></div> -->
-
-    <!-- FOOTER SECTION -->
-    <!--  <div id="footer-container"></div> -->
-
-
-    <script src="/src/js/main.js"></script>
-    <script src="/src/js/components.js"></script>
-
-</body>
-
+        <script src="/js/main.js"></script>
+    </body>
 </html>
