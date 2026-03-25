@@ -1,6 +1,153 @@
-<section
-    id="contact"
-    x-data="{
+<!-- FORM V2, FORM V1 BELOW -->
+<section class="min-h-screen py-32 bg-arctic-lab bg-[length:400%_400%] animate-bgShift [perspective:2000px] flex flex-col
+items-center justify-center text-center px-6 relative overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none z-10">
+        <!-- MOBILE + TABLET -->
+        <div class="glass-cube lg:hidden c1-mobile absolute"></div>
+        <div class="glass-cube lg:hidden c2-mobile absolute"></div>
+        <div class="glass-cube lg:hidden c3-mobile absolute"></div>
+        <div class="glass-cube lg:hidden c4-mobile absolute"></div>
+        <div class="glass-cube lg:hidden c5-mobile absolute"></div>
+        <div class="glass-cube lg:hidden c6-mobile absolute"></div>
+        <div class="glass-cube lg:hidden c7-mobile absolute"></div>
+
+        <!-- DESKTOP -->
+        <div class="glass-cube hidden lg:block c1 absolute"></div>
+        <div class="glass-cube hidden lg:block c2 absolute"></div>
+        <div class="glass-cube hidden lg:block c3 absolute"></div>
+        <div class="glass-cube hidden lg:block c4 absolute"></div>
+        <div class="glass-cube hidden lg:block c5 absolute"></div>
+        <div class="glass-cube hidden lg:block c6 absolute"></div>
+        <div class="glass-cube hidden lg:block c7 absolute"></div>
+    </div>
+
+    <div x-data="{ open: false }" class="relative container mx-auto px-6 lg:px-12 xl:px-24 z-20">
+
+        <div
+            class="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-10 lg:gap-16 max-w-7xl mx-auto py-20">
+
+            <div class="w-full lg:w-1/2 text-center lg:text-left">
+                <h2
+                    class="text-[44px] md:text-7xl lg:text-7xl xl:text-8xl font-black text-slate-950 leading-[0.9] lg:leading-[0.85] uppercase tracking-tighter mb-6 lg:mb-8">
+                    Let's build<br class="hidden lg:block" /> something<br />
+                    <span class="text-sky-600">Extraordinary</span>
+                </h2>
+
+                <p
+                    class="text-slate-950 text-lg lg:text-3xl font-medium max-w-sm lg:max-w-2xl mx-auto lg:mx-0 opacity-90 mb-10">
+                    Skip the long forms. Send our crew a direct message and let's get to work.
+                </p>
+
+                <button
+                    @click="open = true; document.body.style.overflow = 'hidden'; $dispatch('toggle-form', { open: true })"
+                    class="w-full md:w-72 lg:w-96 py-3 bg-slate-950 text-white rounded-full font-bold tracking-widest uppercase transition-transform hover:scale-105 active:scale-95 shadow-lg text-center">
+                    Launch Your Project
+                </button>
+            </div>
+
+            <div class="hidden lg:block lg:w-1/2"></div>
+        </div>
+
+        <template x-if="open">
+            <div x-data="{ 
+                    email: 'cass@flyingmouselabs.com', 
+                    copied: false,
+                    copyEmail() {
+                        navigator.clipboard.writeText(this.email);
+                        this.copied = true;
+                        setTimeout(() => this.copied = false, 2000);
+                    }
+                }" class="fixed inset-0 z-[150] flex items-center justify-center p-4 bg-slate-950/40 backdrop-blur-md"
+                @click.self="open = false; document.body.style.overflow = 'auto'; $dispatch('toggle-form', { open: false })"
+                x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-95"
+                x-transition:enter-end="opacity-100 scale-100">
+
+                <div class="bg-[#F3F4F6] w-full max-w-xl rounded-[40px] shadow-2xl relative overflow-hidden">
+                    <button
+                        @click="open = false; document.body.style.overflow = 'auto'; $dispatch('toggle-form', { open: false })"
+                        class="absolute top-6 right-6 z-50 p-2 bg-white/80 backdrop-blur-md rounded-full border border-gray-100 shadow-sm hover:bg-white transition-colors">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+
+                    <div class="p-8 md:p-12 pt-16 flex flex-col items-center text-center">
+                        <div class="mb-10">
+                            <h2
+                                class="text-4xl md:text-5xl font-black text-slate-950 uppercase tracking-tight leading-none mb-4">
+                                Ready to Build <br /><span class="text-sky-500">Something Big?</span>
+                            </h2>
+                            <p class="text-gray-500 text-sm font-medium max-w-xs mx-auto">
+                                Click below to open your mail app with a project template ready to go.
+                            </p>
+                        </div>
+
+                        <a href="mailto:cass@flyingmouselabs.com?cc=kody@flyingmouselabs.com&subject=New Project Inquiry: [Your Name/Company]&body=Hi Flying Mouse Crew,%0A%0AI'd like to chat about a new project! Here are some initial details:%0A%0A- SERVICES I'M INTERESTED IN: [Web / Branding / Automations etc]%0A- PROJECT GOALS: [Briefly describe what you're looking to achieve]%0A- ESTIMATED TIMELINE: [When would you like to launch?]%0A%0ABest,%0A[Your Name]"
+                            class="w-full sm:w-3/4 py-4 bg-slate-950 text-white rounded-full font-bold tracking-[0.2em] uppercase transition-all hover:scale-[1.02] active:scale-95 shadow-xl flex items-center justify-center space-x-3 mb-6 no-underline">
+                            <span class="text-sm">Chat With The Crew</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                            </svg>
+                        </a>
+
+                        <div class="w-full sm:w-3/4 space-y-3">
+                            <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Or copy our address
+                            </p>
+                            <button @click="copyEmail()"
+                                class="w-full py-4 bg-white border border-gray-200 rounded-2xl flex items-center justify-between px-6 transition-all hover:border-sky-300 group">
+                                <span class="text-slate-600 font-mono text-xs" x-text="email"></span>
+                                <div class="flex items-center">
+                                    <span x-show="copied" x-transition
+                                        class="text-emerald-600 text-[10px] font-bold uppercase tracking-widest">Copied!</span>
+                                    <svg x-show="!copied" xmlns="http://www.w3.org/2000/svg"
+                                        class="h-4 w-4 text-gray-300 group-hover:text-sky-500" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2" />
+                                    </svg>
+                                </div>
+                            </button>
+                        </div>
+
+                        <p class="mt-10 text-[10px] text-gray-400 uppercase tracking-[0.2em] font-bold">
+                            Response time: &lt; 24 Hours
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </template>
+    </div>
+
+    <style>
+        [x-cloak] {
+            display: none !important;
+        }
+    </style>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- FORM V1 -->
+<!-- <section id="contact" x-data="{
     open: false,
     firstName: '',
     lastName: '',
@@ -82,12 +229,10 @@
             console.error('Form not found at: /components/contact-form.html');
         }
     }
-    }"
-    x-init=" loadForm()"
-    class="min-h-screen py-32 bg-arctic-lab bg-[length:400%_400%] animate-bgShift [perspective:2000px] flex flex-col items-center justify-center text-center px-6 relative overflow-hidden"
->
+    }" x-init=" loadForm()"
+    class="min-h-screen py-32 bg-arctic-lab bg-[length:400%_400%] animate-bgShift [perspective:2000px] flex flex-col items-center justify-center text-center px-6 relative overflow-hidden">
     <div class="absolute inset-0 pointer-events-none z-10">
-        <!-- MOBILE + TABLET -->
+        <!-- MOBILE + TABLET 
         <div class="glass-cube lg:hidden c1-mobile absolute"></div>
         <div class="glass-cube lg:hidden c2-mobile absolute"></div>
         <div class="glass-cube lg:hidden c3-mobile absolute"></div>
@@ -96,7 +241,7 @@
         <div class="glass-cube lg:hidden c6-mobile absolute"></div>
         <div class="glass-cube lg:hidden c7-mobile absolute"></div>
 
-        <!-- DESKTOP -->
+        <!-- DESKTOP 
         <div class="glass-cube hidden lg:block c1 absolute"></div>
         <div class="glass-cube hidden lg:block c2 absolute"></div>
         <div class="glass-cube hidden lg:block c3 absolute"></div>
@@ -107,62 +252,41 @@
     </div>
 
     <div class="container mx-auto px-6 lg:px-12 xl:px-24 relative z-20">
-        <!-- MOBILE + TABLET -->
+        <!-- MOBILE + TABLET 
         <div class="lg:hidden flex flex-col items-center text-center">
-            <h2
-                class="text-5xl md:text-6xl font-black text-slate-950 leading-tight uppercase tracking-tighter mb-4"
-            >
-                Let's build something <br /><span class="text-sky-600"
-                    >Extraordinary.</span
-                >
+            <h2 class="text-5xl md:text-6xl font-black text-slate-950 leading-tight uppercase tracking-tighter mb-4">
+                Let's build something <br /><span class="text-sky-600">Extraordinary.</span>
             </h2>
-            <p
-                class="text-slate-950 text-lg font-medium max-w-sm opacity-90 mb-10"
-            >
+            <p class="text-slate-950 text-lg font-medium max-w-sm opacity-90 mb-10">
                 Fill out the inquiry form, and we'll get back to you within 24
                 hours.
             </p>
             <button
                 @click="open = true; document.body.style.overflow = 'hidden'; $dispatch('toggle-form', { open: true })"
-                class="bg-slate-950 hover:bg-sky-500 hover:scale-105 text-white px-12 py-5 rounded-full text-xs font-black uppercase tracking-[0.2em] shadow-xl hover:bg-sky-900 transition-all"
-            >
+                class="bg-slate-950 hover:bg-sky-500 hover:scale-105 text-white px-12 py-5 rounded-full text-xs font-black uppercase tracking-[0.2em] shadow-xl hover:bg-sky-900 transition-all">
                 Launch Your Project
             </button>
         </div>
 
-        <!-- DESKTOP-->
-        <div
-            class="hidden lg:flex items-start justify-between gap-16 max-w-7xl mx-auto"
-        >
+        <!-- DESKTOP
+        <div class="hidden lg:flex items-start justify-between gap-16 max-w-7xl mx-auto">
             <div class="w-1/2 text-left mt-20">
-                <h2
-                    class="text-7xl font-black text-slate-950 leading-[0.85] uppercase tracking-tighter mb-8"
-                >
-                    Let's build<br />something<br /><span class="text-sky-600"
-                        >Extraordinary.</span
-                    >
+                <h2 class="text-7xl font-black text-slate-950 leading-[0.85] uppercase tracking-tighter mb-8">
+                    Let's build<br />something<br /><span class="text-sky-600">Extraordinary.</span>
                 </h2>
-                <p
-                    class="text-slate-950 text-xl font-medium max-w-sm opacity-90"
-                >
+                <p class="text-slate-950 text-xl font-medium max-w-sm opacity-90">
                     Fill out the inquiry form, and we'll get back to you within
                     24 hours.
                 </p>
             </div>
 
             <div class="w-1/2 max-w-xl">
-                <div
-                    class="bg-white/70 backdrop-blur-2xl border border-white/40 p-12 rounded-[50px] shadow-2xl"
-                >
+                <div class="bg-white/70 backdrop-blur-2xl border border-white/40 p-12 rounded-[50px] shadow-2xl">
                     <div id="form-content-source">
                         <template x-if="!formHTML">
                             <div
-                                class="flex items-center justify-center p-12 text-gray-400 font-mono text-xs uppercase tracking-widest"
-                            >
-                                <svg
-                                    class="animate-spin h-5 w-5 mr-3"
-                                    ...
-                                ></svg>
+                                class="flex items-center justify-center p-12 text-gray-400 font-mono text-xs uppercase tracking-widest">
+                                <svg class="animate-spin h-5 w-5 mr-3" ...></svg>
                                 Syncing Form...
                             </div>
                         </template>
@@ -174,32 +298,18 @@
         </div>
     </div>
 
-    <!-- MOBILE + TABLET -->
+    <!-- MOBILE + TABLET 
     <template x-if="open">
-        <div
-            class="fixed inset-0 z-[150] flex items-start overflow-y-auto justify-center p-4 py-12 md:py-20 bg-slate-950/10 backdrop-blur-sm"
+        <div class="fixed inset-0 z-[150] flex items-start overflow-y-auto justify-center p-4 py-12 md:py-20 bg-slate-950/10 backdrop-blur-sm"
             @click.self="open = false; document.body.style.overflow = 'auto'"
-            x-transition:enter="transition ease-out duration-300"
-            x-transition:enter-start="opacity-0 scale-95"
-            x-transition:enter-end="opacity-100 scale-100"
-        >
-            <div
-                class="bg-[#F3F4F6] w-full max-w-2xl rounded-[40px] shadow-2xl relative no-scrollbar"
-            >
+            x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-95"
+            x-transition:enter-end="opacity-100 scale-100">
+            <div class="bg-[#F3F4F6] w-full max-w-2xl rounded-[40px] shadow-2xl relative no-scrollbar">
                 <button
                     @click="open = false; document.body.style.overflow = 'auto'; $dispatch('toggle-form', { open: false })"
-                    class="absolute top-6 right-6 z-50 p-2 bg-white/80 backdrop-blur-md rounded-full border border-gray-100 shadow-sm"
-                >
-                    <svg
-                        width="20"
-                        height="20"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="3"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                    >
+                    class="absolute top-6 right-6 z-50 p-2 bg-white/80 backdrop-blur-md rounded-full border border-gray-100 shadow-sm">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                        stroke-linecap="round" stroke-linejoin="round">
                         <line x1="18" y1="6" x2="6" y2="18"></line>
                         <line x1="6" y1="6" x2="18" y2="18"></line>
                     </svg>
@@ -208,12 +318,8 @@
                 <div class="p-8 md:p-12 pt-16">
                     <div class="text-left mb-10">
                         <h2
-                            class="text-3xl md:text-4xl font-black text-slate-950 uppercase tracking-tight leading-none mb-3"
-                        >
-                            Let's Build Something <br /><span
-                                class="text-sky-500"
-                                >Extraordinary.</span
-                            >
+                            class="text-3xl md:text-4xl font-black text-slate-950 uppercase tracking-tight leading-none mb-3">
+                            Let's Build Something <br /><span class="text-sky-500">Extraordinary.</span>
                         </h2>
                         <p class="text-gray-500 text-sm font-medium">
                             Fill out the form below and we'll get back to you
@@ -223,8 +329,7 @@
 
                     <template x-if="!formHTML">
                         <div
-                            class="flex items-center justify-center p-12 text-gray-400 font-mono text-xs uppercase tracking-widest"
-                        >
+                            class="flex items-center justify-center p-12 text-gray-400 font-mono text-xs uppercase tracking-widest">
                             <svg class="animate-spin h-5 w-5 mr-3" ...></svg>
                             Syncing Form...
                         </div>
@@ -241,4 +346,4 @@
             display: none !important;
         }
     </style>
-</section>
+</section> -->
