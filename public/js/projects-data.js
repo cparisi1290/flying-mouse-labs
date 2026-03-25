@@ -48,7 +48,7 @@ document.addEventListener("alpine:init", () => {
                 title: "Damaris Accounting",
                 category: "Web Design",
                 description: `Damaris, an accountant offering bookkeeping, tax prep, business formation, and accounting services, needed a site that matched the quality of her work. Her original site fell short, so we rebuilt it on Squarespace using her existing logo and elevated the branding to feel modern, professional, and luxurious. The new single-page site clearly presents her services, with on-page SEO and Google tools in place to support future growth. Damaris said I brought her vision to life and that she didn’t know her site could look this good.`,
-                quote: `За "I had a website that was done for free, but it wasn’t finished, and it definitely didn’t reflect the quality of my business. I knew I needed something more professional, but I wasn’t sure who to trust with the redesign. I was concerned about finding someone who could understand my business and make the process feel manageable.
+                quote: `"I had a website that was done for free, but it wasn’t finished, and it definitely didn’t reflect the quality of my business. I knew I needed something more professional, but I wasn’t sure who to trust with the redesign. I was concerned about finding someone who could understand my business and make the process feel manageable.
 
                 [Flying Mouse Labs] made it incredibly easy. From strategy to Google Business Profile to the design itself, she brought everything together beautifully. My new website is even better than I imagined it could be!"`,
                 before: "",
