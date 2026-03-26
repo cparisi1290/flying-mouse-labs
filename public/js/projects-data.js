@@ -12,6 +12,9 @@ document.addEventListener("alpine:init", () => {
                 quote: `"I really like [the logo]! I love it, this looks really wonderful and I don't have any revisions to the website to request."`,
                 before: "",
                 after: "/images/nhc-after.png",
+                coverAlt: "Nova Health Collective website redesign",
+                beforeAlt: "",
+                afterAlt: "Modern and strategic brand identity and custom website for a midwifery and psychedelic facilitation practice"
             },
             {
                 cover: "/images/kvs-port-cover.gif",
@@ -23,6 +26,9 @@ document.addEventListener("alpine:init", () => {
                 quote: `"I always fall in love with Cassandra's designs.She consistently delivers on professionalism and impact.Seriously, I'm always impressed with Cassandra and her design abilities. She's my go to girl for web design"`,
                 before: "/images/kvs-before.png",
                 after: "/images/kvs-after.png",
+                coverAlt: "Kay's Virtual Solutions website redesign",
+                beforeAlt: "Kay's Virtual Solutions original website",
+                afterAlt: "Polished and feminine website redesign for a fractional COO business consulting firm"
             },
             {
                 cover: "/images/luxe-port-cover.gif",
@@ -33,6 +39,9 @@ document.addEventListener("alpine:init", () => {
                 quote: '"The thing I liked most about working with Cass was how easy she made everything."',
                 before: "",
                 after: "/images/luxe-after.png",
+                coverAlt: "Luxe Pet Parlor brand and website design",
+                beforeAlt: "",
+                afterAlt: "Calming and luxurious brand identity and website for a pet grooming business"
             },
             {
                 cover: "/images/colliance-port-cover.gif",
@@ -42,6 +51,9 @@ document.addEventListener("alpine:init", () => {
                 quote: `"[Flying Mouse Labs] is always on top of any task we give [them] and does incredible design work."`,
                 before: "/images/colliance-before.png",
                 after: "/images/colliance-after.png",
+                coverAlt: "Colliance Online Business Management website redesign",
+                beforeAlt: "",
+                afterAlt: "Brighter, more inviting, and easy to navigate website redesign for a business management consulting firm"
             },
             {
                 cover: "/images/das-port-cover.gif",
@@ -53,6 +65,9 @@ document.addEventListener("alpine:init", () => {
                 [Flying Mouse Labs] made it incredibly easy. From strategy to Google Business Profile to the design itself, she brought everything together beautifully. My new website is even better than I imagined it could be!"`,
                 before: "",
                 after: "/images/das-after.png",
+                coverAlt: "Damaris Accounting website redesign",
+                beforeAlt: "",
+                afterAlt: "Professional website redesign for an accounting firm"
             },
             {
                 cover: "/images/gg-port-cover.gif",
@@ -64,6 +79,9 @@ document.addEventListener("alpine:init", () => {
                 If you need any design or website development done for your business please reach out to Cassandra, you won’t be disappointed!"`,
                 before: "",
                 after: "/images/gg-after.png",
+                coverAlt: "Grateful Graze website redesign",
+                beforeAlt: "",
+                afterAlt: "Eclectic website redesign for a charcuterie and cheese grazing cafe"
             },
         ],
         openProject(index) {

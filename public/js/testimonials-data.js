@@ -8,6 +8,7 @@ document.addEventListener("alpine:init", () => {
                 name: "Sandy L.",
                 business: "Colliance Online Business Management",
                 image: "/images/colliance-profile.jpg",
+                imageAlt: "Sandy L. profile photo",
             },
             {
                 badge: "SEO Audit + Backend Rescue",
@@ -15,6 +16,7 @@ document.addEventListener("alpine:init", () => {
                 name: "Kathy C.",
                 business: "KCruts Photography",
                 image: "/images/kcruts-profile.jpg",
+                imageAlt: "Kathy C. profile photo",
             },
             {
                 badge: "100% On-Brand",
@@ -22,6 +24,7 @@ document.addEventListener("alpine:init", () => {
                 name: "Kayla S.",
                 business: "Kay's Virtual Solutions",
                 image: "/images/kvs-profile.jpg",
+                imageAlt: "Kayla S. profile photo",
             },
             {
                 badge: "Professional Site, Personal Touch",
@@ -29,6 +32,7 @@ document.addEventListener("alpine:init", () => {
                 name: "Robin P.",
                 business: "Dos Gatos Property Management",
                 image: "/images/dgpm-profile.png",
+                imageAlt: "Robin P. profile photo",
             },
             {
                 badge: "+450% Engagement",
@@ -36,6 +40,7 @@ document.addEventListener("alpine:init", () => {
                 name: "Damaris E.",
                 business: "Damaris Accounting Services",
                 image: "/images/das-profile.jpg",
+                imageAlt: "Damaris E. profile photo",
             },
             {
                 badge: "Honest & Visionary Designer",
@@ -43,6 +48,7 @@ document.addEventListener("alpine:init", () => {
                 name: "Suzanne H.",
                 business: "Bookkeeping Concepts",
                 image: "/images/bkkg-concepts-profile.png",
+                imageAlt: "Suzanne H. profile photo",
             },
             {
                 badge: "Brand Vision Mastery",
@@ -50,6 +56,7 @@ document.addEventListener("alpine:init", () => {
                 name: "Cheyanne F.",
                 business: "Luxe Pet Parlor",
                 image: "/images/lpp-profile.jpg",
+                imageAlt: "Cheyanne F. profile photo",
             },
         ],
 

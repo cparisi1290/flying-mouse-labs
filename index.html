@@ -212,12 +212,14 @@
             </div>
 
             <div class="lg:max-w-4xl w-full flex flex-col items-center lg:items-start space-y-8">
-                <h1
+                <h1 class="text-[1px] font-white opacity-0">Web design and data science agency for small to medium
+                    businesses</h1>
+                <h2
                     class="text-balance text-4xl md:text-7xl lg:text-8xl font-black text-slate-950 leading-tight uppercase relative z-30 text-center lg:text-left">
                     Make Your<br class="lg:hidden" />
                     First Impression<br class="lg:hidden" />
                     <span class="text-amber-500 text-[46px] md:text-[84px] lg:text-8xl">Unforgettable</span>
-                </h1>
+                </h2>
 
                 <p
                     class="text-lg md:text-2xl lg:text-3xl text-slate-950 max-w-3xl font-medium text-center lg:text-left relative z-30">
@@ -261,11 +263,11 @@
             class="max-w-4xl lg:max-w-7xl mx-auto space-y-6 lg:space-y-0 lg:flex lg:flex-row lg:items-stretch lg:gap-4 lg:h-[600px]">
             <template x-for="(service, index) in [
 
-                        {id: 1, title: 'Design', tags: ['Branding', 'Messaging', 'Graphics', 'Copywriting'], img: 'design-balloons.jpg', desc: 'Custom, intuitive designs that capture your brand\'s unique strength and individuality. Every detail draws visitors in and keeps them engaged.'},
+                        {id: 1, title: 'Design', tags: ['Branding', 'Messaging', 'Graphics', 'Copywriting'], img: 'design-balloons.jpg', desc: 'Custom, intuitive designs that capture your brand\'s unique strength and individuality. Every detail draws visitors in and keeps them engaged.', imageAlt: 'Custom web design solutions created around your business goals'},
 
-                        {id: 2, title: 'Build', tags: ['Web Development', 'UI/UX', 'Strategy', 'Mobile App Development'], img: 'build-community.jpg', desc: 'We engineer fast, reliable, and secure websites built to convert and optimized to perform across every device.'},
+                        {id: 2, title: 'Build', tags: ['Web Development', 'UI/UX', 'Strategy', 'Mobile App Development'], img: 'build-community.jpg', desc: 'We engineer fast, reliable, and secure websites built to convert and optimized to perform across every device.', imageAlt: 'A dedicated agency team working with small to medium business owners'},
 
-                        {id: 3, title: 'Scale', tags: ['Data Automations', 'Data Analytics', 'Data Science', 'LLM Chatbot'], img: 'scale-bubbles.jpg', desc: 'We build intelligent systems that automate workflows, enhance decision-making, and unlock new levels of efficiency.'}
+                        {id: 3, title: 'Scale', tags: ['Data Automations', 'Data Analytics', 'Data Science', 'LLM Chatbot'], img: 'scale-bubbles.jpg', desc: 'We build intelligent systems that automate workflows, enhance decision-making, and unlock new levels of efficiency.', imageAlt: 'Turning complex data into clear, beautiful web experiences'}
 
                     ]" :key="index">
                 <div @click="activeService = service.id"
@@ -275,7 +277,8 @@
                     <img :src="'/images/' + service.img"
                         class="absolute inset-0 w-full h-full object-cover transition-all duration-700" :class="activeService !== service.id
                                  ? 'grayscale brightness-100 opacity-80 blur-sm scale-110'
-                                 : 'grayscale-0 brightness-100 opacity-100 blur-0 scale-100 group-hover:scale-105'" />
+                                 : 'grayscale-0 brightness-100 opacity-100 blur-0 scale-100 group-hover:scale-105'"
+                        :alt="service.imageAlt" />
 
                     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/80 via-black/60 via-black/40 md:from-black/90 md:via-black/50 md:via-black/30 md:to-transparent transition-opacity duration-500"
                         :class="activeService === service.id ? 'opacity-100' : 'opacity-0'"></div>
@@ -411,7 +414,7 @@
             <template x-for="(project, index) in projects" :key="'mobile-'+index">
                 <div @click="openProject(index)"
                     class="snap-center shrink-0 w-[85vw] md:w-[45vw] max-w-[400px] aspect-[3/4] rounded-[40px] overflow-hidden cursor-pointer shadow-2xl bg-gray-100">
-                    <img :src="project.cover" class="w-full h-full object-cover" />
+                    <img :src="project.cover" class="w-full h-full object-cover" :alt="project.coverAlt" />
                 </div>
             </template>
         </div>
@@ -427,9 +430,9 @@
                 <div class="carousel-stage relative w-[300px] h-[450px] preserve-3d">
                     <template x-for="(project, index) in projects" :key="'desktop-'+index">
                         <div @click="openProject(index)"
-                            class="carousel-card absolute inset-0 rounded-[40px] overflow-hidden cursor-pointer shadow-xl transition-all duration-500 border border-white/10 group"
+                            class="carousel-card absolute inset-0 rounded-[40px] overflow-hidden cursor-pointer shadow-xl transition-all duration-500 group"
                             :style="`--index: ${index}; --total: ${projects.length};`">
-                            <img :src="project.cover"
+                            <img :src="project.cover" :alt="project.coverAlt"
                                 class="w-full h-full object-cover transition-all duration-700 grayscale group-hover:grayscale-0 group-hover:scale-110" />
 
                             <div
@@ -483,7 +486,7 @@
                                 <div class="space-y-3">
                                     <div class="rounded-3xl overflow-hidden shadow-sm border border-gray-100">
                                         <img :src="activeProject?.before" class="w-full h-auto object-cover"
-                                            alt="Original Site" />
+                                            :alt="activeProject?.beforeAlt" />
                                     </div>
                                 </div>
                             </template>
@@ -491,7 +494,7 @@
                             <div class="space-y-3">
                                 <div class="rounded-3xl overflow-hidden shadow-xl ring-1 ring-gray-100">
                                     <img :src="activeProject?.after" class="w-full h-auto object-cover"
-                                        alt="Redesign" />
+                                        :alt="activeProject?.afterAlt" />
                                 </div>
                             </div>
                         </div>
@@ -553,7 +556,7 @@
                         </div>
                         <div class="mt-8 flex items-center gap-4">
                             <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-white shrink-0">
-                                <img :src="item.image" class="w-full h-full object-cover" />
+                                <img :src="item.image" class="w-full h-full object-cover" :alt="item.imageAlt" />
                             </div>
                             <div>
                                 <p class="text-sm font-black text-slate-950 uppercase tracking-tighter"
@@ -604,7 +607,8 @@
                                 <div
                                     class="group w-[450px] shrink-0 bg-white/60 backdrop-blur-xl rounded-[50px] p-12 border border-white/50 shadow-2xl flex flex-col justify-between min-h-[480px] transition-all duration-500 hover:scale-[1.02] hover:relative overflow-hidden">
                                     <div class="absolute top-20 left-2 w-28 opacity-10 pointer-events-none">
-                                        <img src="/images/glass-quotes-dark.svg" class="w-full h-auto" />
+                                        <img src="/images/glass-quotes-dark.svg" class="w-full h-auto"
+                                            alt="Testimonial quote decoration" />
                                     </div>
 
                                     <div class="relative z-10">
@@ -619,7 +623,8 @@
                                     <div class="mt-12 flex items-center gap-5 relative z-10">
                                         <div
                                             class="w-16 h-16 rounded-full overflow-hidden border-4 border-white shadow-md shrink-0">
-                                            <img :src="item.image" class="w-full h-full object-cover" />
+                                            <img :src="item.image" class="w-full h-full object-cover"
+                                                :alt="item.imageAlt" />
                                         </div>
                                         <div>
                                             <p class="text-lg font-black text-slate-950 uppercase tracking-tighter leading-none"
@@ -647,6 +652,7 @@
                 title: 'Values',
                 subtitle: '// 01 Ethos',
                 image: 'https://picsum.photos/seed/about-1/800/1200',
+                imageAlt: 'Smarter websites for businesses ready to scale',
                 content: '<h3>Architectural Precision</h3><p>We believe that exceptional digital experiences are built on a foundation of precision and intentionality. Every line of code and pixel placement is crafted with purpose.</p>',
                 stats: [
                     { number: '100%', label: 'Client Satisfaction' },
@@ -658,6 +664,7 @@
                 title: 'Mission',
                 subtitle: '// 02 Drive',
                 image: 'https://picsum.photos/seed/about-3/800/1200',
+                imageAlt: 'Strategic web design backed by real data insights',
                 content: '<h3>Building the Digital Future</h3><p>We craft digital ecosystems that grow with your business. Our mission is to create high-performance, scalable solutions.</p>',
                 stats: [
                     { number: '<2s', label: 'Load Time' },
@@ -669,32 +676,26 @@
                 title: 'Philosophy',
                 subtitle: '// 03 Core',
                 image: 'https://picsum.photos/seed/about-2/800/1200',
-                content: '<h3>Beauty Through Logic</h3><p>Beauty is the natural result of perfectly functioning logic. When the architecture is sound, the user experience becomes beautiful.</p>',
-                stats: [
-                    { number: 'A+', label: 'Code Quality' },
-                    { number: '0', label: 'Tech Debt' },
-                    { number: '∞', label: 'Possibilities' }
-                ]
-            }
-        ],
-        init() {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => { this.isActive = entry.isIntersecting; });
+                imageAlt: 'Precision design and analytics for ambitious companies',
+                content: '<h3>Beauty Through Logic</h3><p>Beauty is the natural result of perfectly functioning logic. When the architecture is sound, the user experience becomes beautiful.</p>'
+            , stats: [ { number: 'A+' , label: 'Code Quality' }, { number: '0' , label: 'Tech Debt' }, { number: '∞' ,
+            label: 'Possibilities' } ] } ], init() { const observer=new IntersectionObserver((entries)=> {
+            entries.forEach(entry => { this.isActive = entry.isIntersecting; });
             }, { threshold: 0.1 });
             observer.observe(this.$el);
-        },
-        openLightbox(index) {
+            },
+            openLightbox(index) {
             this.currentIndex = index;
             this.showLightbox = true;
             // UNCOMMENT THIS WHEN READY FOR LIGHTBOX
             //document.body.style.overflow = 'hidden';
-        },
-        closeLightbox() {
+            },
+            closeLightbox() {
             this.showLightbox = false;
             // UNCOMMENT THIS WHEN READY FOR LIGHTBOX
             //document.body.style.overflow = '';
-        }
-    }" class="relative overflow-hidden bg-white z-0 py-24 lg:pt-12 lg:pb-48">
+            }
+        }" class="relative overflow-hidden bg-white z-0 py-24 lg:pt-12 lg:pb-48">
         <!-- MOBILE + TABLET ABOUT SECTION -->
         <div class="lg:hidden h-auto md:h-screen min-h-[700px] flex flex-col justify-center px-6 md:px-12">
             <div class="max-w-6xl mx-auto w-full flex flex-col h-full justify-between">
@@ -709,7 +710,8 @@
                     <div @click="openLightbox(0)"
                         class="group relative overflow-hidden rounded-[30px] h-48 md:h-auto shadow-xl transition-all duration-500 cursor-pointer">
                         <img src="https://picsum.photos/seed/about-1/800/1200"
-                            class="absolute inset-0 w-full h-full object-cover" />
+                            class="absolute inset-0 w-full h-full object-cover"
+                            alt="Data-informed design for small and medium-sized companies" />
                         <div
                             class="absolute inset-0 bg-transparent bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent">
                         </div>
@@ -727,7 +729,8 @@
                     <div @click="openLightbox(1)"
                         class="group relative overflow-hidden rounded-[30px] h-48 md:h-auto shadow-xl transition-all duration-500 cursor-pointer">
                         <img src="https://picsum.photos/seed/about-3/800/1200"
-                            class="absolute inset-0 w-full h-full object-cover" />
+                            class="absolute inset-0 w-full h-full object-cover"
+                            alt="Agency-quality web design, built for scaling businesses" />
                         <div
                             class="absolute inset-0 bg-transparent bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent">
                         </div>
@@ -745,7 +748,8 @@
                     <div @click="openLightbox(2)"
                         class="md:col-span-2 group relative overflow-hidden rounded-[30px] h-48 md:h-auto shadow-xl transition-all duration-500 cursor-pointer">
                         <img src="https://picsum.photos/seed/about-2/800/1200"
-                            class="absolute inset-0 w-full h-full object-cover" />
+                            class="absolute inset-0 w-full h-full object-cover"
+                            alt="Web design and analytics for businesses that mean business" />
                         <div
                             class="absolute inset-0 bg-transparent bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent">
                         </div>
@@ -783,8 +787,9 @@
                             'is-docked': isActive
                         }">
                         <div class="absolute inset-0 bg-cover bg-center grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-110"
-                            :style="`background-image: url('${card.image}')`"></div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-slate-950/10 to-transparent">
+                            :style="`background-image: url('${card.image}')`" :alt="card.imageAlt">
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent">
                         </div>
                         <div class="relative z-10 h-full flex flex-col justify-end p-10 transition-all duration-700 delay-500"
                             :class="isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
