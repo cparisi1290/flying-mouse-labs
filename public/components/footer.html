@@ -1,4 +1,16 @@
 <footer class="relative z-10 mt-16 pb-20 px-4 md:px-10">
+    <style>
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+    </style>
     <div class="max-w-7xl mx-auto">
         <div
             class="bg-white border border-gray-100 shadow-[0_32px_64px_-15px_rgba(0,0,0,0.1)] rounded-[40px] md:rounded-3xl overflow-hidden p-4 md:p-6">
@@ -44,6 +56,7 @@
 
                     <form @submit.prevent="validate()" class="w-full max-w-lg">
                         <div class="flex flex-col md:flex-row gap-4">
+                            <label for="email-field" class="sr-only">Email Address</label>
                             <input type="email" x-model="email" required placeholder="Business Email"
                                 class="w-full bg-white border border-gray-100 rounded-2xl px-6 py-4 text-sm outline-none focus:ring-4 focus:ring-sky-500/10 transition-all" />
                             <button type="submit"
@@ -63,12 +76,13 @@
                     <a href="/#home" class="block leading-[0]">
                         <img src="/images/fml-logo-v2.svg" alt="Flying Mouse Labs" class="w-56 mb-8" />
                     </a>
-                    <p class="text-[10px] font-bold text-gray-500 uppercase tracking-wider max-w-sm">
+                    <p class="text-[10px] font-bold text-gray-600 uppercase tracking-wider max-w-sm">
                         Headquartered in Sarasota //
                         <br>Servicing Partners Nationwide</br>
                     </p>
                     <div class="flex gap-6 mt-10">
                         <a href="https://www.linkedin.com/in/cassandra-parisi/" target="_blank"
+                            aria-label="Follow us on Alignable"
                             class="text-[#354147] transition-transform hover:scale-105">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                                 <path
@@ -77,7 +91,7 @@
                         </a>
                         <a href="https://www.alignable.com/crestview-fl/parisi-designs-2?user=13769711" target="_blank"
                             class="text-slate-950 transition-transform hover:scale-105 flex items-center justify-center w-5 h-5"
-                            aria-label="Alignable">
+                            aria-label="Follow us on Alignable">
                             <img src="/images/alignable-dark-icon.svg" alt="Alignable"
                                 class="w-full h-full object-contain">
                         </a>
@@ -87,7 +101,7 @@
                 <div
                     class="md:mt-10 grid grid-cols-2 gap-12 order-1 md:order-2 text-left lg:mt-20 lg:justify-self-end lg:text-right">
                     <div class="space-y-6">
-                        <!-- <h4 class="text-[11px] font-black text-gray-400 uppercase tracking-[0.4em]">Work</h4> -->
+                        <!-- <h4 class="text-[11px] font-black text-gray-600 uppercase tracking-[0.4em]">Work</h4> -->
                         <nav class="flex flex-col space-y-4">
                             <a href="/#services"
                                 class="text-sm font-bold font-mono text-slate-950 lg:hover:text-sky-600 transition-colors uppercase tracking-widest">Services</a>
@@ -99,7 +113,7 @@
                         </nav>
                     </div>
                     <div class="space-y-6">
-                        <!-- <h4 class="text-[11px] font-black text-gray-400 uppercase tracking-[0.4em]">Studio</h4> -->
+                        <!-- <h4 class="text-[11px] font-black text-gray-600 uppercase tracking-[0.4em]">Studio</h4> -->
                         <nav class="flex flex-col space-y-4">
                             <a href="/#projects"
                                 class="text-sm font-bold font-mono text-slate-950 lg:hover:text-sky-600 transition-colors uppercase tracking-widest">Projects</a>
@@ -115,22 +129,22 @@
             <div
                 class="px-8 py-10 bg-gray-50/50 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-6 text-center lg:text-left">
                 <p
-                    class="text-xs md:text-[10px] font-medium text-gray-400 uppercase tracking-widest leading-[1.2] md:leading-normal">
+                    class="text-xs md:text-[10px] font-medium text-gray-600 uppercase tracking-widest leading-[1.2] md:leading-normal">
                     &copy;<span id="current-year"></span><a href="/#home"> Flying Mouse Labs. </a><br
                         class="md:hidden" />All Rights Reserved.
                 </p>
                 <div class="flex gap-2">
                     <a href="/privacy-policy.html"
-                        class="text-[10px] font-medium text-gray-400 lg:hover:text-sky-600 uppercase tracking-widest transition-colors">Privacy</a>
-                    <span class="text-[10px] font-medium text-gray-400">|</span>
+                        class="text-[10px] font-medium text-gray-600 lg:hover:text-sky-600 uppercase tracking-widest transition-colors">Privacy</a>
+                    <span class="text-[10px] font-medium text-gray-600">|</span>
                     <a href="/terms-of-service.html"
-                        class="text-[10px] font-medium text-gray-400 lg:hover:text-sky-600 uppercase tracking-widest transition-colors">Terms</a>
-                    <span class="text-[10px] font-medium text-gray-400">|</span>
+                        class="text-[10px] font-medium text-gray-600 lg:hover:text-sky-600 uppercase tracking-widest transition-colors">Terms</a>
+                    <span class="text-[10px] font-medium text-gray-600">|</span>
                     <a href="/disclaimer.html"
-                        class="text-[10px] font-medium text-gray-400 lg:hover:text-sky-600 uppercase tracking-widest transition-colors">Disclaimer</a>
-                    <span class="text-[10px] font-medium text-gray-400">|</span>
+                        class="text-[10px] font-medium text-gray-600 lg:hover:text-sky-600 uppercase tracking-widest transition-colors">Disclaimer</a>
+                    <span class="text-[10px] font-medium text-gray-600">|</span>
                     <a href="/cookie-policy.html"
-                        class="text-[10px] font-medium text-gray-400 lg:hover:text-sky-600 uppercase tracking-widest transition-colors">Cookies</a>
+                        class="text-[10px] font-medium text-gray-600 lg:hover:text-sky-600 uppercase tracking-widest transition-colors">Cookies</a>
                 </div>
             </div>
         </div>

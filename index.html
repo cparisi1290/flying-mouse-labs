@@ -10,19 +10,24 @@
         Flying Mouse Labs
     </title>
     <meta name="description"
-        content="Helping small to medium businesses grow with custom web design, data dashboards, and AI and result-driven solutions. Let's build something extraordinary." />
+        content="Helping small to medium businesses scale with custom web design, data dashboards, and AI and result-driven solutions. Let's build something extraordinary." />
 
     <link rel="canonical" href="https://flyingmouselabs.com/" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdn.tailwindcss.com" />
+    <link rel="preconnect" href="https://app.usercentrics.eu" />
 
     <!-- Open Graph / Twitter Social Sharing -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://flyingmouselabs.com/" />
-    <meta property="og:title"
-        content="Flying Mouse Labs | Web Design & Data Science Agency for Small to Medium Businesses" />
+    <meta property="og:title" content="Flying Mouse Labs | Web Design & Data Science" />
     <meta property="og:description"
         content="Data-driven design for businesses ready to build something extraordinary." />
     <meta property="og:image" content="https://flyingmouselabs.com/images/og-social-sharing.jpg" />
-
+    <meta name="theme-color" content="#041A24" />
+    <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://flyingmouselabs.com/" />
     <meta property="twitter:title"
@@ -31,20 +36,28 @@
         content="Data-driven design for businesses ready to build something extraordinary." />
     <meta property="twitter:image" content="https://flyingmouselabs.com/images/og-social-sharing.jpg" />
 
-    <meta name="theme-color" content="#041A24" />
-
     <!-- Styles -->
     <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        media="print" onload="this.media='all'" />
+
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Poppins:wght@300;400;500&family=JetBrains+Mono&display=swap"
+        rel="stylesheet" />
 
     <!-- Usercentrics -->
-    <link rel='preconnect' href='//privacy-proxy.usercentrics.eu'>
-    <link rel='preload' href='//privacy-proxy.usercentrics.eu/latest/uc-block.bundle.js' as='script'>
-    <script type='application/javascript'
-        src='https://privacy-proxy.usercentrics.eu/latest/uc-block.bundle.js'></script>
+    <script type='application/javascript' src='https://privacy-proxy.usercentrics.eu/latest/uc-block.bundle.js'
+        defer></script>
     <script id='usercentrics-cmp' src='https://app.usercentrics.eu/browser-ui/latest/loader.js'
         data-settings-id='gxqIcXkDfUHbKG' async></script>
-    <script>uc.setCustomTranslations('https://termageddon.ams3.cdn.digitaloceanspaces.com/translations/');</script>
+
+    <!-- Scripts -->
+    <script src="https://cdn.tailwindcss.com" defer></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://unpkg.com/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="/js/component-loader.js" defer></script>
 
     <!-- Google Tag Manager -->
     <script>
@@ -64,23 +77,6 @@
     </script>
     <!-- End Google Tag Manager -->
 
-    <!-- Google Search Console -->
-    <meta name="google-site-verification" content="7OWUtUXtqeqJ-ennJP6lumMwxyab2CrSv_ZjsBHQVwk" />
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
-        rel="stylesheet" />
-
-    <!-- Scripts -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <script defer src="https://unpkg.com/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <script src="/js/component-loader.js"></script>
-
     <!-- Microsoft Clarity -->
     <script type="text/javascript">
         (function (c, l, a, r, i, t, y) {
@@ -98,9 +94,10 @@
     </script>
 
     <!-- Extra Non AI Training Protection -->
-    <meta name="robots" content="noarchive">
+    <meta name="robots" content="noarchive, nopagereadaloud">
     <meta name="googlebot" content="noarchive">
-    <meta name="robots" content="nopagereadaloud">
+    <!-- Google Search Console -->
+    <meta name="google-site-verification" content="7OWUtUXtqeqJ-ennJP6lumMwxyab2CrSv_ZjsBHQVwk" />
 
     <!-- Tailwind Config -->
     <script>
@@ -114,7 +111,7 @@
                         white: "#FCFCFC",
                     },
                     backgroundImage: {
-                        // The exact gradient with the cyan shift and orange highlight
+                        // The gradient with the cyan shift and orange highlight
                         "arctic-lab":
                             "linear-gradient(135deg, rgba(207, 250, 254, 0.8) 0%, rgba(134, 239, 252, 0.8) 20%, rgba(110, 206, 241, 0.8) 40%, rgba(207, 250, 254, 0.8) 60%, rgba(228, 160, 58, 0.4) 75%, rgba(103, 232, 249, 0.8) 100%)",
                     },
@@ -283,7 +280,7 @@
                         class="absolute inset-0 w-full h-full object-cover transition-all duration-700" :class="activeService !== service.id
                                  ? 'grayscale brightness-100 opacity-80 blur-sm scale-110'
                                  : 'grayscale-0 brightness-100 opacity-100 blur-0 scale-100 group-hover:scale-105'"
-                        :alt="service.imageAlt" />
+                        :alt="service.imageAlt" loading="lazy" />
 
                     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/80 via-black/60 via-black/40 md:from-black/90 md:via-black/50 md:via-black/30 md:to-transparent transition-opacity duration-500"
                         :class="activeService === service.id ? 'opacity-100' : 'opacity-0'"></div>
@@ -419,7 +416,8 @@
             <template x-for="(project, index) in projects" :key="'mobile-'+index">
                 <div @click="openProject(index)"
                     class="snap-center shrink-0 w-[85vw] md:w-[45vw] max-w-[400px] aspect-[3/4] rounded-[40px] overflow-hidden cursor-pointer shadow-2xl bg-gray-100">
-                    <img :src="project.cover" class="w-full h-full object-cover" :alt="project.coverAlt" />
+                    <img :src="project.cover" class="w-full h-full object-cover" :alt="project.coverAlt"
+                        loading="lazy" />
                 </div>
             </template>
         </div>
@@ -438,7 +436,8 @@
                             class="carousel-card absolute inset-0 rounded-[40px] overflow-hidden cursor-pointer shadow-xl transition-all duration-500 group"
                             :style="`--index: ${index}; --total: ${projects.length};`">
                             <img :src="project.cover" :alt="project.coverAlt"
-                                class="w-full h-full object-cover transition-all duration-700 grayscale group-hover:grayscale-0 group-hover:scale-110" />
+                                class="w-full h-full object-cover transition-all duration-700 grayscale group-hover:grayscale-0 group-hover:scale-110"
+                                loading="lazy" />
 
                             <div
                                 class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8">
@@ -491,7 +490,7 @@
                                 <div class="space-y-3">
                                     <div class="rounded-3xl overflow-hidden shadow-sm border border-gray-100">
                                         <img :src="activeProject?.before" class="w-full h-auto object-cover"
-                                            :alt="activeProject?.beforeAlt" />
+                                            :alt="activeProject?.beforeAlt" loading="lazy" />
                                     </div>
                                 </div>
                             </template>
@@ -499,7 +498,7 @@
                             <div class="space-y-3">
                                 <div class="rounded-3xl overflow-hidden shadow-xl ring-1 ring-gray-100">
                                     <img :src="activeProject?.after" class="w-full h-auto object-cover"
-                                        :alt="activeProject?.afterAlt" />
+                                        :alt="activeProject?.afterAlt" loading="lazy" />
                                 </div>
                             </div>
                         </div>
@@ -561,7 +560,8 @@
                         </div>
                         <div class="mt-8 flex items-center gap-4">
                             <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-white shrink-0">
-                                <img :src="item.image" class="w-full h-full object-cover" :alt="item.imageAlt" />
+                                <img :src="item.image" class="w-full h-full object-cover" :alt="item.imageAlt"
+                                    loading="lazy" />
                             </div>
                             <div>
                                 <p class="text-sm font-black text-slate-950 uppercase tracking-tighter"
@@ -613,7 +613,7 @@
                                     class="group w-[450px] shrink-0 bg-white/60 backdrop-blur-xl rounded-[50px] p-12 border border-white/50 shadow-2xl flex flex-col justify-between min-h-[480px] transition-all duration-500 hover:scale-[1.02] hover:relative overflow-hidden">
                                     <div class="absolute top-20 left-2 w-28 opacity-10 pointer-events-none">
                                         <img src="/images/glass-quotes-dark.svg" class="w-full h-auto"
-                                            alt="Testimonial quote decoration" />
+                                            alt="Testimonial quote decoration" loading="lazy" />
                                     </div>
 
                                     <div class="relative z-10">
@@ -629,7 +629,7 @@
                                         <div
                                             class="w-16 h-16 rounded-full overflow-hidden border-4 border-white shadow-md shrink-0">
                                             <img :src="item.image" class="w-full h-full object-cover"
-                                                :alt="item.imageAlt" />
+                                                :alt="item.imageAlt" loading="lazy" />
                                         </div>
                                         <div>
                                             <p class="text-lg font-black text-slate-950 uppercase tracking-tighter leading-none"
@@ -716,7 +716,7 @@
                         class="group relative overflow-hidden rounded-[30px] h-48 md:h-auto shadow-xl transition-all duration-500 cursor-pointer">
                         <img src="https://picsum.photos/seed/about-1/800/1200"
                             class="absolute inset-0 w-full h-full object-cover"
-                            alt="Data-informed design for small and medium-sized companies" />
+                            alt="Data-informed design for small and medium-sized companies" loading="lazy" />
                         <div
                             class="absolute inset-0 bg-transparent bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent">
                         </div>
@@ -735,7 +735,7 @@
                         class="group relative overflow-hidden rounded-[30px] h-48 md:h-auto shadow-xl transition-all duration-500 cursor-pointer">
                         <img src="https://picsum.photos/seed/about-3/800/1200"
                             class="absolute inset-0 w-full h-full object-cover"
-                            alt="Agency-quality web design, built for scaling businesses" />
+                            alt="Agency-quality web design, built for scaling businesses" loading="lazy" />
                         <div
                             class="absolute inset-0 bg-transparent bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent">
                         </div>
@@ -754,7 +754,7 @@
                         class="md:col-span-2 group relative overflow-hidden rounded-[30px] h-48 md:h-auto shadow-xl transition-all duration-500 cursor-pointer">
                         <img src="https://picsum.photos/seed/about-2/800/1200"
                             class="absolute inset-0 w-full h-full object-cover"
-                            alt="Web design and analytics for businesses that mean business" />
+                            alt="Web design and analytics for businesses that mean business" loading="lazy" />
                         <div
                             class="absolute inset-0 bg-transparent bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent">
                         </div>
