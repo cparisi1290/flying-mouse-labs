@@ -1,4 +1,4 @@
-# Allow all search engines to crawl the base site
+# 1. Global rules for all search engines
 User-agent: *
 Allow: /
 
@@ -6,12 +6,29 @@ Allow: /
 Disallow: /admin/
 Disallow: /staging/
 Disallow: /api/
-Disallow: CCBot
 
-# Block crawlers from index-less templates if necessary
+# Block crawlers from index-less templates
 Disallow: /index-less-template.html
 Disallow: /template.html
 Disallow: /blog-post-template.html
+Disallow: /blog-single-template.html
 
-# Direct crawlers to the navigation map
+# 2. Specifically block CCBot (Common Crawl)
+User-agent: CCBot
+Disallow: /
+
+# Allow AI for search/crawling but block from training
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: FacebookBot
+Disallow: /
+
+# 3. Direct crawlers to the navigation map
 Sitemap: https://www.flyingmouselabs.com/sitemap.xml
