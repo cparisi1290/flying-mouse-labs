@@ -11,7 +11,7 @@ document.addEventListener("alpine:init", () => {
                 description: `Mason came to [us] ready to level up her brand and expand her offerings from midwifery to include psychedelic facilitation. She needed a brand that felt aligned with her vision so we left behind a partner-chosen logo and created something entirely new. The result: a grounded, modern and strategic brand identity and a custom 5-page website with a client portal for resources and an events page to support her growing practice. Now, Mason’s online presence feels as expansive and intentional as her work.`,
                 quote: `"I really like [the logo]! I love it, this looks really wonderful and I don't have any revisions to the website to request."`,
                 before: "",
-                after: "/images/nhc-after.jpg",
+                after: "/images/nhc-after.webp",
                 coverAlt: "Nova Health Collective website redesign",
                 beforeAlt: "",
                 afterAlt: "Modern and strategic brand identity and custom website for a midwifery and psychedelic facilitation practice"
@@ -24,8 +24,8 @@ document.addEventListener("alpine:init", () => {
 
                 As her business evolved into business efficiency consulting, we updated her site with the same brand but with fresh brand photos and a custom AI-scripted chatbot.`,
                 quote: `"I always fall in love with Cassandra's designs.She consistently delivers on professionalism and impact.Seriously, I'm always impressed with Cassandra and her design abilities. She's my go to girl for web design"`,
-                before: "/images/kvs-before.jpg",
-                after: "/images/kvs-after.jpg",
+                before: "/images/kvs-before.webp",
+                after: "/images/kvs-after.webp",
                 coverAlt: "Kay's Virtual Solutions website redesign",
                 beforeAlt: "Kay's Virtual Solutions original website",
                 afterAlt: "Polished and feminine website redesign for a fractional COO business consulting firm"
@@ -38,7 +38,7 @@ document.addEventListener("alpine:init", () => {
                     "Cheyanne came to us needing a rebrand from loud and disheveled to calming and luxurious. Inspired by her Cajun roots and spa-like vision, we created a soothing visual identity using pastel greens, soft purples, and natural wood tones.",
                 quote: '"The thing I liked most about working with Cass was how easy she made everything."',
                 before: "",
-                after: "/images/luxe-after.jpg",
+                after: "/images/luxe-after.webp",
                 coverAlt: "Luxe Pet Parlor brand and website design",
                 beforeAlt: "",
                 afterAlt: "Calming and luxurious brand identity and website for a pet grooming business"
@@ -49,8 +49,8 @@ document.addEventListener("alpine:init", () => {
                 category: "Website Redesign",
                 description: `After their original designer ghosted them, Sandy needed someone to step in and bring her vision to life. Using the existing branding, we rebuilt her website to feel brighter, more inviting, and easy to navigate. I expanded the site to include individual service pages, team intros, and tiered offerings specific to different business stages. We also designed two strategic sales funnels for their project management and bookkeeping services. The result is a warm, well-structured site that truly reflects their professionalism and builds trust with potential clients.`,
                 quote: `"[Flying Mouse Labs] is always on top of any task we give [them] and does incredible design work."`,
-                before: "/images/colliance-before.jpg",
-                after: "/images/colliance-after.jpg",
+                before: "/images/colliance-before.webp",
+                after: "/images/colliance-after.webp",
                 coverAlt: "Colliance Online Business Management website redesign",
                 beforeAlt: "",
                 afterAlt: "Brighter, more inviting, and easy to navigate website redesign for a business management consulting firm"
@@ -64,7 +64,7 @@ document.addEventListener("alpine:init", () => {
 
                 [Flying Mouse Labs] made it incredibly easy. From strategy to Google Business Profile to the design itself, she brought everything together beautifully. My new website is even better than I imagined it could be!"`,
                 before: "",
-                after: "/images/das-after.jpg",
+                after: "/images/das-after.webp",
                 coverAlt: "Damaris Accounting website redesign",
                 beforeAlt: "",
                 afterAlt: "Professional website redesign for an accounting firm"
@@ -78,7 +78,7 @@ document.addEventListener("alpine:init", () => {
 
                 If you need any design or website development done for your business please reach out to Cassandra, you won’t be disappointed!"`,
                 before: "",
-                after: "/images/gg-after.jpg",
+                after: "/images/gg-after.webp",
                 coverAlt: "Grateful Graze website redesign",
                 beforeAlt: "",
                 afterAlt: "Eclectic website redesign for a charcuterie and cheese grazing cafe"
