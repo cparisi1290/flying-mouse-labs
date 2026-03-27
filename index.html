@@ -101,32 +101,39 @@
 
     <!-- Tailwind Config -->
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        "sky-500": "#1C9DD9",
-                        "amber-500": "#E4A03A",
-                        "slate-950": "#041A24",
-                        white: "#FCFCFC",
+        // We wait for the 'load' event to ensure cdn.tailwindcss.com is ready
+        window.addEventListener('load', () => {
+            if (typeof tailwind !== 'undefined') {
+                tailwind.config = {
+                    theme: {
+                        extend: {
+                            colors: {
+                                "sky-500": "#1C9DD9",
+                                "amber-500": "#E4A03A",
+                                "slate-950": "#041A24",
+                                white: "#FCFCFC",
+                            },
+                            backgroundImage: {
+                                // The gradient with the cyan shift and orange highlight
+                                "arctic-lab":
+                                    "linear-gradient(135deg, rgba(207, 250, 254, 0.8) 0%, rgba(134, 239, 252, 0.8) 20%, rgba(110, 206, 241, 0.8) 40%, rgba(207, 250, 254, 0.8) 60%, rgba(228, 160, 58, 0.4) 75%, rgba(103, 232, 249, 0.8) 100%)",
+                            },
+                            animation: {
+                                bgShift:
+                                    "bgShift 10s infinite alternate ease-in-out",
+                            },
+                            fontFamily: {
+                                heading: ["Montserrat", "sans-serif"],
+                                body: ["Poppins", "sans-serif"],
+                                mono: ["JetBrains Mono", "monospace"],
+                            },
+                        },
                     },
-                    backgroundImage: {
-                        // The gradient with the cyan shift and orange highlight
-                        "arctic-lab":
-                            "linear-gradient(135deg, rgba(207, 250, 254, 0.8) 0%, rgba(134, 239, 252, 0.8) 20%, rgba(110, 206, 241, 0.8) 40%, rgba(207, 250, 254, 0.8) 60%, rgba(228, 160, 58, 0.4) 75%, rgba(103, 232, 249, 0.8) 100%)",
-                    },
-                    animation: {
-                        bgShift:
-                            "bgShift 10s infinite alternate ease-in-out",
-                    },
-                    fontFamily: {
-                        heading: ["Montserrat", "sans-serif"],
-                        body: ["Poppins", "sans-serif"],
-                        mono: ["JetBrains Mono", "monospace"],
-                    },
-                },
-            },
-        };
+                };
+            } else {
+                console.error("Tailwind CDN failed to load.");
+            }
+        });
     </script>
 
     <!-- GBP & Organization Schema -->
