@@ -1,6 +1,8 @@
 <!-- FORM V3 KITCHEN.CO FORM -->
 <section
-    class="min-h-screen bg-arctic-lab bg-[length:400%_400%] animate-bgShift [perspective:2000px] flex flex-col items-center justify-center text-center px-6 relative overflow-hidden">
+    id="contact"
+    class="min-h-screen bg-arctic-lab bg-[length:400%_400%] animate-bgShift [perspective:2000px] flex flex-col items-center justify-center text-center px-6 relative overflow-hidden"
+>
     <div class="absolute inset-0 pointer-events-none z-10">
         <div class="glass-cube lg:hidden c1-mobile absolute"></div>
         <div class="glass-cube lg:hidden c2-mobile absolute"></div>
@@ -21,26 +23,37 @@
 
     <div class="relative container mx-auto px-6 lg:px-12 xl:px-24 z-20">
         <div
-            class="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-10 lg:gap-16 max-w-7xl mx-auto py-20">
-
-            <div class="w-full lg:w-1/2 text-center lg:text-left">
+            class="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-10 lg:gap-16 max-w-7xl mx-auto py-20"
+        >
+            <div
+                class="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left"
+            >
                 <h2
-                    class="text-[44px] md:text-7xl lg:text-7xl xl:text-8xl font-black text-slate-950 leading-[0.9] lg:leading-[0.85] uppercase tracking-tighter mb-6 lg:mb-8">
-                    Let's build<br class="hidden lg:block" /> something<br />
+                    class="text-[44px] md:text-7xl lg:text-7xl xl:text-8xl font-black text-slate-950 leading-[0.9] lg:leading-[0.85] uppercase tracking-tighter mb-6 lg:mb-8"
+                >
+                    Let's build<br class="hidden lg:block" />
+                    something<br />
                     <span class="text-sky-600">Extraordinary</span>
                 </h2>
 
                 <p
-                    class="text-slate-950 text-lg lg:text-3xl font-medium max-w-sm lg:max-w-2xl mx-auto lg:mx-0 opacity-90 mb-10">
-                    Ready to take off? Launch our project inquiry form and let's get to work.
+                    class="text-slate-950 text-lg lg:text-3xl font-medium max-w-sm lg:max-w-2xl mx-auto lg:mx-0 opacity-90 mb-10"
+                >
+                    Ready to take off? Launch our project inquiry form and let's
+                    get to work.
                 </p>
 
-                <script src="https://parisidesignsllc.kitchen.co/forms/form_e6452438d0feeef6c8da022e/scripts" async
-                    defer></script>
+                <script
+                    src="https://parisidesignsllc.kitchen.co/forms/form_e6452438d0feeef6c8da022e/scripts"
+                    async
+                    defer
+                ></script>
 
-                <button type="button"
+                <button
+                    type="button"
                     class="kitchen-open-modal w-full md:w-72 lg:w-96 py-4 bg-slate-950 text-white rounded-full font-bold tracking-widest uppercase transition-transform hover:scale-105 active:scale-95 shadow-lg text-center"
-                    data-kitchen-form-id="form_e6452438d0feeef6c8da022e">
+                    data-kitchen-form-id="form_e6452438d0feeef6c8da022e"
+                >
                     Launch Your Project
                 </button>
             </div>
@@ -49,11 +62,6 @@
         </div>
     </div>
 </section>
-
-
-
-
-
 
 <!-- FORM V2, FORM V1 BELOW -->
 <!-- <section class="min-h-screen bg-arctic-lab bg-[length:400%_400%] animate-bgShift [perspective:2000px] flex flex-col
@@ -106,8 +114,8 @@ items-center justify-center text-center px-6 relative overflow-hidden">
         </div>
 
         <template x-if="open">
-            <div x-data="{ 
-                    email: 'cass@flyingmouselabs.com', 
+            <div x-data="{
+                    email: 'cass@flyingmouselabs.com',
                     copied: false,
                     copyEmail() {
                         navigator.clipboard.writeText(this.email);
@@ -186,10 +194,6 @@ items-center justify-center text-center px-6 relative overflow-hidden">
     </style>
 </section>
  -->
-
-
-
-
 
 <!-- FORM V1 -->
 <!-- <section id="contact" x-data="{
@@ -277,7 +281,7 @@ items-center justify-center text-center px-6 relative overflow-hidden">
     }" x-init=" loadForm()"
     class="min-h-screen py-32 bg-arctic-lab bg-[length:400%_400%] animate-bgShift [perspective:2000px] flex flex-col items-center justify-center text-center px-6 relative overflow-hidden">
     <div class="absolute inset-0 pointer-events-none z-10">
-        <!-- MOBILE + TABLET 
+        <!-- MOBILE + TABLET
         <div class="glass-cube lg:hidden c1-mobile absolute"></div>
         <div class="glass-cube lg:hidden c2-mobile absolute"></div>
         <div class="glass-cube lg:hidden c3-mobile absolute"></div>
@@ -286,7 +290,7 @@ items-center justify-center text-center px-6 relative overflow-hidden">
         <div class="glass-cube lg:hidden c6-mobile absolute"></div>
         <div class="glass-cube lg:hidden c7-mobile absolute"></div>
 
-        <!-- DESKTOP 
+        <!-- DESKTOP
         <div class="glass-cube hidden lg:block c1 absolute"></div>
         <div class="glass-cube hidden lg:block c2 absolute"></div>
         <div class="glass-cube hidden lg:block c3 absolute"></div>
@@ -297,7 +301,7 @@ items-center justify-center text-center px-6 relative overflow-hidden">
     </div>
 
     <div class="container mx-auto px-6 lg:px-12 xl:px-24 relative z-20">
-        <!-- MOBILE + TABLET 
+        <!-- MOBILE + TABLET
         <div class="lg:hidden flex flex-col items-center text-center">
             <h2 class="text-5xl md:text-6xl font-black text-slate-950 leading-tight uppercase tracking-tighter mb-4">
                 Let's build something <br /><span class="text-sky-600">Extraordinary.</span>
@@ -343,7 +347,7 @@ items-center justify-center text-center px-6 relative overflow-hidden">
         </div>
     </div>
 
-    <!-- MOBILE + TABLET 
+    <!-- MOBILE + TABLET
     <template x-if="open">
         <div class="fixed inset-0 z-[150] flex items-start overflow-y-auto justify-center p-4 py-12 md:py-20 bg-slate-950/10 backdrop-blur-sm"
             @click.self="open = false; document.body.style.overflow = 'auto'"
