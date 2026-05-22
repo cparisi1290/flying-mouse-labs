@@ -638,6 +638,8 @@
                             <button
                                 @click="closeProject()"
                                 class="absolute top-6 right-8 text-gray-400 hover:text-slate-950 transition-colors"
+                                aria-label="Close projects"
+                                aria-label="Close projects"
                             >
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -732,12 +734,14 @@
                                 @click.stop="prev()"
                                 class="flex-1 max-w-[160px] py-4 bg-slate-950 text-white rounded-full text-[11px] font-black uppercase tracking-widest active:scale-95 shadow-lg flex items-center justify-center gap-2"
                                 aria-label="Previous project"
+                                aria-label="Previous project"
                             >
                                 <span class="text-xs">←</span> PREVIOUS
                             </button>
                             <button
                                 @click.stop="next()"
                                 class="flex-1 max-w-[160px] py-4 bg-slate-950 text-white rounded-full text-[11px] font-black uppercase tracking-widest active:scale-95 shadow-lg flex items-center justify-center gap-2"
+                                aria-label="Next project"
                                 aria-label="Next project"
                             >
                                 NEXT <span class="text-xs">→</span>
@@ -836,6 +840,7 @@
                         @click="scroll('prev')"
                         class="w-14 h-14 rounded-full bg-white/40 backdrop-blur-lg border border-white/60 flex items-center justify-center shadow-lg active:scale-90 transition-all"
                         aria-label="Previous testimonial"
+                        aria-label="Previous testimonial"
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -855,6 +860,7 @@
                     <button
                         @click="scroll('next')"
                         class="w-14 h-14 rounded-full bg-white/40 backdrop-blur-lg border border-white/60 flex items-center justify-center shadow-lg active:scale-90 transition-all"
+                        aria-label="Next testimonial"
                         aria-label="Next testimonial"
                     >
                         <svg
