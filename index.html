@@ -55,7 +55,7 @@
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         />
 
-        <!-- Usercentrics -->
+        <!-- Usercentrics Cookie Consent Tool-->
         <link rel="preconnect" href="//privacy-proxy.usercentrics.eu" />
         <link
             rel="preload"
@@ -68,7 +68,7 @@
         ></script>
         <script
             id="usercentrics-cmp"
-            src="https://app.usercentrics.eu/browser-ui/latest/loader.js"
+            src="https://web.cmp.usercentrics.eu/ui/loader.js"
             data-settings-id="gxqIcXkDfUHbKG"
             async
         ></script>
@@ -804,6 +804,7 @@
                     <button
                         @click="scroll('prev')"
                         class="w-14 h-14 rounded-full bg-white/40 backdrop-blur-lg border border-white/60 flex items-center justify-center shadow-lg active:scale-90 transition-all"
+                        aria-label="Previous testimonial"
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -823,6 +824,7 @@
                     <button
                         @click="scroll('next')"
                         class="w-14 h-14 rounded-full bg-white/40 backdrop-blur-lg border border-white/60 flex items-center justify-center shadow-lg active:scale-90 transition-all"
+                        aria-label="Next testimonial"
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"

@@ -18,14 +18,26 @@ User-agent: CCBot
 Disallow: /
 
 # Allow AI for search/crawling but block from training
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Anthropic-AI
+Allow: /
+
+User-agent: Gemini-Crawl
+Allow: /
+
 User-agent: GPTBot
-Disallow: /
+Allow: /
 
 User-agent: ChatGPT-User
 Allow: /
 
 User-agent: Google-Extended
-Disallow: /
+Allow: /
 
 User-agent: FacebookBot
 Disallow: /
