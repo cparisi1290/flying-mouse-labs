@@ -26,7 +26,6 @@ Allow: /
 
 User-agent: Anthropic-AI
 Allow: /
-
 User-agent: Gemini-Crawl
 Allow: /
 

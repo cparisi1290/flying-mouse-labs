@@ -78,6 +78,9 @@
             );
         </script>
 
+        <!-- Termageddon CDN -->
+        <link rel="preconnect" href="https://termageddon.arm3.cdn.digitaloceanspaces.com" crossorigin>
+
         <!-- Google Tag Manager -->
         <script>
             (function (w, d, s, l, i) {
@@ -106,7 +109,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap&family=Poppins:wght@300;400;500;600;700;800;900&display=swap&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
             rel="stylesheet"
         />
 
@@ -169,9 +172,7 @@
                     "https://www.instagram.com/flyingmouselabs",
                     "https://www.youtube.com/@flyingmouselabs",
                     "https://www.facebook.com/flyingmouselabs"
-                    <!-- "https://www.tiktok.com/@flying.mouse.labs", NEED TO CONFIRM -->
-                    <!-- "https://x.com/flyingmouselabs", NEED TO CREATE-->
-                    <!-- "https://github.com/flyingmouselabs", -->
+                    "https://www.tiktok.com/@flying.mouse.labs",
                 ]
             }
         </script>
@@ -191,22 +192,6 @@
             ></iframe
         ></noscript>
         <!-- End Google Tag Manager (noscript) -->
-
-        <!-- Google Analytics (gtag.js) -->
-        <script
-            async
-            src="https://www.googletagmanager.com/gtag/js?id=G-MXPD58KZDZ"
-        ></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag() {
-                dataLayer.push(arguments);
-            }
-            gtag("js", new Date());
-
-            gtag("config", "G-MXPD58KZDZ");
-        </script>
-        <!-- End Google Analytics (gtag.js) -->
 
         <!-- Start of HubSpot Embed Code -->
         <script
@@ -347,7 +332,7 @@
                                  ? 'grayscale brightness-100 opacity-80 blur-sm scale-110'
                                  : 'grayscale-0 brightness-100 opacity-100 blur-0 scale-100 group-hover:scale-105'"
                             :alt="service.imageAlt"
-                            loading="lazy"
+                            :loading="service.id === 1 ? 'eager' : 'lazy'"
                         />
 
                         <div
