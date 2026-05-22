@@ -37,7 +37,7 @@
     <meta property="twitter:image" content="https://flyingmouselabs.com/images/og-social-sharing.jpg" />
 
     <!-- Styles -->
-    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/src/style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         media="print" onload="this.media='all'" />
 
@@ -53,11 +53,7 @@
         data-settings-id='gxqIcXkDfUHbKG' async></script>
 
     <!-- Scripts -->
-    <script src="https://cdn.tailwindcss.com" defer></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <script defer src="https://unpkg.com/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <script src="/js/component-loader.js" defer></script>
+    <script type="module" src="/src/js/component-loader.js" defer></script>
 
     <!-- Google Tag Manager -->
     <script>
@@ -98,36 +94,6 @@
     <meta name="googlebot" content="noarchive">
     <!-- Google Search Console -->
     <meta name="google-site-verification" content="7OWUtUXtqeqJ-ennJP6lumMwxyab2CrSv_ZjsBHQVwk" />
-
-    <!-- Tailwind Config -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        "sky-500": "#1C9DD9",
-                        "amber-500": "#E4A03A",
-                        "slate-950": "#041A24",
-                        white: "#FCFCFC",
-                    },
-                    backgroundImage: {
-                        // The gradient with the cyan shift and orange highlight
-                        "arctic-lab":
-                            "linear-gradient(135deg, rgba(207, 250, 254, 0.8) 0%, rgba(134, 239, 252, 0.8) 20%, rgba(110, 206, 241, 0.8) 40%, rgba(207, 250, 254, 0.8) 60%, rgba(228, 160, 58, 0.4) 75%, rgba(103, 232, 249, 0.8) 100%)",
-                    },
-                    animation: {
-                        bgShift:
-                            "bgShift 10s infinite alternate ease-in-out",
-                    },
-                    fontFamily: {
-                        heading: ["Montserrat", "sans-serif"],
-                        body: ["Poppins", "sans-serif"],
-                        mono: ["JetBrains Mono", "monospace"],
-                    },
-                },
-            },
-        };
-    </script>
 
     <!-- GBP & Organization Schema -->
     <script type="application/ld+json">
@@ -319,7 +285,7 @@
     <!-- FOOTER SECTION -->
     <include src="/components/footer.html"></include>
 
-    <script src="/js/main.js"></script>
+    <script type="module" src="/src/js/main.js"></script>
 
 </body>
 

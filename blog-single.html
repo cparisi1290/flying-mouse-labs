@@ -1,136 +1,133 @@
 <!doctype html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/png" href="/images/fml-logo-favicon.png" />
+        <title>
+            Web Design & Data Science Agency for Small to Medium Businesses |
+            Flying Mouse Labs
+        </title>
+        <meta
+            name="description"
+            content="Helping small to medium businesses scale with custom web design, data dashboards, and AI and result-driven solutions. Let's build something extraordinary."
+        />
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="/images/fml-logo-favicon.png" />
-    <title>
-        Web Design & Data Science Agency for Small to Medium Businesses |
-        Flying Mouse Labs
-    </title>
-    <meta name="description"
-        content="Helping small to medium businesses scale with custom web design, data dashboards, and AI and result-driven solutions. Let's build something extraordinary." />
+        <link rel="canonical" href="https://flyingmouselabs.com/" />
 
-    <link rel="canonical" href="https://flyingmouselabs.com/" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="preconnect" href="https://cdn.tailwindcss.com" />
+        <link rel="preconnect" href="https://app.usercentrics.eu" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://cdn.tailwindcss.com" />
-    <link rel="preconnect" href="https://app.usercentrics.eu" />
+        <!-- Open Graph / Twitter Social Sharing -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://flyingmouselabs.com/" />
+        <meta
+            property="og:title"
+            content="Flying Mouse Labs | Web Design & Data Science"
+        />
+        <meta
+            property="og:description"
+            content="Data-driven design for businesses ready to build something extraordinary."
+        />
+        <meta
+            property="og:image"
+            content="https://flyingmouselabs.com/images/og-social-sharing.jpg"
+        />
+        <meta name="theme-color" content="#041A24" />
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://flyingmouselabs.com/" />
+        <meta
+            property="twitter:title"
+            content="Flying Mouse Labs | Web Design & Data Science Agency for Small to Medium Businesses"
+        />
+        <meta
+            property="twitter:description"
+            content="Data-driven design for businesses ready to build something extraordinary."
+        />
+        <meta
+            property="twitter:image"
+            content="https://flyingmouselabs.com/images/og-social-sharing.jpg"
+        />
 
-    <!-- Open Graph / Twitter Social Sharing -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://flyingmouselabs.com/" />
-    <meta property="og:title" content="Flying Mouse Labs | Web Design & Data Science" />
-    <meta property="og:description"
-        content="Data-driven design for businesses ready to build something extraordinary." />
-    <meta property="og:image" content="https://flyingmouselabs.com/images/og-social-sharing.jpg" />
-    <meta name="theme-color" content="#041A24" />
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://flyingmouselabs.com/" />
-    <meta property="twitter:title"
-        content="Flying Mouse Labs | Web Design & Data Science Agency for Small to Medium Businesses" />
-    <meta property="twitter:description"
-        content="Data-driven design for businesses ready to build something extraordinary." />
-    <meta property="twitter:image" content="https://flyingmouselabs.com/images/og-social-sharing.jpg" />
+        <!-- Styles -->
+        <link rel="stylesheet" href="/src/style.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+            media="print"
+            onload="this.media = 'all'"
+        />
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-        media="print" onload="this.media='all'" />
+        <!-- Fonts -->
+        <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Poppins:wght@300;400;500&family=JetBrains+Mono&display=swap"
+            rel="stylesheet"
+        />
 
-    <!-- Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Poppins:wght@300;400;500&family=JetBrains+Mono&display=swap"
-        rel="stylesheet" />
+        <!-- Usercentrics -->
+        <script
+            type="application/javascript"
+            src="https://privacy-proxy.usercentrics.eu/latest/uc-block.bundle.js"
+            defer
+        ></script>
+        <script
+            id="usercentrics-cmp"
+            src="https://app.usercentrics.eu/browser-ui/latest/loader.js"
+            data-settings-id="gxqIcXkDfUHbKG"
+            async
+        ></script>
 
-    <!-- Usercentrics -->
-    <script type='application/javascript' src='https://privacy-proxy.usercentrics.eu/latest/uc-block.bundle.js'
-        defer></script>
-    <script id='usercentrics-cmp' src='https://app.usercentrics.eu/browser-ui/latest/loader.js'
-        data-settings-id='gxqIcXkDfUHbKG' async></script>
+        <!-- Scripts -->
+        <script type="module" src="/src/js/component-loader.js" defer></script>
 
-    <!-- Scripts -->
-    <script src="https://cdn.tailwindcss.com" defer></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <script defer src="https://unpkg.com/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <script src="/js/component-loader.js" defer></script>
+        <!-- Google Tag Manager -->
+        <script>
+            (function (w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({
+                    "gtm.start": new Date().getTime(),
+                    event: "gtm.js",
+                });
+                var f = d.getElementsByTagName(s)[0],
+                    j = d.createElement(s),
+                    dl = l != "dataLayer" ? "&l=" + l : "";
+                j.async = true;
+                j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, "script", "dataLayer", "GTM-KG2P58FL");
+        </script>
+        <!-- End Google Tag Manager -->
 
-    <!-- Google Tag Manager -->
-    <script>
-        (function (w, d, s, l, i) {
-            w[l] = w[l] || [];
-            w[l].push({
-                "gtm.start": new Date().getTime(),
-                event: "gtm.js",
-            });
-            var f = d.getElementsByTagName(s)[0],
-                j = d.createElement(s),
-                dl = l != "dataLayer" ? "&l=" + l : "";
-            j.async = true;
-            j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
-            f.parentNode.insertBefore(j, f);
-        })(window, document, "script", "dataLayer", "GTM-KG2P58FL");
-    </script>
-    <!-- End Google Tag Manager -->
+        <!-- Microsoft Clarity -->
+        <script type="text/javascript">
+            (function (c, l, a, r, i, t, y) {
+                c[a] =
+                    c[a] ||
+                    function () {
+                        (c[a].q = c[a].q || []).push(arguments);
+                    };
+                t = l.createElement(r);
+                t.async = 1;
+                t.src = "https://www.clarity.ms/tag/" + i;
+                y = l.getElementsByTagName(r)[0];
+                y.parentNode.insertBefore(t, y);
+            })(window, document, "clarity", "script", "vwte2khcda");
+        </script>
 
-    <!-- Microsoft Clarity -->
-    <script type="text/javascript">
-        (function (c, l, a, r, i, t, y) {
-            c[a] =
-                c[a] ||
-                function () {
-                    (c[a].q = c[a].q || []).push(arguments);
-                };
-            t = l.createElement(r);
-            t.async = 1;
-            t.src = "https://www.clarity.ms/tag/" + i;
-            y = l.getElementsByTagName(r)[0];
-            y.parentNode.insertBefore(t, y);
-        })(window, document, "clarity", "script", "vwte2khcda");
-    </script>
+        <!-- Extra Non AI Training Protection -->
+        <meta name="robots" content="noarchive, nopagereadaloud" />
+        <meta name="googlebot" content="noarchive" />
+        <!-- Google Search Console -->
+        <meta
+            name="google-site-verification"
+            content="7OWUtUXtqeqJ-ennJP6lumMwxyab2CrSv_ZjsBHQVwk"
+        />
 
-    <!-- Extra Non AI Training Protection -->
-    <meta name="robots" content="noarchive, nopagereadaloud">
-    <meta name="googlebot" content="noarchive">
-    <!-- Google Search Console -->
-    <meta name="google-site-verification" content="7OWUtUXtqeqJ-ennJP6lumMwxyab2CrSv_ZjsBHQVwk" />
-
-    <!-- Tailwind Config -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        "sky-500": "#1C9DD9",
-                        "amber-500": "#E4A03A",
-                        "slate-950": "#041A24",
-                        white: "#FCFCFC",
-                    },
-                    backgroundImage: {
-                        // The gradient with the cyan shift and orange highlight
-                        "arctic-lab":
-                            "linear-gradient(135deg, rgba(207, 250, 254, 0.8) 0%, rgba(134, 239, 252, 0.8) 20%, rgba(110, 206, 241, 0.8) 40%, rgba(207, 250, 254, 0.8) 60%, rgba(228, 160, 58, 0.4) 75%, rgba(103, 232, 249, 0.8) 100%)",
-                    },
-                    animation: {
-                        bgShift:
-                            "bgShift 10s infinite alternate ease-in-out",
-                    },
-                    fontFamily: {
-                        heading: ["Montserrat", "sans-serif"],
-                        body: ["Poppins", "sans-serif"],
-                        mono: ["JetBrains Mono", "monospace"],
-                    },
-                },
-            },
-        };
-    </script>
-
-    <!-- GBP & Organization Schema -->
-    <script type="application/ld+json">
+        <!-- GBP & Organization Schema -->
+        <script type="application/ld+json">
             {
                 "@context": "https://schema.org",
                 "@type": "ProfessionalService",
@@ -175,20 +172,29 @@
             }
         </script>
 
-    <!-- Custom Styles -->
-    <style></style>
-</head>
+        <!-- Custom Styles -->
+        <style></style>
+    </head>
 
-<body class="bg-white font-body text-slate-950/90 selection:bg-brand-blue selection:text-white">
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KG2P58FL" height="0" width="0"
-            style="display: none; visibility: hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
+    <body
+        class="bg-white font-body text-slate-950/90 selection:bg-brand-blue selection:text-white"
+    >
+        <!-- Google Tag Manager (noscript) -->
+        <noscript
+            ><iframe
+                src="https://www.googletagmanager.com/ns.html?id=GTM-KG2P58FL"
+                height="0"
+                width="0"
+                style="display: none; visibility: hidden"
+            ></iframe
+        ></noscript>
+        <!-- End Google Tag Manager (noscript) -->
 
-    <!-- NAVIGATION -->
-    <include src="/components/navbar.html"></include>
+        <!-- NAVIGATION -->
+        <include src="/components/navbar.html"></include>
 
-    <main x-data="{
+        <main
+            x-data="{
         activeSection: 'intro',
         readingTime: 0,
         calculateReadingTime() {
@@ -196,168 +202,240 @@
             const wordsPerMinute = 200;
             this.readingTime = Math.ceil(text.split(/\s+/).length / wordsPerMinute);
         }
-    }" x-init="calculateReadingTime()"
-        class="relative mt-12 md:mt-24 mb-24 px-6 max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-[250px_1fr_350px] gap-12 lg:gap-20">
-        <aside class="hidden lg:block">
-            <div class="sticky top-32 p-8 bg-white/40 backdrop-blur-md border border-white/40 rounded-[32px] shadow-xl">
-                <span class="font-mono text-[10px] font-bold tracking-[0.2em] text-brand-blue uppercase mb-6 block">
-                    // DATA_INDEX
-                </span>
-                <nav class="flex flex-col gap-4">
-                    <template x-for="link in [
+    }"
+            x-init="calculateReadingTime()"
+            class="relative mt-12 md:mt-24 mb-24 px-6 max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-[250px_1fr_350px] gap-12 lg:gap-20"
+        >
+            <aside class="hidden lg:block">
+                <div
+                    class="sticky top-32 p-8 bg-white/40 backdrop-blur-md border border-white/40 rounded-[32px] shadow-xl"
+                >
+                    <span
+                        class="font-mono text-[10px] font-bold tracking-[0.2em] text-brand-blue uppercase mb-6 block"
+                    >
+                        // DATA_INDEX
+                    </span>
+                    <nav class="flex flex-col gap-4">
+                        <template
+                            x-for="link in [
                         { id: 'intro', label: '01. Initializing Deployment' },
                         { id: 'performance', label: '02. Arctic Load Specs' },
                         { id: 'optimization', label: '03. Final Optimization' }
-                    ]">
-                        <a :href="'#' + link.id" @click="activeSection = link.id"
-                            class="font-mono text-xs transition-all duration-300 border-l-2 pl-4 py-1"
-                            :class="activeSection === link.id ? 'border-brand-blue text-slate-950 font-bold' : 'border-transparent text-slate-950/40 hover:text-slate-950'"
-                            x-text="link.label">
-                        </a>
-                    </template>
-                </nav>
-            </div>
-        </aside>
-
-        <article class="overflow-hidden" ref="content">
-            <nav class="flex mb-8 text-[10px] font-bold uppercase tracking-[0.2em] text-[#041A24]/40"
-                aria-label="Breadcrumb">
-                <ol class="flex items-center space-x-2">
-                    <li>
-                        <a href="/" class="hover:text-sky-600 transition-colors">Home</a>
-                    </li>
-                    <li class="flex items-center gap-2">
-                        <span>/</span>
-                        <a href="/blog-index.html" class="hover:text-sky-600 transition-colors">Blog</a>
-                    </li>
-                    <li class="flex items-center gap-2 text-sky-600/60">
-                        <span>/</span>
-                        <span class="truncate max-w-[150px]">Current Intelligence</span>
-                    </li>
-                </ol>
-            </nav>
-            <header class="mb-12">
-                <h1
-                    class="font-heading font-bold text-4xl md:text-6xl text-slate-950 mt-4 mb-6 leading-[1.1] uppercase tracking-tighter">
-                    The Arctic Logic of
-                    <span class="text-brand-blue">High-Performance</span>
-                    Systems
-                </h1>
-                <div class="flex flex-row items-center justify-between gap-4 mb-6">
-                    <span class="font-mono text-xs font-bold tracking-[0.2em] text-brand-blue uppercase">
-                        // PUBLISHED JAN 09 2026
-                    </span>
-
-                    <div
-                        class="inline-flex items-center gap-3 px-4 py-2 bg-sky-200 text-slate-950 font-mono text-[10px] rounded-lg">
-                        <i class="fa-regular fa-clock text-brand-blue"></i>
-                        <span>EST_TIME:
-                            <span x-text="readingTime"></span> MIN</span>
-                    </div>
+                    ]"
+                        >
+                            <a
+                                :href="'#' + link.id"
+                                @click="activeSection = link.id"
+                                class="font-mono text-xs transition-all duration-300 border-l-2 pl-4 py-1"
+                                :class="activeSection === link.id ? 'border-brand-blue text-slate-950 font-bold' : 'border-transparent text-slate-950/40 hover:text-slate-950'"
+                                x-text="link.label"
+                            >
+                            </a>
+                        </template>
+                    </nav>
                 </div>
-            </header>
+            </aside>
 
-            <div class="prose prose-lg max-w-none text-slate-950/80 leading-relaxed space-y-8">
-                <section id="intro" class="scroll-mt-32">
-                    <p class="text-xl md:text-2xl font-medium text-slate-950 leading-snug italic">
-                        In the digital landscape of 2026, speed is no longer
-                        a luxury—it is the baseline.
-                    </p>
-                </section>
-
-                <section id="performance" class="scroll-mt-32">
-                    <h2 class="font-heading text-3xl md:text-4xl text-slate-950 pt-8 mb-6 uppercase tracking-tight">
-                        Arctic Load Specs
-                    </h2>
-                    <p>
-                        Scaling a digital engine requires more than just raw
-                        power. It requires a cooled, calculated approach to
-                        asset management. Every byte must serve a purpose.
-                    </p>
-
+            <article class="overflow-hidden" ref="content">
+                <nav
+                    class="flex mb-8 text-[10px] font-bold uppercase tracking-[0.2em] text-[#041A24]/40"
+                    aria-label="Breadcrumb"
+                >
+                    <ol class="flex items-center space-x-2">
+                        <li>
+                            <a
+                                href="/"
+                                class="hover:text-sky-600 transition-colors"
+                                >Home</a
+                            >
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span>/</span>
+                            <a
+                                href="/blog-index.html"
+                                class="hover:text-sky-600 transition-colors"
+                                >Blog</a
+                            >
+                        </li>
+                        <li class="flex items-center gap-2 text-sky-600/60">
+                            <span>/</span>
+                            <span class="truncate max-w-[150px]"
+                                >Current Intelligence</span
+                            >
+                        </li>
+                    </ol>
+                </nav>
+                <header class="mb-12">
+                    <h1
+                        class="font-heading font-bold text-4xl md:text-6xl text-slate-950 mt-4 mb-6 leading-[1.1] uppercase tracking-tighter"
+                    >
+                        The Arctic Logic of
+                        <span class="text-brand-blue">High-Performance</span>
+                        Systems
+                    </h1>
                     <div
-                        class="my-12 rounded-[40px] overflow-hidden bg-white/40 border border-white/40 aspect-video shadow-2xl relative group">
-                        <img src="https://picsum.photos/seed/arctic/1200/800"
-                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
-                            alt="Tech Visual" />
+                        class="flex flex-row items-center justify-between gap-4 mb-6"
+                    >
+                        <span
+                            class="font-mono text-xs font-bold tracking-[0.2em] text-brand-blue uppercase"
+                        >
+                            // PUBLISHED JAN 09 2026
+                        </span>
+
                         <div
-                            class="absolute bottom-6 left-6 bg-slate-950 text-white px-4 py-2 rounded-xl text-xs font-mono opacity-0 group-hover:opacity-100 transition-opacity">
-                            IMG_REF: ARCTIC_SURFACE_01
+                            class="inline-flex items-center gap-3 px-4 py-2 bg-sky-200 text-slate-950 font-mono text-[10px] rounded-lg"
+                        >
+                            <i class="fa-regular fa-clock text-brand-blue"></i>
+                            <span
+                                >EST_TIME:
+                                <span x-text="readingTime"></span> MIN</span
+                            >
                         </div>
                     </div>
-                </section>
+                </header>
 
-                <section id="optimization" class="scroll-mt-32">
-                    <h2 class="font-heading text-3xl md:text-4xl text-slate-950 pt-8 mb-6 uppercase tracking-tight">
-                        Final Optimization
-                    </h2>
-                    <p>
-                        Vestibulum mattis ut turpis et hendrerit. Vivamus
-                        quis tincidunt quam. Integer id volutpat risus.
-                        Praesent placerat, risus eu rutrum fringilla.
+                <div
+                    class="prose prose-lg max-w-none text-slate-950/80 leading-relaxed space-y-8"
+                >
+                    <section id="intro" class="scroll-mt-32">
+                        <p
+                            class="text-xl md:text-2xl font-medium text-slate-950 leading-snug italic"
+                        >
+                            In the digital landscape of 2026, speed is no longer
+                            a luxury—it is the baseline.
+                        </p>
+                    </section>
+
+                    <section id="performance" class="scroll-mt-32">
+                        <h2
+                            class="font-heading text-3xl md:text-4xl text-slate-950 pt-8 mb-6 uppercase tracking-tight"
+                        >
+                            Arctic Load Specs
+                        </h2>
+                        <p>
+                            Scaling a digital engine requires more than just raw
+                            power. It requires a cooled, calculated approach to
+                            asset management. Every byte must serve a purpose.
+                        </p>
+
+                        <div
+                            class="my-12 rounded-[40px] overflow-hidden bg-white/40 border border-white/40 aspect-video shadow-2xl relative group"
+                        >
+                            <img
+                                src="https://picsum.photos/seed/arctic/1200/800"
+                                class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                                alt="Tech Visual"
+                            />
+                            <div
+                                class="absolute bottom-6 left-6 bg-slate-950 text-white px-4 py-2 rounded-xl text-xs font-mono opacity-0 group-hover:opacity-100 transition-opacity"
+                            >
+                                IMG_REF: ARCTIC_SURFACE_01
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="optimization" class="scroll-mt-32">
+                        <h2
+                            class="font-heading text-3xl md:text-4xl text-slate-950 pt-8 mb-6 uppercase tracking-tight"
+                        >
+                            Final Optimization
+                        </h2>
+                        <p>
+                            Vestibulum mattis ut turpis et hendrerit. Vivamus
+                            quis tincidunt quam. Integer id volutpat risus.
+                            Praesent placerat, risus eu rutrum fringilla.
+                        </p>
+                    </section>
+                </div>
+
+                <footer
+                    class="mt-20 pt-10 border-t border-slate-950/10 flex flex-wrap items-center gap-6"
+                >
+                    <span
+                        class="font-mono text-xs font-bold tracking-widest text-slate-950/40 uppercase"
+                        >SHARE_FILE:</span
+                    >
+                    <div class="flex gap-4">
+                        <a
+                            href="https://www.linkedin.com/in/cassandra-parisi/"
+                            target="_blank"
+                            class="text-slate-950 hover:text-sky-600 transition-transform hover:scale-105"
+                        >
+                            <svg
+                                class="w-5 h-5"
+                                fill="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+                                />
+                            </svg>
+                        </a>
+                    </div>
+                </footer>
+            </article>
+
+            <aside class="flex flex-col gap-10">
+                <div
+                    class="p-8 bg-white/40 backdrop-blur-md border border-white/40 rounded-[40px] shadow-xl"
+                >
+                    <img
+                        src="https://i.pravatar.cc/150?u=boldarctic"
+                        alt="Author"
+                        class="w-20 h-20 rounded-2xl mb-6 shadow-lg rotate-3 border-2 border-white"
+                    />
+                    <h4
+                        class="font-heading text-xl text-slate-950 uppercase tracking-tight"
+                    >
+                        Erik Sterling
+                    </h4>
+                    <p class="text-sm text-slate-950/60 mt-4 leading-relaxed">
+                        Lead Architect at Flying Mouse Labs. Specializing in
+                        high-frequency scaling and glassmorphism.
                     </p>
-                </section>
-            </div>
-
-            <footer class="mt-20 pt-10 border-t border-slate-950/10 flex flex-wrap items-center gap-6">
-                <span class="font-mono text-xs font-bold tracking-widest text-slate-950/40 uppercase">SHARE_FILE:</span>
-                <div class="flex gap-4">
-                    <a href="https://www.linkedin.com/in/cassandra-parisi/" target="_blank"
-                        class="text-slate-950 hover:text-sky-600 transition-transform hover:scale-105">
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                        </svg>
-                    </a>
                 </div>
-            </footer>
-        </article>
 
-        <aside class="flex flex-col gap-10">
-            <div class="p-8 bg-white/40 backdrop-blur-md border border-white/40 rounded-[40px] shadow-xl">
-                <img src="https://i.pravatar.cc/150?u=boldarctic" alt="Author"
-                    class="w-20 h-20 rounded-2xl mb-6 shadow-lg rotate-3 border-2 border-white" />
-                <h4 class="font-heading text-xl text-slate-950 uppercase tracking-tight">
-                    Erik Sterling
-                </h4>
-                <p class="text-sm text-slate-950/60 mt-4 leading-relaxed">
-                    Lead Architect at Flying Mouse Labs. Specializing in
-                    high-frequency scaling and glassmorphism.
-                </p>
-            </div>
-
-            <div class="p-8 bg-slate-950 text-white rounded-[40px] shadow-2xl">
-                <span
-                    class="font-mono text-[10px] tracking-[0.2em] text-brand-blue uppercase block mb-8 border-b border-white/10 pb-4">
-                    RELATED_LOGS
-                </span>
-                <div class="space-y-8">
-                    <a href="#" class="group block">
-                        <h5 class="font-bold text-lg leading-tight group-hover:text-brand-blue transition-colors">
-                            The Future of Minimalist Interfaces
-                        </h5>
-                        <p class="font-mono text-[9px] text-white/40 mt-3 tracking-widest uppercase italic">
-                            5 MIN READ &rarr;
-                        </p>
-                    </a>
-                    <a href="#" class="group block">
-                        <h5 class="font-bold text-lg leading-tight group-hover:text-brand-blue transition-colors">
-                            Security Protocols for 2026
-                        </h5>
-                        <p class="font-mono text-[9px] text-white/40 mt-3 tracking-widest uppercase italic">
-                            8 MIN READ &rarr;
-                        </p>
-                    </a>
+                <div
+                    class="p-8 bg-slate-950 text-white rounded-[40px] shadow-2xl"
+                >
+                    <span
+                        class="font-mono text-[10px] tracking-[0.2em] text-brand-blue uppercase block mb-8 border-b border-white/10 pb-4"
+                    >
+                        RELATED_LOGS
+                    </span>
+                    <div class="space-y-8">
+                        <a href="#" class="group block">
+                            <h5
+                                class="font-bold text-lg leading-tight group-hover:text-brand-blue transition-colors"
+                            >
+                                The Future of Minimalist Interfaces
+                            </h5>
+                            <p
+                                class="font-mono text-[9px] text-white/40 mt-3 tracking-widest uppercase italic"
+                            >
+                                5 MIN READ &rarr;
+                            </p>
+                        </a>
+                        <a href="#" class="group block">
+                            <h5
+                                class="font-bold text-lg leading-tight group-hover:text-brand-blue transition-colors"
+                            >
+                                Security Protocols for 2026
+                            </h5>
+                            <p
+                                class="font-mono text-[9px] text-white/40 mt-3 tracking-widest uppercase italic"
+                            >
+                                8 MIN READ &rarr;
+                            </p>
+                        </a>
+                    </div>
                 </div>
-            </div>
-        </aside>
-    </main>
+            </aside>
+        </main>
 
-    <!-- FOOTER SECTION -->
-    <include src="/components/footer.html"></include>
+        <!-- FOOTER SECTION -->
+        <include src="/components/footer.html"></include>
 
-    <script src="/js/main.js"></script>
-    <script src="/js/blog-data.js"></script>
-</body>
-
+        <script type="module" src="/src/js/main.js"></script>
+    </body>
 </html>

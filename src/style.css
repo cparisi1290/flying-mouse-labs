@@ -1,10 +1,26 @@
-/* iBrand Font */
-@font-face {
-    font-family: 'iBrand';
-    src: url('../fonts/iBrand/Fonts/Ibrand.otf') format('opentype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
+@import "tailwindcss";
+
+@theme {
+    --color-sky-500: #1c9dd9;
+    --color-amber-500: #e4a03a;
+    --color-slate-950: #041a24;
+    --color-white: #fcfcfc;
+
+    --background-image-arctic-lab: linear-gradient(
+        135deg,
+        rgba(207, 250, 254, 0.8) 0%,
+        rgba(134, 239, 252, 0.8) 20%,
+        rgba(110, 206, 241, 0.8) 40%,
+        rgba(207, 250, 254, 0.8) 60%,
+        rgba(228, 160, 58, 0.4) 75%,
+        rgba(103, 232, 249, 0.8) 100%
+    );
+
+    --animate-bgShift: bgShift 10s infinite alternate ease-in-out;
+
+    --font-heading: "Montserrat", sans-serif;
+    --font-body: "Poppins", sans-serif;
+    --font-mono: "JetBrains Mono", monospace;
 }
 
 @keyframes bgShift {
@@ -23,11 +39,14 @@
 
 @keyframes crystalTumble {
     0% {
-        transform: translate(var(--startTX), var(--startTY)) rotateX(var(--startX)) rotateY(var(--startY)) rotateZ(var(--startZ)) translateZ(-200px);
+        transform: translate(var(--startTX), var(--startTY))
+            rotateX(var(--startX)) rotateY(var(--startY)) rotateZ(var(--startZ))
+            translateZ(-200px);
     }
 
     100% {
-        transform: translate(var(--endTX), var(--endTY)) rotateX(var(--endX)) rotateY(var(--endY)) rotateZ(var(--endZ)) translateZ(200px);
+        transform: translate(var(--endTX), var(--endTY)) rotateX(var(--endX))
+            rotateY(var(--endY)) rotateZ(var(--endZ)) translateZ(200px);
     }
 }
 
@@ -47,10 +66,15 @@
 }
 
 .glass-cube::after {
-    content: '';
+    content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, 0.8) 50%, transparent 70%);
+    background: linear-gradient(
+        115deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.8) 50%,
+        transparent 70%
+    );
     background-size: 250% 250%;
     animation: surfaceShine 10s infinite linear;
     pointer-events: none;
@@ -339,14 +363,13 @@
     display: none !important;
 }
 
-
 /* PROJECTS SECTION */
 .projects-bg-text {
     font-size: 18vw;
     line-height: 1;
     font-weight: 900;
     letter-spacing: -0.02em;
-    background: linear-gradient(135deg, #B0E0E6 0%, #89CFF0 50%, #FFDAB9 100%);
+    background: linear-gradient(135deg, #b0e0e6 0%, #89cff0 50%, #ffdab9 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-size: 200% 200%;
@@ -388,7 +411,8 @@
 /* Card Positioning using CSS Variables */
 .carousel-card {
     /* Position each card in the ring */
-    transform: rotateY(calc(var(--index) * (360deg / var(--total)))) translateZ(550px);
+    transform: rotateY(calc(var(--index) * (360deg / var(--total))))
+        translateZ(550px);
 }
 
 /* Optional: Makes the far-side cards look further away */
@@ -442,7 +466,7 @@
     line-height: 1;
     font-weight: 900;
     letter-spacing: -0.02em;
-    background: linear-gradient(135deg, #B0E0E6 0%, #89CFF0 50%, #FFDAB9 100%);
+    background: linear-gradient(135deg, #b0e0e6 0%, #89cff0 50%, #ffdab9 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -451,7 +475,8 @@
 }
 
 .arc-wing-left {
-    transform: translateY(-400px) translateX(-150px) rotateY(-45deg) scale(0.3) translateZ(500px);
+    transform: translateY(-400px) translateX(-150px) rotateY(-45deg) scale(0.3)
+        translateZ(500px);
     opacity: 0;
 }
 
@@ -461,7 +486,8 @@
 }
 
 .arc-wing-right {
-    transform: translateY(-400px) translateX(150px) rotateY(45deg) scale(0.3) translateZ(500px);
+    transform: translateY(-400px) translateX(150px) rotateY(45deg) scale(0.3)
+        translateZ(500px);
     opacity: 0;
 }
 

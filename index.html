@@ -10,22 +10,17 @@
         </title>
         <meta
             name="description"
-            content="Helping small to medium businesses scale with custom web design, data dashboards, and AI and result-driven solutions. Let's build something extraordinary."
+            content="Helping small to medium businesses grow with custom web design, data dashboards, and AI and result-driven solutions. Let's build something extraordinary."
         />
 
         <link rel="canonical" href="https://flyingmouselabs.com/" />
-
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link rel="preconnect" href="https://cdn.tailwindcss.com" />
-        <link rel="preconnect" href="https://app.usercentrics.eu" />
 
         <!-- Open Graph / Twitter Social Sharing -->
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://flyingmouselabs.com/" />
         <meta
             property="og:title"
-            content="Flying Mouse Labs | Web Design & Data Science"
+            content="Flying Mouse Labs | Web Design & Data Science Agency for Small to Medium Businesses"
         />
         <meta
             property="og:description"
@@ -35,8 +30,7 @@
             property="og:image"
             content="https://flyingmouselabs.com/images/og-social-sharing.jpg"
         />
-        <meta name="theme-color" content="#041A24" />
-        <!-- Twitter -->
+
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://flyingmouselabs.com/" />
         <meta
@@ -52,26 +46,25 @@
             content="https://flyingmouselabs.com/images/og-social-sharing.jpg"
         />
 
+        <meta name="theme-color" content="#041A24" />
+
         <!-- Styles -->
-        <link rel="stylesheet" href="/css/style.css" />
+        <link rel="stylesheet" href="/src/style.css" />
         <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-            media="print"
-            onload="this.media = 'all'"
-        />
-
-        <!-- Fonts -->
-        <link
-            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Poppins:wght@300;400;500&family=JetBrains+Mono&display=swap"
-            rel="stylesheet"
         />
 
         <!-- Usercentrics -->
+        <link rel="preconnect" href="//privacy-proxy.usercentrics.eu" />
+        <link
+            rel="preload"
+            href="//privacy-proxy.usercentrics.eu/latest/uc-block.bundle.js"
+            as="script"
+        />
         <script
             type="application/javascript"
             src="https://privacy-proxy.usercentrics.eu/latest/uc-block.bundle.js"
-            defer
         ></script>
         <script
             id="usercentrics-cmp"
@@ -79,22 +72,11 @@
             data-settings-id="gxqIcXkDfUHbKG"
             async
         ></script>
-
-        <!-- Scripts -->
-        <script src="https://cdn.tailwindcss.com" defer></script>
-        <script
-            defer
-            src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
-        ></script>
-        <script
-            defer
-            src="https://unpkg.com/@alpinejs/collapse@3.x.x/dist/cdn.min.js"
-        ></script>
-        <script
-            defer
-            src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"
-        ></script>
-        <script src="/js/component-loader.js" defer></script>
+        <script>
+            uc.setCustomTranslations(
+                "https://termageddon.ams3.cdn.digitaloceanspaces.com/translations/",
+            );
+        </script>
 
         <!-- Google Tag Manager -->
         <script>
@@ -114,6 +96,23 @@
         </script>
         <!-- End Google Tag Manager -->
 
+        <!-- Google Search Console -->
+        <meta
+            name="google-site-verification"
+            content="7OWUtUXtqeqJ-ennJP6lumMwxyab2CrSv_ZjsBHQVwk"
+        />
+
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+
+        <!-- Scripts -->
+        <script type="module" src="/src/js/component-loader.js"></script>
+
         <!-- Microsoft Clarity -->
         <script type="text/javascript">
             (function (c, l, a, r, i, t, y) {
@@ -128,52 +127,6 @@
                 y = l.getElementsByTagName(r)[0];
                 y.parentNode.insertBefore(t, y);
             })(window, document, "clarity", "script", "vwte2khcda");
-        </script>
-
-        <!-- Extra Non AI Training Protection -->
-        <meta name="robots" content="noarchive, nopagereadaloud" />
-        <meta name="googlebot" content="noarchive" />
-        <!-- Google Search Console -->
-        <meta
-            name="google-site-verification"
-            content="7OWUtUXtqeqJ-ennJP6lumMwxyab2CrSv_ZjsBHQVwk"
-        />
-
-        <!-- Tailwind Config -->
-        <script>
-            // We wait for the 'load' event to ensure cdn.tailwindcss.com is ready
-            window.addEventListener("load", () => {
-                if (typeof tailwind !== "undefined") {
-                    tailwind.config = {
-                        theme: {
-                            extend: {
-                                colors: {
-                                    "sky-500": "#1C9DD9",
-                                    "amber-500": "#E4A03A",
-                                    "slate-950": "#041A24",
-                                    white: "#FCFCFC",
-                                },
-                                backgroundImage: {
-                                    // The gradient with the cyan shift and orange highlight
-                                    "arctic-lab":
-                                        "linear-gradient(135deg, rgba(207, 250, 254, 0.8) 0%, rgba(134, 239, 252, 0.8) 20%, rgba(110, 206, 241, 0.8) 40%, rgba(207, 250, 254, 0.8) 60%, rgba(228, 160, 58, 0.4) 75%, rgba(103, 232, 249, 0.8) 100%)",
-                                },
-                                animation: {
-                                    bgShift:
-                                        "bgShift 10s infinite alternate ease-in-out",
-                                },
-                                fontFamily: {
-                                    heading: ["Montserrat", "sans-serif"],
-                                    body: ["Poppins", "sans-serif"],
-                                    mono: ["JetBrains Mono", "monospace"],
-                                },
-                            },
-                        },
-                    };
-                } else {
-                    console.error("Tailwind CDN failed to load.");
-                }
-            });
         </script>
 
         <!-- GBP & Organization Schema -->
@@ -215,9 +168,10 @@
                     "https://www.linkedin.com/company/flying-mouse-labs",
                     "https://www.instagram.com/flyingmouselabs",
                     "https://www.youtube.com/@flyingmouselabs",
-                    "https://www.facebook.com/flyingmouselabs",
-                    "https://www.tiktok.com/@flying.mouse.labs",
-                    "https://x.com/FlyingMouseLabs"
+                    "https://www.facebook.com/flyingmouselabs"
+                    <!-- "https://www.tiktok.com/@flying.mouse.labs", NEED TO CONFIRM -->
+                    <!-- "https://x.com/flyingmouselabs", NEED TO CREATE-->
+                    <!-- "https://github.com/flyingmouselabs", -->
                 ]
             }
         </script>
@@ -237,6 +191,22 @@
             ></iframe
         ></noscript>
         <!-- End Google Tag Manager (noscript) -->
+
+        <!-- Google Analytics (gtag.js) -->
+        <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=G-MXPD58KZDZ"
+        ></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag("js", new Date());
+
+            gtag("config", "G-MXPD58KZDZ");
+        </script>
+        <!-- End Google Analytics (gtag.js) -->
 
         <!-- Start of HubSpot Embed Code -->
         <script
@@ -292,7 +262,7 @@
                         Make Your<br class="lg:hidden" />
                         First Impression<br class="lg:hidden" />
                         <span
-                            class="text-amber-500 text-[46px] md:text-[84px] lg:text-8xl"
+                            class="text-amber-500 text-[42px] md:text-[84px] lg:text-8xl"
                             >Unforgettable</span
                         >
                     </h2>
@@ -613,10 +583,10 @@
                                 <div
                                     class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8"
                                 >
-                                    <h4
+                                    <!--<h4
                                         class="text-balance text-white text-xl font-black uppercase tracking-tighter"
                                         x-text="project.title"
-                                    ></h4>
+                                    ></h4>-->
                                 </div>
                             </div>
                         </template>
@@ -1242,9 +1212,6 @@
         <!-- FOOTER SECTION -->
         <include src="/components/footer.html"></include>
 
-        <script src="/js/main.js"></script>
-        <script src="/js/testimonials-data.js"></script>
-        <script src="/js/projects-data.js"></script>
-        <script src="/js/blog-data.js"></script>
-    </body>
+        <script type="module" src="/src/js/main.js"></script>
+
 </html>
