@@ -43,4 +43,4 @@ User-agent: FacebookBot
 Disallow: /
 
 # 3. Direct crawlers to the navigation map
-Sitemap: https://www.flyingmouselabs.com/sitemap.xml
+Sitemap: https://flyingmouselabs.com/sitemap.xml

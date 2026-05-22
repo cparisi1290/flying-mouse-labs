@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import tailwindcss from "@tailwindcss/vite";
+import sitemap from "vite-plugin-sitemap";
 
 export default defineConfig({
   root: ".",
@@ -31,5 +32,10 @@ export default defineConfig({
     port: 4173,
     open: true,
   },
-  plugins: [tailwindcss()],
+  plugins: [
+    tailwindcss(),
+    sitemap({
+      hostname: "https://flyingmouselabs.com",
+    }),
+  ],
 });

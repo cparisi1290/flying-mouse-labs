@@ -340,6 +340,8 @@
                     >
                         <img
                             :src="'/images/' + service.img"
+                            width="800"
+                            height="600"
                             class="absolute inset-0 w-full h-full object-cover transition-all duration-700"
                             :class="activeService !== service.id
                                  ? 'grayscale brightness-100 opacity-80 blur-sm scale-110'
@@ -538,12 +540,22 @@
                         @click="openProject(index)"
                         class="snap-center shrink-0 w-[85vw] md:w-[45vw] max-w-[400px] aspect-[3/4] rounded-[40px] overflow-hidden cursor-pointer shadow-2xl bg-gray-100"
                     >
-                        <img
+                        <!--<img
                             :src="project.cover"
                             class="w-full h-full object-cover"
                             :alt="project.coverAlt"
                             loading="lazy"
-                        />
+                        />-->
+                        <video
+                            autoplay
+                            loop
+                            muted
+                            playsinline
+                            class="w-full h-full object-cover"
+                        >
+                            <source :src="project.coverWebm" type="video/webm">
+                            <source :src="project.cover" type="video/mp4">
+                        </video>
                     </div>
                 </template>
             </div>
@@ -682,6 +694,8 @@
                                         >
                                             <img
                                                 :src="activeProject?.before"
+                                                width="600"
+                                                height="400"
                                                 class="w-full h-auto object-cover"
                                                 :alt="activeProject?.beforeAlt"
                                                 loading="lazy"
@@ -697,6 +711,8 @@
                                     >
                                         <img
                                             :src="activeProject?.after"
+                                            width="600"
+                                            height="400"
                                             class="w-full h-auto object-cover"
                                             :alt="activeProject?.afterAlt"
                                             loading="lazy"
@@ -715,12 +731,14 @@
                             <button
                                 @click.stop="prev()"
                                 class="flex-1 max-w-[160px] py-4 bg-slate-950 text-white rounded-full text-[11px] font-black uppercase tracking-widest active:scale-95 shadow-lg flex items-center justify-center gap-2"
+                                aria-label="Previous project"
                             >
                                 <span class="text-xs">←</span> PREVIOUS
                             </button>
                             <button
                                 @click.stop="next()"
                                 class="flex-1 max-w-[160px] py-4 bg-slate-950 text-white rounded-full text-[11px] font-black uppercase tracking-widest active:scale-95 shadow-lg flex items-center justify-center gap-2"
+                                aria-label="Next project"
                             >
                                 NEXT <span class="text-xs">→</span>
                             </button>
@@ -787,10 +805,12 @@
                             </div>
                             <div class="mt-8 flex items-center gap-4">
                                 <div
-                                    class="w-12 h-12 rounded-full overflow-hidden border-2 border-white shrink-0"
+                                    class="w-12 h-12 rounded-full overflow-hidden border-1 border-white shrink-0"
                                 >
                                     <img
                                         :src="item.image"
+                                        width="48"
+                                        height="48"
                                         class="w-full h-full object-cover"
                                         :alt="item.imageAlt"
                                         loading="lazy"
@@ -892,6 +912,8 @@
                                         >
                                             <img
                                                 src="/images/glass-quotes-dark.svg"
+                                                width="120"
+                                                height="80"
                                                 class="w-full h-auto"
                                                 alt="Testimonial quote decoration"
                                                 loading="lazy"
@@ -921,6 +943,8 @@
                                             >
                                                 <img
                                                     :src="item.image"
+                                                    width="64"
+                                                    height="64"
                                                     class="w-full h-full object-cover"
                                                     :alt="item.imageAlt"
                                                     loading="lazy"
@@ -1030,6 +1054,8 @@
                         >
                             <img
                                 src="https://picsum.photos/seed/about-1/800/1200"
+                                width="800"
+                                height="1200"
                                 class="absolute inset-0 w-full h-full object-cover"
                                 alt="Data-informed design for small and medium-sized companies"
                                 loading="lazy"
@@ -1060,6 +1086,8 @@
                         >
                             <img
                                 src="https://picsum.photos/seed/about-3/800/1200"
+                                width="800"
+                                height="1200"
                                 class="absolute inset-0 w-full h-full object-cover"
                                 alt="Agency-quality web design, built for scaling businesses"
                                 loading="lazy"
@@ -1090,6 +1118,8 @@
                         >
                             <img
                                 src="https://picsum.photos/seed/about-2/800/1200"
+                                width="800"
+                                height="1200"
                                 class="absolute inset-0 w-full h-full object-cover"
                                 alt="Web design and analytics for businesses that mean business"
                                 loading="lazy"
