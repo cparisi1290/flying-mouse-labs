@@ -6,6 +6,7 @@ export default defineConfig({
   root: ".",
   base: "/",
   build: {
+    target: "es2020",
     outDir: "dist",
     assetsDir: "assets",
     sourcemap: true,

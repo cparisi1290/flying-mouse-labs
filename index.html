@@ -50,10 +50,7 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="/src/style.css" />
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-        />
+        <link rel="preload" as="style" href="/assets/main-zEgyXOQL.css" onload="this.rel='stylesheet'" />
 
         <!-- Usercentrics Cookie Consent Tool-->
         <link rel="preconnect" href="//privacy-proxy.usercentrics.eu" />
@@ -103,14 +100,6 @@
         <meta
             name="google-site-verification"
             content="7OWUtUXtqeqJ-ennJP6lumMwxyab2CrSv_ZjsBHQVwk"
-        />
-
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap&family=Poppins:wght@300;400;500;600;700;800;900&display=swap&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
-            rel="stylesheet"
         />
 
         <!-- Scripts -->
@@ -171,8 +160,8 @@
                     "https://www.linkedin.com/company/flying-mouse-labs",
                     "https://www.instagram.com/flyingmouselabs",
                     "https://www.youtube.com/@flyingmouselabs",
-                    "https://www.facebook.com/flyingmouselabs"
-                    "https://www.tiktok.com/@flying.mouse.labs",
+                    "https://www.facebook.com/flyingmouselabs",
+                    "https://www.tiktok.com/@flying.mouse.labs"
                 ]
             }
         </script>
@@ -348,6 +337,7 @@
                             class="absolute inset-0 p-8 md:p-12 flex flex-col justify-end"
                         >
                             <span
+                                x-show="activeService === service.id"
                                 class="text-white/70 text-lg md:text-xl font-bold mb-2"
                                 x-text="'0' + service.id"
                             ></span>
