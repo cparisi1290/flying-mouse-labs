@@ -573,12 +573,23 @@
                                 class="carousel-card absolute inset-0 rounded-[40px] overflow-hidden cursor-pointer shadow-xl transition-all duration-500 group"
                                 :style="`--index: ${index}; --total: ${projects.length};`"
                             >
-                                <img
+                                <!--<img
                                     :src="project.cover"
                                     :alt="project.coverAlt"
                                     class="w-full h-full object-cover transition-all duration-700 grayscale group-hover:grayscale-0 group-hover:scale-110"
                                     loading="lazy"
-                                />
+                                />-->
+
+                                <video
+                                    autoplay
+                                    loop
+                                    muted
+                                    playsinline
+                                    class="w-full h-full object-cover"
+                                >
+                                    <source :src="project.coverWebm" type="video/webm">
+                                    <source :src="project.cover" type="video/mp4">
+                                </video>
 
                                 <div
                                     class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8"
