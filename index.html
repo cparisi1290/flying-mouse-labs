@@ -496,15 +496,17 @@
             </div>
 
             <div
-                class="lg:hidden flex overflow-x-auto snap-x snap-mandatory no-scrollbar gap-4 px-6 md:px-12 pb-32"
+                class="lg:hidden flex overflow-x-auto no-scrollbar gap-4 px-6 md:px-12 pb-32"
+                x-ref="mobileScroll"
+                @scroll="handleInfiniteScroll()"
             >
                 <template
-                    x-for="(project, index) in projects"
+                    x-for="(project, index) in mobileProjects"
                     :key="'mobile-'+index"
                 >
                     <div
-                        @click="openProject(index)"
-                        class="snap-center shrink-0 w-[85vw] md:w-[45vw] max-w-[400px] aspect-[3/4] rounded-[40px] overflow-hidden cursor-pointer shadow-2xl bg-gray-100"
+                        @click="openProject(index % projects.length)"
+                        class="shrink-0 w-[85vw] md:w-[45vw] max-w-[400px] aspect-[3/4] rounded-[40px] overflow-hidden cursor-pointer shadow-2xl bg-gray-100"
                     >
                         <!--<img
                             :src="project.cover"

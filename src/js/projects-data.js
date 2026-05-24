@@ -90,6 +90,19 @@ document.addEventListener("alpine:init", () => {
           "Eclectic website redesign for a charcuterie and cheese grazing cafe",
       },
     ],
+    get mobileProjects() {
+      return [...this.projects, ...this.projects];
+    },
+    handleInfiniteScroll() {
+      const el = this.$refs.mobileScroll;
+      const halfway = el.scrollWidth / 2;
+      if (el.scrollLeft >= halfway) {
+        el.scrollLeft -= halfway;
+      }
+      if (el.scrollLeft <= 0) {
+        el.scrollLeft += halfway;
+      }
+    },
     openProject(index) {
       this.currentIndex = index;
       this.activeProject = this.projects[index];
