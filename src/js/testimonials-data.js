@@ -1,6 +1,7 @@
 // Testimonials Data
 document.addEventListener("alpine:init", () => {
   Alpine.data("testimonialsData", () => ({
+    activeTestimonialDot: 0,
     testimonials: [
       {
         badge: "Incredible Design + Deep Expertise",
@@ -67,13 +68,21 @@ document.addEventListener("alpine:init", () => {
       },
     ],
 
-    scroll(direction) {
-      const container = this.$refs.slider;
-      const scrollAmount = container.offsetWidth * 0.85;
-      container.scrollBy({
-        left: direction === "next" ? scrollAmount : -scrollAmount,
-        behavior: "smooth",
-      });
+    get mobileTestimonials() {
+      return [...this.testimonials, ...this.testimonials];
+    },
+    handleTestimonialScroll() {
+      const el = this.$refs.slider;
+      const halfway = el.scrollWidth / 2;
+      if (el.scrollLeft >= halfway) {
+        el.scrollLeft -= halfway;
+      }
+      if (el.scrollLeft <= 0) {
+        el.scrollLeft += halfway;
+      }
+      const cardWidth = el.scrollWidth / (this.testimonials.length * 2);
+      this.activeTestimonialDot =
+        Math.round(el.scrollLeft / cardWidth) % this.testimonials.length;
     },
   }));
 });

@@ -3,6 +3,7 @@ document.addEventListener("alpine:init", () => {
   Alpine.data("projectsData", () => ({
     activeProject: null,
     currentIndex: 0,
+    activeMobileDot: 0,
     projects: [
       {
         coverWebm: "/images/nhc-port-cover.webm",
@@ -102,6 +103,9 @@ document.addEventListener("alpine:init", () => {
       if (el.scrollLeft <= 0) {
         el.scrollLeft += halfway;
       }
+      const cardWidth = el.scrollWidth / (this.projects.length * 2);
+      this.activeMobileDot =
+        Math.round(el.scrollLeft / cardWidth) % this.projects.length;
     },
     openProject(index) {
       this.currentIndex = index;

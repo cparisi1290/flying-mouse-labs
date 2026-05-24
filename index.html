@@ -483,7 +483,7 @@
         <section
             id="projects"
             x-data="projectsData"
-            class="py-32 md:min-h-screen bg-white overflow-hidden relative"
+            class="py-32 md:min-h-screen bg-white overflow-x-hidden relative"
         >
             <!-- PROJECTS MOBILE + TABLET -->
             <div class="lg:hidden px-6 md:px-12 mb-12 lg:mb-20">
@@ -496,9 +496,13 @@
             </div>
 
             <div
-                class="lg:hidden flex overflow-x-auto no-scrollbar gap-4 px-6 md:px-12 pb-32"
+                class="lg:hidden flex overflow-x-auto no-scrollbar gap-4 px-6 md:px-12 pb-10"
                 x-ref="mobileScroll"
                 @scroll="handleInfiniteScroll()"
+                x-init="$nextTick(() => {
+                    const el = $refs.mobileScroll;
+                    el.addEventListener('scroll', () => handleInfiniteScroll(), { passive: true });
+                })"
             >
                 <template
                     x-for="(project, index) in mobileProjects"
@@ -506,14 +510,8 @@
                 >
                     <div
                         @click="openProject(index % projects.length)"
-                        class="shrink-0 w-[85vw] md:w-[45vw] max-w-[400px] aspect-[3/4] rounded-[40px] overflow-hidden cursor-pointer shadow-2xl bg-gray-100"
+                        class="shrink-0 w-[85vw] md:w-[45vw] max-w-[400px] aspect-[3/4] rounded-[40px] overflow-hidden cursor-pointer bg-gray-100"
                     >
-                        <!--<img
-                            :src="project.cover"
-                            class="w-full h-full object-cover"
-                            :alt="project.coverAlt"
-                            loading="lazy"
-                        />-->
                         <video
                             autoplay
                             loop
@@ -521,10 +519,20 @@
                             playsinline
                             class="w-full h-full object-cover"
                         >
-                            <source :src="project.coverWebm" type="video/webm">
                             <source :src="project.cover" type="video/mp4">
+                            <source :src="project.coverWebm" type="video/webm">
                         </video>
                     </div>
+                </template>
+            </div>
+
+            <!-- Dots -->
+            <div class="lg:hidden flex justify-center gap-2 mt-4 mb-8">
+                <template x-for="(project, index) in projects" :key="'pdot-'+index">
+                    <div
+                        class="h-1.5 rounded-full transition-all duration-300 bg-slate-950"
+                        :class="activeMobileDot === index ? 'w-6 opacity-100' : 'w-1.5 opacity-20'"
+                    ></div>
                 </template>
             </div>
 
@@ -738,9 +746,7 @@
             </div>
 
             <!-- MOBILE + TABLET TESTIMONIALS-->
-            <div
-                class="lg:hidden relative z-10 flex flex-col justify-center h-full py-6"
-            >
+            <div class="lg:hidden relative z-10 flex flex-col justify-center h-full py-6">
                 <div class="text-center mb-10 px-6 relative">
                     <h2
                         class="text-balance text-5xl md:text-6xl font-black text-slate-950 leading-[0.9] uppercase tracking-tighter relative z-20"
@@ -752,19 +758,22 @@
 
                 <div
                     x-ref="slider"
-                    class="flex overflow-x-auto snap-x snap-mandatory no-scrollbar gap-6 px-8 pb-8"
+                    class="flex overflow-x-auto no-scrollbar gap-6 px-8 pb-8"
+                    @scroll="handleTestimonialScroll()"
+                    x-init="$nextTick(() => {
+                        const el = $refs.slider;
+                        el.addEventListener('scroll', () => handleTestimonialScroll(), { passive: true });
+                    })"
                 >
                     <template
-                        x-for="(item, index) in testimonials"
+                        x-for="(item, index) in mobileTestimonials"
                         :key="'mob-'+index"
                     >
                         <div
-                            class="snap-center shrink-0 w-[85vw] max-w-[380px] bg-white/60 backdrop-blur-xl rounded-[40px] p-8 border border-white/40 shadow-xl flex flex-col justify-between min-h-[400px]"
+                            class="shrink-0 w-[85vw] max-w-[380px] bg-white/60 backdrop-blur-xl rounded-[40px] p-8 border border-white/40 shadow-xl flex flex-col justify-between min-h-[400px]"
                         >
                             <div class="relative z-10">
-                                <div
-                                    class="inline-block bg-slate-950 rounded-full px-4 py-1.5 mb-6"
-                                >
+                                <div class="inline-block bg-slate-950 rounded-full px-4 py-1.5 mb-6">
                                     <p
                                         class="text-[10px] font-black uppercase tracking-widest text-white leading-none"
                                         x-text="item.badge"
@@ -772,13 +781,11 @@
                                 </div>
                                 <p
                                     class="text-lg font-bold text-slate-950 leading-snug"
-                                    x-text="'“' + item.quote + '”'"
+                                    x-text="'\u201c' + item.quote + '\u201d'"
                                 ></p>
                             </div>
                             <div class="mt-8 flex items-center gap-4">
-                                <div
-                                    class="w-12 h-12 rounded-full overflow-hidden border border-white shrink-0"
-                                >
+                                <div class="w-12 h-12 rounded-full overflow-hidden border border-white shrink-0">
                                     <img
                                         :src="item.image"
                                         width="48"
@@ -803,7 +810,18 @@
                     </template>
                 </div>
 
-                <div class="flex items-center justify-center gap-8 mt-4">
+                <!-- Dots -->
+                <div class="flex justify-center gap-2 mt-4">
+                    <template x-for="(item, index) in testimonials" :key="'tdot-'+index">
+                        <div
+                            class="h-1.5 rounded-full transition-all duration-300 bg-slate-950"
+                            :class="activeTestimonialDot === index ? 'w-6 opacity-100' : 'w-1.5 opacity-20'"
+                        ></div>
+                    </template>
+                </div>
+            </div>
+
+                <!--<div class="flex items-center justify-center gap-8 mt-4">
                     <button
                         @click="scroll('prev')"
                         class="w-14 h-14 rounded-full bg-white/40 backdrop-blur-lg border border-white/60 flex items-center justify-center shadow-lg active:scale-90 transition-all"
@@ -847,7 +865,7 @@
                         </svg>
                     </button>
                 </div>
-            </div>
+            </div>-->
 
             <!-- DESKTOP TESTIMONIALS -->
             <div
