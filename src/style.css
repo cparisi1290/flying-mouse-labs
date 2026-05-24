@@ -23,6 +23,8 @@
     --font-mono: "JetBrains Mono", monospace;
 }
 
+@source inline("w-6 w-1.5 opacity-20 opacity-100");
+
 @font-face {
     font-family: "Montserrat";
     src: url("/fonts/Montserrat/Montserrat-VariableFont_wght.ttf")
