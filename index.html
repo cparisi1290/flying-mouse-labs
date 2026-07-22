@@ -336,7 +336,7 @@
             </div>
 
             <div class="lg:max-w-4xl w-full flex flex-col items-center lg:items-start space-y-8">
-                <h1 class="text-[1px] font-white opacity-0">
+                <h1 class="text-[10px] font-white opacity-0">
                     Web design and data science agency for small to medium
                     businesses
                 </h1>
@@ -406,7 +406,7 @@
                                  : 'grayscale-0 brightness-100 opacity-100 blur-0 scale-100 group-hover:scale-105'"
                         :alt="service.imageAlt" :loading="service.id === 1 ? 'eager' : 'lazy'" />
 
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/80 via-black/60 via-black/40 md:from-black/90 md:via-black/50 md:via-black/30 md:to-transparent transition-opacity duration-500"
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/80 via-black/60 via-black/40 md:from-black md:via-black/65 md:via-black/30 md:to-transparent transition-opacity duration-500"
                         :class="activeService === service.id ? 'opacity-100' : 'opacity-0'"></div>
 
                     <div x-show="activeService === service.id"
@@ -415,20 +415,20 @@
                         x-transition:enter-end="opacity-100 translate-y-0"
                         class="absolute inset-0 p-8 md:p-12 flex flex-col justify-end">
                         <span x-show="activeService === service.id"
-                            class="text-white/70 text-lg md:text-xl font-bold mb-2" x-text="'0' + service.id"></span>
+                            class="text-[#ffffff] text-lg md:text-xl font-bold mb-2" x-text="'0' + service.id"></span>
 
                         <h3 x-show="activeService === service.id"
-                            class="text-balance text-white text-5xl md:text-7xl font-black uppercase mb-4 tracking-tighter"
+                            class="text-balance text-[#ffffff] text-5xl md:text-7xl font-black uppercase mb-4 tracking-tighter"
                             x-text="service.title"></h3>
 
                         <div x-show="activeService === service.id" x-collapse>
-                            <p class="text-white/90 text-lg md:text-xl mb-8 leading-relaxed max-w-2xl"
+                            <p class="text-[#ffffff] text-lg md:text-xl mb-8 leading-relaxed max-w-2xl"
                                 x-text="service.desc"></p>
 
                             <div class="flex flex-wrap gap-2 md:gap-3">
                                 <template x-for="tag in service.tags" :key="tag">
                                     <span
-                                        class="px-4 py-2 border border-white/30 rounded-full text-white text-[10px] md:text-xs uppercase font-black tracking-widest bg-white/10 backdrop-blur-md"
+                                        class="px-4 py-2 border border-white/60 rounded-full text-white text-[10px] md:text-xs uppercase font-black tracking-widest bg-white/10 backdrop-blur-md"
                                         x-text="tag"></span>
                                 </template>
                             </div>
@@ -945,13 +945,13 @@
                         }">
                         <div class="absolute inset-0 bg-cover bg-center grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-110"
                             :style="`background-image: url('${card.image}')`" :alt="card.imageAlt"></div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent">
                         </div>
                         <div class="relative z-10 h-full flex flex-col justify-end p-10 transition-all duration-700 delay-500"
                             :class="isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'">
-                            <h3 class="text-balance text-4xl font-black text-white uppercase mb-4" x-text="card.title">
+                            <h3 class="text-balance text-4xl font-black text-[#ffffff] uppercase mb-4" x-text="card.title">
                             </h3>
-                            <p class="text-sm text-white/80 leading-relaxed"
+                            <p class="text-sm text-[#ffffff] leading-relaxed"
                                 x-text="card.title === 'Values' ? 'Integrity, transparency, and the relentess pursuit of excellence. We shoot straight. We go hard.' : card.title === 'Mission' ? 'To refine and elevate brands and businesses for greater impact. More success. Less effort.' : 'Design is a strategic tool. Our work lives at the intersection of psychology, art, and engineering.'">
                             </p>
                         </div>
