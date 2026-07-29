@@ -1,0 +1,115 @@
+<section
+    id="contact"
+    class="min-h-screen bg-arctic-lab bg-[length:400%_400%] animate-bgShift [perspective:2000px] flex flex-col items-center justify-center text-center px-6 relative overflow-hidden"
+>
+    <div class="absolute inset-0 pointer-events-none z-10">
+        <div class="glass-cube lg:hidden c1-mobile absolute"></div>
+        <div class="glass-cube lg:hidden c2-mobile absolute"></div>
+        <div class="glass-cube lg:hidden c3-mobile absolute"></div>
+        <div class="glass-cube lg:hidden c4-mobile absolute"></div>
+        <div class="glass-cube lg:hidden c5-mobile absolute"></div>
+        <div class="glass-cube lg:hidden c6-mobile absolute"></div>
+        <div class="glass-cube lg:hidden c7-mobile absolute"></div>
+
+        <div class="glass-cube hidden lg:block c1 absolute"></div>
+        <div class="glass-cube hidden lg:block c2 absolute"></div>
+        <div class="glass-cube hidden lg:block c3 absolute"></div>
+        <div class="glass-cube hidden lg:block c4 absolute"></div>
+        <div class="glass-cube hidden lg:block c5 absolute"></div>
+        <div class="glass-cube hidden lg:block c6 absolute"></div>
+        <div class="glass-cube hidden lg:block c7 absolute"></div>
+    </div>
+
+    <div class="relative container mx-auto px-6 lg:px-12 xl:px-24 z-20">
+        <div
+            class="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-10 lg:gap-16 max-w-7xl mx-auto py-20"
+        >
+            <div
+                class="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left"
+            >
+                <h2
+                    class="text-[44px] md:text-7xl lg:text-7xl xl:text-8xl font-black text-slate-950 leading-[0.9] lg:leading-[0.85] uppercase tracking-tighter mb-6 lg:mb-8"
+                >
+                    Let's build<br class="hidden lg:block" />
+                    something<br />
+                    <span class="text-sky-600">Extraordinary</span>
+                </h2>
+
+                <p
+                    class="text-slate-950 text-lg lg:text-3xl font-medium max-w-sm lg:max-w-2xl mx-auto lg:mx-0 opacity-90 mb-10"
+                >
+                    Ready to take off? Launch our project inquiry form and let's
+                    get to work.
+                </p>
+                <!-- Cal element-click embed code begins -->
+                <script type="text/javascript">
+                    (function (C, A, L) {
+                        let p = function (a, ar) {
+                            a.q.push(ar);
+                        };
+                        let d = C.document;
+                        C.Cal =
+                            C.Cal ||
+                            function () {
+                                let cal = C.Cal;
+                                let ar = arguments;
+                                if (!cal.loaded) {
+                                    cal.ns = {};
+                                    cal.q = cal.q || [];
+                                    d.head.appendChild(
+                                        d.createElement("script"),
+                                    ).src = A;
+                                    cal.loaded = true;
+                                }
+                                if (ar[0] === L) {
+                                    const api = function () {
+                                        p(api, arguments);
+                                    };
+                                    const namespace = ar[1];
+                                    api.q = api.q || [];
+                                    if (typeof namespace === "string") {
+                                        cal.ns[namespace] =
+                                            cal.ns[namespace] || api;
+                                        p(cal.ns[namespace], ar);
+                                        p(cal, ["initNamespace", namespace]);
+                                    } else p(cal, ar);
+                                    return;
+                                }
+                                p(cal, ar);
+                            };
+                    })(window, "https://app.cal.com/embed/embed.js", "init");
+                    Cal("init", "discovery", { origin: "https://app.cal.com" });
+
+                    // Important: Please add the following attributes to the element that should trigger the calendar to open upon clicking.
+                    // `data-cal-link="flying-mouse-labs/discovery"`
+                    // data-cal-namespace="discovery"
+                    // `data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true","theme":"light"}'`
+
+                    Cal.ns.discovery("ui", {
+                        theme: "light",
+                        cssVarsPerTheme: {
+                            light: { "cal-brand": "#199bd5" },
+                            dark: { "cal-brand": "#199bd5" },
+                        },
+                        hideEventTypeDetails: false,
+                        layout: "month_view",
+                    });
+                </script>
+                <!-- Cal element-click embed code ends -->
+
+                <button
+                    class="w-full md:w-72 lg:w-96 py-4 bg-slate-950 text-white rounded-full font-bold tracking-widest uppercase transition-transform hover:scale-105 active:scale-95 shadow-lg text-center"
+                    data-cal-link="flying-mouse-labs/discovery"
+                    aria-label="Launch your project"
+                    data-cal-namespace="discovery"
+                    data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true","theme":"light"}'
+                    aria-label="Launch your project"
+                >
+                    Launch Your Project
+                </button>
+            </div>
+
+            <div class="hidden lg:block lg:w-1/2"></div>
+        </div>
+    </div>
+</section>
