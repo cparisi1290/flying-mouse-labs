@@ -1,0 +1,41 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Disclaimer | Flying Mouse Labs">
+    <Navbar />
+    
+    <!-- HERO SECTION -->
+    <section class="py-20 lg:py-32 px-6 md:px-12 bg-arctic-lab bg-[length:400%_400%] animate-bgShift">
+        <div class="max-w-4xl mx-auto text-center"></div>
+    </section>
+
+    <!-- DISCLAIMER CONTENT -->
+    <section class="py-20 px-6 md:px-12 border-b border-gray-100">
+        <div class="max-w-4xl mx-auto">
+            <div class="prose prose-lg max-w-none">
+                <div
+                    id="YVZWRmFUWkNkbGxDSzJacVRWRTlQUT09"
+                    class="policy_embed_div"
+                    width="640"
+                    height="480"
+                >
+                    Please wait while the policy is loaded. If it does not
+                    load, please
+                    <a
+                        rel="nofollow"
+                        href="https://policies.termageddon.com/api/policy/YVZWRmFUWkNkbGxDSzJacVRWRTlQUT09"
+                        target="_blank"
+                        >click here</a
+                    >
+                    to view the policy.
+                </div>
+                <script src="https://policies.termageddon.com/api/embed/c/YVZWRmFUWkNkbGxDSzJacVRWRTlQUT09.js"></script>
+            </div>
+        </div>
+    </section>
+
+    <Footer />
+</Layout>

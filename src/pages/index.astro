@@ -39,7 +39,7 @@ import Footer from '../components/Footer.astro';
                     businesses
                 </h1>
                 <h2
-                    class="text-balance text-4xl md:text-7xl lg:text-8xl font-black text-slate-950 leading-tight uppercase relative z-30 text-center lg:text-left">
+                    class="fontFamily-heading text-balance text-4xl md:text-7xl lg:text-8xl font-black text-slate-950 leading-tight uppercase relative z-30 text-center lg:text-left">
                     Make Your<br class="lg:hidden" />
                     First Impression<br class="lg:hidden" />
                     <span class="text-amber-500 text-[42px] md:text-[84px] lg:text-8xl">Unforgettable</span>
@@ -85,7 +85,7 @@ import Footer from '../components/Footer.astro';
         services: window.servicesData
     }" class="py-20 lg:py-36 px-6 md:px-12 bg-white">
         <div class="text-center mb-12 lg:mb-20">
-            <h2 class="text-balance text-5xl md:text-6xl lg:text-7xl font-black text-slate-950 leading-tight uppercase">
+            <h2 class="fontFamily-heading text-5xl md:text-6xl lg:text-7xl font-black text-slate-950 leading-tight uppercase">
                 Services to <br class="md:hidden lg:hidden" />help
                 <br class="hidden md:block lg:hidden" />you
                 <br class="md:hidden lg:hidden" />
@@ -167,7 +167,7 @@ import Footer from '../components/Footer.astro';
         class="py-20 px-6 md:px-12 bg-arctic-lab animate-bgShift bg-[length:400%_400%] min-h-screen flex flex-col justify-center [perspective:2000px]">
         <div class="text-center mb-24">
             <h2
-                class="text-balance text-4xl md:text-6xl lg:text-7xl font-black text-slate-950 leading-tight uppercase tracking-tighter">
+                class="lg:fontFamily-heading text-4xl md:text-6xl lg:text-7xl font-black text-slate-950 leading-tight uppercase">
                 Proven Results.<br />
                 <span class="text-sky-600 uppercase">Measurable Impact.</span>
             </h2>
@@ -357,7 +357,7 @@ import Footer from '../components/Footer.astro';
         <!-- PROJECTS MOBILE + TABLET -->
         <div class="lg:hidden px-6 md:px-12 mb-12 lg:mb-20">
             <h2
-                class="text-balance text-5xl md:text-6xl font-black text-slate-950 tracking-tighter uppercase leading-none">
+                class="fontFamily-heading text-5xl md:text-6xl font-black text-slate-950 tracking-tighter uppercase leading-none">
                 Projects.
             </h2>
             <div class="h-1 w-12 bg-sky-500 mt-4 rounded-full"></div>
@@ -831,7 +831,7 @@ import Footer from '../components/Footer.astro';
                 :class="isActive ? 'opacity-100' : 'opacity-0'">
                 <template x-for="(card, index) in aboutData" :key="index">
                     <div @click="openLightbox(index)"
-                        class="arc-panel group relative w-[380px] h-[550px] rounded-[40px] bg-white shadow-2xl overflow-hidden cursor-pointer transition-all duration-[1300ms] ease-out hover:scale-105 hover:-translate-y-8 hover:z-50"
+                        class="cursor-default arc-panel group relative w-[380px] h-[550px] rounded-[40px] bg-white shadow-2xl overflow-hidden cursor-pointer transition-all duration-[1300ms] ease-out hover:scale-105 hover:-translate-y-8 hover:z-50"
                         :class="{
                             'arc-wing-left': index === 0,
                             'arc-center': index === 1,

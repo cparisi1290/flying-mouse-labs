@@ -1,0 +1,147 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Blog | Flying Mouse Labs">
+    <Navbar />
+    
+    <section
+        id="blog-archive"
+        x-data="window.blogData"
+        class="relative overflow-hidden py-24 px-8 md:px-24 lg:px-48 min-h-screen"
+        style="
+            background: linear-gradient(
+                135deg,
+                rgba(165, 243, 252, 0.8) 0%,
+                rgba(134, 239, 252, 0.8) 20%,
+                rgba(110, 206, 241, 0.8) 40%,
+                rgba(207, 250, 254, 0.8) 60%,
+                rgba(228, 160, 58, 0.4) 75%,
+                rgba(103, 232, 249, 0.8) 100%
+            );
+            background-size: 400% 400%;
+            animation: bgShift 10s infinite alternate ease-in-out;
+            perspective: 2000px;
+        "
+    >
+        <div
+            class="max-w-7xl mx-auto mb-16 md:mb-24 border-l-4 border-slate-950 pl-6 md:pl-10"
+        >
+            <h1
+                class="font-black text-5xl md:text-7xl lg:text-8xl text-slate-950 mt-2 mb-4 uppercase tracking-tighter leading-none"
+            >
+                Insights
+            </h1>
+            <p
+                class="max-w-md text-slate-950/70 text-sm md:text-lg leading-relaxed"
+            >
+                Documenting the intersection of arctic design philosophy and
+                high-scale performance.
+            </p>
+        </div>
+
+        <div
+            class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-12 gap-x-10 md:gap-x-12"
+        >
+            <template x-for="post in posts" :key="post.title">
+                <a
+                    href="/blog-single"
+                    class="relative flex flex-col p-6 md:p-8 bg-white/50 backdrop-blur-md border border-white/40 rounded-[48px] shadow-xl transition-all duration-500 hover:shadow-xl no-underline"
+                >
+                    <div
+                        class="relative w-full aspect-video md:aspect-[4/3] rounded-[32px] overflow-hidden mb-8 border border-white/20 shadow-inner"
+                    >
+                        <div
+                            class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 ease-out"
+                            :style="`background-image: url('${post.img}')`"
+                        ></div>
+                        <div
+                            class="absolute inset-0 bg-slate-950/5 opacity-0 hover:opacity-100 transition-opacity duration-500"
+                        ></div>
+                    </div>
+
+                    <div class="flex items-center gap-4 mb-4">
+                        <span
+                            class="font-mono text-[10px] md:text-xs font-bold tracking-[0.2em] text-sky-600"
+                            x-text="'// ' + post.date"
+                        ></span>
+                        <span
+                            class="text-[10px] md:text-xs font-black text-slate-950/40 uppercase tracking-widest"
+                            x-text="'• ' + post.cat"
+                        ></span>
+                    </div>
+
+                    <h3
+                        class="font-black text-xl md:text-2xl text-slate-950 leading-[1.2] mb-8 transition-colors duration-300 hover:text-sky-600"
+                        x-text="post.title"
+                    ></h3>
+
+                    <div class="mt-auto">
+                        <span
+                            class="inline-flex items-center justify-center w-full py-3 bg-slate-950 text-white rounded-full font-bold tracking-widest uppercase text-[10px] md:text-xs transition-all duration-300 hover:bg-sky-600 hover:shadow-[0_0_20px_rgba(28,157,217,0.4)] active:scale-95 gap-3"
+                        >
+                            Access_File
+                            <span
+                                class="text-lg transition-transform duration-300 hover:translate-x-2"
+                                >&rarr;</span
+                            >
+                        </span>
+                    </div>
+                </a>
+            </template>
+        </div>
+    </section>
+
+    <Footer />
+    
+    <script is:inline>
+        window.blogData = {
+            posts: [
+                { 
+                    date: 'JAN 09 2026', 
+                    cat: 'ARCHITECTURE', 
+                    title: 'Building for the Cold: Why Performance Matters in 2026', 
+                    img: 'https://picsum.photos/seed/blog1/800/600',
+                    slug: 'building-for-the-cold-performance-2026'
+                },
+                { 
+                    date: 'JAN 02 2026', 
+                    cat: 'DESIGN', 
+                    title: 'The Psychology of Minimalist User Interfaces', 
+                    img: 'https://picsum.photos/seed/blog2/800/600',
+                    slug: 'psychology-minimalist-interfaces'
+                },
+                { 
+                    date: 'DEC 20 2025', 
+                    cat: 'ENGINEERING', 
+                    title: 'Optimizing Llama 3 for Edge Devices', 
+                    img: 'https://picsum.photos/seed/blog3/800/600',
+                    slug: 'optimizing-llama-3-edge-devices'
+                },
+                { 
+                    date: 'DEC 15 2025', 
+                    cat: 'STRATEGY', 
+                    title: 'Why Brand Identity is Your Strongest Moat', 
+                    img: 'https://picsum.photos/seed/blog4/800/600',
+                    slug: 'brand-identity-strongest-moat'
+                },
+                { 
+                    date: 'DEC 05 2025', 
+                    cat: 'FUTURE', 
+                    title: 'The Rise of Hyper-Personalized UX', 
+                    img: 'https://picsum.photos/seed/blog5/800/600',
+                    slug: 'rise-hyper-personalized-ux'
+                },
+                { 
+                    date: 'NOV 28 2025', 
+                    cat: 'LABS', 
+                    title: 'Behind the Scenes: Flying Mouse V2', 
+                    img: 'https://picsum.photos/seed/blog6/800/600',
+                    slug: 'behind-scenes-flying-mouse-v2'
+                }
+            ]
+        };
+    </script>
+</Layout>

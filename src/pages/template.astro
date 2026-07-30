@@ -1,0 +1,42 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Template | Flying Mouse Labs">
+    <Navbar />
+    
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+        ><iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-KG2P58FL"
+            height="0"
+            width="0"
+            style="display: none; visibility: hidden"
+        ></iframe
+    ></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- HERO SECTION -->
+    <section
+        class="py-20 lg:py-32 px-6 md:px-12 bg-arctic-lab bg-[length:400%_400%] animate-bgShift"
+    >
+        <div class="max-w-4xl mx-auto text-center">
+            <h1
+                class="text-4xl md:text-6xl font-black text-slate-950 leading-tight uppercase tracking-tighter mb-6"
+            >
+                Heading
+            </h1>
+            <p class="text-lg text-slate-950/80 max-w-2xl mx-auto">
+                Subheading
+            </p>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <Contact />
+
+    <Footer />
+</Layout>
